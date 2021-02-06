@@ -1,0 +1,10 @@
+---
+title: "Sobre o Curso R"
+description: |
+  A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+

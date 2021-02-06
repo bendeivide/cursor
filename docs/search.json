@@ -1,0 +1,45 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "Sobre o Curso R",
+      "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-06T04:54:42-03:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Curso R",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-06T04:54:45-03:00"
+    },
+    {
+      "path": "navancado.html",
+      "title": "Sobre o Curso R",
+      "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-06T04:54:48-03:00"
+    },
+    {
+      "path": "nbasico.html",
+      "title": "Sobre o Curso R",
+      "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-06T04:54:52-03:00"
+    },
+    {
+      "path": "nintermediario.html",
+      "title": "Sobre o Curso R",
+      "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-06T04:54:56-03:00"
+    }
+  ],
+  "collections": []
+}
