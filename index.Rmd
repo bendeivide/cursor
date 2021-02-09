@@ -1,7 +1,8 @@
 ---
 title: "Curso R"
-description: |
-  Welcome to the website. I hope you enjoy it!
+description: "Aprecie todo o material contido nesse site, como se fosse seu. Zele,
+  propague, critique, contribua. Será um prazer compartilharmos nossas experiências!
+  \n"
 site: distill::distill_website
 ---
 
@@ -12,4 +13,45 @@ knitr::opts_chunk$set(echo = FALSE)
 # https://rstudio.github.io/distill/website.html
 
 ```
+
+
+<!-- favicons
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+-->
+
+# <i class="fas fa-book"></i> Sobre o autor <img src="images/ben.png" align="right" height="139"/>
+
+Natural da cidade de Pau dos Ferros/RN. Formado em Engenharia Agronômica pela Universidade Federal Rural do Semiárido (UFERSA), Mossoró/RN. Pós-Graduação (Mestrado e Doutorado)  e Pós-Doutorado em Estatística e Experimentação Agropecuária pela Universidade Federal de Lavras (Lavras/MG). Atualmente sou Professor de Estatística pela Universidade de São João Del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG. Minhas linhas de pesquisas se concentram em Estatística e Probabilidade, Estatística Experimental, Estatística Computacional (linguagem R), densenvolvimento de pacotes R para análises de dados e ensino da Estatística. 
+
+
+# <i class="fas fa-book"></i> Curso R <img src="images/Rlogo.png" align="right" height="139"/>
+
+O curso R não tem como objetivo principal de ensinar análise de dados. Mas sim, proporcionar a você um conhecimento sobre a linguagem R, de modo que consiga usufruir todos os recursos que ela possa lhe proporcionar.
+
+Ainda como complemento, não queremos nesse material, convencê-lo a utilizar a linguagem `R`, pois a melhor linguagem é aquela que você domina. Contudo, pretendemos lhe mostrar que os recursos utilizados pelo R não estão mais limitados a própria análise de dados. Um exemplo é esse material, que nesse momento usufruo do `R` para repassar as minhas experiências sem ao menos ter o domínio sobre linguagens do tipo `HTML`, `CSS`, `JavaScript`, dentre outras, necessárias para uma boa criação de página web.
+
+Dessa forma, propormos um entendimento sobre a sintaxe e semântica de como a linguagem `R` é desenvolvida. Com isso, você será capaz após esse curso, estudar um pouco mais sobre essa ciência que nos últimos anos vem ganhando mais evidência, que é a Estatística. Tudo isso devido ao grande volume de informações obtidos nessa era tecnológica. Juntamente com ela, o `R` se tornará uma poderosa ferramenta com o qual você poderá entender os padrões que estão por trás dos dados, que por sinal, é a moeda valiosa do momento, ou melhor, sempre foi!
+
+Mas não só apenas análise de dados, aprenderemos também recursos diversos na área da computação, como programação defensiva, desenvolvimento de interfaces gráficas, paralelização. Ensinaremos também o desenvolvimento de materiais como artigos, livros, websites, blogs, dashboards. Por fim, chegaremos a maior cobiça de um programador `R`, [desenvolver seu próprio pacote `R`](https://bendeivide.github.io/meupacoter/).
+
+<blockquote>
+<p>
+<em> Repararam que em muitos momentos utilizamos o artigo "o" para a linguagem `R`. Pois é, isso ocorre porque ela também é considerada um software. Daí, também podemos chamá-la de software `R`. </em>
+</p>
+</blockquote>
+
+O material curso R apresentará três módulos:
+
+-   Programação em R (Nível Básico)
+-   Programação em R (Nível Intermediário)
+-   Programação em R (Nível Avançado)
+
+O primeiro módulo compreenderá o conhecimento na sintaxe e semântica da linguagem
+
+
 

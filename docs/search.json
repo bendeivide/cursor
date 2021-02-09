@@ -6,39 +6,15 @@
       "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-02-06T04:54:42-03:00"
+      "last_modified": "2021-02-09T19:05:06-03:00"
     },
     {
       "path": "index.html",
       "title": "Curso R",
-      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "description": "Aprecie todo o material contido nesse site, como se fosse seu. Zele, propague, critique, contribua. Será um prazer compartilharmos nossas experiências! \n",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-02-06T04:54:45-03:00"
-    },
-    {
-      "path": "navancado.html",
-      "title": "Sobre o Curso R",
-      "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
-      "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-02-06T04:54:48-03:00"
-    },
-    {
-      "path": "nbasico.html",
-      "title": "Sobre o Curso R",
-      "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
-      "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-02-06T04:54:52-03:00"
-    },
-    {
-      "path": "nintermediario.html",
-      "title": "Sobre o Curso R",
-      "description": "A finalidade do curso R é proporcionar um maior entendimento sobre a linguagem para que a sua imagação e criatividade seja livre  ",
-      "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-02-06T04:54:56-03:00"
+      "contents": "\r\n\r\n Sobre o autor \r\nNatural da cidade de Pau dos Ferros/RN. Formado em Engenharia Agronômica pela Universidade Federal Rural do Semiárido (UFERSA), Mossoró/RN. Pós-Graduação (Mestrado e Doutorado) e Pós-Doutorado em Estatística e Experimentação Agropecuária pela Universidade Federal de Lavras (Lavras/MG). Atualmente sou Professor de Estatística pela Universidade de São João Del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG. Minhas linhas de pesquisas se concentram em Estatística e Probabilidade, Estatística Experimental, Estatística Computacional (linguagem R), densenvolvimento de pacotes R para análises de dados e ensino da Estatística.\r\n Curso R \r\nO curso R não tem como objetivo principal de ensinar análise de dados. Mas sim, proporcionar a você um conhecimento sobre a linguagem R, de modo que consiga usufruir todos os recursos que ela possa lhe proporcionar.\r\nAinda como complemento, não queremos nesse material, convencê-lo a utilizar a linguagem R, pois a melhor linguagem é aquela que você domina. Contudo, pretendemos lhe mostrar que os recursos utilizados pelo R não estão mais limitados a própria análise de dados. Um exemplo é esse material, que nesse momento usufruo do R para repassar as minhas experiências sem ao menos ter o domínio sobre linguagens do tipo HTML, CSS, JavaScript, dentre outras, necessárias para uma boa criação de página web.\r\nDessa forma, propormos um entendimento sobre a sintaxe e semântica de como a linguagem R é desenvolvida. Com isso, você será capaz após esse curso, estudar um pouco mais sobre essa ciência que nos últimos anos vem ganhando mais evidência, que é a Estatística. Tudo isso devido ao grande volume de informações obtidos nessa era tecnológica. Juntamente com ela, o R se tornará uma poderosa ferramenta com o qual você poderá entender os padrões que estão por trás dos dados, que por sinal, é a moeda valiosa do momento, ou melhor, sempre foi!\r\nMas não só apenas análise de dados, aprenderemos também recursos diversos na área da computação, como programação defensiva, desenvolvimento de interfaces gráficas, paralelização. Ensinaremos também o desenvolvimento de materiais como artigos, livros, websites, blogs, dashboards. Por fim, chegaremos a maior cobiça de um programador R, desenvolver seu próprio pacote R.\r\n\r\n\r\n Repararam que em muitos momentos utilizamos o artigo “o” para a linguagem R. Pois é, isso ocorre porque ela também é considerada um software. Daí, também podemos chamá-la de software R. \r\n\r\n\r\nO material curso R apresentará três módulos:\r\nProgramação em R (Nível Básico)\r\nProgramação em R (Nível Intermediário)\r\nProgramação em R (Nível Avançado)\r\nO primeiro módulo compreenderá o conhecimento na sintaxe e semântica da linguagem\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-02-09T19:05:36-03:00"
     }
   ],
   "collections": []

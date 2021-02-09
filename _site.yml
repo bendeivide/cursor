@@ -20,18 +20,18 @@ navbar:
     - text: "About"
       href: about.html
       icon: fas fa-info-circle
-    - text: "Materiais"
+    - text: "Material"
       menu:
         - text: "Basico"
-          href: nbasico.html
+          href:
         - text: "Intermediario"
-          href: nintermediario.html
+          href:
         - text: "Avancado"
-          href: navancado.html
+          href:
 
   right:
     - icon: fa-github fa-lg
-      href: https://github.com/bendeivide/meupacoter
+      href: https://github.com/bendeivide/cursor
     - icon: fab fa-facebook
       href: https://www.facebook.com/bendeivide/
     - icon: fab fa-instagram
@@ -39,5 +39,9 @@ navbar:
     - icon: fab fa-blogger
       href: https://benalana.blogspot.com/
     - icon: fab fa-youtube-square
-      href: http://youtube.com/bendeivide
+      href: http://youtube.com/bendeivide/
+    - icon: fab fa-twitter
+      href: http://twitter.com/bendeivide/
+    - icon: fab fa-linkedin
+      href: https://www.linkedin.com/in/bendeivide/
 output: distill::distill_article
