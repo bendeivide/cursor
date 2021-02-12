@@ -23,7 +23,7 @@ navbar:
     - text: "Material"
       menu:
         - text: "Basico"
-          href:
+          href: nbasico.html
         - text: "Intermediario"
           href:
         - text: "Avancado"
@@ -45,3 +45,4 @@ navbar:
     - icon: fab fa-linkedin
       href: https://www.linkedin.com/in/bendeivide/
 output: distill::distill_article
+

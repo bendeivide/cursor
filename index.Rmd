@@ -3,6 +3,9 @@ title: "Curso R"
 description: "Aprecie todo o material contido nesse site, como se fosse seu. Zele,
   propague, critique, contribua. Será um prazer compartilharmos nossas experiências!
   \n"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
 site: distill::distill_website
 ---
 
@@ -24,12 +27,19 @@ knitr::opts_chunk$set(echo = FALSE)
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 -->
 
-# <i class="fas fa-book"></i> Sobre o autor <img src="images/ben.png" align="right" height="139"/>
+# Sumário
+- [<i class="fas fa-user"></i> Sobre o autor](#autor)
+- [<i class="fas fa-book"></i> Proposta do curso](#propcurso)
+  - [Programação em R (Nível Básico)](index.html#programa%C3%A7%C3%A3o-em-r-n%C3%ADvel-b%C3%A1sico)
 
-Natural da cidade de Pau dos Ferros/RN. Formado em Engenharia Agronômica pela Universidade Federal Rural do Semiárido (UFERSA), Mossoró/RN. Pós-Graduação (Mestrado e Doutorado)  e Pós-Doutorado em Estatística e Experimentação Agropecuária pela Universidade Federal de Lavras (Lavras/MG). Atualmente sou Professor de Estatística pela Universidade de São João Del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG. Minhas linhas de pesquisas se concentram em Estatística e Probabilidade, Estatística Experimental, Estatística Computacional (linguagem R), densenvolvimento de pacotes R para análises de dados e ensino da Estatística. 
 
 
-# <i class="fas fa-book"></i> Curso R <img src="images/Rlogo.png" align="right" height="139"/>
+# <i class="fas fa-user"></i> Sobre o autor <img src="images/ben.png" align="right" height="139" id="autor"/>
+
+Natural da cidade de Pau dos Ferros/RN. Formado em Engenharia Agronômica pela Universidade Federal Rural do Semiárido (UFERSA), Mossoró/RN. Pós-Graduação (Mestrado e Doutorado)  e Pós-Doutorado em Estatística e Experimentação Agropecuária pela Universidade Federal de Lavras (Lavras/MG). Atualmente sou Professor de Estatística pela Universidade de São João Del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG. Minhas linhas de pesquisas se concentram em Estatística e Probabilidade, Estatística Experimental, Estatística Computacional (linguagem R), densenvolvimento de pacotes R para análises de dados e ensino da Estatística. Mais detalhes, acesse [minha página](http://bendeivide.github.io/).
+
+
+# <i class="fas fa-book"></i> Proposta do curso <img src="images/Rlogo.png" align="right" height="139" id="propcurso"/>
 
 O curso R não tem como objetivo principal de ensinar análise de dados. Mas sim, proporcionar a você um conhecimento sobre a linguagem R, de modo que consiga usufruir todos os recursos que ela possa lhe proporcionar.
 
@@ -47,11 +57,50 @@ Mas não só apenas análise de dados, aprenderemos também recursos diversos na
 
 O material curso R apresentará três módulos:
 
--   Programação em R (Nível Básico)
--   Programação em R (Nível Intermediário)
--   Programação em R (Nível Avançado)
+-   Programação em `R` (Nível Básico)
+-   Programação em `R` (Nível Intermediário)
+-   Programação em `R` (Nível Avançado)
 
-O primeiro módulo compreenderá o conhecimento na sintaxe e semântica da linguagem
+## Programação em R (Nível Básico)
+
+O primeiro módulo compreenderá um breve **histórico** sobre a linguagem, o conhecimento da **sintaxe** e **semântica** da linguagem `R`, compreendendo as estruturas bases da linguagem, sobre o que é um **objeto** e como construir uma **função**, o entendimento sobre **fluxos de controle**. O que é um **pacote**, **carregar** e **anexar** um pacote, e quem são as pessoas que fazem parte da manutenção dessa linguagem, também serão assuntos desse primeiro módulo. **Caminhos de busca**, **ambientes** e *namespaces*, teremos noções básicas. Algo muito interessante, que pode mudar a sua vida como programação em `R` são as **boas práticas para a escrita de um código R**, tema também abordado nesse módulo.
+
+## Programação em R (Nível Intermediário)
+
+Em contrução...
+
+## Programação em R (Nível Avançado)
+
+Em contrução...
+
+## Referências dos curso
+
+Citaremos alguns livros e materiais utilizados para o desenvolvimento desse curso, tais como:
+
+ - [An introduction to `R`](https://cran.r-project.org/doc/manuals/R-intro.html#Introduction-and-preliminaries)
+ - [Advanced R](https://adv-r.hadley.nz/) [@hadley2019]
+ - [Advanced R Solutions](http://advanced-r-solutions.rbind.io/) [@hadleyetal2021]
+ - [R Packages](https://r-pkgs.org/index.html)[@hadley2015]
+
+## Onde encontrar os nossos materiais
+
+Temos dedicado uma parte do nosso trabalho no desenvolvimento de materiais em R, dos quais podem ser encontrados em:
+
+
+## Pacotes R utilizados para esse curso
+
+Segue uma lista dos pacotes utilizados para do desenvolvimento do material desse curso:
+
+| Pacote | Objetivo para o curso |
+|:------:|:---------------------:|
+| [lobstr](https://lobstr.r-lib.org/)  | Auxilia nas representações internas de um objeto R |
+| [distill](https://rstudio.github.io/distill/) | Criação da página |
+
+
+## Instalação do R e do RStudio
+
+<iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/Gei-gtBlMos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 
 

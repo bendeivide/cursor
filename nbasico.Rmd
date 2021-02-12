@@ -1,0 +1,75 @@
+---
+title: "Programação em R (Nível Básico)"
+description: |
+  Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Sumário
+
+# Materiais para este módulo
+
+## Aulas
+
+ - Aula 01: [Instalação do R e do RStudio](aulas/aula01.html)
+
+Falar sobre a história do R e como caracterizá-la.
+
+Caracterizações:
+
+- Linguagem interpretada
+- Linguagem ou programa
+- linguagem de código livre
+- objetivo principal: Computação estatística e gráficos
+
+# Sintaxe e semântica do `R`
+
+A primeira ideia que temos sobre a linguagem `R` é a linha de comando no `R`, que é simbolizada pelo prompt de comando "`>`". Este símbolo significa que o `R` está pronto para receber os comandos do usuário. O *prompt* de comando está localizado
+Vejamos o console do `R` a seguir, que é o local que recebe as linhas de comando do usuário.
+
+```{r promptr, fig.cap = "Console do R.", out.width = "80%"}
+knitr::include_graphics("images/promptr.png")
+```
+
+O [RStudio](http://rstudio.com) se apresenta como uma interface para facilitar a utilização do `R`, tendo por padrão quatro quadrantes, apresentados na Figura \@ref{fig:iderstudio}.
+
+```{r iderstudio, fig.cap = "Interface do RStudio.", out.width = "80%"}
+knitr::include_graphics("images/ide_rstudio.png")
+```
+
+
+
+# Os três princípios do `R`
+
+Iniciamos a discussão por uma afirmação de John McKinley Chambers^[Foto retirada de sua página pessoal, [https://statweb.stanford.edu/~jmc4/](https://statweb.stanford.edu/~jmc4/)], do qual afirmou que o `R` tem três princípios 
+[@chambers2016]:
+![John M. Chambers](images/john_chambers.jpg)
+
+- Tudo que existe em `R` é um objeto;
+- Tudo que acontece no `R` é uma chamada de função;
+- Interfaces para outros programas são parte do `R`.
+
+Para a construção e base dessas ideias, usaremos a convenção utilizada por @hadley2019, formalizando o entendimento por meio de diagramas. Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos. 
+
+Vejamos o seguinte código:
+
+```{r primeiro_codigo, echo=TRUE, comment="", prompt=TRUE}
+x <- 10
+```
+Todo mundo que tem uma certa noção sobre a linguagem `R` afirmaria: "criei um objeto `x` que recebe o valor 10". Para @hadley2019 essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto `10` está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. A símbolo que associa um objeto a um nome é o de atribuição, `<-`. Este símbolo poderá ser representado na direção da esquerda para à direita ou vice-versa, isto é,
+
+```{r segundo_codigo, echo=TRUE, comment=">"}
+x <- 10
+10 -> x
+```
+
+As duas formas acima são possíveis
+
+- 
