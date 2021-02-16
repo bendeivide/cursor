@@ -17,9 +17,6 @@ navbar:
     - text: "Home"
       href: index.html
       icon: fas fa-home
-    - text: "About"
-      href: about.html
-      icon: fas fa-info-circle
     - text: "Material"
       menu:
         - text: "Basico"

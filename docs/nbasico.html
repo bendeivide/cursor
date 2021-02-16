@@ -2079,9 +2079,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="index.html" aria-label="Home">
 <i class="fas fa-home" aria-hidden="true"></i>
 </a>
-<a href="about.html" aria-label="About">
-<i class="fas fa-info-circle" aria-hidden="true"></i>
-</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Material
@@ -2143,6 +2140,12 @@ Material
 <li><a href="#scripts">Scripts</a></li>
 <li><a href="#shiny">Scripts via Shiny</a></li>
 </ul></li>
+<li><a href="#apresentacao"><i class="fas fa-book"></i> Apresentação do curso</a></li>
+<li><a href="#r-rstudio"><i class="fas fa-download"></i> Instalação do R e RStudio para o SO Windows</a></li>
+<li><a href="#tools-r-rstudio"><i class="fas fa-wrench"></i> Como utilizar o R e o RStudio</a></li>
+<li><a href="#rhistory"><i class="fab fa-r-project"></i> História do R</a></li>
+<li><a href="#rwork"><i class="fas fa-briefcase"></i> Como o R trabalha</a></li>
+<li><a href="#filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></a></li>
 </ul>
 <h2 id="section"></h2>
 <h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
@@ -2150,8 +2153,8 @@ Material
 <ul>
 <li>Aula 00: <a href="aulas/aula00.html">Apresentação do Curso</a></li>
 <li>Aula 01: <a href="aulas/aula01.html">Instalação do R e do RStudio</a></li>
-<li>Aula 02: <a href="">Passos iniciais para a utilização do R e do RStudio</a></li>
-<li>Aula 03: <a href="">História do R</a></li>
+<li>Aula 02: <a href="aulas/aula02.html">Passos iniciais para a utilização do R e do RStudio</a></li>
+<li>Aula 03: <a href="aulas/aula03.html">História do R</a></li>
 <li>Aula 04: <a href="">Como o R trabalha</a></li>
 <li>Aula 05: <a href="">Símbolos e Comandos elementares</a></li>
 <li>Aula 06: <a href="">Arquivos <code>.RData</code> e <code>.Rhistory</code></a></li>
@@ -2191,7 +2194,7 @@ Material
 </ul>
 <h2 id="shiny">Scripts via <a href="https://shiny.rstudio.com/">Shiny</a></h2>
 <p>Em construção…</p>
-<h1 id="apresentação-do-curso"><i class="fas fa-book"></i> Apresentação do curso</h1>
+<h1 id="apresentacao"><i class="fas fa-book"></i> Apresentação do curso</h1>
 <p>O Curso <code>R</code> será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal <a href="http://youtube.com/bendeivide">Youtube/Ben Dêivide</a> divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento desse material, disponibilizaremos os <a href="#scripts"><em>scripts</em></a> com os comandos utilizados em cada aula e sua versão em <a href="#shiny"><em>Shiny</em></a> para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão <em>online</em> do material juntamente com a linguagem <code>R</code>.</p>
 <h1 id="r-rstudio"><i class="fas fa-download"></i> Instalação do R e RStudio para o SO Windows</h1>
 <p>A linguagem <code>R</code> é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o <code>R</code>, não há sentido instalá-lo.</p>
@@ -2201,7 +2204,7 @@ Material
 <li>Instalação do <a href="http://rstudio.org/">RStudio</a>: <a href="https://rstudio.com/products/rstudio/download/#download">https://rstudio.com/products/rstudio/download/#download</a></li>
 </ul>
 <p>Justificamos a utilizamos do <a href="http://rstudio.org/">RStudio</a>, pela quantidade de recursos disponíveis e a diversidade de usuários <code>R</code>, que hoje o perfil não é apenas de um programador, mas um usuário que necessita de uma ferramenta estatística para análise de seus dados. Dessa forma, até por questão de praticidade, e de uso pessoal, não deixaremos de repassar o entendimento sobre a linguagem <code>R</code> com o uso do <a href="http://rstudio.org/">RStudio</a>.</p>
-<h1 id="tools-r-rstudio"><i class="fas fa-tools"></i> Como utilizar o <a href="http://r-project.org/">R</a> e o <a href="http://rstudio.org/">RStudio</a></h1>
+<h1 id="tools-r-rstudio"><i class="fas fa-wrench"></i> Como utilizar o <a href="http://r-project.org/">R</a> e o <a href="http://rstudio.org/">RStudio</a></h1>
 <p>A primeira ideia que temos sobre a linguagem <code>R</code> é a linha de comando no <code>R</code>, que é simbolizada pelo prompt de comando “<code>&gt;</code>.” Este símbolo significa que o <code>R</code> está pronto para receber os comandos do usuário. O <em>prompt</em> de comando está localizado no console do <code>R</code>. Vejamos o console do <code>R</code> a seguir, que é o local que recebe as linhas de comando do usuário.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:promptr"></span>
@@ -2393,15 +2396,13 @@ Caracterizações:
 - objetivo principal: Computação estatística e gráficos
 
 -->
-<h1 id="sintaxe-e-semântica-do-r"><i class="fas fa-terminal"></i> Sintaxe e semântica do <code>R</code></h1>
-<h2 id="símbolos-e-comando-elementares">Símbolos e comando elementares</h2>
-<h2 id="os-três-princípios-do-r">Os três princípios do <code>R</code></h2>
+<h1 id="rwork"><i class="fas fa-briefcase"></i> Como o R trabalha</h1>
 <p>Iniciamos a discussão por uma afirmação de John McKinley Chambers, do qual afirmou que o <code>R</code> tem três princípios <span class="citation" data-cites="chambers2016">(<a href="#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure" style="text-align: center"><span id="fig:chumbers"></span>
-<img src="images/john_chambers.jpg" alt="John Chumbers^[Fonte da foto: Retirada de sua página pessoal, [https://statweb.stanford.edu/~jmc4/](https://statweb.stanford.edu/~jmc4/)], o criador da linguagem `S`." width="50%" />
+<div class="figure" style="text-align: center"><span id="fig:chambers"></span>
+<img src="images/john_chambers.jpg" alt="John Chambers^[Fonte da foto: Retirada de sua página pessoal, [https://statweb.stanford.edu/~jmc4/](https://statweb.stanford.edu/~jmc4/)], o criador da linguagem `S`." width="10%" />
 <p class="caption">
-Figure 6: John Chumbers<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>, o criador da linguagem <code>S</code>.
+Figure 6: John Chambers<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>, o criador da linguagem <code>S</code>.
 </p>
 </div>
 </div>
@@ -2430,6 +2431,13 @@ Figure 6: John Chumbers<a href="#fn12" class="footnote-ref" id="fnref12" role="d
 <ul>
 <li></li>
 </ul>
+<h1 id="símbolos-e-comando-elementares"><i class="fas fa-terminal"></i> Símbolos e comando elementares</h1>
+<h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>
+<h1 id="savescript"><i class="fas fa-save"></i> Criando e salvando um script</h1>
+<h1 id="exportdata"><i class="fas fa-file-export"></i> Exportando dados</h1>
+<h1 id="objetos"><i class="fas fa-puzzle-piece"></i> Objetos</h1>
+<h1 id="boas-práticas-de-como-escrever-um-código"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</h1>
+<h1 id="pacotes"><i class="fas fa-cubes"></i> Pacotes</h1>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">

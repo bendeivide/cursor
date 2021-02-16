@@ -1,6 +1,6 @@
 ---
 title: "Programação em R (Nível Básico)"
-subtitle: "Aula 01 - Instalação do R, RStudio e *Rtools*"
+subtitle: "Aula 01 - Instalação do R e RStudio"
 author: "Ben Deivide"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -19,14 +19,14 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Informações Gerais
 
-- As instalações do R, RStudio e do *Rtools* serão específicas para o SO Windows;
+- As instalações do R e RStudio  serão específicas para o SO Windows;
 - Para mais SO, acesse: [Instalação do R e do RStudio](nbasico.html#installrrstudio);
 
 ## Passos para a instalação
 
 - Instalação do `R`: [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
 - Instalação do RStudio: [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download)
-- Instalação do *Rtools*: [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/)
+
 
 ## Interface do `R`
 

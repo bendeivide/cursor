@@ -1,6 +1,6 @@
 ---
 title: "Programação em R (Nível Básico)"
-subtitle: "Aula 02 - Passos iniciais para a utilização do R e do RStudio"
+subtitle: "Aula 03 - Hitória do R"
 author: "Ben Deivide"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -17,14 +17,4 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Relembrando a aula anterior
-
-<center>
-![](promptr.png){width="80%"}
-</center>
-
-## Relembrando a aula anterior
-
-<center>
-![](ide_rstudio.png){width="80%"}
-</center>
+## Em construção...

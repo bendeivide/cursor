@@ -1,6 +1,6 @@
 ---
 title: "Programação em R (Nível Básico)"
-subtitle: "Aula 01 - Passos iniciais para a utilização do R e do RStudio"
+subtitle: "Aula 02 - Passos iniciais para a utilização do R e do RStudio"
 author: "Ben Deivide"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
