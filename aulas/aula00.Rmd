@@ -1,7 +1,7 @@
 ---
 title: "Curso R: Programação em R (Nível Básico)"
-subtitle: "Aula 0 - Apresentação do Curso R"
-author: "Ben Deivide"
+subtitle: "Aula 00 - Apresentação do Curso R"
+author: "Ben Dêivide"
 date: "18/02/2021"
 output: 
   ioslides_presentation:
