@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Informações Gerais
 
 - As instalações do R e RStudio  serão específicas para o SO Windows;
-- Para mais SO, acesse: [Instalação do R e do RStudio](nbasico.html#installrrstudio);
+- Para mais SO, acesse: [Instalação do R e do RStudio](index.html#installrrstudio);
 
 ## Passos para a instalação
 
