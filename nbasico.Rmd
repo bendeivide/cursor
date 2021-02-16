@@ -75,18 +75,36 @@ Em construção...
 
 O Curso `R` será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal [Youtube/Ben Dêivide](http://youtube.com/bendeivide) divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento  desse material, disponibilizaremos os [*scripts*](#scripts) com os comandos utilizados em cada aula e sua versão em [*Shiny*](#shiny) para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão *online* do material juntamente com a linguagem `R`.
 
-# <i class="fas fa-download"></i> Instalação do R, RStudio e *Rtools* para o SO Windows {#r-rstudio-rtools}
+# <i class="fas fa-download"></i> Instalação do R e RStudio para o SO Windows {#r-rstudio}
 
-A linguagem `R` é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o `R`, não há sentido instalá-lo. Por fim, instalaremos um kit de ferramentas do `R` para o SO  Windows, o *Rtools*, uma vez que ao longo do curso precisaremos de muitos recursos nele, como por exemplo, desenvolvimento de pacotes.
+A linguagem `R` é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o `R`, não há sentido instalá-lo. 
 
 Dessa forma, seguem os passos para a instalação:
 
 - Instalação do `R`: [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
-- Instalação do RStudio: [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download)
-- Instalação do *Rtools*: [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/)
+- Instalação do [RStudio](http://rstudio.org/): [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download)
+
+Justificamos a utilizamos do [RStudio](http://rstudio.org/), pela quantidade de recursos disponíveis e a diversidade de usuários `R`, que hoje o perfil não é apenas de um programador, mas um usuário que necessita de uma ferramenta estatística para análise de seus dados. Dessa forma, até por questão de praticidade, e de uso pessoal, não deixaremos de repassar o entendimento sobre a linguagem `R` com o uso do [RStudio](http://rstudio.org/).
+
+# <i class="fas fa-tools"></i> Como utilizar o [R](http://r-project.org/) e o [RStudio](http://rstudio.org/) {#tools-r-rstudio}
+
+A primeira ideia que temos sobre a linguagem `R` é a linha de comando no `R`, que é simbolizada pelo prompt de comando "`>`". Este símbolo significa que o `R` está pronto para receber os comandos do usuário. O *prompt* de comando está localizado no console do `R`.
+Vejamos o console do `R` a seguir, que é o local que recebe as linhas de comando do usuário.
+
+```{r promptr, fig.cap = "Console do R.", out.width = "80%", fig.align='center'}
+knitr::include_graphics("images/promptr.png")
+```
+
+O [RStudio](http://rstudio.com) se apresenta como uma interface para facilitar a utilização do `R`, tendo por padrão quatro quadrantes, apresentados na Figura \@ref(fig:iderstudio).
+
+```{r iderstudio, fig.cap = "Interface do RStudio.", out.width = "80%", fig.align='center'}
+knitr::include_graphics("images/ide_rstudio.png")
+```
+
+O `R` ao ser iniciado está pronto para ser inserido as linhas de comando desejadas. Uma forma simples de armazernar os seus comandos é por meio de um *script*, isto é, um arquivo de texto com extensão `.R`. Para criar basta ir em: `Arquivo > Novo script...`
 
 
-# <i class="fab fa-r-project"></i> História do R
+# <i class="fab fa-r-project"></i> História do R {#rhistory}
 
 A linguagem `R` tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado [*R: A Language for Data Analysis and Graphics*](https://doi.org/10.2307/1390807 ), cujos os autores são os desenvolvedores da linguagem, [George Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/) e [Robert Clifford Gentleman](https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5).
 
@@ -234,18 +252,7 @@ Caracterizações:
 
 ## Símbolos e comando elementares
 
-A primeira ideia que temos sobre a linguagem `R` é a linha de comando no `R`, que é simbolizada pelo prompt de comando "`>`". Este símbolo significa que o `R` está pronto para receber os comandos do usuário. O *prompt* de comando está localizado
-Vejamos o console do `R` a seguir, que é o local que recebe as linhas de comando do usuário.
 
-```{r promptr, fig.cap = "Console do R.", out.width = "80%", fig.align='center'}
-knitr::include_graphics("images/promptr.png")
-```
-
-O [RStudio](http://rstudio.com) se apresenta como uma interface para facilitar a utilização do `R`, tendo por padrão quatro quadrantes, apresentados na Figura \@ref(fig:iderstudio).
-
-```{r iderstudio, fig.cap = "Interface do RStudio.", out.width = "80%", fig.align='center'}
-knitr::include_graphics("images/ide_rstudio.png")
-```
 
 
 

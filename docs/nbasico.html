@@ -2047,6 +2047,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <script type="text/javascript" cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=UA-183980834-3"></script>
+  <script type="text/javascript" cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-183980834-3');
+  </script>
   <!--/radix_placeholder_site_in_header-->
 
 
@@ -2186,21 +2193,41 @@ Material
 <p>Em construção…</p>
 <h1 id="apresentação-do-curso"><i class="fas fa-book"></i> Apresentação do curso</h1>
 <p>O Curso <code>R</code> será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal <a href="http://youtube.com/bendeivide">Youtube/Ben Dêivide</a> divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento desse material, disponibilizaremos os <a href="#scripts"><em>scripts</em></a> com os comandos utilizados em cada aula e sua versão em <a href="#shiny"><em>Shiny</em></a> para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão <em>online</em> do material juntamente com a linguagem <code>R</code>.</p>
-<h1 id="r-rstudio-rtools"><i class="fas fa-download"></i> Instalação do R, RStudio e <em>Rtools</em> para o SO Windows</h1>
-<p>A linguagem <code>R</code> é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o <code>R</code>, não há sentido instalá-lo. Por fim, instalaremos um kit de ferramentas do <code>R</code> para o SO Windows, o <em>Rtools</em>, uma vez que ao longo do curso precisaremos de muitos recursos nele, como por exemplo, desenvolvimento de pacotes.</p>
+<h1 id="r-rstudio"><i class="fas fa-download"></i> Instalação do R e RStudio para o SO Windows</h1>
+<p>A linguagem <code>R</code> é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o <code>R</code>, não há sentido instalá-lo.</p>
 <p>Dessa forma, seguem os passos para a instalação:</p>
 <ul>
 <li>Instalação do <code>R</code>: <a href="https://cran.r-project.org/bin/windows/base/">https://cran.r-project.org/bin/windows/base/</a></li>
-<li>Instalação do RStudio: <a href="https://rstudio.com/products/rstudio/download/#download">https://rstudio.com/products/rstudio/download/#download</a></li>
-<li>Instalação do <em>Rtools</em>: <a href="https://cran.r-project.org/bin/windows/Rtools/">https://cran.r-project.org/bin/windows/Rtools/</a></li>
+<li>Instalação do <a href="http://rstudio.org/">RStudio</a>: <a href="https://rstudio.com/products/rstudio/download/#download">https://rstudio.com/products/rstudio/download/#download</a></li>
 </ul>
-<h1 id="história-do-r"><i class="fab fa-r-project"></i> História do R</h1>
+<p>Justificamos a utilizamos do <a href="http://rstudio.org/">RStudio</a>, pela quantidade de recursos disponíveis e a diversidade de usuários <code>R</code>, que hoje o perfil não é apenas de um programador, mas um usuário que necessita de uma ferramenta estatística para análise de seus dados. Dessa forma, até por questão de praticidade, e de uso pessoal, não deixaremos de repassar o entendimento sobre a linguagem <code>R</code> com o uso do <a href="http://rstudio.org/">RStudio</a>.</p>
+<h1 id="tools-r-rstudio"><i class="fas fa-tools"></i> Como utilizar o <a href="http://r-project.org/">R</a> e o <a href="http://rstudio.org/">RStudio</a></h1>
+<p>A primeira ideia que temos sobre a linguagem <code>R</code> é a linha de comando no <code>R</code>, que é simbolizada pelo prompt de comando “<code>&gt;</code>.” Este símbolo significa que o <code>R</code> está pronto para receber os comandos do usuário. O <em>prompt</em> de comando está localizado no console do <code>R</code>. Vejamos o console do <code>R</code> a seguir, que é o local que recebe as linhas de comando do usuário.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:promptr"></span>
+<img src="images/promptr.png" alt="Console do R." width="80%" />
+<p class="caption">
+Figure 1: Console do R.
+</p>
+</div>
+</div>
+<p>O <a href="http://rstudio.com">RStudio</a> se apresenta como uma interface para facilitar a utilização do <code>R</code>, tendo por padrão quatro quadrantes, apresentados na Figura <a href="#fig:iderstudio">2</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:iderstudio"></span>
+<img src="images/ide_rstudio.png" alt="Interface do RStudio." width="80%" />
+<p class="caption">
+Figure 2: Interface do RStudio.
+</p>
+</div>
+</div>
+<p>O <code>R</code> ao ser iniciado está pronto para ser inserido as linhas de comando desejadas. Uma forma simples de armazernar os seus comandos é por meio de um <em>script</em>, isto é, um arquivo de texto com extensão <code>.R</code>. Para criar basta ir em: <code>Arquivo &gt; Novo script...</code></p>
+<h1 id="rhistory"><i class="fab fa-r-project"></i> História do R</h1>
 <p>A linguagem <code>R</code> tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado <a href="https://doi.org/10.2307/1390807"><em>R: A Language for Data Analysis and Graphics</em></a>, cujos os autores são os desenvolvedores da linguagem, <a href="https://www.stat.auckland.ac.nz/~ihaka/">George Ross Ihaka</a> e <a href="https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5">Robert Clifford Gentleman</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:criadoresr"></span>
 <img src="images/criadores_r.png" alt="Criadores do R.^[Fonte das fotos: Robert Gentleman do site: https://biocasia2020.bioconductor.org/ e Ross Ihaka do site: https://www.stat.auckland.ac.nz/en/about/news-and-events-5/news/news-2017/2017/12/ross-ihaka-retires.html]" width="489" />
 <p class="caption">
-Figure 1: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
 </p>
 </div>
 </div>
@@ -2332,12 +2359,12 @@ Figure 1: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre><code>&gt; [1] 20</code></pre>
 </div>
 <p>Como a linguagem <code>S</code> é também uma linguagem interpretada cuja base é a linguagem <code>FORTRAN</code>, a linguagem <code>R</code> tem como base as linguagens de baixo nível <code>C</code> e <code>FORTRAN</code> e a própria linguagem <code>R</code>.</p>
-<p>Embora o <code>R</code> tenha uma interface baseada em linhas de comando, existem muitas interfaces gráficas ao usuário com destaque ao <a href="http://rstudio.org">RStudio</a>, criado por Joseph J. Allaire, Figura <a href="#fig:jjallaire">2</a>.</p>
+<p>Embora o <code>R</code> tenha uma interface baseada em linhas de comando, existem muitas interfaces gráficas ao usuário com destaque ao <a href="http://rstudio.org">RStudio</a>, criado por Joseph J. Allaire, Figura <a href="#fig:jjallaire">4</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:jjallaire"></span>
 <img src="images/jjallaire.jpg" alt="J. J. Allaire, o criador do RStudio^[Fonte da foto: https://rstudio.com/speakers/j.j.-allaire/]." width="80%" />
 <p class="caption">
-Figure 2: J. J. Allaire, o criador do RStudio<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.
+Figure 4: J. J. Allaire, o criador do RStudio<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.
 </p>
 </div>
 </div>
@@ -2345,12 +2372,12 @@ Figure 2: J. J. Allaire, o criador do RStudio<a href="#fn9" class="footnote-ref"
 <p>No Brasil, o primeiro espelho do CRAN foi criado na UFPR, pelo grupo do Prof. Paulo Justiniano. Inclusive um dos primeiros materiais mais completos sobre a linguagem <code>R</code> produzidos no Brasil, foi dele, iniciado em 2005, intitulado <a href="http://www.leg.ufpr.br/~paulojus/embrapa/Rembrapa/">Introdução ao Ambiente Estatístico <code>R</code></a>. Vale a pena assistirmos o evento a palestra: <em>R Releflões: um pouco de história e experiências com o R</em>, proferida pelo <a href="http://www.leg.ufpr.br/~paulojus/">Prof. Paulo Justiniano Ribeiro Júnior</a>, no <em>R Day - Encontro nacional de usuários do R</em>, ocorrido em 2018 em Curitiba/UFPR, do qual o vídeo está disponível no Canal (Youtube) <a href="https://www.youtube.com/channel/UC3fBJBHhLNsylRw009I2GNw">LEG UFPR</a>.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fnGvDEkjZy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>Para quem não sabe, o Prof. Paulo Justiniano (Figura <a href="#fig:paulojus">3</a>) e sua equipe trouxeram o primeiro espelho do R para o Brasil e foi o desenvolvedor de um dos 100 primeiros pacotes submetidos ao CRAN<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. Devido a sua ida para XXX fazer o pós-doutorado, se deparou com o início dos estudos sobre o <code>R</code> fora do país. Não satisfeito, ao voltar para o Brasil, começa-se os estudos sobre o R….</p>
+<p>Para quem não sabe, o Prof. Paulo Justiniano (Figura <a href="#fig:paulojus">5</a>) e sua equipe trouxeram o primeiro espelho do R para o Brasil e foi o desenvolvedor de um dos 100 primeiros pacotes submetidos ao CRAN<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. Devido a sua ida para XXX fazer o pós-doutorado, se deparou com o início dos estudos sobre o <code>R</code> fora do país. Não satisfeito, ao voltar para o Brasil, começa-se os estudos sobre o R….</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span id="fig:paulojus"></span>
 <img src="images/paulo_justiniano.jpeg" alt="Foto de divulgação de Paulo Justiniano^[Fonte da foto: https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/] no *R Day*." width="50%" />
 <p class="caption">
-Figure 3: Foto de divulgação de Paulo Justiniano<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> no <em>R Day</em>.
+Figure 5: Foto de divulgação de Paulo Justiniano<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> no <em>R Day</em>.
 </p>
 </div>
 </div>
@@ -2367,24 +2394,6 @@ Caracterizações:
 -->
 <h1 id="sintaxe-e-semântica-do-r"><i class="fas fa-terminal"></i> Sintaxe e semântica do <code>R</code></h1>
 <h2 id="símbolos-e-comando-elementares">Símbolos e comando elementares</h2>
-<p>A primeira ideia que temos sobre a linguagem <code>R</code> é a linha de comando no <code>R</code>, que é simbolizada pelo prompt de comando “<code>&gt;</code>.” Este símbolo significa que o <code>R</code> está pronto para receber os comandos do usuário. O <em>prompt</em> de comando está localizado Vejamos o console do <code>R</code> a seguir, que é o local que recebe as linhas de comando do usuário.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="figure" style="text-align: center"><span id="fig:promptr"></span>
-<img src="images/promptr.png" alt="Console do R." width="80%" />
-<p class="caption">
-Figure 4: Console do R.
-</p>
-</div>
-</div>
-<p>O <a href="http://rstudio.com">RStudio</a> se apresenta como uma interface para facilitar a utilização do <code>R</code>, tendo por padrão quatro quadrantes, apresentados na Figura <a href="#fig:iderstudio">5</a>.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="figure" style="text-align: center"><span id="fig:iderstudio"></span>
-<img src="images/ide_rstudio.png" alt="Interface do RStudio." width="80%" />
-<p class="caption">
-Figure 5: Interface do RStudio.
-</p>
-</div>
-</div>
 <h2 id="os-três-princípios-do-r">Os três princípios do <code>R</code></h2>
 <p>Iniciamos a discussão por uma afirmação de John McKinley Chambers, do qual afirmou que o <code>R</code> tem três princípios <span class="citation" data-cites="chambers2016">(<a href="#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">

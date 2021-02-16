@@ -2,7 +2,7 @@
 title: "Curso R: Programação em R (Nível Básico)"
 subtitle: "Aula 00 - Apresentação do Curso R"
 author: "Ben Dêivide"
-date: "18/02/2021"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   ioslides_presentation:
     incremental: true
@@ -83,3 +83,8 @@ knitr::include_graphics(c("inscritos_rbasico_2021.1.png"))
 - A emissão dos certificados serão disponibilizados para os inscritos que tiverem frequência em 80% das aulas;
 - A frequência de cada aula estará disponível no chat/descrição do vídeo, durante uma semana, contados a partir da data da publicação do vídeo.
 
+## Bons estudos!
+
+<center>
+[![](userben.png){width="50%"}](http://youtube.com/bendeivide)
+</center>

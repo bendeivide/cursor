@@ -129,11 +129,12 @@ Segue uma lista dos pacotes utilizados para o desenvolvimento do material desse 
 
 # <i class="fas fa-download"></i> Instalação do R e do RStudio {#installrrstudio}
 
+
 A seguir, apresentaremos as subseções para a instalação da linguagem `R` e do [RStudio](http://rstudio.org/). Em todo nosso curso utilizaremos o sistema operacional Windows. Contudo, se esse não é o seu sistema operacinal, não haverá problema no entendimento sobre o `R`. Assim, convencionaremos a todos a utilização do RStudio, uma vez que poderá ser instalado nas principais plataformas de sistema operacional. 
 
 ## SO Windows
 
-Para a instalação do `R` e do [RStudio](http://rstudio.org/), como também do [rtools](https://cran.r-project.org/bin/windows/Rtools/), convidaremos para a seção [Instalação do R e do RStudio](nbasico.html#r-rstudio-rtools) do primeiro módulo desse curso, que é [Programação em R (nível básico)](nbasico.html)
+Para a instalação do `R` e do [RStudio](http://rstudio.org/), como também do [rtools](https://cran.r-project.org/bin/windows/Rtools/), convidaremos para a seção [Instalação do R e do RStudio](nbasico.html#r-rstudio) do primeiro módulo desse curso, que é [Programação em R (nível básico)](nbasico.html)
 
 ## SO Linux (Ubuntu)
 

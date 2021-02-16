@@ -1,6 +1,6 @@
 ---
 title: "Programação em R (Nível Básico)"
-subtitle: "Aula 1"
+subtitle: "Aula 01 - Instalação do R, RStudio e *Rtools*"
 author: "Ben Deivide"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
@@ -17,27 +17,25 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Informações Gerais
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+- As instalações do R, RStudio e do *Rtools* serão específicas para o SO Windows;
+- Para mais SO, acesse: [Instalação do R e do RStudio](nbasico.html#installrrstudio);
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+## Passos para a instalação
 
-## Slide with Bullets
+- Instalação do `R`: [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
+- Instalação do RStudio: [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download)
+- Instalação do *Rtools*: [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/)
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+## Interface do `R`
 
-## Slide with R Output
+<center>
+![](promptr.png){width="80%"}
+</center>
 
-```{r cars, echo = TRUE, comment=">", prompt=TRUE}
-summary(cars)
-```
+## Interface do RStudio
 
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
-```
-
+<center>
+![](ide_rstudio.png){width="80%"}
+</center>
