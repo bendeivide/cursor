@@ -53,7 +53,7 @@ knitr::include_graphics("images/danielfurtado.jpeg")
 ```
 Ainda durante a graduação, além de conhecer os materiais de Estatística do Professor Daniel, comecei a ler os materiais introdutórios em `R`, que costumeiramente, ele postava em sua página institucional. Mas o passo inicial para me guiar ao estudo do `R`, foi idealizado por uma apostila do Professor [Paulo Justiniano Ribeiro Júnior](http://www.leg.ufpr.br/~paulojus/) (UFPR), intitulada [Introdução ao Ambiente Estatístico R](http://www.leg.ufpr.br/~paulojus/embrapa/Rembrapa/). As primeiras leituras desse material, me trouxe um bom conhecimento inicial, sobre a linguagem `R`, ao mestrado na UFLA. 
 
-Tudo isso me levou a essa outra grande paixão hoje que é estudar essa linguagem. Com o apoio inicial do Prof. Daniel Furtado, durante a pós-graduação, e agora na UFSJ, com os  alunos que trabalham comigo de iniciação científica, juntos com mais alguns outros parceiros de estrada, chegamos a publicação de alguns pacotes `R` sob o CRAN, segue em ordem de publicação, [SMR](http://cran.r-project.org/package=SMR), [midrangeMCP](http://cran.r-project.org/package=midrangeMCP), [TVMM](http://http://cran.r-project.org/package=TVMM), [cppcor](http://cran.r-project.org/package=cppcor), [MCPtests](http://cran.r-project.org/package=MCPtests). Para projetos futuros, temos os pacotes `statscience`, [meupacoter](http://bendeivide.github.io/meupacoter), dentre outros ainda não disponíveis.
+Tudo isso me levou a essa outra grande paixão hoje que é estudar essa linguagem. Com o apoio inicial do Prof. Daniel Furtado, durante a pós-graduação, e agora na UFSJ, com os  alunos que trabalham comigo de iniciação científica, juntos com mais alguns outros parceiros de estrada, chegamos a publicação de alguns pacotes `R` sob o CRAN, segue em ordem de publicação, [SMR](http://cran.r-project.org/package=SMR), [midrangeMCP](http://cran.r-project.org/package=midrangeMCP), [TVMM](http://http://cran.r-project.org/package=TVMM), [cppcor](http://cran.r-project.org/package=cppcor), [MCPtests](http://cran.r-project.org/package=MCPtests). Para projetos futuros, temos os pacotes [statscience](http://bendeivide.github.io/statscience), [meupacoter](http://bendeivide.github.io/meupacoter), `leem` (Laboratório de Ensino à Estatística e Matemática) dentre outros ainda não disponíveis.
 
 <!--
 A minha motivação para estudar sobre a linguagem `R`:
@@ -90,6 +90,8 @@ A seguir, explanaremos sobre cada um dos módulos.
 
 O primeiro módulo compreenderá um breve **histórico** sobre a linguagem, o conhecimento da **sintaxe** e **semântica** da linguagem `R`, compreendendo as estruturas bases da linguagem, sobre o que é um **objeto** e como construir uma **função**, o entendimento sobre **fluxos de controle**. O que é um **pacote**, **carregar** e **anexar** um pacote, e quem são as pessoas que fazem parte da manutenção dessa linguagem, também serão assuntos desse primeiro módulo. **Caminhos de busca**, **ambientes** e *namespaces*, teremos noções básicas. Algo muito interessante, que pode mudar a sua vida como programação em `R` são as **boas práticas para a escrita de um código R**, tema também abordado nesse módulo.
 
+Para acessar o material, segue: [Programação em `R` (Nível Básico)](nbasico.html).
+
 ## Programação em R (Nível Intermediário) {#intermediario}
 
 Em contrução...
@@ -98,7 +100,7 @@ Em contrução...
 
 Em contrução...
 
-## Referências dos curso
+## Referências dos curso {#referencias}
 
 Citaremos alguns livros e materiais utilizados para o desenvolvimento desse curso, tais como:
 
@@ -131,7 +133,7 @@ A seguir, apresentaremos as subseções para a instalação da linguagem `R` e d
 
 ## SO Windows
 
-Para a instalação do `R` e do [RStudio](http://rstudio.org/), como também do [rtools](https://cran.r-project.org/bin/windows/Rtools/), convidaremos para a seção [Instalação do R e do RStudio](nbasico.html#rrstudio) do primeiro módulo desse curso, que é [Programação em R (nível básico)](nbasico.html)
+Para a instalação do `R` e do [RStudio](http://rstudio.org/), como também do [rtools](https://cran.r-project.org/bin/windows/Rtools/), convidaremos para a seção [Instalação do R e do RStudio](nbasico.html#r-rstudio-rtools) do primeiro módulo desse curso, que é [Programação em R (nível básico)](nbasico.html)
 
 ## SO Linux (Ubuntu)
 

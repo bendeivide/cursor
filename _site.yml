@@ -6,7 +6,7 @@ header-includes:
 output_dir: "docs"
 twitter:
   site: "@bendeivide"
-google_analytics:
+google_analytics: UA-183980834-3
 navbar:
   logo:
     image: images/logo.png

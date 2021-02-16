@@ -67,13 +67,23 @@ knitr::opts_chunk$set(echo = FALSE)
  - Script 10:
 
 
-## Scripts via {#shiny} [Shiny](https://shiny.rstudio.com/)
+## Scripts via  [Shiny](https://shiny.rstudio.com/) {#shiny}
 
 Em construção...
 
 # <i class="fas fa-book"></i> Apresentação do curso
 
-O Curso `R` será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal[Youtube/Ben Dêivide](http://youtube.com/bendeivide) divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento  desse material, disponibilizaremos os [*scripts*](#scripts) com os comandos utilizados em cada aula e sua versão em *Shiny* para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão *online* do material juntamente com a linguagem `R`.
+O Curso `R` será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal [Youtube/Ben Dêivide](http://youtube.com/bendeivide) divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento  desse material, disponibilizaremos os [*scripts*](#scripts) com os comandos utilizados em cada aula e sua versão em [*Shiny*](#shiny) para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão *online* do material juntamente com a linguagem `R`.
+
+# <i class="fas fa-download"></i> Instalação do R, RStudio e *Rtools* para o SO Windows {#r-rstudio-rtools}
+
+A linguagem `R` é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o `R`, não há sentido instalá-lo. Por fim, instalaremos um kit de ferramentas do `R` para o SO  Windows, o *Rtools*, uma vez que ao longo do curso precisaremos de muitos recursos nele, como por exemplo, desenvolvimento de pacotes.
+
+Dessa forma, seguem os passos para a instalação:
+
+- Instalação do `R`: [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
+- Instalação do RStudio: [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download)
+- Instalação do *Rtools*: [https://cran.r-project.org/bin/windows/Rtools/](https://cran.r-project.org/bin/windows/Rtools/)
 
 
 # <i class="fab fa-r-project"></i> História do R
