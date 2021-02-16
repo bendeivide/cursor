@@ -91,17 +91,21 @@ Justificamos a utilizamos do [RStudio](http://rstudio.org/), pela quantidade de 
 A primeira ideia que temos sobre a linguagem `R` é a linha de comando no `R`, que é simbolizada pelo prompt de comando "`>`". Este símbolo significa que o `R` está pronto para receber os comandos do usuário. O *prompt* de comando está localizado no console do `R`.
 Vejamos o console do `R` a seguir, que é o local que recebe as linhas de comando do usuário.
 
-```{r promptr, fig.cap = "Console do R.", out.width = "80%", fig.align='center'}
+```{r promptr, fig.cap = "Console do R (Versão 4.0.3).", out.width = "80%", fig.align='center'}
 knitr::include_graphics("images/promptr.png")
 ```
 
+O `R` ao ser iniciado está pronto para ser inserido as linhas de comando desejadas. Uma forma simples de armazernar os seus comandos é por meio de um *script*, isto é, um arquivo de texto com extensão `.R`. Para criar basta ir em: `Arquivo > Novo script...`. Muitas outras informações iremos ver ao longo do curso.
+
 O [RStudio](http://rstudio.com) se apresenta como uma interface para facilitar a utilização do `R`, tendo por padrão quatro quadrantes, apresentados na Figura \@ref(fig:iderstudio).
 
-```{r iderstudio, fig.cap = "Interface do RStudio.", out.width = "80%", fig.align='center'}
+```{r iderstudio, fig.cap = "Interface do RStudio (Versão 1.4.1103).", out.width = "80%", fig.align='center'}
 knitr::include_graphics("images/ide_rstudio.png")
 ```
 
-O `R` ao ser iniciado está pronto para ser inserido as linhas de comando desejadas. Uma forma simples de armazernar os seus comandos é por meio de um *script*, isto é, um arquivo de texto com extensão `.R`. Para criar basta ir em: `Arquivo > Novo script...`
+Muitas coisas na interface do `R` podem se tornar problemas para os usuários, uma vez que janelas gráficas, janelas de scripts, dentre outras, se sobrepõe. Uma vantagem no RStudio foi essa divisão de quadrantes, que torna muito mais organizado as atividades realizadas no `R`. De um modo geral, diremos que o primeiro quadrante é responsável pela entrada de dados, comandos, isto é, o *input*. O segundo quadrante, que é o console do R, representa tanto entrada como saída de informações (*input*/*output*). Dependendo as atividades as abas podem aumentar. O terceiro quadrante representa informações básicas como objetos no ambiente global, a memória de comandos na aba *History*, dentre outras, e também representa entrada como saída de informações (*input*/*output*). Por fim, o quarto quadrante é responsável por representação gráficas, instalação de pacotes, renderização de páginas *web*.
+
+
 
 
 # <i class="fab fa-r-project"></i> História do R {#rhistory}
@@ -230,11 +234,13 @@ No Brasil, o primeiro espelho do CRAN foi criado na UFPR, pelo grupo do Prof. Pa
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fnGvDEkjZy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Para quem não sabe, o Prof. Paulo Justiniano (Figura \@ref(fig:paulojus)) e sua equipe trouxeram o primeiro espelho do R para o Brasil e foi o desenvolvedor de um dos 100 primeiros pacotes submetidos ao CRAN^[Comprehensive R Archive Network]. Devido a sua ida para XXX fazer o pós-doutorado, se deparou com o início dos estudos sobre o `R` fora do país. Não satisfeito, ao voltar para o Brasil, começa-se os estudos sobre o R....
+Para quem não sabe, o Prof. Paulo Justiniano (Figura \@ref(fig:paulojus)) e sua equipe trouxeram o primeiro espelho do R para o Brasil e foi o desenvolvedor de um dos 100 primeiros pacotes submetidos ao CRAN^[Comprehensive R Archive Network]. Devido a sua ida para Lancaster/Inglaterra para fazer o doutorado, em 1997, se deparou com o início dos estudos sobre o `R` fora do país. Isso porque havia uma necessidade muito grande de um programa para ser utilizado nas plataforma UNIX. Nesse momento a linguagem `S` estava sendo uma saída para isso, porém, o uso de memória que a linguagem consumia nos computadores, na criação das rotinas, era muito grande (Claro que grande para aquela época!). Não satisfeito, ao voltar para o Brasil, em 2002, se depara com alguns usuários da linguagem `S`, porém, certo como mudança de cultura na utilização de linguagem `R`, passou a densevolver materiais didáticos da linguagem, para as disciplinas do departamento de Estatística (UFPR).
 
 ```{r paulojus, fig.cap = "Foto de divulgação de Paulo Justiniano^[Fonte da foto: https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/] no *R Day*.", out.width = "50%"}
 knitr::include_graphics("images/paulo_justiniano.jpeg")
 ```
+
+
 
 <!--
 Falar sobre a história do R e como caracterizá-la.
