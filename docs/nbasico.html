@@ -90,9 +90,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="description" itemprop="description" content="Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições"/>
 
 
-  <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2021-12-20"/>
-  <meta property="article:created" itemprop="dateCreated" content="2021-12-20"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Curso R: Programação em R (Nível Básico)"/>
@@ -111,10 +108,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
+  <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","bibliography","link-citations","site"]}},"value":[{"type":"character","attributes":{},"value":["Programação em R (Nível Básico)"]},{"type":"character","attributes":{},"value":["Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições\n"]},{"type":"character","attributes":{},"value":["12 fevereiro, 2021"]},{"type":"character","attributes":{},"value":["biblio.bib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography","link-citations","site"]}},"value":[{"type":"character","attributes":{},"value":["Programação em R (Nível Básico)"]},{"type":"character","attributes":{},"value":["Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições\n"]},{"type":"character","attributes":{},"value":["biblio.bib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2059,7 +2057,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Programação em R (Nível Básico)","description":"Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições","authors":[],"publishedDate":"2021-12-20T00:00:00.000-03:00"}
+{"title":"Programação em R (Nível Básico)","description":"Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2092,9 +2090,6 @@ Material
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
-<a href="https://github.com/bendeivide/cursor">
-<i class="fa fa-github fa-lg" aria-hidden="true"></i>
-</a>
 <a href="https://www.facebook.com/bendeivide/">
 <i class="fab fa-facebook" aria-hidden="true"></i>
 </a>
@@ -2112,6 +2107,9 @@ Material
 </a>
 <a href="https://www.linkedin.com/in/bendeivide/">
 <i class="fab fa-linkedin" aria-hidden="true"></i>
+</a>
+<a href="https://github.com/bendeivide/cursor/">
+<i class="fa fa-github fa-lg" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
@@ -2131,40 +2129,264 @@ Material
 
 <div class="d-article">
 <h1 id="sumário">Sumário</h1>
-<h1 id="materiais-para-este-módulo">Materiais para este módulo</h1>
-<h2 id="aulas">Aulas</h2>
 <ul>
+<li><a href="#materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</a>
+<ul>
+<li><a href="#slidesaulas">Slides de Aulas</a></li>
+<li><a href="#scripts">Scripts</a></li>
+<li><a href="#shiny">Scripts via Shiny</a></li>
+</ul></li>
+</ul>
+<h2 id="section"></h2>
+<h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
+<h2 id="slidesaulas">Slides de Aulas</h2>
+<ul>
+<li>Aula 00: <a href="aulas/aula00.html">Apresentação do Curso</a></li>
 <li>Aula 01: <a href="aulas/aula01.html">Instalação do R e do RStudio</a></li>
+<li>Aula 02: <a href="">Passos iniciais para a utilização do R e do RStudio</a></li>
+<li>Aula 03: <a href="">História do R</a></li>
+<li>Aula 04: <a href="">Como o R trabalha</a></li>
+<li>Aula 05: <a href="">Símbolos e Comandos elementares</a></li>
+<li>Aula 06: <a href="">Arquivos <code>.RData</code> e <code>.Rhistory</code></a></li>
+<li>Aula 07: <a href="">Criando e salvando um <em>Script</em></a></li>
+<li>Aula 08: <a href="">Exportando dados</a></li>
+<li>Aula 09: <a href="">Objetos</a></li>
+<li>Aula 10: <a href="">Vetores</a></li>
+<li>Aula 11: <a href="">Matrizes</a></li>
+<li>Aula 12: <a href=""><em>Arrays</em></a></li>
+<li>Aula 13: <a href=""><em>Data frames</em></a></li>
+<li>Aula 14: <a href=""><em>Lists</em></a></li>
+<li>Aula 15: <a href="">Funções</a></li>
+<li>Aula 17: <a href="">Boas práticas de como escrever um código</a></li>
+<li>Aula 17: <a href="">Como criar funções</a></li>
+<li>Aula 18: <a href="">Controle de fluxos (<em>Loops</em>)</a></li>
+<li>Aula 19: <a href="">Pacotes</a></li>
+<li>Aula 20: <a href="">Carregando e Anexando pacotes</a></li>
+<li>Aula 21: <a href="">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
+<li>Aula 22: <a href=""><em>Namespace</em> de um pacote</a></li>
+<li>Aula 23: <a href="">Ambientes e Caminhos de busca</a></li>
+<li>Aula 24: <a href="">Interface com outras linguagens</a></li>
+<li>Aula 25: <a href="">Considerações e Preparação para a Programação em R (Nível Intermediário)</a></li>
 </ul>
-<p>Falar sobre a história do R e como caracterizá-la.</p>
-<p>Caracterizações:</p>
+<h2 id="scripts">Scripts</h2>
 <ul>
-<li>Linguagem interpretada</li>
-<li>Linguagem ou programa</li>
-<li>linguagem de código livre</li>
-<li>objetivo principal: Computação estatística e gráficos</li>
+<li>Script 00: ~</li>
+<li>Script 01: ~</li>
+<li>Script 02:</li>
+<li>Script 03:</li>
+<li>Script 04:</li>
+<li>Script 05:</li>
+<li>Script 06:</li>
+<li>Script 07:</li>
+<li>Script 08:</li>
+<li>Script 09:</li>
+<li>Script 10:</li>
 </ul>
-<h1 id="sintaxe-e-semântica-do-r">Sintaxe e semântica do <code>R</code></h1>
+<h2 id="scripts-via-shiny-shiny">Scripts via {#shiny} <a href="https://shiny.rstudio.com/">Shiny</a></h2>
+<p>Em construção…</p>
+<h1 id="apresentação-do-curso"><i class="fas fa-book"></i> Apresentação do curso</h1>
+<p>O Curso <code>R</code> será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal<a href="http://youtube.com/bendeivide">Youtube/Ben Dêivide</a> divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento desse material, disponibilizaremos os <a href="#scripts"><em>scripts</em></a> com os comandos utilizados em cada aula e sua versão em <em>Shiny</em> para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão <em>online</em> do material juntamente com a linguagem <code>R</code>.</p>
+<h1 id="história-do-r"><i class="fab fa-r-project"></i> História do R</h1>
+<p>A linguagem <code>R</code> tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado <a href="https://doi.org/10.2307/1390807"><em>R: A Language for Data Analysis and Graphics</em></a>, cujos os autores são os desenvolvedores da linguagem, <a href="https://www.stat.auckland.ac.nz/~ihaka/">George Ross Ihaka</a> e <a href="https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5">Robert Clifford Gentleman</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:criadoresr"></span>
+<img src="images/criadores_r.png" alt="Criadores do R.^[Fonte das fotos: Robert Gentleman do site: https://biocasia2020.bioconductor.org/ e Ross Ihaka do site: https://www.stat.auckland.ac.nz/en/about/news-and-events-5/news/news-2017/2017/12/ross-ihaka-retires.html]" width="489" />
+<p class="caption">
+Figure 1: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</p>
+</div>
+</div>
+<p>Durante a época em que estes professores trabalhavam na Universidade de Auckland, Nova Zelândia, desenvolvendo uma implementação alternativa da lingugagem <code>S</code>, desenvolvida por John Chambers, que comercialmente era o <code>S-PLUS</code>, nasceu em 1991, o projeto da linguagem <code>R</code>, em que em 1993 o projeto é divulgado e em 1995, o primeiro lançamento oficial, como software livre com a licença <a href="http://gnu.org/">GNU</a>. Devido a demanda de correções da linguagem estava acima da capacidade de atualização em tempo real, foi criado em 1997, um grupo central voluntário, responsável por essas atualizações, o conhecido <em>R Development Core Team</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, que hoje está em 20 membros: Douglas Bates, John Chambers, Peter Delgaard, Robert Gentleman, Kurt Hornik, Ross Ihaka, Tomas kalibera, Michael Lawrence, Friedrich Leish, Uwe Ligges, Thomas Lumley, Martin Maechler, Martin Morgan, Paul Murrel, Martyn Plummer, Brian Ripley, Deepayan Sarkarm, Duncan Temple Lang, Luke Tierney e Simon Urbanek.</p>
+<p>Por fim, o CRAN (Comprehensive R Archive Network) foi oficialmente anunciado em 23 de abril de 1997<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. O CRAN é um conjunto de sites (espelhos) que transportam material idêntico, com as contribuições do R de uma forma geral.</p>
+<p><code>R</code> é uma linguagem de programação e ambiente de <em>software</em> livre e código aberto (<em>open source</em>). Entendemos<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
+<ul>
+<li><em>Software</em> livre: <em>software</em> que respeita a liberdade e sendo de comunidade dos usuários, isto é, os usuários possuem a liberdade de executar, copiar, distribuir, estudar, mudar, melhorar o <em>software</em>. Ainda reforça que um <em>software</em> é livre se os seus usuários possuem quatro liberdades:
+<ol type="1">
+<li>Liberdade 0 - A liberdade de executar o programa como você desejar, para qualquer propósito;</li>
+<li>Liberdade 1 - A liberdade de estudar como o programa funciona, e adaptá-la as suas necessidades;</li>
+<li>Liberdade 2 - A liberdade de redistribuir cópias de modo que você possa ajudar outros;</li>
+<li>Liberdade 3 - A liberdade de distribuir cópias de suas versões modificadas a outros.</li>
+</ol></li>
+</ul>
+<p>Algo que deve está claro é que um <em>software</em> livre não significa não comercial. Sem esse fim, o <em>software</em> livre não atingiria seus objetivos.</p>
+<p>Agora perceba que, segundo Richard Stallman<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, a ideia de software livre faz campanha pela liberdade para os usuários da computação. Por outro lado, o código aberto valoriza principalmente a vantagem prática e não faz campanha por princípios.</p>
+<ul>
+<li>Código aberto: Para Richard Stallman<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> código aberto apoia critérios um pouco mais flexíveis que os do software livre. Todos os códigos abertos de software livre lançados se qualificariam como código aberto. Quase todos os softwares de código aberto são software livre, mas há exceções, como algumas licenças de código aberto que são restritivas demais, de forma que elas não se qualificam como licenças livres. Nesse contexto, o autor cita muitas situações que diferenciam os dois termos. Vale a pena a leitura.</li>
+</ul>
+<p>A linguagem <code>R</code> é uma combinação da linguagem <code>S</code> com a semântica de escopo léxico da linguagem <code>Scheme</code>. Dessa forma, a linguagem <code>R</code> se diferencia em dois aspectos principais<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>:</p>
+<ul>
+<li><strong>Gerenciamento de memória</strong>: usando as próprias palavras de Ross Ihaka<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, em R, alocamos uma quantidade fixa de memória na inicialização e a gerenciamos com um coletor de lixo dinâmico. Isso significa que há muito pouco crescimento de heap e, como resultado, há menos problemas de paginação do que os vistos em S.</li>
+<li><strong>Escopo</strong>: na linguagem <code>R</code>, as funções acessam as variáveis criadas pelo no corpo da própria função, como também as variáveis contidas no ambiente que a função foi criada. No caso da linguagem <code>S</code>, isso não ocorre, assim, como por exemplo na linguagem <code>C</code>, em que as funções acessam apenas variáveis definidas globalmente.</li>
+</ul>
+<p>Vejamos alguns exemplos para entendimento (Se você ainda não está ambientado ao <code>R</code>, estude esse módulo primeiro, e depois reflita sobre esses exemplos):</p>
+<ul>
+<li>Exemplo 1: As funções têm acesso ao escopo em que foram criadas.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "n" associado a um objeto 10 no escopo da função</span>
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+
+<span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
+<span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Imprimindo 'funcao'</span>
+<span class='fu'>funcao</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&gt; [1] 10</code></pre>
+</div>
+<ul>
+<li>Exemplo 2: As variáveis criadas ou alteradas dentro de uma função, permanecem na função.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "n" associado a um objeto 10 no escopo da função</span>
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+
+<span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
+<span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Imprimindo n</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+  <span class='co'># Criando um nome "n" associado a um objeto 15 no corpo da função</span>
+  <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>15</span>
+  <span class='co'># Imprimindo n</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Imprimindo 'funcao'</span>
+<span class='fu'>funcao</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&gt; [1] 10
+&gt; [1] 15</code></pre>
+</div>
+<ul>
+<li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "n" associado a um objeto 10 no escopo da função</span>
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+
+<span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
+<span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Imprimindo n</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+  <span class='co'># Criando um nome "n" associado a um objeto 15 no corpo da função</span>
+  <span class='va'>n</span> <span class='op'>&lt;&lt;-</span> <span class='fl'>15</span>
+  <span class='co'># Imprimindo n</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Imprimindo 'funcao'</span>
+<span class='fu'>funcao</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&gt; [1] 10
+&gt; [1] 15</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Observe que depois de usar a superatribuição ("&lt;&lt;-") dentro da função, </span>
+<span class='co'>#o nome "n" passou a estar associado ao número 15 e não mais ao número 10, observe</span>
+<span class='va'>n</span>
+</code></pre>
+</div>
+<pre><code>&gt; [1] 15</code></pre>
+</div>
+<ul>
+<li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome 'n' associado a um objeto 10 no escopo da função (ambiente global)</span>
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='co'># Criando um nome 'funcao' associado a um objeto que é uma função criado no ambiete global</span>
+<span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Imprimindo n</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Imprimindo 'funcao' no ambiente global</span>
+<span class='fu'>funcao</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&gt; [1] 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um novo ambiente</span>
+<span class='va'>novo_ambiente</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Criando um nome "n" associado ao objeto 20 no ambiente  'novo_ambiente'</span>
+<span class='va'>novo_ambiente</span><span class='op'>$</span><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>20</span>
+<span class='co'># Criando um objeto funcao no ambiente 'novo_ambiente'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>funcao</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>novo_ambiente</span>
+<span class='co'># Imprimindo 'funcao' no ambiente 'novo_ambiente'</span>
+<span class='fu'>funcao</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&gt; [1] 20</code></pre>
+</div>
+<p>Como a linguagem <code>S</code> é também uma linguagem interpretada cuja base é a linguagem <code>FORTRAN</code>, a linguagem <code>R</code> tem como base as linguagens de baixo nível <code>C</code> e <code>FORTRAN</code> e a própria linguagem <code>R</code>.</p>
+<p>Embora o <code>R</code> tenha uma interface baseada em linhas de comando, existem muitas interfaces gráficas ao usuário com destaque ao <a href="http://rstudio.org">RStudio</a>, criado por Joseph J. Allaire, Figura <a href="#fig:jjallaire">2</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:jjallaire"></span>
+<img src="images/jjallaire.jpg" alt="J. J. Allaire, o criador do RStudio^[Fonte da foto: https://rstudio.com/speakers/j.j.-allaire/]." width="80%" />
+<p class="caption">
+Figure 2: J. J. Allaire, o criador do RStudio<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.
+</p>
+</div>
+</div>
+<p>Essa interface tornou o <em>R</em> mais popular, pois além de produzir pacotes de grande utilização hoje como a família de pacotes <code>tidyverse</code>, <code>rmarkdown</code>, <code>shiny</code>, dentre outros, permite uma eficiente capacidade de trabalho de análise de utilização do <code>R</code>. Uma vez que o <a href="http://rstudio.org">RStudio</a> facilita a utilização de muitos recursos por meio de botões, como por exemplo, a criação de um pacote R, a quem diga que para um iniciante em <code>R</code> que não inicie a linguagem por meio dela. Cremos, que o problema não é o <a href="http://rstudio.org">RStudio</a>, e sim, o caminho onde deseja chegar com a linguagem <code>R</code>.</p>
+<p>No Brasil, o primeiro espelho do CRAN foi criado na UFPR, pelo grupo do Prof. Paulo Justiniano. Inclusive um dos primeiros materiais mais completos sobre a linguagem <code>R</code> produzidos no Brasil, foi dele, iniciado em 2005, intitulado <a href="http://www.leg.ufpr.br/~paulojus/embrapa/Rembrapa/">Introdução ao Ambiente Estatístico <code>R</code></a>. Vale a pena assistirmos o evento a palestra: <em>R Releflões: um pouco de história e experiências com o R</em>, proferida pelo <a href="http://www.leg.ufpr.br/~paulojus/">Prof. Paulo Justiniano Ribeiro Júnior</a>, no <em>R Day - Encontro nacional de usuários do R</em>, ocorrido em 2018 em Curitiba/UFPR, do qual o vídeo está disponível no Canal (Youtube) <a href="https://www.youtube.com/channel/UC3fBJBHhLNsylRw009I2GNw">LEG UFPR</a>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fnGvDEkjZy0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Para quem não sabe, o Prof. Paulo Justiniano (Figura <a href="#fig:paulojus">3</a>) e sua equipe trouxeram o primeiro espelho do R para o Brasil e foi o desenvolvedor de um dos 100 primeiros pacotes submetidos ao CRAN<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>. Devido a sua ida para XXX fazer o pós-doutorado, se deparou com o início dos estudos sobre o <code>R</code> fora do país. Não satisfeito, ao voltar para o Brasil, começa-se os estudos sobre o R….</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:paulojus"></span>
+<img src="images/paulo_justiniano.jpeg" alt="Foto de divulgação de Paulo Justiniano^[Fonte da foto: https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/] no *R Day*." width="50%" />
+<p class="caption">
+Figure 3: Foto de divulgação de Paulo Justiniano<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> no <em>R Day</em>.
+</p>
+</div>
+</div>
+<!--
+Falar sobre a história do R e como caracterizá-la.
+
+Caracterizações:
+
+- Linguagem interpretada
+- Linguagem ou programa
+- linguagem de código livre
+- objetivo principal: Computação estatística e gráficos
+
+-->
+<h1 id="sintaxe-e-semântica-do-r"><i class="fas fa-terminal"></i> Sintaxe e semântica do <code>R</code></h1>
+<h2 id="símbolos-e-comando-elementares">Símbolos e comando elementares</h2>
 <p>A primeira ideia que temos sobre a linguagem <code>R</code> é a linha de comando no <code>R</code>, que é simbolizada pelo prompt de comando “<code>&gt;</code>.” Este símbolo significa que o <code>R</code> está pronto para receber os comandos do usuário. O <em>prompt</em> de comando está localizado Vejamos o console do <code>R</code> a seguir, que é o local que recebe as linhas de comando do usuário.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:promptr"></span>
+<div class="figure" style="text-align: center"><span id="fig:promptr"></span>
 <img src="images/promptr.png" alt="Console do R." width="80%" />
 <p class="caption">
-Figure 1: Console do R.
+Figure 4: Console do R.
 </p>
 </div>
 </div>
-<p>O <a href="http://rstudio.com">RStudio</a> se apresenta como uma interface para facilitar a utilização do <code>R</code>, tendo por padrão quatro quadrantes, apresentados na Figura @ref{fig:iderstudio}.</p>
+<p>O <a href="http://rstudio.com">RStudio</a> se apresenta como uma interface para facilitar a utilização do <code>R</code>, tendo por padrão quatro quadrantes, apresentados na Figura <a href="#fig:iderstudio">5</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="figure"><span id="fig:iderstudio"></span>
+<div class="figure" style="text-align: center"><span id="fig:iderstudio"></span>
 <img src="images/ide_rstudio.png" alt="Interface do RStudio." width="80%" />
 <p class="caption">
-Figure 2: Interface do RStudio.
+Figure 5: Interface do RStudio.
 </p>
 </div>
 </div>
-<h1 id="os-três-princípios-do-r">Os três princípios do <code>R</code></h1>
-<p>Iniciamos a discussão por uma afirmação de John McKinley Chambers<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, do qual afirmou que o <code>R</code> tem três princípios <span class="citation" data-cites="chambers2016">(<a href="#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>)</span>: <img src="images/john_chambers.jpg" alt="John M. Chambers" /></p>
+<h2 id="os-três-princípios-do-r">Os três princípios do <code>R</code></h2>
+<p>Iniciamos a discussão por uma afirmação de John McKinley Chambers, do qual afirmou que o <code>R</code> tem três princípios <span class="citation" data-cites="chambers2016">(<a href="#ref-chambers2016" role="doc-biblioref">Chambers 2016</a>)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:chumbers"></span>
+<img src="images/john_chambers.jpg" alt="John Chumbers^[Fonte da foto: Retirada de sua página pessoal, [https://statweb.stanford.edu/~jmc4/](https://statweb.stanford.edu/~jmc4/)], o criador da linguagem `S`." width="50%" />
+<p class="caption">
+Figure 6: John Chumbers<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>, o criador da linguagem <code>S</code>.
+</p>
+</div>
+</div>
 <ul>
 <li>Tudo que existe em <code>R</code> é um objeto;</li>
 <li>Tudo que acontece no <code>R</code> é uma chamada de função;</li>
@@ -2190,7 +2412,7 @@ Figure 2: Interface do RStudio.
 <ul>
 <li></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.
@@ -2198,11 +2420,25 @@ Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <s
 <div id="ref-hadley2019" class="csl-entry" role="doc-biblioentry">
 Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
 </div>
+<div id="ref-hadley2019" class="csl-entry" role="doc-biblioentry">
+———. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
+</div>
 </div>
 <section class="footnotes" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Foto retirada de sua página pessoal, <a href="https://statweb.stanford.edu/~jmc4/">https://statweb.stanford.edu/~jmc4/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Fonte das fotos: Robert Gentleman do site: <a href="https://biocasia2020.bioconductor.org/" class="uri">https://biocasia2020.bioconductor.org/</a> e Ross Ihaka do site: <a href="https://www.stat.auckland.ac.nz/en/about/news-and-events-5/news/news-2017/2017/12/ross-ihaka-retires.html" class="uri">https://www.stat.auckland.ac.nz/en/about/news-and-events-5/news/news-2017/2017/12/ross-ihaka-retires.html</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Fontes: <a href="https://cran.r-project.org/doc/html/interface98-paper/paper_2.html" class="uri">https://cran.r-project.org/doc/html/interface98-paper/paper_2.html</a> e <a href="https://www.r-project.org/contributors.html" class="uri">https://www.r-project.org/contributors.html</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Fonte: <a href="https://stat.ethz.ch/pipermail/r-announce/1997/000001.html" class="uri">https://stat.ethz.ch/pipermail/r-announce/1997/000001.html</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Fonte: <a href="https://www.gnu.org/philosophy/free-sw.html" class="uri">https://www.gnu.org/philosophy/free-sw.html</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>Fonte: <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.html" class="uri">https://www.gnu.org/philosophy/open-source-misses-the-point.html</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>Fonte: <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.html" class="uri">https://www.gnu.org/philosophy/open-source-misses-the-point.html</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p><a href="https://cran.r-project.org/doc/html/interface98-paper/paper_1.html" class="uri">https://cran.r-project.org/doc/html/interface98-paper/paper_1.html</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p><a href="https://cran.r-project.org/doc/html/interface98-paper/paper_1.html" class="uri">https://cran.r-project.org/doc/html/interface98-paper/paper_1.html</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p>Fonte da foto: <a href="https://rstudio.com/speakers/j.j.-allaire/" class="uri">https://rstudio.com/speakers/j.j.-allaire/</a><a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p>Comprehensive R Archive Network<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p>Fonte da foto: <a href="https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/" class="uri">https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>Fonte da foto: Retirada de sua página pessoal, <a href="https://statweb.stanford.edu/~jmc4/">https://statweb.stanford.edu/~jmc4/</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

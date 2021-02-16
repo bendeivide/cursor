@@ -30,8 +30,6 @@ navbar:
           href:
 
   right:
-    - icon: fa-github fa-lg
-      href: https://github.com/bendeivide/cursor
     - icon: fab fa-facebook
       href: https://www.facebook.com/bendeivide/
     - icon: fab fa-instagram
@@ -44,5 +42,7 @@ navbar:
       href: http://twitter.com/bendeivide/
     - icon: fab fa-linkedin
       href: https://www.linkedin.com/in/bendeivide/
+    - icon: fa-github fa-lg
+      href: https://github.com/bendeivide/cursor/
 output: distill::distill_article
 

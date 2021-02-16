@@ -1,9 +1,8 @@
 ---
 title: "Curso R"
 description: "Aprecie todo o material contido nesse site, como se fosse seu. Zele,
-  propague, critique, contribua. Será um prazer compartilharmos nossas experiências!
+  propague, critique, contribua. Será um prazer compartilharmos nossas experiências e experienciarmos juntos esse conhecimento!
   \n"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
 bibliography: biblio.bib
 link-citations: true
 site: distill::distill_website
@@ -27,19 +26,43 @@ knitr::opts_chunk$set(echo = FALSE)
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 -->
 
-# Sumário
+# Sumário {#sumario}
 - [<i class="fas fa-user"></i> Sobre o autor](#autor)
-- [<i class="fas fa-book"></i> Proposta do curso](#propcurso)
-  - [Programação em R (Nível Básico)](index.html#programa%C3%A7%C3%A3o-em-r-n%C3%ADvel-b%C3%A1sico)
+- [<i class="fas fa-sitemap"></i> Proposta do curso](#propcurso)
+  - [Programação em R (Nível Básico)](index.html#basico)
+  - [Programação em R (Nível Intermediário)](#intermediario)
+  - [Programação em R (Nível Avançado)](#avancado)
+  - [Referências do curso]()
+  - [Onde encontrar nossos materiais](#buscarmateriais)
+  - [Pacotes R utilizados para esse curso](#pacutilizados)
+- [<i class="fas fa-download"></i> Instalação do R e do RStudio](#installrrstudio)
+  - [SO Windows](#so-windows)
+  - [SO Linux (Ubuntu)](#so-linux-ubuntu)
+  - [SO MAC](#so-mac)
 
-
+##
 
 # <i class="fas fa-user"></i> Sobre o autor <img src="images/ben.png" align="right" height="139" id="autor"/>
 
-Natural da cidade de Pau dos Ferros/RN. Formado em Engenharia Agronômica pela Universidade Federal Rural do Semiárido (UFERSA), Mossoró/RN. Pós-Graduação (Mestrado e Doutorado)  e Pós-Doutorado em Estatística e Experimentação Agropecuária pela Universidade Federal de Lavras (Lavras/MG). Atualmente sou Professor de Estatística pela Universidade de São João Del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG. Minhas linhas de pesquisas se concentram em Estatística e Probabilidade, Estatística Experimental, Estatística Computacional (linguagem R), densenvolvimento de pacotes R para análises de dados e ensino da Estatística. Mais detalhes, acesse [minha página](http://bendeivide.github.io/).
+Natural da cidade de Pau dos Ferros/RN. Formado em Engenharia Agronômica pela Universidade Federal Rural do Semiárido (UFERSA), Mossoró/RN. Pós-Graduação (Mestrado e Doutorado)  e Pós-Doutorado em Estatística e Experimentação Agropecuária pela Universidade Federal de Lavras (UFLA), Lavras/MG. Atualmente estou como Professor de Estatística pela Universidade de São João Del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG. Minhas linhas de pesquisas se concentram em Estatística e Probabilidade, Estatística Experimental, Estatística Computacional (linguagem R), densenvolvimento de pacotes R para análises de dados e ensino da Estatística. Mais detalhes, acesse [minha página](http://bendeivide.github.io/).
 
+A motivação para estudar a linguagem `R` se deve a algumas fases experienciadas na vida acadêmica. A primeira foi a paixão pela Estatística. Estando no terceiro período do curso de Agronomia (UFERSA), concorri a tão sonhada monitoria de Estatística, orientada pelo Prof. [Janilson Pinheiro de Assis](https://sigaa.ufersa.edu.br/sigaa/public/docente/portal.jsf?siape=396304) (UFERSA). Nessa fase houve muitas conversas e conselhos para seguir em uma pós-graduação na área da Estatística. Se tornou amor quando fui impulsionado pelas leituras de apostilas e o encanto por um programa estatístico chamado [SISVAR](https://des.ufla.br/~danielff/programas/sisvar.html), do Prof. [Daniel Furtado Ferreira](https://des.ufla.br/~danielff/index.html) (UFLA), Figura \@ref(fig:danielff). Isso resultou em todo amadurecimento profissional que adquirir, durante o mestrado e doutorado sob a orientação do Prof. Daniel, e ainda adquiro trabalhando em parceria que ainda realizamos juntos.
 
-# <i class="fas fa-book"></i> Proposta do curso <img src="images/Rlogo.png" align="right" height="139" id="propcurso"/>
+```{r danielff, fig.cap = "Daniel Furtado na Serra da Bocaina (Lavras/MG).^[Fonte das fotos: Acervo pessoal de Daniel Furtado]", fig.height=3, fig.width=3, fig.align='center'}
+knitr::include_graphics("images/danielfurtado.jpeg")
+```
+Ainda durante a graduação, além de conhecer os materiais de Estatística do Professor Daniel, comecei a ler os materiais introdutórios em `R`, que costumeiramente, ele postava em sua página institucional. Mas o passo inicial para me guiar ao estudo do `R`, foi idealizado por uma apostila do Professor [Paulo Justiniano Ribeiro Júnior](http://www.leg.ufpr.br/~paulojus/) (UFPR), intitulada [Introdução ao Ambiente Estatístico R](http://www.leg.ufpr.br/~paulojus/embrapa/Rembrapa/). As primeiras leituras desse material, me trouxe um bom conhecimento inicial, sobre a linguagem `R`, ao mestrado na UFLA. 
+
+Tudo isso me levou a essa outra grande paixão hoje que é estudar essa linguagem. Com o apoio inicial do Prof. Daniel Furtado, durante a pós-graduação, e agora na UFSJ, com os  alunos que trabalham comigo de iniciação científica, juntos com mais alguns outros parceiros de estrada, chegamos a publicação de alguns pacotes `R` sob o CRAN, segue em ordem de publicação, [SMR](http://cran.r-project.org/package=SMR), [midrangeMCP](http://cran.r-project.org/package=midrangeMCP), [TVMM](http://http://cran.r-project.org/package=TVMM), [cppcor](http://cran.r-project.org/package=cppcor), [MCPtests](http://cran.r-project.org/package=MCPtests). Para projetos futuros, temos os pacotes `statscience`, [meupacoter](http://bendeivide.github.io/meupacoter), dentre outros ainda não disponíveis.
+
+<!--
+A minha motivação para estudar sobre a linguagem `R`:
+
+- Falar sobre a graduação, monitoria de Estatística;
+  - Falar sobre o entusiamos ao ler os materiais do Prof. Daniel e do Prof. Paulo Justiniano
+-->
+
+# <i class="fas fa-sitemap"></i> Proposta do curso <img src="images/Rlogo.png" align="right" height="139" id="propcurso"/>
 
 O curso R não tem como objetivo principal de ensinar análise de dados. Mas sim, proporcionar a você um conhecimento sobre a linguagem R, de modo que consiga usufruir todos os recursos que ela possa lhe proporcionar.
 
@@ -57,19 +80,21 @@ Mas não só apenas análise de dados, aprenderemos também recursos diversos na
 
 O material curso R apresentará três módulos:
 
--   Programação em `R` (Nível Básico)
--   Programação em `R` (Nível Intermediário)
--   Programação em `R` (Nível Avançado)
+-   [Programação em `R` (Nível Básico)](nbasico.html)
+-   [Programação em `R` (Nível Intermediário)](index.html)
+-   [Programação em `R` (Nível Avançado)](index.html)
 
-## Programação em R (Nível Básico)
+A seguir, explanaremos sobre cada um dos módulos.
+
+## Programação em R (Nível Básico) {#basico}
 
 O primeiro módulo compreenderá um breve **histórico** sobre a linguagem, o conhecimento da **sintaxe** e **semântica** da linguagem `R`, compreendendo as estruturas bases da linguagem, sobre o que é um **objeto** e como construir uma **função**, o entendimento sobre **fluxos de controle**. O que é um **pacote**, **carregar** e **anexar** um pacote, e quem são as pessoas que fazem parte da manutenção dessa linguagem, também serão assuntos desse primeiro módulo. **Caminhos de busca**, **ambientes** e *namespaces*, teremos noções básicas. Algo muito interessante, que pode mudar a sua vida como programação em `R` são as **boas práticas para a escrita de um código R**, tema também abordado nesse módulo.
 
-## Programação em R (Nível Intermediário)
+## Programação em R (Nível Intermediário) {#intermediario}
 
 Em contrução...
 
-## Programação em R (Nível Avançado)
+## Programação em R (Nível Avançado) {#avancado}
 
 Em contrução...
 
@@ -80,16 +105,19 @@ Citaremos alguns livros e materiais utilizados para o desenvolvimento desse curs
  - [An introduction to `R`](https://cran.r-project.org/doc/manuals/R-intro.html#Introduction-and-preliminaries)
  - [Advanced R](https://adv-r.hadley.nz/) [@hadley2019]
  - [Advanced R Solutions](http://advanced-r-solutions.rbind.io/) [@hadleyetal2021]
- - [R Packages](https://r-pkgs.org/index.html)[@hadley2015]
+ - [R Packages](https://r-pkgs.org/index.html) [@hadley2015]
+ - Extending R [@chambers2016]
+ - Software for Data Analysis: Programming with R [@chambers2008]
+ - R in a Nutshell [@adler2012]
 
-## Onde encontrar os nossos materiais
+## Onde encontrar os nossos materiais {#buscarmateriais}
 
-Temos dedicado uma parte do nosso trabalho no desenvolvimento de materiais em R, dos quais podem ser encontrados em:
+Temos dedicado uma parte do nosso trabalho no desenvolvimento de materiais em R, dos quais podem ser encontrados em: [Ciencia e Progresso](http://benalana.blogspot.com/), [Github](http://github.com/bendeivide/) e [página pessoal](http://bendeivide.github.io/).
 
 
-## Pacotes R utilizados para esse curso
+## Pacotes R utilizados para esse curso {#pacutilizados}
 
-Segue uma lista dos pacotes utilizados para do desenvolvimento do material desse curso:
+Segue uma lista dos pacotes utilizados para o desenvolvimento do material desse curso:
 
 | Pacote | Objetivo para o curso |
 |:------:|:---------------------:|
@@ -97,9 +125,29 @@ Segue uma lista dos pacotes utilizados para do desenvolvimento do material desse
 | [distill](https://rstudio.github.io/distill/) | Criação da página |
 
 
-## Instalação do R e do RStudio
+# <i class="fas fa-download"></i> Instalação do R e do RStudio {#installrrstudio}
 
-<iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/Gei-gtBlMos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+A seguir, apresentaremos as subseções para a instalação da linguagem `R` e do [RStudio](http://rstudio.org/). Em todo nosso curso utilizaremos o sistema operacional Windows. Contudo, se esse não é o seu sistema operacinal, não haverá problema no entendimento sobre o `R`. Assim, convencionaremos a todos a utilização do RStudio, uma vez que poderá ser instalado nas principais plataformas de sistema operacional. 
+
+## SO Windows
+
+Para a instalação do `R` e do [RStudio](http://rstudio.org/), como também do [rtools](https://cran.r-project.org/bin/windows/Rtools/), convidaremos para a seção [Instalação do R e do RStudio](nbasico.html#rrstudio) do primeiro módulo desse curso, que é [Programação em R (nível básico)](nbasico.html)
+
+## SO Linux (Ubuntu)
+
+Um vídeo produzido pelo nosso canal do [Youtube/Ben Dêivide](http://youtube.com/bendeivide), mostra falcilmente como realizar a instalação do R e o RStudio pelo Linux:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Gei-gtBlMos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Uma outra opção pode ser um vídeo produzido pelo Canal [PPGC UFSC](https://www.youtube.com/channel/UCsAe4Io64jjFiMGa6oTXV7g) (Youtube), mostra falcilmente como realizar a instalação do R e o RStudio pelo Linux:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4DlnNJ36mTc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## SO MAC
+
+Um vídeo produzido pelo Canal [PPGC UFSC](https://www.youtube.com/channel/UCsAe4Io64jjFiMGa6oTXV7g) (Youtube), mostra falcilmente como realizar a instalação do R e o RStudio pelo MAC:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rr54DqsJJjY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 
 
 

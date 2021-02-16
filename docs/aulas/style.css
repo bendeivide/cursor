@@ -1,0 +1,10 @@
+body {
+  background-image: url("open-book.jpg");
+  background-repeat: no-repeat;
+  background-size:100%;
+}
+
+div {
+  background-color: tranparent/* 35% opaque white */;
+  padding: 0.25em;
+}

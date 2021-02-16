@@ -1,8 +1,8 @@
 ---
-title: "Programação em R (Nível Básico)"
-subtitle: "Aula 1"
+title: "Curso R: Programação em R (Nível Básico)"
+subtitle: "Aula 0 - Apresentação do Curso R"
 author: "Ben Deivide"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "18/02/2021"
 output: 
   ioslides_presentation:
     incremental: true
@@ -17,7 +17,15 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+-->
+
+## Objetivo do Curso
 
 This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
