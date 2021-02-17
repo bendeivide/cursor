@@ -82,6 +82,8 @@ Em construção...
 
 O Curso `R` será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal [Youtube/Ben Dêivide](http://youtube.com/bendeivide) divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento  desse material, disponibilizaremos os [*scripts*](#scripts) com os comandos utilizados em cada aula e sua versão em [*Shiny*](#shiny) para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão *online* do material juntamente com a linguagem `R`.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_JqtU3X101E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 # <i class="fas fa-download"></i> Instalação do R e RStudio para o SO Windows {#r-rstudio}
 
 A linguagem `R` é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o `R`, não há sentido instalá-lo. 
@@ -92,6 +94,8 @@ Dessa forma, seguem os passos para a instalação:
 - Instalação do [RStudio](http://rstudio.org/): [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download)
 
 Justificamos a utilizamos do [RStudio](http://rstudio.org/), pela quantidade de recursos disponíveis e a diversidade de usuários `R`, que hoje o perfil não é apenas de um programador, mas um usuário que necessita de uma ferramenta estatística para análise de seus dados. Dessa forma, até por questão de praticidade, e de uso pessoal, não deixaremos de repassar o entendimento sobre a linguagem `R` com o uso do [RStudio](http://rstudio.org/).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8_GrR3FLZJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # <i class="fas fa-wrench"></i> Como utilizar o [R](http://r-project.org/) e o [RStudio](http://rstudio.org/) {#tools-r-rstudio}
 
@@ -147,7 +151,7 @@ Vejamos alguns exemplos para entendimento (Se você ainda não está ambientado 
 
 - Exemplo 1: As funções têm acesso ao escopo em que foram criadas.
 
-```{r ex1, echo=TRUE, comment=">", prompt=TRUE}
+```{r ex1, echo=TRUE, , prompt=TRUE}
 # Criando um nome "n" associado a um objeto 10 no escopo da função
 n <- 10
 
@@ -161,7 +165,7 @@ funcao()
 ```
 - Exemplo 2: As variáveis criadas ou alteradas dentro de uma função, permanecem na função.
 
-```{r ex2, echo=TRUE, comment=">", prompt=TRUE}
+```{r ex2, echo=TRUE, , prompt=TRUE}
 # Criando um nome "n" associado a um objeto 10 no escopo da função
 n <- 10
 
@@ -180,7 +184,7 @@ funcao()
 
   - Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.
   
-```{r ex3, echo=TRUE, comment=">", prompt=TRUE}
+```{r ex3, echo=TRUE, , prompt=TRUE}
 # Criando um nome "n" associado a um objeto 10 no escopo da função
 n <- 10
 
@@ -203,7 +207,7 @@ n
 
    - Exemplo 4: Por fim, embora a linguagem `R` tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.
    
-```{r ex4, echo=TRUE, comment=">", prompt=TRUE}
+```{r ex4, echo=TRUE, , prompt=TRUE}
 # Criando um nome 'n' associado a um objeto 10 no escopo da função (ambiente global)
 n <- 10
 # Criando um nome 'funcao' associado a um objeto que é uma função criado no ambiete global
@@ -262,7 +266,7 @@ Caracterizações:
 
 Iniciamos a discussão por uma afirmação de John McKinley Chambers, do qual afirmou que o `R` tem três princípios [@chambers2016]:
 
-```{r chambers, fig.cap = "John Chambers^[Fonte da foto: Retirada de sua página pessoal, [https://statweb.stanford.edu/~jmc4/](https://statweb.stanford.edu/~jmc4/)], o criador da linguagem `S`.", out.width="10%", fig.align='center'}
+```{r chambers, fig.cap = "John Chambers^[Fonte da foto: Retirada de sua página pessoal, [https://statweb.stanford.edu/~jmc4/](https://statweb.stanford.edu/~jmc4/)], o criador da linguagem `S`.", fig.height= 5, fig.width=5, fig.align='center'}
 knitr::include_graphics("images/john_chambers.jpg")
 ```
 
@@ -270,26 +274,88 @@ knitr::include_graphics("images/john_chambers.jpg")
 - Tudo que acontece no `R` é uma chamada de função;
 - Interfaces para outros programas são parte do `R`.
 
-Para a construção e base dessas ideias, usaremos a convenção utilizada por @hadley2019, formalizando o entendimento por meio de diagramas. Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos. 
+Vamos observar uma adaptação da ilustração feita por @paradis2005, mostrando como o `R` trabalha, Figura \@ref(fig:rworks).
+
+```{r rworks, fig.cap = "Esquema de como o `R` funciona.", out.width="50%", fig.align='center'}
+knitr::include_graphics("images/rworks.png")
+```
+
+Toda ação que acontece no `R` é uma chamada de função (Operadores e funções), que por sua vez é armazenada na forma de um objeto, e este se associa a um nome. A forma de execução de uma função é baseada em argumentos (dados, fórmulas, expressões, etc), que são entradas, ou argumentos padrões que já são pré-estabelecidos na criação da função. Esses tipos de argumentos podem ser modificados na execução da função. Por fim, a saída é o resultado, que é também um objeto, e pode ser usado como argumento de outras funções.
+
+Na Figura \@ref(fig:rworks), observamos que todas as ações realizadas sobre os objetos ficam armazenadas na memória ativa do computador. Esses objetos são criados por comandos (teclado ou mouse) através de funções ou operadores (chamada de função), dos quais leem ou escrevem arquivo de dados do disco rígido, ou leem da própria internet. Por fim, o resultado desses objetos podem ser apresentados no console (memória ativa), exportados em formato de imagem, página web, etc. (disco rígido), ou até mesmo ser reaproveitado como argumento de outras funções, porque o resultado também é um objeto.
+
+# <i class="fas fa-terminal"></i> Símbolos e comando elementares
+
+Como falado anteriormente, o `R` é uma linguagem baseada em linhas de comando, e as linhas de comando, uma de cada vez, no console. Assim, que o prompt de comando, o `R` indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é "`>`", porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:
+
+```{r promptdor, echo=TRUE, command="R>", prompt=TRUE}
+options(prompt = "R>")
+# Toda vez que o console iniciar, começarar por 'R>'
+10
+```
+
+Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos. 
 
 Vejamos o seguinte código:
 
-```{r primeiro_codigo, echo=TRUE, comment=">", prompt=TRUE}
+```{r primeiro_codigo, echo=TRUE, , prompt=TRUE}
 x <- 10
 ```
 
-Todo mundo que tem uma certa noção sobre a linguagem `R` afirmaria: "criei um objeto `x` que recebe o valor 10". Para @hadley2019 essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto `10` está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. A símbolo que associa um objeto a um nome é o de atribuição, `<-`. Este símbolo poderá ser representado na direção da esquerda para à direita ou vice-versa, isto é,
+Todo mundo que tem uma certa noção sobre a linguagem `R` afirmaria: "criei um objeto `x` que recebe o valor 10". Para @hadley2019 essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto `10` está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. O símbolo que associa um objeto a um nome é o de atribuição, `<-`, isto é, a junção do símbolo desigualdade menor e o símbolo de subtração. Para ver qual objeto associado ao nome, o usuário precisa apenas digitar o nome no console.
 
-```{r segundo_codigo, echo=TRUE, comment=">"}
+A escolha do nome associado a um objeto tem algumas regras:
+
+- Deve consistir em letras, dígitos, `.` e `_`;
+- Os nomes devem ser iniciado por uma letra ou um ponto não seguido de um número, isto é, Ex.: `.123`, `1n`, dentre outros;
+- As letras maiúsculas se distinguem das letras minúsculas;
+- Não pode inicia por `_` ou dígito, é retornado um erro no console caso isso ocorra;
+- Não pode usar qualquer uma das palavras reservadas pela linguagem, isto é, `TRUE`, `FALSE`, `if`, `for`, dentre outras, que pode ser consultado usando o comando `?Reserved()`.
+
+Um nome que não segue essas regras é chamado de um nome não sintático. Um comando que pode ser usado para converter nomes não sintatícos em nomes sintáticos é `make.names`.
+
+```{r, eval=FALSE}
+# Nome não sintático
+.123 <- 50
+## Error in 0.123 <- 50 : lado esquerdo da atribuição inválida (do_set)
+
+# Qual a sugestão de nome sintático para '.123'?
+make.names(.123)
+[1] "X0.123"
+```
+
+O símbolo de atribuição poderá ser representado na direção da esquerda para à direita ou vice-versa, isto é,
+
+```{r segundo_codigo, echo=TRUE, }
 x <- 10
 10 -> x
 ```
 
-As duas formas acima são possíveis
+Essas duas linhas de comando anteriores pode ter passadas despercebida pelo leitor em um situação, se na segunda linha tivéssemos alterado o valor do objeto de `10` para `30`, por exemplo, a associação de `x` seria ao objeto `30`. Isso significa que se o nome já existe, ele será apagado da memória ativa do computador e associado ao novo objeto.
 
-- 
+Uma outra forma menos convencional é usar o comando `assign`, veja:
 
-# <i class="fas fa-terminal"></i> Símbolos e comando elementares
+```{r assign, echo=TRUE, }
+assign("m", 15)
+m
+```
+
+Uma forma menos convencional é utilizar o símbolo da igualdade "`=`" para associarmos nomes aos objetos. Contudo, discutiremos mas adiante, em [Boas práticas de como escrever um código](#goodcode), que o uso da igualdade deverá em `R` ser usado apenas para a denominação de argumentos em uma função.
+
+Quando desejamos executar mais de uma linha de comando por, separamos estas pelo símbolo "`;`", isto é,
+
+```{r, echo=TRUE, }
+x <- 10; y <- 15; y; x
+```
+
+Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como "um nome associado a um objeto". Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.
+
+Com essa quantidade de objetos criados até agora, poderíamos nos perguntar quais os objetos que estão na memória ativa do computador, para isso, use o comando `ls()`.
+
+
+
+
+
 
 
 
@@ -305,6 +371,19 @@ As duas formas acima são possíveis
 
 # <i class="fas fa-puzzle-piece"></i> Objetos
 
-# <i class="fas fa-file-code"></i> Boas práticas de como escrever um código
+<!--
+Usar as ideias em Wickham:
+  - Na seção introdutoria sobre objetos:
+    - vinculação de outro nome a um objeto;
+    - rótulo;
+    - Quais atributos são possíveis;
+    - Quais os tipos de objetos;
+Usar as ideias de An Introduction to R:
+  - Seção 3.1
+Usar as ideias de R language definition:
+  - objetos
+-->
+
+# <i class="fas fa-file-code"></i> Boas práticas de como escrever um código {#goodcode}
 
 # <i class="fas fa-cubes"></i> Pacotes
