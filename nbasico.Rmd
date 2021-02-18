@@ -64,7 +64,7 @@ knitr::opts_chunk$set(echo = FALSE)
  - Script 00: ~
  - Script 01: ~
  - Script 02: ~
- - Script 03: [Escopo léxico](scripts/script03.R)
+ - [Script 03](scripts/script03.txt): [Escopo léxico](scripts/script03.R)
  - Script 04:
  - Script 05:
  - Script 06:
