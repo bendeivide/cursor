@@ -41,7 +41,7 @@ knitr::include_graphics("rversao1.png")
 ## O que é o `R`?
 
 - O `R` é uma linguagem e ambiente de computação estatística e gráficos (<http://r-project.org/about>), (...)
-  - Baseado no dialeto `S` e semântica `Scheme` (Escopo Léxico);
+  - Baseado no dialeto `S` e semântica `Scheme` ([Escopo Léxico](https://bendeivide.github.io/cursor/scripts/script03.txt));
   - Sintaxe simples e intuitiva;
   - Está disponível como Software livre sob os termos da licença GNU, em forma de código fonte;
   - Linguagem interpretada: `S`, `C`, `C++` e `FORTRAN`;
