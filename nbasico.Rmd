@@ -80,11 +80,15 @@ Em construção...
 
 # <i class="fas fa-book"></i> Apresentação do curso {#apresentacao}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_JqtU3X101E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 O Curso `R` será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal [Youtube/Ben Dêivide](http://youtube.com/bendeivide) divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento  desse material, disponibilizaremos os [*scripts*](#scripts) com os comandos utilizados em cada aula e sua versão em [*Shiny*](#shiny) para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão *online* do material juntamente com a linguagem `R`.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_JqtU3X101E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # <i class="fas fa-download"></i> Instalação do R e RStudio para o SO Windows {#r-rstudio}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8_GrR3FLZJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 A linguagem `R` é o objetivo principal desse curso. Assim, faremos inicialmente a sua instalação, uma vez que o RStudio é apenas uma GUI, e sem o `R`, não há sentido instalá-lo. 
 
@@ -95,9 +99,9 @@ Dessa forma, seguem os passos para a instalação:
 
 Justificamos a utilizamos do [RStudio](http://rstudio.org/), pela quantidade de recursos disponíveis e a diversidade de usuários `R`, que hoje o perfil não é apenas de um programador, mas um usuário que necessita de uma ferramenta estatística para análise de seus dados. Dessa forma, até por questão de praticidade, e de uso pessoal, não deixaremos de repassar o entendimento sobre a linguagem `R` com o uso do [RStudio](http://rstudio.org/).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8_GrR3FLZJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 # <i class="fas fa-wrench"></i> Como utilizar o [R](http://r-project.org/) e o [RStudio](http://rstudio.org/) {#tools-r-rstudio}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/x_9kRo2sges" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 A primeira ideia que temos sobre a linguagem `R` é a linha de comando no `R`, que é simbolizada pelo prompt de comando "`>`". Este símbolo significa que o `R` está pronto para receber os comandos do usuário. O *prompt* de comando está localizado no console do `R`.
 Vejamos o console do `R` a seguir, que é o local que recebe as linhas de comando do usuário.
@@ -116,9 +120,9 @@ knitr::include_graphics("images/ide_rstudio.png")
 
 Muitas coisas na interface do `R` podem se tornar problemas para os usuários, uma vez que janelas gráficas, janelas de scripts, dentre outras, se sobrepõe. Uma vantagem no RStudio foi essa divisão de quadrantes, que torna muito mais organizado as atividades realizadas no `R`. De um modo geral, diremos que o primeiro quadrante é responsável pela entrada de dados, comandos, isto é, o *input*. O segundo quadrante, que é o console do R, representa tanto entrada como saída de informações (*input*/*output*). Dependendo as atividades as abas podem aumentar. O terceiro quadrante representa informações básicas como objetos no ambiente global, a memória de comandos na aba *History*, dentre outras, e também representa entrada como saída de informações (*input*/*output*). Por fim, o quarto quadrante é responsável por representação gráficas, instalação de pacotes, renderização de páginas *web*.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/x_9kRo2sges" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 # <i class="fab fa-r-project"></i> História do R {#rhistory}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-plK308HcgU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 A linguagem `R` tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado [*R: A Language for Data Analysis and Graphics*](https://doi.org/10.2307/1390807 ), cujos os autores são os desenvolvedores da linguagem, [George Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/) e [Robert Clifford Gentleman](https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5).
 
@@ -149,9 +153,9 @@ A linguagem `R` é uma combinação da linguagem `S` com a semântica de escopo 
 - **Gerenciamento de memória**: usando as próprias palavras de Ross Ihaka^[https://cran.r-project.org/doc/html/interface98-paper/paper_1.html], em R, alocamos uma quantidade fixa de memória na inicialização e a gerenciamos com um coletor de lixo dinâmico. Isso significa que há muito pouco crescimento de heap e, como resultado, há menos problemas de paginação do que os vistos em S.
 - **Escopo**: na linguagem `R`, as funções acessam as variáveis criadas pelo no corpo da própria função, como também as variáveis contidas no ambiente que a função foi criada. No caso da linguagem `S`, isso não ocorre, assim, como por exemplo na linguagem `C`, em que as funções acessam apenas variáveis definidas globalmente. 
 
-Vejamos alguns exemplos para entendimento (Se você ainda não está ambientado ao `R`, estude esse módulo primeiro, e depois reflita sobre esses exemplos):
+Vejamos alguns exemplos para entendimento (Se você ainda não está ambientado ao `R`, estude esse módulo primeiro, e depois reflita sobre esses exemplos). Antes de executar as linhas de comando, instale o pacote `lobstr` como segue:
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=TRUE, eval=FALSE}
 # Instale o pacote lobstr
 install.packages("lobstr")
 ```
