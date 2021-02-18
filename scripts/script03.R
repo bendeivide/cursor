@@ -6,6 +6,8 @@
 
 # Escopo lexico da linguagem R
 #-----------------------------
+# Instale o pacote lobstr
+install.packages("lobstr")
 
 # Exemplo 1: As funcoes tem acesso ao escopo em que foram criadas.
 # Criando um nome "n" associado a um objeto 10 no escopo da funcao
@@ -22,6 +24,7 @@ funcao()
 # Exemplo 2: As variaveis criadas ou alteradas dentro de uma funcao, permanecem na funcao.
 # Criando um nome "n" associado a um objeto 10 no escopo da função
 n <- 10
+lobstr::obj_addr(n) # Identificador do objeto
 
 # Criando um nome "funcao" associado a um objeto que é uma função
 funcao <- function() {
@@ -35,12 +38,17 @@ funcao <- function() {
 # Imprimindo 'funcao'
 funcao()
 
+# Imprimindo 'n'
+n
+lobstr::obj_addr(n) # Identificador do objeto
+
 # Exemplo 3: As variáveis dentro de uma função permanecem nelas,
 # exceto no caso em que a atribuição ao escopo seja explicitamente
 # solicitada
 
 # Criando um nome "n" associado a um objeto 10 no escopo da função
 n <- 10
+lobstr::obj_addr(n) # Identificador do objeto
 
 # Criando um nome "funcao" associado a um objeto que é uma função
 funcao <- function() {
@@ -57,6 +65,7 @@ funcao()
 # Observe que depois de usar a superatribuição ("<<-") dentro da função,
 #o nome "n" passou a estar associado ao número 15 e não mais ao número 10, observe
 n
+lobstr::obj_addr(n) # Identificador do objeto
 
 # Exemplo 4: Por fim, embora a linguagem `R` tenha um escopo padrão,
 # chamado ambiente global, os escopos de funções podem ser alterados.

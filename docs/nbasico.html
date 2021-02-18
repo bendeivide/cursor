@@ -2265,6 +2265,9 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <li><strong>Escopo</strong>: na linguagem <code>R</code>, as funções acessam as variáveis criadas pelo no corpo da própria função, como também as variáveis contidas no ambiente que a função foi criada. No caso da linguagem <code>S</code>, isso não ocorre, assim, como por exemplo na linguagem <code>C</code>, em que as funções acessam apenas variáveis definidas globalmente.</li>
 </ul>
 <p>Vejamos alguns exemplos para entendimento (Se você ainda não está ambientado ao <code>R</code>, estude esse módulo primeiro, e depois reflita sobre esses exemplos):</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <ul>
 <li>Exemplo 1: As funções têm acesso ao escopo em que foram criadas.</li>
 </ul>
@@ -2291,8 +2294,12 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "n" associado a um objeto 10 no escopo da função</span>
 <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
-
-<span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
+<span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0xb985d50&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='co'># Imprimindo n</span>
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
@@ -2307,6 +2314,17 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 </div>
 <pre><code>[1] 10
 [1] 15</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo 'n'</span>
+<span class='va'>n</span>
+</code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0xb985d50&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2315,8 +2333,12 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "n" associado a um objeto 10 no escopo da função</span>
 <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
-
-<span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
+<span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x29a9a108&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='co'># Imprimindo n</span>
   <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
@@ -2332,12 +2354,17 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre><code>[1] 10
 [1] 15</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Observe que depois de usar a superatribuição ("&lt;&lt;-") dentro da função, </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Observe que depois de usar a superatribuição ("&lt;&lt;-") dentro da função,</span>
 <span class='co'>#o nome "n" passou a estar associado ao número 15 e não mais ao número 10, observe</span>
 <span class='va'>n</span>
 </code></pre>
 </div>
 <pre><code>[1] 15</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x29abcd18&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2511,7 +2538,7 @@ Usar as ideias de R language definition:
 -->
 <h1 id="goodcode"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</h1>
 <h1 id="pacotes"><i class="fas fa-cubes"></i> Pacotes</h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.

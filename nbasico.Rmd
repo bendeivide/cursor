@@ -151,6 +151,11 @@ A linguagem `R` é uma combinação da linguagem `S` com a semântica de escopo 
 
 Vejamos alguns exemplos para entendimento (Se você ainda não está ambientado ao `R`, estude esse módulo primeiro, e depois reflita sobre esses exemplos):
 
+```{r, echo=FALSE, eval=FALSE}
+# Instale o pacote lobstr
+install.packages("lobstr")
+```
+
 - Exemplo 1: As funções têm acesso ao escopo em que foram criadas.
 
 ```{r ex1, echo=TRUE, , prompt=TRUE}
@@ -170,6 +175,7 @@ funcao()
 ```{r ex2, echo=TRUE, , prompt=TRUE}
 # Criando um nome "n" associado a um objeto 10 no escopo da função
 n <- 10
+lobstr::obj_addr(n) # Identificador do objeto
 
 # Criando um nome "funcao" associado a um objeto que é uma função
 funcao <- function() {
@@ -182,6 +188,10 @@ funcao <- function() {
 }
 # Imprimindo 'funcao'
 funcao()
+
+# Imprimindo 'n'
+n
+lobstr::obj_addr(n) # Identificador do objeto
 ``` 
 
   - Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.
@@ -189,6 +199,7 @@ funcao()
 ```{r ex3, echo=TRUE, , prompt=TRUE}
 # Criando um nome "n" associado a um objeto 10 no escopo da função
 n <- 10
+lobstr::obj_addr(n) # Identificador do objeto
 
 # Criando um nome "funcao" associado a um objeto que é uma função
 funcao <- function() {
@@ -202,9 +213,10 @@ funcao <- function() {
 # Imprimindo 'funcao'
 funcao()
 
-# Observe que depois de usar a superatribuição ("<<-") dentro da função, 
+# Observe que depois de usar a superatribuição ("<<-") dentro da função,
 #o nome "n" passou a estar associado ao número 15 e não mais ao número 10, observe
 n
+lobstr::obj_addr(n) # Identificador do objeto
 ``` 
 
    - Exemplo 4: Por fim, embora a linguagem `R` tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.
