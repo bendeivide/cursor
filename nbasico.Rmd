@@ -63,8 +63,8 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Scripts {#scripts}
  - Script 00: ~
  - Script 01: ~
- - Script 02:
- - Script 03:
+ - Script 02: ~
+ - Script 03: [Escopo léxico](scripts/script03.R)
  - Script 04:
  - Script 05:
  - Script 06:
@@ -115,6 +115,8 @@ knitr::include_graphics("images/ide_rstudio.png")
 ```
 
 Muitas coisas na interface do `R` podem se tornar problemas para os usuários, uma vez que janelas gráficas, janelas de scripts, dentre outras, se sobrepõe. Uma vantagem no RStudio foi essa divisão de quadrantes, que torna muito mais organizado as atividades realizadas no `R`. De um modo geral, diremos que o primeiro quadrante é responsável pela entrada de dados, comandos, isto é, o *input*. O segundo quadrante, que é o console do R, representa tanto entrada como saída de informações (*input*/*output*). Dependendo as atividades as abas podem aumentar. O terceiro quadrante representa informações básicas como objetos no ambiente global, a memória de comandos na aba *History*, dentre outras, e também representa entrada como saída de informações (*input*/*output*). Por fim, o quarto quadrante é responsável por representação gráficas, instalação de pacotes, renderização de páginas *web*.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/x_9kRo2sges" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # <i class="fab fa-r-project"></i> História do R {#rhistory}
 
@@ -274,7 +276,7 @@ knitr::include_graphics("images/john_chambers.jpg")
 - Tudo que acontece no `R` é uma chamada de função;
 - Interfaces para outros programas são parte do `R`.
 
-Vamos observar uma adaptação da ilustração feita por @paradis2005, mostrando como o `R` trabalha, Figura \@ref(fig:rworks).
+Ao longo de todo o curso, para os três módulos, iremos nos referir a esses princípios. Vamos inicialmente observar uma adaptação da ilustração feita por @paradis2005, mostrando como o `R` trabalha, Figura \@ref(fig:rworks).
 
 ```{r rworks, fig.cap = "Esquema de como o `R` funciona.", out.width="50%", fig.align='center'}
 knitr::include_graphics("images/rworks.png")
@@ -286,13 +288,15 @@ Na Figura \@ref(fig:rworks), observamos que todas as ações realizadas sobre os
 
 # <i class="fas fa-terminal"></i> Símbolos e comando elementares
 
-Como falado anteriormente, o `R` é uma linguagem baseada em linhas de comando, e as linhas de comando, uma de cada vez, no console. Assim, que o prompt de comando, o `R` indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é "`>`", porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:
+Como falado anteriormente, o `R` é uma linguagem baseada em linhas de comando, e as linhas de comando, são executadas uma de cada vez, no console. Assim, que o prompt de comando, o `R` indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é "`>`", porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:
 
 ```{r promptdor, echo=TRUE, command="R>", prompt=TRUE}
 options(prompt = "R>")
 # Toda vez que o console iniciar, começarar por 'R>'
 10
 ```
+
+O conjunto de símbolos que podem ser utilizados no `R` depende do sistema operacional e do país em que o `R` está sendo executado. Basicamente, todos os símbolos alfanuméricos podem ser utilizados, mas para evitar problemas opte quanto ao uso das letras, opte pelos caracteres ASCII.
 
 Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos. 
 
@@ -301,6 +305,8 @@ Vejamos o seguinte código:
 ```{r primeiro_codigo, echo=TRUE, , prompt=TRUE}
 x <- 10
 ```
+
+
 
 Todo mundo que tem uma certa noção sobre a linguagem `R` afirmaria: "criei um objeto `x` que recebe o valor 10". Para @hadley2019 essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto `10` está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. O símbolo que associa um objeto a um nome é o de atribuição, `<-`, isto é, a junção do símbolo desigualdade menor e o símbolo de subtração. Para ver qual objeto associado ao nome, o usuário precisa apenas digitar o nome no console.
 
@@ -347,6 +353,7 @@ Quando desejamos executar mais de uma linha de comando por, separamos estas pelo
 ```{r, echo=TRUE, }
 x <- 10; y <- 15; y; x
 ```
+Neste caso, executamos quatro comandos em uma linha, criamos doi
 
 Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como "um nome associado a um objeto". Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.
 

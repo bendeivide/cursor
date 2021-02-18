@@ -2183,8 +2183,8 @@ Material
 <ul>
 <li>Script 00: ~</li>
 <li>Script 01: ~</li>
-<li>Script 02:</li>
-<li>Script 03:</li>
+<li>Script 02: ~</li>
+<li>Script 03: <a href="scripts/script03.R">Escopo léxico</a></li>
 <li>Script 04:</li>
 <li>Script 05:</li>
 <li>Script 06:</li>
@@ -2230,6 +2230,8 @@ Figure 2: Interface do RStudio (Versão 1.4.1103).
 </div>
 </div>
 <p>Muitas coisas na interface do <code>R</code> podem se tornar problemas para os usuários, uma vez que janelas gráficas, janelas de scripts, dentre outras, se sobrepõe. Uma vantagem no RStudio foi essa divisão de quadrantes, que torna muito mais organizado as atividades realizadas no <code>R</code>. De um modo geral, diremos que o primeiro quadrante é responsável pela entrada de dados, comandos, isto é, o <em>input</em>. O segundo quadrante, que é o console do R, representa tanto entrada como saída de informações (<em>input</em>/<em>output</em>). Dependendo as atividades as abas podem aumentar. O terceiro quadrante representa informações básicas como objetos no ambiente global, a memória de comandos na aba <em>History</em>, dentre outras, e também representa entrada como saída de informações (<em>input</em>/<em>output</em>). Por fim, o quarto quadrante é responsável por representação gráficas, instalação de pacotes, renderização de páginas <em>web</em>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/x_9kRo2sges" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <h1 id="rhistory"><i class="fab fa-r-project"></i> História do R</h1>
 <p>A linguagem <code>R</code> tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado <a href="https://doi.org/10.2307/1390807"><em>R: A Language for Data Analysis and Graphics</em></a>, cujos os autores são os desenvolvedores da linguagem, <a href="https://www.stat.auckland.ac.nz/~ihaka/">George Ross Ihaka</a> e <a href="https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5">Robert Clifford Gentleman</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2416,7 +2418,7 @@ Figure 6: John Chambers<a href="#fn12" class="footnote-ref" id="fnref12" role="d
 <li>Tudo que acontece no <code>R</code> é uma chamada de função;</li>
 <li>Interfaces para outros programas são parte do <code>R</code>.</li>
 </ul>
-<p>Vamos observar uma adaptação da ilustração feita por <span class="citation" data-cites="paradis2005"><a href="#ref-paradis2005" role="doc-biblioref">Paradis</a> (<a href="#ref-paradis2005" role="doc-biblioref">2005</a>)</span>, mostrando como o <code>R</code> trabalha, Figura <a href="#fig:rworks">7</a>.</p>
+<p>Ao longo de todo o curso, para os três módulos, iremos nos referir a esses princípios. Vamos inicialmente observar uma adaptação da ilustração feita por <span class="citation" data-cites="paradis2005"><a href="#ref-paradis2005" role="doc-biblioref">Paradis</a> (<a href="#ref-paradis2005" role="doc-biblioref">2005</a>)</span>, mostrando como o <code>R</code> trabalha, Figura <a href="#fig:rworks">7</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:rworks"></span>
 <img src="images/rworks.png" alt="Esquema de como o `R` funciona." width="50%" />
@@ -2428,7 +2430,7 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <p>Toda ação que acontece no <code>R</code> é uma chamada de função (Operadores e funções), que por sua vez é armazenada na forma de um objeto, e este se associa a um nome. A forma de execução de uma função é baseada em argumentos (dados, fórmulas, expressões, etc), que são entradas, ou argumentos padrões que já são pré-estabelecidos na criação da função. Esses tipos de argumentos podem ser modificados na execução da função. Por fim, a saída é o resultado, que é também um objeto, e pode ser usado como argumento de outras funções.</p>
 <p>Na Figura <a href="#fig:rworks">7</a>, observamos que todas as ações realizadas sobre os objetos ficam armazenadas na memória ativa do computador. Esses objetos são criados por comandos (teclado ou mouse) através de funções ou operadores (chamada de função), dos quais leem ou escrevem arquivo de dados do disco rígido, ou leem da própria internet. Por fim, o resultado desses objetos podem ser apresentados no console (memória ativa), exportados em formato de imagem, página web, etc. (disco rígido), ou até mesmo ser reaproveitado como argumento de outras funções, porque o resultado também é um objeto.</p>
 <h1 id="símbolos-e-comando-elementares"><i class="fas fa-terminal"></i> Símbolos e comando elementares</h1>
-<p>Como falado anteriormente, o <code>R</code> é uma linguagem baseada em linhas de comando, e as linhas de comando, uma de cada vez, no console. Assim, que o prompt de comando, o <code>R</code> indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é “<code>&gt;</code>,” porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:</p>
+<p>Como falado anteriormente, o <code>R</code> é uma linguagem baseada em linhas de comando, e as linhas de comando, são executadas uma de cada vez, no console. Assim, que o prompt de comando, o <code>R</code> indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é “<code>&gt;</code>,” porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>prompt <span class='op'>=</span> <span class='st'>"R&gt;"</span><span class='op'>)</span>
@@ -2438,6 +2440,7 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 </div>
 <pre><code>[1] 10</code></pre>
 </div>
+<p>O conjunto de símbolos que podem ser utilizados no <code>R</code> depende do sistema operacional e do país em que o <code>R</code> está sendo executado. Basicamente, todos os símbolos alfanuméricos podem ser utilizados, mas para evitar problemas opte quanto ao uso das letras, opte pelos caracteres ASCII.</p>
 <p>Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos.</p>
 <p>Vejamos o seguinte código:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2487,6 +2490,7 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <pre><code>[1] 15</code></pre>
 <pre><code>[1] 10</code></pre>
 </div>
+<p>Neste caso, executamos quatro comandos em uma linha, criamos doi</p>
 <p>Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como “um nome associado a um objeto.” Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.</p>
 <p>Com essa quantidade de objetos criados até agora, poderíamos nos perguntar quais os objetos que estão na memória ativa do computador, para isso, use o comando <code>ls()</code>.</p>
 <h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>

@@ -74,7 +74,7 @@ Mas não só apenas análise de dados, aprenderemos também recursos diversos na
 
 <blockquote>
 <p>
-<em> Repararam que em muitos momentos utilizamos o artigo "o" para a linguagem `R`. Pois é, isso ocorre porque ela também é considerada um software. Daí, também podemos chamá-la de software `R`. </em>
+<em> Repararam que em muitos momentos utilizamos o artigo "o" para a linguagem `R`. Pois é, isso ocorre porque ela também é considerada um software. Daí, também podemos chamá-la de software `R`, ou preferivelmente, ambiente `R`. </em>
 </p>
 </blockquote>
 
@@ -134,7 +134,9 @@ A seguir, apresentaremos as subseções para a instalação da linguagem `R` e d
 
 ## SO Windows
 
-Para a instalação do `R` e do [RStudio](http://rstudio.org/), como também do [rtools](https://cran.r-project.org/bin/windows/Rtools/), convidaremos para a seção [Instalação do R e do RStudio](nbasico.html#r-rstudio) do primeiro módulo desse curso, que é [Programação em R (nível básico)](nbasico.html)
+Para a instalação do `R` e do [RStudio](http://rstudio.org/), como também do [rtools](https://cran.r-project.org/bin/windows/Rtools/), convidaremos para a seção [Instalação do R e do RStudio](nbasico.html#r-rstudio) do primeiro módulo desse curso, que é [Programação em R (nível básico)](nbasico.html).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8_GrR3FLZJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## SO Linux (Ubuntu)
 
