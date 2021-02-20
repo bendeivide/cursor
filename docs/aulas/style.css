@@ -2,9 +2,11 @@ body {
   background-image: url("open-book.jpg");
   background-repeat: no-repeat;
   background-size:100%;
+  font-size: 30px;
 }
 
 div {
   background-color: tranparent/* 35% opaque white */;
   padding: 0.25em;
 }
+

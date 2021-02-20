@@ -2146,6 +2146,7 @@ Material
 <li><a href="#tools-r-rstudio"><i class="fas fa-wrench"></i> Como utilizar o R e o RStudio</a></li>
 <li><a href="#rhistory"><i class="fab fa-r-project"></i> História do R</a></li>
 <li><a href="#rwork"><i class="fas fa-briefcase"></i> Como o R trabalha</a></li>
+<li><a href="#comandos-workspace"><i class="fas fa-terminal"></i> Comandos no R e Ambiente Global</a></li>
 <li><a href="#filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></a></li>
 </ul>
 <h2 id="section"></h2>
@@ -2156,28 +2157,28 @@ Material
 <li>Aula 01: <a href="aulas/aula01.html">Instalação do R e do RStudio</a></li>
 <li>Aula 02: <a href="aulas/aula02.html">Passos iniciais para a utilização do R e do RStudio</a></li>
 <li>Aula 03: <a href="aulas/aula03.html">História do R</a></li>
-<li>Aula 04: <a href="">Como o R trabalha</a></li>
-<li>Aula 05: <a href="">Símbolos e Comandos elementares</a></li>
-<li>Aula 06: <a href="">Arquivos <code>.RData</code> e <code>.Rhistory</code></a></li>
-<li>Aula 07: <a href="">Criando e salvando um <em>Script</em></a></li>
-<li>Aula 08: <a href="">Exportando dados</a></li>
-<li>Aula 09: <a href="">Objetos</a></li>
-<li>Aula 10: <a href="">Vetores</a></li>
-<li>Aula 11: <a href="">Matrizes</a></li>
-<li>Aula 12: <a href=""><em>Arrays</em></a></li>
-<li>Aula 13: <a href=""><em>Data frames</em></a></li>
-<li>Aula 14: <a href=""><em>Lists</em></a></li>
-<li>Aula 15: <a href="">Funções</a></li>
-<li>Aula 17: <a href="">Boas práticas de como escrever um código</a></li>
-<li>Aula 17: <a href="">Como criar funções</a></li>
-<li>Aula 18: <a href="">Controle de fluxos (<em>Loops</em>)</a></li>
-<li>Aula 19: <a href="">Pacotes</a></li>
-<li>Aula 20: <a href="">Carregando e Anexando pacotes</a></li>
-<li>Aula 21: <a href="">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
-<li>Aula 22: <a href=""><em>Namespace</em> de um pacote</a></li>
-<li>Aula 23: <a href="">Ambientes e Caminhos de busca</a></li>
-<li>Aula 24: <a href="">Interface com outras linguagens</a></li>
-<li>Aula 25: <a href="">Considerações e Preparação para a Programação em R (Nível Intermediário)</a></li>
+<li>Aula 04: <a href="aulas/aula04.html">Como o R trabalha</a></li>
+<li>Aula 05: <a href="aulas/aula05.html">Comandos no R e Ambiente Global</a></li>
+<li>Aula 06: <a href="index.html">Arquivos <code>.RData</code> e <code>.Rhistory</code></a></li>
+<li>Aula 07: <a href="index.html">Criando e salvando um <em>Script</em></a></li>
+<li>Aula 08: <a href="index.html">Exportando dados</a></li>
+<li>Aula 09: <a href="index.html">Objetos</a></li>
+<li>Aula 10: <a href="index.html">Vetores</a></li>
+<li>Aula 11: <a href="index.html">Matrizes</a></li>
+<li>Aula 12: <a href="index.html"><em>Arrays</em></a></li>
+<li>Aula 13: <a href="index.html"><em>Data frames</em></a></li>
+<li>Aula 14: <a href="index.html"><em>Lists</em></a></li>
+<li>Aula 15: <a href="index.html">Funções</a></li>
+<li>Aula 17: <a href="index.html">Boas práticas de como escrever um código</a></li>
+<li>Aula 17: <a href="index.html">Como criar funções</a></li>
+<li>Aula 18: <a href="index.html">Controle de fluxos (<em>Loops</em>)</a></li>
+<li>Aula 19: <a href="index.html">Pacotes</a></li>
+<li>Aula 20: <a href="index.html">Carregando e Anexando pacotes</a></li>
+<li>Aula 21: <a href="index.html">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
+<li>Aula 22: <a href="index.html"><em>Namespace</em> de um pacote</a></li>
+<li>Aula 23: <a href="index.html">Ambientes e Caminhos de busca</a></li>
+<li>Aula 24: <a href="index.html">Interface com outras linguagens</a></li>
+<li>Aula 25: <a href="index.html">Considerações e Preparação para a Programação em R (Nível Intermediário)</a></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2305,7 +2306,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x25a45ca0&quot;</code></pre>
+<pre><code>[1] &quot;0x29351ae0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2332,7 +2333,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x25a45ca0&quot;</code></pre>
+<pre><code>[1] &quot;0x29351ae0&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2344,7 +2345,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x925d3f8&quot;</code></pre>
+<pre><code>[1] &quot;0x9ee5bc0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2372,7 +2373,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x925d4d8&quot;</code></pre>
+<pre><code>[1] &quot;0x9ee5ca0&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2464,8 +2465,9 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 </div>
 <p>Toda ação que acontece no <code>R</code> é uma chamada de função (Operadores e funções), que por sua vez é armazenada na forma de um objeto, e este se associa a um nome. A forma de execução de uma função é baseada em argumentos (dados, fórmulas, expressões, etc), que são entradas, ou argumentos padrões que já são pré-estabelecidos na criação da função. Esses tipos de argumentos podem ser modificados na execução da função. Por fim, a saída é o resultado, que é também um objeto, e pode ser usado como argumento de outras funções.</p>
 <p>Na Figura <a href="#fig:rworks">7</a>, observamos que todas as ações realizadas sobre os objetos ficam armazenadas na memória ativa do computador. Esses objetos são criados por comandos (teclado ou mouse) através de funções ou operadores (chamada de função), dos quais leem ou escrevem arquivo de dados do disco rígido, ou leem da própria internet. Por fim, o resultado desses objetos podem ser apresentados no console (memória ativa), exportados em formato de imagem, página web, etc. (disco rígido), ou até mesmo ser reaproveitado como argumento de outras funções, porque o resultado também é um objeto.</p>
-<h1 id="símbolos-e-comando-elementares"><i class="fas fa-terminal"></i> Símbolos e comando elementares</h1>
-<p>Como falado anteriormente, o <code>R</code> é uma linguagem baseada em linhas de comando, e as linhas de comando, são executadas uma de cada vez, no console. Assim, que o prompt de comando, o <code>R</code> indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é “<code>&gt;</code>,” porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:</p>
+<h1 id="comandos-workspace"><i class="fas fa-terminal"></i> Comandos no R e Ambiente Global</h1>
+<h2 id="console-e-prompt-de-comando">Console e <em>Prompt</em> de comando</h2>
+<p>Como falado anteriormente, o <code>R</code> é uma linguagem baseada em linhas de comando, e as linhas de comando, são executadas uma de cada vez, no console. Assim que o prompt de comando está visível na tela do console, o <code>R</code> indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é “<code>&gt;</code>,” porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>prompt <span class='op'>=</span> <span class='st'>"R&gt;"</span><span class='op'>)</span>
@@ -2475,7 +2477,108 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 </div>
 <pre><code>[1] 10</code></pre>
 </div>
-<p>O conjunto de símbolos que podem ser utilizados no <code>R</code> depende do sistema operacional e do país em que o <code>R</code> está sendo executado. Basicamente, todos os símbolos alfanuméricos podem ser utilizados, mas para evitar problemas opte quanto ao uso das letras, opte pelos caracteres ASCII.</p>
+<p>O conjunto de símbolos que podem ser utilizados no <code>R</code> depende do sistema operacional e do país em que o <code>R</code> está sendo executado. Basicamente, todos os símbolos alfanuméricos podem ser utilizados, mas para evitar problemas quanto ao uso das letras aos nomes, opte pelos caracteres ASCII.</p>
+<p>A escolha do nome associado a um objeto tem algumas regras:</p>
+<ul>
+<li>Deve consistir em letras, dígitos, <code>.</code> e <code>_</code>;</li>
+<li>Os nomes devem ser iniciado por uma letra ou um ponto não seguido de um número, isto é, Ex.: <code>.123</code>, <code>1n</code>, dentre outros;</li>
+<li>As letras maiúsculas se distinguem das letras minúsculas;</li>
+<li>Não pode inicia por <code>_</code> ou dígito, é retornado um erro no console caso isso ocorra;</li>
+<li>Não pode usar qualquer uma das palavras reservadas pela linguagem, isto é, <code>TRUE</code>, <code>FALSE</code>, <code>if</code>, <code>for</code>, dentre outras, que pode ser consultado usando o comando <code>?Reserved()</code>.</li>
+</ul>
+<p>Um nome que não segue essas regras é chamado de um nome <strong>não sintático</strong>. Um comando que pode ser usado para converter nomes não sintatícos em nomes <strong>sintáticos</strong> é <code>make.names</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Apesar dessas justificativas, algumas situações como as apresentadas nos exemplos anteriores são possíveis, ver <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span> na <a href="https://adv-r.hadley.nz/names-values.html#non-syntactic">Seção 2.2.1</a></p>
+<h2 id="comandos-elementares">Comandos elementares</h2>
+<p>Os <strong>comandos elementares</strong> podem ser divididos em <strong>expressões</strong> e <strong>atribuições</strong>. Por exemplo, podemos está interessados em resolver a seguinte expressão <span class="math inline">\(10 + 15 = 25\)</span>. No console quando passamos pelo comando:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fl'>10</span> <span class='op'>+</span> <span class='fl'>15</span>
+</code></pre>
+</div>
+<pre><code>[1] 25</code></pre>
+</div>
+<p>O <code>R</code> avalia essa expressão internamente e imprime o resultado na tela, após apertar o botão <em>ENTER</em> do teclado. Esse fato é o que ocorre no segundo princípio mencionado por <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, tudo em <code>R</code> acontece por uma chamada de função. Na realidade o símbolo <code>+</code> é uma função interna do <code>R</code>, que chamamos de função primitiva, porque foi implementada em outra linguagem. Assim, essa é o resultado de três objetos (“<code>10</code>,” “<code>+</code>,” “<code>15</code>”) que são avaliados internamente, do qual a função <code>+</code> é chamada, e em seguida o resuldo é impresso no console.</p>
+<p>Do mesmo modo, se houver algum problema em algum dos objetos o retorno da avaliação pode ser uma mensagem de erro. Um caso muito prático é quando utilizamos o separador de casas decimais para os números sendo a vírgula. Quando na realidade deve ser um ponto “<code>.</code>” respeitando o sistema internacional de medidas. A vírgula é utilizada para separar elementos, argumentos em uma função, etc. Vejamos o exemplo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span>,<span class="dv">5</span> <span class="sc">+</span> <span class="dv">15</span>,<span class="dv">5</span></span></code></pre></div>
+<pre><code>Error: &lt;text&gt;:1:3: &#39;,&#39; inesperado
+1: 10,
+      ^</code></pre>
+</div>
+<p>Porém, tem que ficar claro que uma expressão é qualquer comando repassado no console. Este comando é avaliado e seu resultado impresso, há menos que explicitamente o usuário queira torná-lo invisível<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>. Caso algum elemento do comando não seja reconhecido pelo <code>R</code>, há um retorno de alguma mensagem em forma de “erro” ou “alerta,” tentando indicar o possível problema. Todos esses processos ocorrem na memória ativa do computador, e uma vez o resultado impresso no console, o valor é perdido, há menos que você atribua essa expressão a um nome, que erroneamento usamos o termo: “criamos um objeto!” A atribuição dessa expressão será dada pela junção de dois símbolos “<code>&lt;-</code>,” falado mais a frente. Um comando em forma de atribuição também avalia a sua expressão, um nome se associa ao seu resultado, e o resultado será mostrado, se posteriormente, após a execução você digitar o “nome” atribuído a esse resultado. Vejamos um exemplo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Foi criado um objeto do tipo caractere e o nome "meu_nome" foi associado a ele</span>
+<span class='co'># O 'R' avalia essa expressão, mas não imprime no console!</span>
+<span class='va'>meu_nome</span> <span class='op'>&lt;-</span> <span class='st'>"Ben"</span>
+
+<span class='co'># Para imprimir o resultado da expressão, digitamos o nome "meu_nome" no console</span>
+<span class='co'># e apertamos o botão ENTER do teclado!</span>
+<span class='va'>meu_nome</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Ben&quot;</code></pre>
+</div>
+<h2 id="execução-dos-comandos">Execução dos comandos</h2>
+<p>Quando inserimos um comando no console, executamos uma linha de comando por vez ou separados por “;” em uma mesma linha. Vejamos</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Uma linha de comando por vez</span>
+<span class='va'>meu_nome</span> <span class='op'>&lt;-</span> <span class='st'>"Ben"</span> <span class='co'># Criamos e associamos um nome ao objeto</span>
+<span class='va'>meu_nome</span> <span class='co'># Imprimos o objeto</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Ben&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Tudo em uma linha de comando</span>
+<span class='va'>meu_nome</span> <span class='op'>&lt;-</span> <span class='st'>"Ben"</span>; <span class='va'>meu_nome</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Ben&quot;</code></pre>
+</div>
+<p>Se um comando for muito grande e não couber em uma linha, ou caso deseje completar um comando em mais de uma linha, após a primeira linha haverá o símbolo “<code>+</code>” iniciando a linha seguinte ao invés do símbolo de prompt de comando (“<code>&gt;</code>”), até que o comando esteja sintaticamente completo. Vejamos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Uma linha de comando em mais de uma linha</span>
+<span class='op'>(</span><span class='fl'>10</span> <span class='op'>+</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'>/</span>
+  <span class='fl'>2</span>
+</code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+</div>
+<p>Por fim, todas linhas de comando quando iniciam pelo símbolo jogo da velha, “<code>#</code>” indica um comentário e essa linha de comando não é avaliada pelo console, apenas impressa na tela. E ainda, as linhas de comandos no console são limitadas a aproximadamente 4095 bytes (não caracteres).</p>
+<h2 id="chamada-e-correção-de-comandos-anteriores">Chamada e correção de comandos anteriores</h2>
+<p>Uma vez que um comando foi executado no console, esse comando por ser recuperado usando as teclas de setas para cima e para baixo do teclado, recuperando os comandos anteriorermente executados, e que os caracteres podem ser alterados usando as teclas esquerda e direita do teclado, removidas com o botão <em>Delete</em> ou <em>Backspace</em> do teclado, ou acrescentadas digitando os caracteres necessários. Uma outra forma de completar determinados comandos já existentes, como por exemplo, uma função que já existe nas bibliotecas de instalação do R, usando o botão <em>Tab</em> do teclado. O usuário começa digitando as iniciais, e para completar o nome aperta a tecla <em>Tab</em>. Posteriormente, basta completar a linha de comando e apertar <em>ENTER</em> para executá-la. Vejamos um exemplo a seguir.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0MRPmVsPvk4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Usando esses recursos no <a href="http://rstudio.org/">RStudio</a> são mais dinâmicos e vão mais além. Por exemplo, quando usamos um objeto do tipo função, estes apresentam o que chamamos de argumento(s) dentro do parêntese de uma função, do qual são elementos necessários, para que a função seja executada corretamente. Nesse caso, ao inseri o nome dessas funções no console, usando o RStudio, ao iniciá-la com a abertura do parêntese, abre-se uma janela informano todos os argumentos possíveis dessa função. Isso torna muito dinâmico escrever linhas de comando, porque não precisaremos estar lembrando do nome dos argumentos de uma função, mas apenas entender o objetivo dessa função. Vejamos um exemplo a seguir.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KL3WAB_GFNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<h2 id="ambiente-global-ou-área-de-trabalho-workspace">Ambiente Global (ou área de trabalho, <em>Workspace</em>)</h2>
+<p>Quando usamos um comando de atribuição no console, o <code>R</code> armazena o nome associado ao objeto criado na área de trabalho (<em>Workspace</em>), que nós chamamos de Ambiente Global. Teremos uma seção introdutória na seção <a href="#env-searchpath">Ambientes e caminhos de busca</a>, mas entendamos inicialmente que o objetivo de um ambiente é associar um conjunto de nomes a um conjunto de valores. Por exemplo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Nomes criados no ambiente </span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span> <span class='op'>-</span> <span class='fl'>6</span>; <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10</span> <span class='op'>+</span> <span class='fl'>4</span>; <span class='va'>w</span> <span class='op'>&lt;-</span> <span class='st'>"Maria Isabel"</span>
+<span class='co'># Verificando o nomes contidos no ambiente global</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;funcao&quot;        &quot;meu_nome&quot;      &quot;n&quot;             &quot;novo_ambiente&quot;
+[5] &quot;w&quot;             &quot;x&quot;             &quot;y&quot;            </code></pre>
+</div>
+<p>Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto <code>meu_nome</code> é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.</p>
+<h2 id="arquivos-.rdata-e-.rhistory">Arquivos <em>.RData</em> e <em>.Rhistory</em></h2>
+<p>Ao final do que falamos até agora, todo o processo ao inserir linhas de comando do console, e desejarmos finalizar os trabalhos do ambiente <code>R</code>, dois arquivos são criados, sob a instrução do usuário em querer aceitar ou não, que é a criação de dois arquivos <em>.RData</em> e <em>.Rhistory</em>, cujas finalidades são:</p>
+<ul>
+<li><em>.RData</em>: salvar todos os objetos criados que estão atualmente disponíveis;</li>
+<li><em>.Rhistory</em>: salvar todas as linhas de comandos inseridas no console.</li>
+</ul>
+<p>Ao iniciar o <code>R</code> no mesmo diretório onde esses arquivos foram salvos, é carregado toda a sua área de trabalho anteriomente, bem como o histórico das linhas de comando utilizadas anteriormente.</p>
+<h1 id="objetos">Objetos</h1>
 <p>Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos.</p>
 <p>Vejamos o seguinte código:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2485,18 +2588,6 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 </div>
 </div>
 <p>Todo mundo que tem uma certa noção sobre a linguagem <code>R</code> afirmaria: “criei um objeto <code>x</code> que recebe o valor 10.” Para <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span> essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto <code>10</code> está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. O símbolo que associa um objeto a um nome é o de atribuição, <code>&lt;-</code>, isto é, a junção do símbolo desigualdade menor e o símbolo de subtração. Para ver qual objeto associado ao nome, o usuário precisa apenas digitar o nome no console.</p>
-<p>A escolha do nome associado a um objeto tem algumas regras:</p>
-<ul>
-<li>Deve consistir em letras, dígitos, <code>.</code> e <code>_</code>;</li>
-<li>Os nomes devem ser iniciado por uma letra ou um ponto não seguido de um número, isto é, Ex.: <code>.123</code>, <code>1n</code>, dentre outros;</li>
-<li>As letras maiúsculas se distinguem das letras minúsculas;</li>
-<li>Não pode inicia por <code>_</code> ou dígito, é retornado um erro no console caso isso ocorra;</li>
-<li>Não pode usar qualquer uma das palavras reservadas pela linguagem, isto é, <code>TRUE</code>, <code>FALSE</code>, <code>if</code>, <code>for</code>, dentre outras, que pode ser consultado usando o comando <code>?Reserved()</code>.</li>
-</ul>
-<p>Um nome que não segue essas regras é chamado de um nome não sintático. Um comando que pode ser usado para converter nomes não sintatícos em nomes sintáticos é <code>make.names</code>.</p>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
 <p>O símbolo de atribuição poderá ser representado na direção da esquerda para à direita ou vice-versa, isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2525,13 +2616,13 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <pre><code>[1] 15</code></pre>
 <pre><code>[1] 10</code></pre>
 </div>
-<p>Neste caso, executamos quatro comandos em uma linha, criamos doi</p>
+<p>Neste caso, executamos quatro comandos em uma linha, associamos dois nomes a dois objetos e imprimimos os seus valores.</p>
 <p>Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como “um nome associado a um objeto.” Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.</p>
 <p>Com essa quantidade de objetos criados até agora, poderíamos nos perguntar quais os objetos que estão na memória ativa do computador, para isso, use o comando <code>ls()</code>.</p>
 <h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>
 <h1 id="savescript"><i class="fas fa-save"></i> Criando e salvando um script</h1>
 <h1 id="exportdata"><i class="fas fa-file-export"></i> Exportando dados</h1>
-<h1 id="objetos"><i class="fas fa-puzzle-piece"></i> Objetos</h1>
+<h1 id="objetos-1"><i class="fas fa-puzzle-piece"></i> Objetos</h1>
 <!--
 Usar as ideias em Wickham:
   - Na seção introdutoria sobre objetos:
@@ -2546,7 +2637,8 @@ Usar as ideias de R language definition:
 -->
 <h1 id="goodcode"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</h1>
 <h1 id="pacotes"><i class="fas fa-cubes"></i> Pacotes</h1>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="ambientes-e-caminho-de-busca-env-searchpath">Ambientes e caminho de busca (#env-searchpath)</h1>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.
@@ -2576,6 +2668,7 @@ Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Flo
 <li id="fn10" role="doc-endnote"><p>Comprehensive R Archive Network<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn11" role="doc-endnote"><p>Fonte da foto: <a href="https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/" class="uri">https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn12" role="doc-endnote"><p>Fonte da foto: Retirada de sua página pessoal, <a href="https://statweb.stanford.edu/~jmc4/">https://statweb.stanford.edu/~jmc4/</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13" role="doc-endnote"><p>Basta usar a função <code>invisible(10 + 15)</code>, que a expressão é avaliada mas não impressa<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
@@ -2585,6 +2678,15 @@ Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Flo
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

@@ -7,7 +7,7 @@ output:
   ioslides_presentation:
     incremental: true
     widescreen: true
-    smaller: true
+    smaller: false
     transition: slower
     logo: Rlogo.png
     css: style.css

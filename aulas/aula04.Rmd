@@ -1,0 +1,41 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 04 - Como o R trabalha"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    font_adjustment: +1
+    incremental: true
+    widescreen: true
+    smaller: false
+    transition: slower
+    logo: Rlogo.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Três princípios do R
+
+Segundo @chambers2016, o `R` tem três princípios:
+
+- Tudo que existe em `R` é um objeto;
+- Tudo que acontece no `R` é uma chamada de função;
+- Interfaces para outros programas são parte do `R`.
+
+## Esquema de como o R trabalha
+
+Esquema adaptado de @paradis2005, como o `R` trabalha:
+
+```{r rworks, fig.cap = "Esquema de como o `R` funciona.", out.width="70%", fig.align='center'}
+knitr::include_graphics("rworks.png")
+```
+
+## Referências
+
+

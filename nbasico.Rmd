@@ -22,6 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - [<i class="fas fa-wrench"></i> Como utilizar o R e o RStudio](#tools-r-rstudio)
 - [<i class="fab fa-r-project"></i> História do R](#rhistory)
 - [<i class="fas fa-briefcase"></i> Como o R trabalha](#rwork)
+- [<i class="fas fa-terminal"></i> Comandos no R e Ambiente Global](#comandos-workspace)
 - 
 [<i class="fas fa-file"></i> Arquivos `.Rdata` e `.Rhistory`](#filesdata)
 
@@ -36,28 +37,28 @@ knitr::opts_chunk$set(echo = FALSE)
  - Aula 01: [Instalação do R e do RStudio](aulas/aula01.html)
  - Aula 02: [Passos iniciais para a utilização do R e do RStudio](aulas/aula02.html)
  - Aula 03: [História do R](aulas/aula03.html)
- - Aula 04: [Como o R trabalha]()
- - Aula 05: [Símbolos e Comandos elementares]()
- - Aula 06: [Arquivos `.RData` e `.Rhistory`]()
- - Aula 07: [Criando e salvando um *Script*]()
- - Aula 08: [Exportando dados]()
- - Aula 09: [Objetos]()
- - Aula 10: [Vetores]()
- - Aula 11: [Matrizes]()
- - Aula 12: [*Arrays*]()
- - Aula 13: [*Data frames*]()
- - Aula 14: [*Lists*]()
- - Aula 15: [Funções]()
- - Aula 17: [Boas práticas de como escrever um código]()
- - Aula 17: [Como criar funções]()
- - Aula 18: [Controle de fluxos (*Loops*)]()
- - Aula 19: [Pacotes]()
- - Aula 20: [Carregando e Anexando pacotes]()
- - Aula 21: [Quando devemos utilizar os operadores `::` e `:::`]()
- - Aula 22: [*Namespace* de um pacote]()
- - Aula 23: [Ambientes e Caminhos de busca]()
- - Aula 24: [Interface com outras linguagens]()
- - Aula 25: [Considerações e Preparação para a Programação em R (Nível Intermediário)]()
+ - Aula 04: [Como o R trabalha](aulas/aula04.html)
+ - Aula 05: [Comandos no R e Ambiente Global](aulas/aula05.html)
+ - Aula 06: [Arquivos `.RData` e `.Rhistory`](index.html)
+ - Aula 07: [Criando e salvando um *Script*](index.html)
+ - Aula 08: [Exportando dados](index.html)
+ - Aula 09: [Objetos](index.html)
+ - Aula 10: [Vetores](index.html)
+ - Aula 11: [Matrizes](index.html)
+ - Aula 12: [*Arrays*](index.html)
+ - Aula 13: [*Data frames*](index.html)
+ - Aula 14: [*Lists*](index.html)
+ - Aula 15: [Funções](index.html)
+ - Aula 17: [Boas práticas de como escrever um código](index.html)
+ - Aula 17: [Como criar funções](index.html)
+ - Aula 18: [Controle de fluxos (*Loops*)](index.html)
+ - Aula 19: [Pacotes](index.html)
+ - Aula 20: [Carregando e Anexando pacotes](index.html)
+ - Aula 21: [Quando devemos utilizar os operadores `::` e `:::`](index.html)
+ - Aula 22: [*Namespace* de um pacote](index.html)
+ - Aula 23: [Ambientes e Caminhos de busca](index.html)
+ - Aula 24: [Interface com outras linguagens](index.html)
+ - Aula 25: [Considerações e Preparação para a Programação em R (Nível Intermediário)](index.html)
  
 
 ## Scripts {#scripts}
@@ -288,7 +289,7 @@ Iniciamos a discussão por uma afirmação de John McKinley Chambers, do qual af
 knitr::include_graphics("images/john_chambers.jpg")
 ```
 
-- Tudo que existe em `R` é um objeto;
+- Tudo que existe em `R` é um objeto; 
 - Tudo que acontece no `R` é uma chamada de função;
 - Interfaces para outros programas são parte do `R`.
 
@@ -302,17 +303,129 @@ Toda ação que acontece no `R` é uma chamada de função (Operadores e funçõ
 
 Na Figura \@ref(fig:rworks), observamos que todas as ações realizadas sobre os objetos ficam armazenadas na memória ativa do computador. Esses objetos são criados por comandos (teclado ou mouse) através de funções ou operadores (chamada de função), dos quais leem ou escrevem arquivo de dados do disco rígido, ou leem da própria internet. Por fim, o resultado desses objetos podem ser apresentados no console (memória ativa), exportados em formato de imagem, página web, etc. (disco rígido), ou até mesmo ser reaproveitado como argumento de outras funções, porque o resultado também é um objeto.
 
-# <i class="fas fa-terminal"></i> Símbolos e comando elementares
+# <i class="fas fa-terminal"></i> Comandos no R e Ambiente Global {#comandos-workspace}
 
-Como falado anteriormente, o `R` é uma linguagem baseada em linhas de comando, e as linhas de comando, são executadas uma de cada vez, no console. Assim, que o prompt de comando, o `R` indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é "`>`", porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:
+## Console e *Prompt* de comando 
 
-```{r promptdor, echo=TRUE, command="R>", prompt=TRUE}
+Como falado anteriormente, o `R` é uma linguagem baseada em linhas de comando, e as linhas de comando, são executadas uma de cada vez, no console. Assim que o prompt de comando está visível na tela do console, o `R` indica que o usuário está pronto para inserir as linhas de comando. O símbolo padrão do prompt de comando é "`>`", porém ele pode ser alterado. Para isso, use a linha de comando, por exemplo:
+
+```{r promptdor, echo=TRUE, prompt=TRUE}
 options(prompt = "R>")
 # Toda vez que o console iniciar, começarar por 'R>'
 10
 ```
 
-O conjunto de símbolos que podem ser utilizados no `R` depende do sistema operacional e do país em que o `R` está sendo executado. Basicamente, todos os símbolos alfanuméricos podem ser utilizados, mas para evitar problemas opte quanto ao uso das letras, opte pelos caracteres ASCII.
+O conjunto de símbolos que podem ser utilizados no `R` depende do sistema operacional e do país em que o `R` está sendo executado. Basicamente, todos os símbolos alfanuméricos podem ser utilizados, mas para evitar problemas quanto ao uso das letras aos nomes, opte pelos caracteres ASCII.
+
+A escolha do nome associado a um objeto tem algumas regras:
+
+- Deve consistir em letras, dígitos, `.` e `_`;
+- Os nomes devem ser iniciado por uma letra ou um ponto não seguido de um número, isto é, Ex.: `.123`, `1n`, dentre outros;
+- As letras maiúsculas se distinguem das letras minúsculas;
+- Não pode inicia por `_` ou dígito, é retornado um erro no console caso isso ocorra;
+- Não pode usar qualquer uma das palavras reservadas pela linguagem, isto é, `TRUE`, `FALSE`, `if`, `for`, dentre outras, que pode ser consultado usando o comando `?Reserved()`.
+
+Um nome que não segue essas regras é chamado de um nome **não sintático**. Um comando que pode ser usado para converter nomes não sintatícos em nomes **sintáticos** é `make.names`.
+
+```{r, eval=FALSE}
+# Nome não sintático
+.123 <- 50
+## Error in 0.123 <- 50 : lado esquerdo da atribuição inválida (do_set)
+
+# Qual a sugestão de nome sintático para '.123'?
+make.names(.123)
+[1] "X0.123"
+```
+
+Apesar dessas justificativas, algumas situações como as apresentadas nos exemplos anteriores são possíveis, ver @hadley2019 na [Seção 2.2.1](https://adv-r.hadley.nz/names-values.html#non-syntactic)
+
+## Comandos elementares
+
+Os **comandos elementares** podem ser divididos em **expressões** e **atribuições**. Por exemplo, podemos está interessados em resolver a seguinte expressão $10 + 15 = 25$. No console quando passamos pelo comando:
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE}
+10 + 15
+```
+O `R` avalia essa expressão internamente e imprime o resultado na tela, após apertar o botão *ENTER* do teclado. Esse fato é o que ocorre no segundo princípio mencionado por @chambers2016, tudo em `R` acontece por uma chamada de função. Na realidade o símbolo `+` é uma função interna do `R`, que chamamos de função primitiva, porque foi implementada em outra linguagem. Assim, essa é o resultado de três objetos ("`10`", "`+`", "`15`") que são avaliados internamente, do qual a função `+` é chamada, e em seguida o resuldo é impresso no console. 
+
+Do mesmo modo, se houver algum problema em algum dos objetos o retorno da avaliação pode ser uma mensagem de erro. Um caso muito prático é quando utilizamos o separador de casas decimais para os números sendo a vírgula. Quando na realidade deve ser um ponto "`.`", respeitando o sistema internacional de medidas. A vírgula é utilizada para separar elementos, argumentos em uma função, etc. Vejamos o exemplo:
+
+```{r echo=TRUE, eval=TRUE, error=TRUE}
+10,5 + 15,5
+```
+
+Porém, tem que ficar claro que uma expressão é qualquer comando repassado no console. Este comando é avaliado e seu resultado impresso, há menos que explicitamente o usuário queira torná-lo invisível^[Basta usar a função `invisible(10 + 15)`, que a expressão é avaliada mas não impressa]. Caso algum elemento do comando não seja reconhecido pelo `R`, há um retorno de alguma mensagem em forma de "erro" ou "alerta", tentando indicar o possível problema. Todos esses processos ocorrem na memória ativa do computador, e uma vez o resultado impresso no console, o valor é perdido, há menos que você atribua essa expressão a um nome, que erroneamento usamos o termo: "criamos um objeto!". A atribuição dessa expressão será dada pela junção de dois símbolos "`<-`", falado mais a frente. Um comando em forma de atribuição também avalia a sua expressão, um nome se associa ao seu resultado, e o resultado será mostrado, se posteriormente, após a execução você digitar o "nome" atribuído a esse resultado. Vejamos um exemplo:
+
+```{r echo=TRUE}
+# Foi criado um objeto do tipo caractere e o nome "meu_nome" foi associado a ele
+# O 'R' avalia essa expressão, mas não imprime no console!
+meu_nome <- "Ben"
+
+# Para imprimir o resultado da expressão, digitamos o nome "meu_nome" no console
+# e apertamos o botão ENTER do teclado!
+meu_nome
+```
+
+## Execução dos comandos
+
+Quando inserimos um comando no console, executamos uma linha de comando por vez ou separados por ";" em uma mesma linha. Vejamos
+
+```{r echo=TRUE}
+# Uma linha de comando por vez
+meu_nome <- "Ben" # Criamos e associamos um nome ao objeto
+meu_nome # Imprimos o objeto
+
+# Tudo em uma linha de comando
+meu_nome <- "Ben"; meu_nome
+```
+
+Se um comando for muito grande e não couber em uma linha, ou caso deseje completar um comando em mais de uma linha, após a primeira linha haverá o símbolo "`+`" iniciando a linha seguinte ao invés do símbolo de prompt de comando ("`>`"), até que o comando esteja sintaticamente completo. Vejamos:
+
+```{r echo=TRUE}
+# Uma linha de comando em mais de uma linha
+(10 + 10) /
+  2
+```
+
+Por fim, todas linhas de comando quando iniciam pelo símbolo jogo da velha, "`#`"
+indica um comentário e essa linha de comando não é avaliada pelo console, apenas impressa na tela. E ainda, as linhas de comandos no console são limitadas a aproximadamente 4095 bytes (não caracteres).
+
+## Chamada e correção de comandos anteriores
+
+Uma vez que um comando foi executado no console, esse comando por ser recuperado usando as teclas de setas para cima e para baixo do teclado, recuperando os comandos anteriorermente executados, e que os caracteres podem ser alterados usando as teclas esquerda e direita do teclado, removidas com o botão *Delete* ou *Backspace* do teclado, ou acrescentadas digitando os caracteres necessários. Uma outra forma de completar determinados comandos já existentes, como por exemplo, uma função que já existe nas bibliotecas de instalação do R, usando o botão *Tab* do teclado. O usuário começa digitando as iniciais, e para completar o nome aperta a tecla *Tab*. Posteriormente, basta completar a linha de comando e apertar *ENTER* para executá-la. Vejamos um exemplo a seguir.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0MRPmVsPvk4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Usando esses recursos no [RStudio](http://rstudio.org/) são mais dinâmicos e vão mais além. Por exemplo,
+quando usamos um objeto do tipo função, estes apresentam o que chamamos de argumento(s) dentro do parêntese de uma função, do qual são elementos necessários, para que a função seja executada corretamente. Nesse caso, ao inseri o nome dessas funções no console, usando o RStudio, ao iniciá-la com a abertura do parêntese, abre-se uma janela informano todos os argumentos possíveis dessa função. Isso torna muito dinâmico escrever linhas de comando, porque não precisaremos estar lembrando do nome dos argumentos de uma função, mas apenas entender o objetivo dessa função. Vejamos um exemplo a seguir.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KL3WAB_GFNI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Ambiente Global (ou área de trabalho, *Workspace*)
+
+Quando usamos um comando de atribuição no console, o `R` armazena o nome associado ao objeto criado na área de trabalho (*Workspace*), que nós chamamos de Ambiente Global. Teremos uma seção introdutória na seção [Ambientes e caminhos de busca](#env-searchpath), mas entendamos inicialmente que o objetivo de um ambiente é associar um conjunto de nomes a um conjunto de valores. Por exemplo:
+
+```{r echo=TRUE}
+# Nomes criados no ambiente 
+x <- 10 - 6; y <- 10 + 4; w <- "Maria Isabel"
+# Verificando o nomes contidos no ambiente global
+ls()
+```
+
+Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto `meu_nome` é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.
+
+## Arquivos *.RData* e *.Rhistory*
+
+Ao final do que falamos até agora, todo o processo ao inserir linhas de comando do console, e desejarmos finalizar os trabalhos do ambiente `R`, dois arquivos são criados, sob a instrução do usuário em querer aceitar ou não, que é a criação de dois arquivos *.RData* e *.Rhistory*, cujas finalidades são:
+
+- *.RData*: salvar todos os objetos criados que estão atualmente disponíveis;
+- *.Rhistory*: salvar todas as linhas de comandos inseridas no console.
+
+Ao iniciar o `R` no mesmo diretório onde esses arquivos foram salvos, é carregado toda a sua área de trabalho anteriomente, bem como o histórico das linhas de comando utilizadas anteriormente.
+
+
+# Objetos
+
 
 Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos. 
 
@@ -325,26 +438,6 @@ x <- 10
 
 
 Todo mundo que tem uma certa noção sobre a linguagem `R` afirmaria: "criei um objeto `x` que recebe o valor 10". Para @hadley2019 essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto `10` está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. O símbolo que associa um objeto a um nome é o de atribuição, `<-`, isto é, a junção do símbolo desigualdade menor e o símbolo de subtração. Para ver qual objeto associado ao nome, o usuário precisa apenas digitar o nome no console.
-
-A escolha do nome associado a um objeto tem algumas regras:
-
-- Deve consistir em letras, dígitos, `.` e `_`;
-- Os nomes devem ser iniciado por uma letra ou um ponto não seguido de um número, isto é, Ex.: `.123`, `1n`, dentre outros;
-- As letras maiúsculas se distinguem das letras minúsculas;
-- Não pode inicia por `_` ou dígito, é retornado um erro no console caso isso ocorra;
-- Não pode usar qualquer uma das palavras reservadas pela linguagem, isto é, `TRUE`, `FALSE`, `if`, `for`, dentre outras, que pode ser consultado usando o comando `?Reserved()`.
-
-Um nome que não segue essas regras é chamado de um nome não sintático. Um comando que pode ser usado para converter nomes não sintatícos em nomes sintáticos é `make.names`.
-
-```{r, eval=FALSE}
-# Nome não sintático
-.123 <- 50
-## Error in 0.123 <- 50 : lado esquerdo da atribuição inválida (do_set)
-
-# Qual a sugestão de nome sintático para '.123'?
-make.names(.123)
-[1] "X0.123"
-```
 
 O símbolo de atribuição poderá ser representado na direção da esquerda para à direita ou vice-versa, isto é,
 
@@ -369,7 +462,7 @@ Quando desejamos executar mais de uma linha de comando por, separamos estas pelo
 ```{r, echo=TRUE, }
 x <- 10; y <- 15; y; x
 ```
-Neste caso, executamos quatro comandos em uma linha, criamos doi
+Neste caso, executamos quatro comandos em uma linha, associamos dois nomes a dois objetos e imprimimos os seus valores.
 
 Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como "um nome associado a um objeto". Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.
 
@@ -410,3 +503,5 @@ Usar as ideias de R language definition:
 # <i class="fas fa-file-code"></i> Boas práticas de como escrever um código {#goodcode}
 
 # <i class="fas fa-cubes"></i> Pacotes
+
+# Ambientes e caminho de busca (#env-searchpath)
