@@ -25,6 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - [<i class="fas fa-terminal"></i> Comandos no R e Ambiente Global](#comandos-workspace)
 - 
 [<i class="fas fa-file"></i> Arquivos `.Rdata` e `.Rhistory`](#filesdata)
+- [<i class="fas fa-save"></i> Criando e salvando um script](#savescript)
 
 ##
 
@@ -39,16 +40,17 @@ knitr::opts_chunk$set(echo = FALSE)
  - Aula 03: [História do R](aulas/aula03.html)
  - Aula 04: [Como o R trabalha](aulas/aula04.html)
  - Aula 05: [Comandos no R e Ambiente Global](aulas/aula05.html)
- - Aula 06: [Arquivos `.RData` e `.Rhistory`](index.html)
- - Aula 07: [Criando e salvando um *Script*](index.html)
- - Aula 08: [Exportando dados](index.html)
- - Aula 09: [Objetos](index.html)
- - Aula 10: [Vetores](index.html)
- - Aula 11: [Matrizes](index.html)
- - Aula 12: [*Arrays*](index.html)
- - Aula 13: [*Data frames*](index.html)
- - Aula 14: [*Lists*](index.html)
+ - Aula 06: [Arquivos `.RData` e `.Rhistory`](aulas/aula06.html)
+ - Aula 07: [Criando e salvando um *Script*](aulas/aula07.html)
+ - Aula 08: [Objetos](index.html)
+ - Aula 09: [Vetores](index.html)
+ - Aula 10: [Matrizes](index.html)
+ - Aula 11: [*Arrays*](index.html)
+ - Aula 12: [*Data frames*](index.html)
+ - Aula 13: [*Lists*](index.html)
+ - Aula 14: [Importando/Exportando dados](index.html)
  - Aula 15: [Funções](index.html)
+ - Aula 16: ~
  - Aula 17: [Boas práticas de como escrever um código](index.html)
  - Aula 17: [Como criar funções](index.html)
  - Aula 18: [Controle de fluxos (*Loops*)](index.html)
@@ -66,10 +68,10 @@ knitr::opts_chunk$set(echo = FALSE)
  - Script 01: ~
  - Script 02: ~
  - [Script 03](scripts/script03.txt): [Escopo léxico](scripts/script03.R)
- - Script 04:
- - Script 05:
- - Script 06:
- - Script 07:
+ - Script 04: ~
+ - [Script 05](scripts/script05.txt): [Comandos](scripts/script05.R) 
+ - Script 06: ~
+ - Script 07: ~
  - Script 08:
  - Script 09:
  - Script 10:
@@ -77,7 +79,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Scripts via  [Shiny](https://shiny.rstudio.com/) {#shiny}
 
-Em construção...
+[Curso R via Shiny](https://bendeivide.shinyapps.io/Curso-R/)
 
 # <i class="fas fa-book"></i> Apresentação do curso {#apresentacao}
 
@@ -328,11 +330,11 @@ A escolha do nome associado a um objeto tem algumas regras:
 Um nome que não segue essas regras é chamado de um nome **não sintático**. Um comando que pode ser usado para converter nomes não sintatícos em nomes **sintáticos** é `make.names`.
 
 ```{r, eval=FALSE}
-# Nome não sintático
+# Nome nao sintatico
 .123 <- 50
-## Error in 0.123 <- 50 : lado esquerdo da atribuição inválida (do_set)
+## Error in 0.123 <- 50 : lado esquerdo da atribuicao inválida (do_set)
 
-# Qual a sugestão de nome sintático para '.123'?
+# Qual a sugestao de nome sintatico para '.123'?
 make.names(.123)
 [1] "X0.123"
 ```
@@ -414,14 +416,51 @@ ls()
 
 Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto `meu_nome` é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.
 
-## Arquivos *.RData* e *.Rhistory*
+# <i class="fas fa-file"></i> Arquivos `.Rdata` e `.Rhistory` {#filesdata}
 
-Ao final do que falamos até agora, todo o processo ao inserir linhas de comando do console, e desejarmos finalizar os trabalhos do ambiente `R`, dois arquivos são criados, sob a instrução do usuário em querer aceitar ou não, que é a criação de dois arquivos *.RData* e *.Rhistory*, cujas finalidades são:
+Ao final do que falamos até agora, todo o processo ao inserir linhas de comando do console, e desejarmos finalizar os trabalhos do ambiente `R`, dois arquivos são criados, sob a instrução do usuário em querer aceitar ou não, um *.RData* e outro *.Rhistory*, cujas finalidades são:
 
 - *.RData*: salvar todos os objetos criados que estão atualmente disponíveis;
 - *.Rhistory*: salvar todas as linhas de comandos inseridas no console.
 
 Ao iniciar o `R` no mesmo diretório onde esses arquivos foram salvos, é carregado toda a sua área de trabalho anteriomente, bem como o histórico das linhas de comando utilizadas anteriormente.
+
+# <i class="fas fa-save"></i> Criando e salvando um script {#savescript}
+
+A melhor forma de armazenarmos nossas linhas de código inseridas no console é criando um *Script*. Este é um arquivo de texto com a extensão "`.R`". Uma vez criada, poderemos ao final salvar o arquivo e guardá-lo para utilizar futuramente.
+
+No `R`, ao ser iniciado poderemos ir no menu em `Arquivo > Novo script...`. Posteriormente, pode ser inserido as linhas de comando, executadas no console pela tecla de atalho `F5`. As janelas do `Script` e console possivelmente ficarão sobrepostas. Para uma melhor utilização, estas janelas podem ficar lado a lado, configurando-as no menu em `Janelas > Dividir na horizontal (ou Dividir lado a lado)`.
+
+No RStudio, poderemos criar um *Script* no menu em `File > New File > R Script`, ou diretamente no ícone abaixo da opção `File` no menu, cujo o símbolo é um arquivo com o símbolo "+" em verde, que é o ícone do `New File`, e escolher `R Script`. Esse arquivo abrirá no primeiro quadrante na interface do RStudio.
+
+Para salvar, devemos clicar no botão com o símbolo de disquete (R/RStudio), escolher o nome do arquivo e o diretório onde o arquivo será armazenado no seu computador. Algumas ressalvas devem ser feitas:
+
+- Escolha sempre um nome sem caracteres especiais, com acentos, etc.;
+- Escolha sempre um nome curto ou abreviado, que identifique a finalidade das linhas de comando escritas;
+- Evite espaços se o nome do arquivo for composto. Para isso, use o símbolo *underline* "`_`";
+- Quando escrever um código, evite também escrever caracteres especiais, exceto em casos de necessidade, como imprimir um texto na tela, títulos na criação de gráficos, dentre outras. Nos referimos especificamente, nos comentários do código.
+
+Um ponto bem interessante é o diretório. Quando criamos um *Script* a primeira vez, e trabalhamos nele a pós a criação, muitos erros podem ser encontrados de início. Um problema clássico é a importação de dados. O usuário tem um conjunto de de dados e deseja fazer a importação para o `R`, porém, mesmo com todos os comandos corretos, o console retorna um erro, informando que não existe esse arquivo que contém os dados para serem informados. Isso é devido ao diretório de trabalho atual. Para verificar qual o diretório que está trabalhando no momento, use a linha de comando:
+
+```{r echo=TRUE, eval=FALSE}
+getwd()
+```
+
+Para alterar o diretório de trabalho, o usuário deve usar a seguinte função `setwd("Aqui, deve ser apontado para o local desejado!")`. Supomos que salvamos o nosso *Script* tem sido em `C:\meus_scripts_r`. Assim, usamos a função `setwd` e ao apontarmos o local, as barras devem ser inseridas de modo invertido, isto é, `setwd("C:/meu_scripts_r")`, além de estar entre aspas.
+
+No RStudio, isso pode ser feito em `Session > Set Working Directory > To Source File Location`. Isso levará ao diretório corrente do *Script*. Se desejar escolher outro diretório, vá em `Session > Set Working Directory > Choose Directory...`. Porém, uma vez criado um `Script`, e utilizado novamente, se o usuário estiver abrindo o RStudio também naquele primeiro momento, por padrão, o diretório de trabalho corrente será o mesmo do diretório do `Script`. Isso acaba otimizando o trabalho.
+
+Devemos estar atentos também, quando trabalhamos utilizando `Scripts` ou arquivos de banco de dados, em locais diferentes do diretório corrente. Um outro recurso interessante é a função `source()`, que tem o objetivo de executar todas as linhas de comando de um `Script` sem precisar abri-lo. Isso pode ser útil, quando criamos funções para as nossas atividades, porém elas não se encontram no `Script` de trabalho para o momento. Assim, podemos criar um `Script` auxiliar que armazenas todas as funções criadas para as análises desejadas, e no `Script` corrente, poderemos chamá-las sem precisar abri o `Script` auxiliar. Todos os objetos passam a estar disponíveis no ambiente global.
+
+
+<!--
+- setwd() / getwd()
+- source()
+-->
+
+Por fim, algo de muita importância para um programador, **comente suas linhas de comando**. Mas faça isso a partir do primeiro dia em que você criou o seu primeiro *Script*. Isso criará um hábito, uma vez que o arquivo não está sendo criado apenas para um momento, mas para futuras consultas. E quando voltamos a *Scripts* com muitas linhas de comando, principalmente depois de algum tempo, e sem comentários, possivelmente você passará alguns instantes para tentar entender o que foi escrito.
+
+Outra coisa importante, é a **boa prática de escrita de um código**, e o RStudio nos proporciona algumas ferramentas interessantes. Mas isso será visto mais a frente.
 
 
 # Objetos
@@ -468,26 +507,12 @@ Por questão de comodidade, iremos a partir de agora, sempre nos referir a um ob
 
 Com essa quantidade de objetos criados até agora, poderíamos nos perguntar quais os objetos que estão na memória ativa do computador, para isso, use o comando `ls()`.
 
-
-
-
-
-
-
-
-
-
-
-
-# <i class="fas fa-file"></i> Arquivos `.Rdata` e `.Rhistory` {#filesdata}
-
-# <i class="fas fa-save"></i> Criando e salvando um script {#savescript}
-
-# <i class="fas fa-file-export"></i> Exportando dados {#exportdata}
+<!--
+# <i class="fas fa-file-export"></i> Importantdo/Exportando dados {#exportdata}
 
 # <i class="fas fa-puzzle-piece"></i> Objetos
 
-<!--
+
 Usar as ideias em Wickham:
   - Na seção introdutoria sobre objetos:
     - vinculação de outro nome a um objeto;
@@ -498,10 +523,12 @@ Usar as ideias de An Introduction to R:
   - Seção 3.1
 Usar as ideias de R language definition:
   - objetos
--->
+
 
 # <i class="fas fa-file-code"></i> Boas práticas de como escrever um código {#goodcode}
 
 # <i class="fas fa-cubes"></i> Pacotes
 
 # Ambientes e caminho de busca (#env-searchpath)
+
+-->

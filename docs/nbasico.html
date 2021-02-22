@@ -2148,6 +2148,7 @@ Material
 <li><a href="#rwork"><i class="fas fa-briefcase"></i> Como o R trabalha</a></li>
 <li><a href="#comandos-workspace"><i class="fas fa-terminal"></i> Comandos no R e Ambiente Global</a></li>
 <li><a href="#filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></a></li>
+<li><a href="#savescript"><i class="fas fa-save"></i> Criando e salvando um script</a></li>
 </ul>
 <h2 id="section"></h2>
 <h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
@@ -2159,16 +2160,17 @@ Material
 <li>Aula 03: <a href="aulas/aula03.html">História do R</a></li>
 <li>Aula 04: <a href="aulas/aula04.html">Como o R trabalha</a></li>
 <li>Aula 05: <a href="aulas/aula05.html">Comandos no R e Ambiente Global</a></li>
-<li>Aula 06: <a href="index.html">Arquivos <code>.RData</code> e <code>.Rhistory</code></a></li>
-<li>Aula 07: <a href="index.html">Criando e salvando um <em>Script</em></a></li>
-<li>Aula 08: <a href="index.html">Exportando dados</a></li>
-<li>Aula 09: <a href="index.html">Objetos</a></li>
-<li>Aula 10: <a href="index.html">Vetores</a></li>
-<li>Aula 11: <a href="index.html">Matrizes</a></li>
-<li>Aula 12: <a href="index.html"><em>Arrays</em></a></li>
-<li>Aula 13: <a href="index.html"><em>Data frames</em></a></li>
-<li>Aula 14: <a href="index.html"><em>Lists</em></a></li>
+<li>Aula 06: <a href="aulas/aula06.html">Arquivos <code>.RData</code> e <code>.Rhistory</code></a></li>
+<li>Aula 07: <a href="aulas/aula07.html">Criando e salvando um <em>Script</em></a></li>
+<li>Aula 08: <a href="index.html">Objetos</a></li>
+<li>Aula 09: <a href="index.html">Vetores</a></li>
+<li>Aula 10: <a href="index.html">Matrizes</a></li>
+<li>Aula 11: <a href="index.html"><em>Arrays</em></a></li>
+<li>Aula 12: <a href="index.html"><em>Data frames</em></a></li>
+<li>Aula 13: <a href="index.html"><em>Lists</em></a></li>
+<li>Aula 14: <a href="index.html">Importando/Exportando dados</a></li>
 <li>Aula 15: <a href="index.html">Funções</a></li>
+<li>Aula 16: ~</li>
 <li>Aula 17: <a href="index.html">Boas práticas de como escrever um código</a></li>
 <li>Aula 17: <a href="index.html">Como criar funções</a></li>
 <li>Aula 18: <a href="index.html">Controle de fluxos (<em>Loops</em>)</a></li>
@@ -2186,16 +2188,16 @@ Material
 <li>Script 01: ~</li>
 <li>Script 02: ~</li>
 <li><a href="scripts/script03.txt">Script 03</a>: <a href="scripts/script03.R">Escopo léxico</a></li>
-<li>Script 04:</li>
-<li>Script 05:</li>
-<li>Script 06:</li>
-<li>Script 07:</li>
+<li>Script 04: ~</li>
+<li><a href="scripts/script05.txt">Script 05</a>: <a href="scripts/script05.R">Comandos</a></li>
+<li>Script 06: ~</li>
+<li>Script 07: ~</li>
 <li>Script 08:</li>
 <li>Script 09:</li>
 <li>Script 10:</li>
 </ul>
 <h2 id="shiny">Scripts via <a href="https://shiny.rstudio.com/">Shiny</a></h2>
-<p>Em construção…</p>
+<p><a href="https://bendeivide.shinyapps.io/Curso-R/">Curso R via Shiny</a></p>
 <h1 id="apresentacao"><i class="fas fa-book"></i> Apresentação do curso</h1>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_JqtU3X101E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -2306,7 +2308,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x29351ae0&quot;</code></pre>
+<pre><code>[1] &quot;0x25351de8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2333,7 +2335,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x29351ae0&quot;</code></pre>
+<pre><code>[1] &quot;0x25351de8&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2345,7 +2347,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x9ee5bc0&quot;</code></pre>
+<pre><code>[1] &quot;0x9eee750&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2373,7 +2375,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x9ee5ca0&quot;</code></pre>
+<pre><code>[1] &quot;0x9eee830&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2571,13 +2573,40 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 [5] &quot;w&quot;             &quot;x&quot;             &quot;y&quot;            </code></pre>
 </div>
 <p>Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto <code>meu_nome</code> é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.</p>
-<h2 id="arquivos-.rdata-e-.rhistory">Arquivos <em>.RData</em> e <em>.Rhistory</em></h2>
-<p>Ao final do que falamos até agora, todo o processo ao inserir linhas de comando do console, e desejarmos finalizar os trabalhos do ambiente <code>R</code>, dois arquivos são criados, sob a instrução do usuário em querer aceitar ou não, que é a criação de dois arquivos <em>.RData</em> e <em>.Rhistory</em>, cujas finalidades são:</p>
+<h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>
+<p>Ao final do que falamos até agora, todo o processo ao inserir linhas de comando do console, e desejarmos finalizar os trabalhos do ambiente <code>R</code>, dois arquivos são criados, sob a instrução do usuário em querer aceitar ou não, um <em>.RData</em> e outro <em>.Rhistory</em>, cujas finalidades são:</p>
 <ul>
 <li><em>.RData</em>: salvar todos os objetos criados que estão atualmente disponíveis;</li>
 <li><em>.Rhistory</em>: salvar todas as linhas de comandos inseridas no console.</li>
 </ul>
 <p>Ao iniciar o <code>R</code> no mesmo diretório onde esses arquivos foram salvos, é carregado toda a sua área de trabalho anteriomente, bem como o histórico das linhas de comando utilizadas anteriormente.</p>
+<h1 id="savescript"><i class="fas fa-save"></i> Criando e salvando um script</h1>
+<p>A melhor forma de armazenarmos nossas linhas de código inseridas no console é criando um <em>Script</em>. Este é um arquivo de texto com a extensão “<code>.R</code>.” Uma vez criada, poderemos ao final salvar o arquivo e guardá-lo para utilizar futuramente.</p>
+<p>No <code>R</code>, ao ser iniciado poderemos ir no menu em <code>Arquivo &gt; Novo script...</code>. Posteriormente, pode ser inserido as linhas de comando, executadas no console pela tecla de atalho <code>F5</code>. As janelas do <code>Script</code> e console possivelmente ficarão sobrepostas. Para uma melhor utilização, estas janelas podem ficar lado a lado, configurando-as no menu em <code>Janelas &gt; Dividir na horizontal (ou Dividir lado a lado)</code>.</p>
+<p>No RStudio, poderemos criar um <em>Script</em> no menu em <code>File &gt; New File &gt; R Script</code>, ou diretamente no ícone abaixo da opção <code>File</code> no menu, cujo o símbolo é um arquivo com o símbolo “+” em verde, que é o ícone do <code>New File</code>, e escolher <code>R Script</code>. Esse arquivo abrirá no primeiro quadrante na interface do RStudio.</p>
+<p>Para salvar, devemos clicar no botão com o símbolo de disquete (R/RStudio), escolher o nome do arquivo e o diretório onde o arquivo será armazenado no seu computador. Algumas ressalvas devem ser feitas:</p>
+<ul>
+<li>Escolha sempre um nome sem caracteres especiais, com acentos, etc.;</li>
+<li>Escolha sempre um nome curto ou abreviado, que identifique a finalidade das linhas de comando escritas;</li>
+<li>Evite espaços se o nome do arquivo for composto. Para isso, use o símbolo <em>underline</em> “<code>_</code>”;</li>
+<li>Quando escrever um código, evite também escrever caracteres especiais, exceto em casos de necessidade, como imprimir um texto na tela, títulos na criação de gráficos, dentre outras. Nos referimos especificamente, nos comentários do código.</li>
+</ul>
+<p>Um ponto bem interessante é o diretório. Quando criamos um <em>Script</em> a primeira vez, e trabalhamos nele a pós a criação, muitos erros podem ser encontrados de início. Um problema clássico é a importação de dados. O usuário tem um conjunto de de dados e deseja fazer a importação para o <code>R</code>, porém, mesmo com todos os comandos corretos, o console retorna um erro, informando que não existe esse arquivo que contém os dados para serem informados. Isso é devido ao diretório de trabalho atual. Para verificar qual o diretório que está trabalhando no momento, use a linha de comando:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Para alterar o diretório de trabalho, o usuário deve usar a seguinte função <code>setwd("Aqui, deve ser apontado para o local desejado!")</code>. Supomos que salvamos o nosso <em>Script</em> tem sido em <code>C:\meus_scripts_r</code>. Assim, usamos a função <code>setwd</code> e ao apontarmos o local, as barras devem ser inseridas de modo invertido, isto é, <code>setwd("C:/meu_scripts_r")</code>, além de estar entre aspas.</p>
+<p>No RStudio, isso pode ser feito em <code>Session &gt; Set Working Directory &gt; To Source File Location</code>. Isso levará ao diretório corrente do <em>Script</em>. Se desejar escolher outro diretório, vá em <code>Session &gt; Set Working Directory &gt; Choose Directory...</code>. Porém, uma vez criado um <code>Script</code>, e utilizado novamente, se o usuário estiver abrindo o RStudio também naquele primeiro momento, por padrão, o diretório de trabalho corrente será o mesmo do diretório do <code>Script</code>. Isso acaba otimizando o trabalho.</p>
+<p>Devemos estar atentos também, quando trabalhamos utilizando <code>Scripts</code> ou arquivos de banco de dados, em locais diferentes do diretório corrente. Um outro recurso interessante é a função <code>source()</code>, que tem o objetivo de executar todas as linhas de comando de um <code>Script</code> sem precisar abri-lo. Isso pode ser útil, quando criamos funções para as nossas atividades, porém elas não se encontram no <code>Script</code> de trabalho para o momento. Assim, podemos criar um <code>Script</code> auxiliar que armazenas todas as funções criadas para as análises desejadas, e no <code>Script</code> corrente, poderemos chamá-las sem precisar abri o <code>Script</code> auxiliar. Todos os objetos passam a estar disponíveis no ambiente global.</p>
+<!--
+- setwd() / getwd()
+- source()
+-->
+<p>Por fim, algo de muita importância para um programador, <strong>comente suas linhas de comando</strong>. Mas faça isso a partir do primeiro dia em que você criou o seu primeiro <em>Script</em>. Isso criará um hábito, uma vez que o arquivo não está sendo criado apenas para um momento, mas para futuras consultas. E quando voltamos a <em>Scripts</em> com muitas linhas de comando, principalmente depois de algum tempo, e sem comentários, possivelmente você passará alguns instantes para tentar entender o que foi escrito.</p>
+<p>Outra coisa importante, é a <strong>boa prática de escrita de um código</strong>, e o RStudio nos proporciona algumas ferramentas interessantes. Mas isso será visto mais a frente.</p>
 <h1 id="objetos">Objetos</h1>
 <p>Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos.</p>
 <p>Vejamos o seguinte código:</p>
@@ -2619,11 +2648,12 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <p>Neste caso, executamos quatro comandos em uma linha, associamos dois nomes a dois objetos e imprimimos os seus valores.</p>
 <p>Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como “um nome associado a um objeto.” Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.</p>
 <p>Com essa quantidade de objetos criados até agora, poderíamos nos perguntar quais os objetos que estão na memória ativa do computador, para isso, use o comando <code>ls()</code>.</p>
-<h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>
-<h1 id="savescript"><i class="fas fa-save"></i> Criando e salvando um script</h1>
-<h1 id="exportdata"><i class="fas fa-file-export"></i> Exportando dados</h1>
-<h1 id="objetos-1"><i class="fas fa-puzzle-piece"></i> Objetos</h1>
 <!--
+# <i class="fas fa-file-export"></i> Importantdo/Exportando dados {#exportdata}
+
+# <i class="fas fa-puzzle-piece"></i> Objetos
+
+
 Usar as ideias em Wickham:
   - Na seção introdutoria sobre objetos:
     - vinculação de outro nome a um objeto;
@@ -2634,10 +2664,15 @@ Usar as ideias de An Introduction to R:
   - Seção 3.1
 Usar as ideias de R language definition:
   - objetos
+
+
+# <i class="fas fa-file-code"></i> Boas práticas de como escrever um código {#goodcode}
+
+# <i class="fas fa-cubes"></i> Pacotes
+
+# Ambientes e caminho de busca (#env-searchpath)
+
 -->
-<h1 id="goodcode"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</h1>
-<h1 id="pacotes"><i class="fas fa-cubes"></i> Pacotes</h1>
-<h1 id="ambientes-e-caminho-de-busca-env-searchpath">Ambientes e caminho de busca (#env-searchpath)</h1>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
