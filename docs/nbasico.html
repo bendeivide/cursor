@@ -14,7 +14,12 @@
     visibility: hidden;
   }
   </style>
-
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
@@ -105,7 +110,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:site" content="@bendeivide"/>
 
   <!--/radix_placeholder_meta_tags-->
-  
+
   <meta name="citation_reference" content="citation_title=R for beginners;citation_publication_date=2005;citation_author=Emmanuel Paradis"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
@@ -2083,7 +2088,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Material
- 
+
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
@@ -2149,6 +2154,7 @@ Material
 <li><a href="#comandos-workspace"><i class="fas fa-terminal"></i> Comandos no R e Ambiente Global</a></li>
 <li><a href="#filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></a></li>
 <li><a href="#savescript"><i class="fas fa-save"></i> Criando e salvando um script</a></li>
+<li><a href="#objetos"><i class="fas fa-arrow-circle-left"></i> Objetos</a></li>
 </ul>
 <h2 id="section"></h2>
 <h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
@@ -2163,6 +2169,7 @@ Material
 <li>Aula 06: <a href="aulas/aula06.html">Arquivos <code>.RData</code> e <code>.Rhistory</code></a></li>
 <li>Aula 07: <a href="aulas/aula07.html">Criando e salvando um <em>Script</em></a></li>
 <li>Aula 08: <a href="index.html">Objetos</a></li>
+<li>Aula 09: <a href="index.html">Aritmética e Operadores lógicos</a></li>
 <li>Aula 09: <a href="index.html">Vetores</a></li>
 <li>Aula 10: <a href="index.html">Matrizes</a></li>
 <li>Aula 11: <a href="index.html"><em>Arrays</em></a></li>
@@ -2308,7 +2315,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x25351de8&quot;</code></pre>
+<pre><code>[1] &quot;0x29b7e6b8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2335,7 +2342,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x25351de8&quot;</code></pre>
+<pre><code>[1] &quot;0x29b7e6b8&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2347,7 +2354,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x9eee750&quot;</code></pre>
+<pre><code>[1] &quot;0x99666d0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que é uma função</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2375,7 +2382,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x9eee830&quot;</code></pre>
+<pre><code>[1] &quot;0x99667b0&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2452,9 +2459,9 @@ Figure 6: John Chambers<a href="#fn12" class="footnote-ref" id="fnref12" role="d
 </div>
 </div>
 <ul>
-<li>Tudo que existe em <code>R</code> é um objeto;</li>
-<li>Tudo que acontece no <code>R</code> é uma chamada de função;</li>
-<li>Interfaces para outros programas são parte do <code>R</code>.</li>
+<li><strong>Princípio do Objeto</strong>: Tudo que existe em <code>R</code> é um objeto;</li>
+<li><strong>Princípio da Função</strong>: Tudo que acontece no <code>R</code> é uma chamada de função;</li>
+<li><strong>Princípio da Interface</strong>: Interfaces para outros programas são parte do <code>R</code>.</li>
 </ul>
 <p>Ao longo de todo o curso, para os três módulos, iremos nos referir a esses princípios. Vamos inicialmente observar uma adaptação da ilustração feita por <span class="citation" data-cites="paradis2005"><a href="#ref-paradis2005" role="doc-biblioref">Paradis</a> (<a href="#ref-paradis2005" role="doc-biblioref">2005</a>)</span>, mostrando como o <code>R</code> trabalha, Figura <a href="#fig:rworks">7</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2607,7 +2614,7 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 -->
 <p>Por fim, algo de muita importância para um programador, <strong>comente suas linhas de comando</strong>. Mas faça isso a partir do primeiro dia em que você criou o seu primeiro <em>Script</em>. Isso criará um hábito, uma vez que o arquivo não está sendo criado apenas para um momento, mas para futuras consultas. E quando voltamos a <em>Scripts</em> com muitas linhas de comando, principalmente depois de algum tempo, e sem comentários, possivelmente você passará alguns instantes para tentar entender o que foi escrito.</p>
 <p>Outra coisa importante, é a <strong>boa prática de escrita de um código</strong>, e o RStudio nos proporciona algumas ferramentas interessantes. Mas isso será visto mais a frente.</p>
-<h1 id="objetos">Objetos</h1>
+<h1 id="objetos"><i class="fas fa-arrow-circle-left"></i> Objetos</h1>
 <p>Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos.</p>
 <p>Vejamos o seguinte código:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2647,7 +2654,30 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 </div>
 <p>Neste caso, executamos quatro comandos em uma linha, associamos dois nomes a dois objetos e imprimimos os seus valores.</p>
 <p>Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como “um nome associado a um objeto.” Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.</p>
-<p>Com essa quantidade de objetos criados até agora, poderíamos nos perguntar quais os objetos que estão na memória ativa do computador, para isso, use o comando <code>ls()</code>.</p>
+<p>Todos os objetos tem dois <em>atributos intrínsecos</em>: o <strong>modo</strong> e <strong>comprimento</strong>. O <strong>modo</strong> representa a natureza dos elementos objetos. Destacamos quatro, numérico (<code>numeric</code>), lógico (logic), caractere<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a> (<code>character</code>) e complexo (<code>complex</code>). Este último, não daremos evidência para esse momento. Deixaremos, para uma abordagem completa no Módulo <a href="nintermediario.html">Programação em R (Nível Intermediário)</a>. O <strong>comprimento</strong> mede a quantidade de elementos no objeto.</p>
+<p>Para determinarmos o <strong>modo</strong> de um objeto, usamos a função <code>mode()</code>. Vejamos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto modo caractere</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"Ben"</span>; <span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto modo numerico</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>; <span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto modo logico</span>
+<span class='va'>z</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span>; <span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;logical&quot;</code></pre>
+</div>
+<p>Temos uma outra função para verificarmos o tipo do objeto que é <code>typeof()</code>. Essa tipagem de objeto está relacionado a tipagem de variáveis da linguagem <code>C</code>, uma vez que boa parte das rotinas no <code>R</code> está nessa linguagem, principalmente as funções do pacote <code>base</code>. Dentre esses três modos apresentados, usando a função <code>typeof()</code>, o modo <code>numeric</code> se subdividirá em <code>integer</code> e <code>double</code>. A diferença entre os dois é o armazenamento de memória ativa.</p>
+<p>Os modos podem ser convertidos do tipo <code>as.&lt;modo&gt;()</code>, isto é,…</p>
 <!--
 # <i class="fas fa-file-export"></i> Importantdo/Exportando dados {#exportdata}
 
@@ -2673,7 +2703,7 @@ Usar as ideias de R language definition:
 # Ambientes e caminho de busca (#env-searchpath)
 
 -->
-<div class="sourceCode" id="cb24"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.
@@ -2704,6 +2734,7 @@ Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Flo
 <li id="fn11" role="doc-endnote"><p>Fonte da foto: <a href="https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/" class="uri">https://www.ufpr.br/portalufpr/noticias/disciplinas-transversais-para-programas-de-pos-graduacao-abrem-inscricoes-nesta-segunda-feira/</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn12" role="doc-endnote"><p>Fonte da foto: Retirada de sua página pessoal, <a href="https://statweb.stanford.edu/~jmc4/">https://statweb.stanford.edu/~jmc4/</a><a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn13" role="doc-endnote"><p>Basta usar a função <code>invisible(10 + 15)</code>, que a expressão é avaliada mas não impressa<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14" role="doc-endnote"><p>sinônimo: <em>string</em>, cadeia de caracteres.<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

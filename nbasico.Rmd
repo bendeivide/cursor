@@ -26,6 +26,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - 
 [<i class="fas fa-file"></i> Arquivos `.Rdata` e `.Rhistory`](#filesdata)
 - [<i class="fas fa-save"></i> Criando e salvando um script](#savescript)
+- [<i class="fas fa-arrow-circle-left"></i> Objetos](#objetos)
 
 ##
 
@@ -43,6 +44,7 @@ knitr::opts_chunk$set(echo = FALSE)
  - Aula 06: [Arquivos `.RData` e `.Rhistory`](aulas/aula06.html)
  - Aula 07: [Criando e salvando um *Script*](aulas/aula07.html)
  - Aula 08: [Objetos](index.html)
+ - Aula 09: [Aritmética e Operadores lógicos](index.html)
  - Aula 09: [Vetores](index.html)
  - Aula 10: [Matrizes](index.html)
  - Aula 11: [*Arrays*](index.html)
@@ -291,9 +293,9 @@ Iniciamos a discussão por uma afirmação de John McKinley Chambers, do qual af
 knitr::include_graphics("images/john_chambers.jpg")
 ```
 
-- Tudo que existe em `R` é um objeto; 
-- Tudo que acontece no `R` é uma chamada de função;
-- Interfaces para outros programas são parte do `R`.
+- **Princípio do Objeto**: Tudo que existe em `R` é um objeto; 
+- **Princípio da Função**: Tudo que acontece no `R` é uma chamada de função;
+- **Princípio da Interface**: Interfaces para outros programas são parte do `R`.
 
 Ao longo de todo o curso, para os três módulos, iremos nos referir a esses princípios. Vamos inicialmente observar uma adaptação da ilustração feita por @paradis2005, mostrando como o `R` trabalha, Figura \@ref(fig:rworks).
 
@@ -463,19 +465,17 @@ Por fim, algo de muita importância para um programador, **comente suas linhas d
 Outra coisa importante, é a **boa prática de escrita de um código**, e o RStudio nos proporciona algumas ferramentas interessantes. Mas isso será visto mais a frente.
 
 
-# Objetos
+# <i class="fas fa-arrow-circle-left"></i> Objetos {#objetos}
 
 
 Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos. 
+
 
 Vejamos o seguinte código:
 
 ```{r primeiro_codigo, echo=TRUE, , prompt=TRUE}
 x <- 10
 ```
-
-
-
 Todo mundo que tem uma certa noção sobre a linguagem `R` afirmaria: "criei um objeto `x` que recebe o valor 10". Para @hadley2019 essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto `10` está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. O símbolo que associa um objeto a um nome é o de atribuição, `<-`, isto é, a junção do símbolo desigualdade menor e o símbolo de subtração. Para ver qual objeto associado ao nome, o usuário precisa apenas digitar o nome no console.
 
 O símbolo de atribuição poderá ser representado na direção da esquerda para à direita ou vice-versa, isto é,
@@ -505,7 +505,27 @@ Neste caso, executamos quatro comandos em uma linha, associamos dois nomes a doi
 
 Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como "um nome associado a um objeto". Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.
 
-Com essa quantidade de objetos criados até agora, poderíamos nos perguntar quais os objetos que estão na memória ativa do computador, para isso, use o comando `ls()`.
+Todos os objetos tem dois *atributos intrínsecos*: o **modo** e **comprimento**. O **modo** representa a natureza dos elementos objetos. Destacamos quatro, numérico (`numeric`), lógico (logic), caractere^[sinônimo: *string*, cadeia de caracteres.] (`character`) e complexo (`complex`). Este último, não daremos evidência para esse momento. Deixaremos, para uma abordagem completa no Módulo [Programação em R (Nível Intermediário)](nintermediario.html). O **comprimento** mede a quantidade de elementos no objeto.
+
+Para determinarmos o **modo** de um objeto, usamos a função `mode()`. Vejamos:
+
+```{r echo=TRUE, prompt=TRUE}
+# Objeto modo caractere
+x <- "Ben"; mode(x)
+
+# Objeto modo numerico
+y <- 10; mode(y)
+
+# Objeto modo logico
+z <- TRUE; mode(z)
+```
+
+Temos uma outra função para verificarmos o tipo do objeto que é `typeof()`. Essa tipagem de objeto está relacionado a tipagem de variáveis da linguagem `C`, uma vez que boa parte das rotinas no `R` está nessa linguagem, principalmente as funções do pacote `base`. Dentre esses três modos apresentados, usando a função `typeof()`, o modo `numeric` se subdividirá em `integer` e `double`. A diferença entre os dois é o armazenamento de memória ativa. 
+
+Os modos podem ser convertidos do tipo `as.<modo>()`, isto é,...
+
+
+
 
 <!--
 # <i class="fas fa-file-export"></i> Importantdo/Exportando dados {#exportdata}

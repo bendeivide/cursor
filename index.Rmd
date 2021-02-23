@@ -123,8 +123,12 @@ Segue uma lista dos pacotes utilizados para o desenvolvimento do material desse 
 
 | Pacote | Objetivo para o curso |
 |:------:|:---------------------:|
-| [lobstr](https://lobstr.r-lib.org/)  | Auxilia nas representações internas de um objeto R |
-| [distill](https://rstudio.github.io/distill/) | Criação da página |
+| [lobstr](https://lobstr.r-lib.org/)  | Auxilia no estudo sobre a sintaxe do pacote |
+| [codetools](https://cran.r-project.org/package=codetools/)| Auxilia no estudo sobre a sintaxe do pacote |
+|[XR](https://cran.r-project.org/package=XR/) | Auxilia no estudo sobre a sintaxe do pacote |
+| [rlang](https://rlang.r-lib.org/) | Auxilia no estudo sobre a sintaxe do pacote |
+| [distill](https://rstudio.github.io/distill/) | Criação da página|
+
 
 
 # <i class="fas fa-download"></i> Instalação do R e do RStudio {#installrrstudio}
