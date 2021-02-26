@@ -32,7 +32,7 @@ knitr::opts_chunk$set(echo = FALSE)
   - [Programação em R (Nível Básico)](index.html#basico)
   - [Programação em R (Nível Intermediário)](#intermediario)
   - [Programação em R (Nível Avançado)](#avancado)
-  - [Referências do curso]()
+  - [Referências do curso](#referencias)
   - [Onde encontrar nossos materiais](#buscarmateriais)
   - [Pacotes R utilizados para esse curso](#pacutilizados)
 - [<i class="fas fa-download"></i> Instalação do R e do RStudio](#installrrstudio)
@@ -105,6 +105,9 @@ Em contrução...
 Citaremos alguns livros e materiais utilizados para o desenvolvimento desse curso, tais como:
 
  - [An introduction to `R`](https://cran.r-project.org/doc/manuals/R-intro.html#Introduction-and-preliminaries)
+ - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
+ - [R Language Definition](https://cran.r-project.org/doc/manuals/R-lang.html)
+ - [R Internals](https://cran.r-project.org/doc/manuals/R-ints.html)
  - [Advanced R](https://adv-r.hadley.nz/) [@hadley2019]
  - [Advanced R Solutions](http://advanced-r-solutions.rbind.io/) [@hadleyetal2021]
  - [R Packages](https://r-pkgs.org/index.html) [@hadley2015]
@@ -127,6 +130,7 @@ Segue uma lista dos pacotes utilizados para o desenvolvimento do material desse 
 | [codetools](https://cran.r-project.org/package=codetools/)| Auxilia no estudo sobre a sintaxe do pacote |
 |[XR](https://cran.r-project.org/package=XR/) | Auxilia no estudo sobre a sintaxe do pacote |
 | [rlang](https://rlang.r-lib.org/) | Auxilia no estudo sobre a sintaxe do pacote |
+| [sloop](https://sloop.r-lib.org/) | Auxilia a compreender interativamente a programação orientada a objetos |
 | [distill](https://rstudio.github.io/distill/) | Criação da página|
 
 

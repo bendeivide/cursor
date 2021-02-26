@@ -168,10 +168,10 @@ install.packages("lobstr")
 - Exemplo 1: As funções têm acesso ao escopo em que foram criadas.
 
 ```{r ex1, echo=TRUE, , prompt=TRUE}
-# Criando um nome "n" associado a um objeto 10 no escopo da função
+# Criando um nome "n" associado a um objeto 10 no escopo da funcao
 n <- 10
 
-# Criando um nome "funcao" associado a um objeto que é uma função
+# Criando um nome "funcao" associado a um objeto que eh uma funcao
 funcao <- function() {
   print(n)
 }
@@ -182,15 +182,15 @@ funcao()
 - Exemplo 2: As variáveis criadas ou alteradas dentro de uma função, permanecem na função.
 
 ```{r ex2, echo=TRUE, , prompt=TRUE}
-# Criando um nome "n" associado a um objeto 10 no escopo da função
+# Criando um nome "n" associado a um objeto 10 no escopo da funcao
 n <- 10
 lobstr::obj_addr(n) # Identificador do objeto
 
-# Criando um nome "funcao" associado a um objeto que é uma função
+# Criando um nome "funcao" associado a um objeto que eh uma funcao
 funcao <- function() {
   # Imprimindo n
   print(n)
-  # Criando um nome "n" associado a um objeto 15 no corpo da função
+  # Criando um nome "n" associado a um objeto 15 no corpo da funcao
   n <- 15
   # Imprimindo n
   print(n)
@@ -206,15 +206,15 @@ lobstr::obj_addr(n) # Identificador do objeto
   - Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.
   
 ```{r ex3, echo=TRUE, , prompt=TRUE}
-# Criando um nome "n" associado a um objeto 10 no escopo da função
+# Criando um nome "n" associado a um objeto 10 no escopo da funcao
 n <- 10
 lobstr::obj_addr(n) # Identificador do objeto
 
-# Criando um nome "funcao" associado a um objeto que é uma função
+# Criando um nome "funcao" associado a um objeto que eh uma funcao
 funcao <- function() {
   # Imprimindo n
   print(n)
-  # Criando um nome "n" associado a um objeto 15 no corpo da função
+  # Criando um nome "n" associado a um objeto 15 no corpo da funcao
   n <<- 15
   # Imprimindo n
   print(n)
@@ -222,8 +222,8 @@ funcao <- function() {
 # Imprimindo 'funcao'
 funcao()
 
-# Observe que depois de usar a superatribuição ("<<-") dentro da função,
-#o nome "n" passou a estar associado ao número 15 e não mais ao número 10, observe
+# Observe que depois de usar a superatribuicao ("<<-") dentro da funcao,
+#o nome "n" passou a estar associado ao numero 15 e nao mais ao numero 10, observe
 n
 lobstr::obj_addr(n) # Identificador do objeto
 ``` 
@@ -231,9 +231,9 @@ lobstr::obj_addr(n) # Identificador do objeto
    - Exemplo 4: Por fim, embora a linguagem `R` tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.
    
 ```{r ex4, echo=TRUE, , prompt=TRUE}
-# Criando um nome 'n' associado a um objeto 10 no escopo da função (ambiente global)
+# Criando um nome 'n' associado a um objeto 10 no escopo da funcao (ambiente global)
 n <- 10
-# Criando um nome 'funcao' associado a um objeto que é uma função criado no ambiete global
+# Criando um nome 'funcao' associado a um objeto que eh uma função criado no ambiete global
 funcao <- function() {
   # Imprimindo n
   print(n)
@@ -250,7 +250,7 @@ environment(funcao) <- novo_ambiente
 funcao()
 ``` 
 
-Como a linguagem `S` é também uma linguagem interpretada cuja base é a linguagem `FORTRAN`, a linguagem `R` tem como base as linguagens de baixo nível `C` e `FORTRAN` e a própria linguagem `R`. 
+Como a linguagem `S` é também uma linguagem interpretada cuja base é a linguagem `FORTRAN`, a linguagem `R` também é uma linguagem interpretada e baseada além da linguagem `S`, tem como base as linguagens de baixo nível `C` e `FORTRAN` e a própria linguagem `R`. 
 
 Embora o `R` tenha uma interface baseada em linhas de comando, existem muitas interfaces gráficas ao usuário com destaque ao [RStudio](http://rstudio.org), criado por Joseph J. Allaire, Figura \@ref(fig:jjallaire).
 
@@ -287,6 +287,8 @@ Caracterizações:
 
 # <i class="fas fa-briefcase"></i> Como o R trabalha {#rwork}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8RNFOfE3CmY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Iniciamos a discussão por uma afirmação de John McKinley Chambers, do qual afirmou que o `R` tem três princípios [@chambers2016]:
 
 ```{r chambers, fig.cap = "John Chambers^[Fonte da foto: Retirada de sua página pessoal, [https://statweb.stanford.edu/~jmc4/](https://statweb.stanford.edu/~jmc4/)], o criador da linguagem `S`.", fig.height= 5, fig.width=5, fig.align='center'}
@@ -308,6 +310,8 @@ Toda ação que acontece no `R` é uma chamada de função (Operadores e funçõ
 Na Figura \@ref(fig:rworks), observamos que todas as ações realizadas sobre os objetos ficam armazenadas na memória ativa do computador. Esses objetos são criados por comandos (teclado ou mouse) através de funções ou operadores (chamada de função), dos quais leem ou escrevem arquivo de dados do disco rígido, ou leem da própria internet. Por fim, o resultado desses objetos podem ser apresentados no console (memória ativa), exportados em formato de imagem, página web, etc. (disco rígido), ou até mesmo ser reaproveitado como argumento de outras funções, porque o resultado também é um objeto.
 
 # <i class="fas fa-terminal"></i> Comandos no R e Ambiente Global {#comandos-workspace}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JQlNBgDJUUc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Console e *Prompt* de comando 
 
@@ -420,6 +424,8 @@ Observe que todos os objetos criados até o momento estão listados, e o que é 
 
 # <i class="fas fa-file"></i> Arquivos `.Rdata` e `.Rhistory` {#filesdata}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-fFVgTzsoxQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Ao final do que falamos até agora, todo o processo ao inserir linhas de comando do console, e desejarmos finalizar os trabalhos do ambiente `R`, dois arquivos são criados, sob a instrução do usuário em querer aceitar ou não, um *.RData* e outro *.Rhistory*, cujas finalidades são:
 
 - *.RData*: salvar todos os objetos criados que estão atualmente disponíveis;
@@ -468,8 +474,9 @@ Outra coisa importante, é a **boa prática de escrita de um código**, e o RStu
 # <i class="fas fa-arrow-circle-left"></i> Objetos {#objetos}
 
 
-Definimos um objeto como uma estrutura de dados com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de atributos. 
+Definimos um objeto como uma entidade no ambiente `R` com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de **atributos**.  Vamos entender o termo estrutura como a disposição de como está o seu conteúdo. Por exemplo, a estrutura de um objeto mais simples no `R` é um vetor atômico, pois os elementos contidos nele, apresenta o mesmo **modo**, um tipo de **atributo**. Falaremos nisso, mais a frente.
 
+De forma didática, adaptaremos a representação dos objetos no formato de diagrama.
 
 Vejamos o seguinte código:
 
@@ -478,9 +485,41 @@ x <- 10
 ```
 Todo mundo que tem uma certa noção sobre a linguagem `R` afirmaria: "criei um objeto `x` que recebe o valor 10". Para @hadley2019 essa afirmação é imprecisa e pode levar um entendimento equivocado sobre o que acontece de fato. Para o mesmo autor, o correto é afirmar que o objeto `10` está se ligando a um nome. E de fato, o objeto não tem um nome, mas o nome tem um objeto. O símbolo que associa um objeto a um nome é o de atribuição, `<-`, isto é, a junção do símbolo desigualdade menor e o símbolo de subtração. Para ver qual objeto associado ao nome, o usuário precisa apenas digitar o nome no console.
 
+Representaremos em termos de diagrama, um nome se ligando a um objeto, na Figura \@ref(fig:objx).
+
+```{r objx, fig.cap = "Dizemos que o nome `'x'` se liga ao objeto do tipo (estrutura) vetor.", fig.height= 6, fig.width=9, fig.align='center'}
+knitr::include_graphics("images/x=10.png")
+```
+O identificador na memoría ativa desse objeto pode ser obritida por:
+
+
+```{r id_primeiro_codigo, echo=TRUE, eval=FALSE, prompt=TRUE}
+lobstr::obj_addr(x)
+# [1] "0xf8a104fc20"
+```
+
+O diagrama explica que o nome criado "`x`" se associou com um objeto do **tipo** (estrutura) vetor e **modo** `numeric` (ou também  `double`, usando a função `typeof()`). Essa outra representação ficará mais claro, no segundo diagrama, Figura \@ref(fig:objxy), que representa a ligação do nome "`y`" ao objeto.
+
+Conseguem perceber que não houve a criação de um outro objeto, mas apenas a ligação de mais um nome a ele, pois o identificador na memória ativa para o objeto não alterou, é o mesmo. Logo, não temos um outro objeto, mais dois nomes que se ligam ao mesmo objeto.
+
+```{r segundo_codigo, echo=TRUE, , prompt=TRUE}
+y <- x
+lobstr::obj_addr(y)
+# [1] "0xf8a104fc20"
+```
+
+```{r objxy, fig.cap = "Dizemos que o nome `'x'` se liga ao objeto do tipo (estrutura) vetor.", fig.height= 6, fig.width=9, fig.align='center'}
+knitr::include_graphics("images/y=x=10.png")
+```
+
+Mais especificamente, acrescentamos um outro diagrama, acrescentando a representação do ambiente global.
+
+
+
+
 O símbolo de atribuição poderá ser representado na direção da esquerda para à direita ou vice-versa, isto é,
 
-```{r segundo_codigo, echo=TRUE, }
+```{r terceiro_codigo, echo=TRUE, prompt=TRUE}
 x <- 10
 10 -> x
 ```
@@ -499,13 +538,21 @@ Uma forma menos convencional é utilizar o símbolo da igualdade "`=`" para asso
 Quando desejamos executar mais de uma linha de comando por, separamos estas pelo símbolo "`;`", isto é,
 
 ```{r, echo=TRUE, }
-x <- 10; y <- 15; y; x
+x <- 10; w <- 15; x; w
 ```
 Neste caso, executamos quatro comandos em uma linha, associamos dois nomes a dois objetos e imprimimos os seus valores.
 
 Por questão de comodidade, iremos a partir de agora, sempre nos referir a um objeto pelo nome associado a ele, para não está sempre se se expressando como "um nome associado a um objeto". Mas que fique claro a discussão realizada anteriormente sobre esses conceitos.
 
-Todos os objetos tem dois *atributos intrínsecos*: o **modo** e **comprimento**. O **modo** representa a natureza dos elementos objetos. Destacamos quatro, numérico (`numeric`), lógico (logic), caractere^[sinônimo: *string*, cadeia de caracteres.] (`character`) e complexo (`complex`). Este último, não daremos evidência para esse momento. Deixaremos, para uma abordagem completa no Módulo [Programação em R (Nível Intermediário)](nintermediario.html). O **comprimento** mede a quantidade de elementos no objeto.
+Nesse momento, nos limitaremos a falar sobre objetos que armazenam dados, do tipo caracteres e números.
+
+## Atributos
+
+Todos os objetos, terão pelo menos dois tipos de atributos, chamados de atributos intrínsecos, sendo herdados da linguagem `S`. Os demais atributos, quando existem, podem ser verificados pela função `attributes()`. A ideia dos atributos pode ser pensada como *metadados*, isto é, um conjunto de informações que caracterizam o objeto. Diremos também que todos os objetos `R` têm classes. Agora, devemos deixar claro essa informação, apesar do `R` seguir o **princípio do Objeto**, nem tudo é orientado a objetos. A forma de se verificar a classe de um objeto é pela função `class()`. Contudo, os objetos internos do `R` (base), quando solicitado sua classe pela função `class()`, acabam retornando resultados equivocados. Uma alternativa é utilizar a função `sloop::s3_class()` do pacote `sloop`. Isso será discutido no módulo [Programação em R (Nível Intermedirário)](nintermediario.html).
+
+### Atributos intrínsecos
+
+Todos os objetos tem dois *atributos intrínsecos*: o **modo** e **comprimento**. O **modo** representa a natureza dos elementos objetos. Destacamos quatro, numérico (`numeric`), lógico (logic), caractere^[sinônimo: *string*, cadeia de caracteres.] (`character`) e complexo (`complex`). Este último, não daremos evidência para esse momento. O **comprimento** mede a quantidade de elementos no objeto.
 
 Para determinarmos o **modo** de um objeto, usamos a função `mode()`. Vejamos:
 
@@ -518,11 +565,52 @@ y <- 10; mode(y)
 
 # Objeto modo logico
 z <- TRUE; mode(z)
+
+# Objeto modo complexo
+w <- 1i; mode(w)
+```
+Contudo, essa função `mode()` se baseou nos atributos baseados na linguagem `S`. 
+
+
+Temos uma outra função para verificarmos o **modo** do objeto que é `typeof()`. O atributo **modo** retornado de um objeto, está relacionado a tipagem de variáveis da linguagem `C`, uma vez que boa parte das rotinas no `R` está nessa linguagem, principalmente as funções do pacote `base`. Existem 25 tipos que serão detalhados no módulo [Programação em R (Nível Intermedirário)](nintermediario.html).
+
+Uma tabela a seguir, mostra o retorno dos seis principais modos de um objeto (Os modos apresentados baseiam-se apenas quanto a característica dos dados do objeto. É claro que um objeto não armazena dados. Existem outras naturezas, que serão omitidas nesse momento):
+
+| `typeof`  | `mode` |
+|:---------:|:------:|
+| `logical` | `logical` |
+| `integer` | `numeric` |
+| `double`  | `numeric` |
+| `complex` | `complex` |
+| `character` | `character` |
+| `raw`     |  `raw`  |
+
+
+Um resumo as funções mensionadas podem ser refletidas com as seguintes indagações:
+
+- `base::class()` e `loop::c3_class()` e  - Qual o tipo de objeto?
+- `base::mode()` Qual o tipo de dados baseados na linguagem `S`?
+- `base::typeof()` Qual o tipo de dados baseados na linguagem `C`?
+- `base::attributes()` O objeto tem atributos?
+
+
+
+## Coersão
+
+Falar sobre a coersão realizado pelo próprio R e pelo usuário...
+
+Os modos podem ser convertidos do tipo `as.<modo>()`, isto é, se desejarmos que um objeto `meu_objeto` tenha o modo "`character`", basta usar `as.character(meu_objeto)`. Vejamos,
+
+```{r echo=TRUE, prompt=TRUE}
+# Objeto de modo numerico
+minha_idade <- 35
+mode(minha_idade)
+
+# Coersão do objeto para modo caractere (`string`)
+minha_idade <- as.character(minha_idade)
+mode(minha_idade)
 ```
 
-Temos uma outra função para verificarmos o tipo do objeto que é `typeof()`. Essa tipagem de objeto está relacionado a tipagem de variáveis da linguagem `C`, uma vez que boa parte das rotinas no `R` está nessa linguagem, principalmente as funções do pacote `base`. Dentre esses três modos apresentados, usando a função `typeof()`, o modo `numeric` se subdividirá em `integer` e `double`. A diferença entre os dois é o armazenamento de memória ativa. 
-
-Os modos podem ser convertidos do tipo `as.<modo>()`, isto é,...
 
 
 
