@@ -73,7 +73,7 @@ knitr::opts_chunk$set(echo = FALSE)
  - Script 04: ~
  - [Script 05](scripts/script05.txt): [Comandos](scripts/script05.R) 
  - Script 06: ~
- - Script 07: ~
+ - [Script 07](https://github.com/bendeivide/cursor/blob/master/scripts/aula07/Aula07-primeiro_script.R): [.RData e .Rhistory](https://github.com/bendeivide/cursor/blob/master/scripts/aula07/Aula07-primeiro_script.R)
  - Script 08:
  - Script 09:
  - Script 10:

@@ -14,7 +14,12 @@
     visibility: hidden;
   }
   </style>
-
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
@@ -105,7 +110,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:site" content="@bendeivide"/>
 
   <!--/radix_placeholder_meta_tags-->
-  
+
   <meta name="citation_reference" content="citation_title=R for beginners;citation_publication_date=2005;citation_author=Emmanuel Paradis"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
@@ -2083,7 +2088,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Material
- 
+
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
@@ -2193,7 +2198,7 @@ Material
 <li>Script 04: ~</li>
 <li><a href="scripts/script05.txt">Script 05</a>: <a href="scripts/script05.R">Comandos</a></li>
 <li>Script 06: ~</li>
-<li>Script 07: ~</li>
+<li><a href="https://github.com/bendeivide/cursor/blob/master/scripts/aula07/Aula07-primeiro_script.R">Script 07</a>: <a href="https://github.com/bendeivide/cursor/blob/master/scripts/aula07/Aula07-primeiro_script.R">.RData e .Rhistory</a></li>
 <li>Script 08:</li>
 <li>Script 09:</li>
 <li>Script 10:</li>
@@ -2310,7 +2315,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x9fce8e8&quot;</code></pre>
+<pre><code>[1] &quot;0x5f42f80&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2337,7 +2342,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x9fce8e8&quot;</code></pre>
+<pre><code>[1] &quot;0x5f42f80&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2349,7 +2354,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2a5fd938&quot;</code></pre>
+<pre><code>[1] &quot;0xd7053b8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2377,7 +2382,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2a5fd858&quot;</code></pre>
+<pre><code>[1] &quot;0xd7052d8&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2651,7 +2656,7 @@ Figure 8: Dizemos que o nome <code>'x'</code> se liga ao objeto do tipo (estrutu
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2b295fe8&quot;</code></pre>
+<pre><code>[1] &quot;0xe1de170&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># [1] "0xf8a104fc20"</span>
 </code></pre>
