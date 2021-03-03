@@ -33,7 +33,7 @@ As listas **são como vetores atômicos**, porém **mais complexos**, isto é, o
 ```{r echo=TRUE, prompt=TRUE}
 # Primeiro elemento (objeto)
 l0[[1]]
-# Segundo valor do primeiro elemento (objeto)
+# Primeiro valor do primeiro elemento (objeto)
 l0[[1]][1]
 ```
 
