@@ -1,0 +1,63 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 11 - `Arrays` (Matrizes multidimensionais)"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introdução
+
+A ideia do objeto matriz multidimencional (ou *array*) é similar ao da matriz, a diferença é que agora é um vetor atômico de mais de duas dimensões. Vejamos,
+
+```{r echo=TRUE, prompt=TRUE}
+x <- 1:12; x # Criando um vetor atomico
+attributes(x) # Verificando o atributo de x
+sloop::s3_class(x) #Classe do objeto x
+```
+
+## Criando um *Array*
+```{r echo=TRUE, prompt=TRUE}
+# Adicionando o atributo dim
+dim(x) <- c(2, 3, 2); x # 2 x 3 x 2 = 12 (Comp do vetor x)
+attributes(x) # Atributo de x
+sloop::s3_class(x) #classe do objeto
+```
+
+## Criando um *Array*
+```{r echo=TRUE, prompt=TRUE}
+attributes(x) # Atributo de x
+sloop::s3_class(x) #classe do objeto
+```
+
+## Outra forma de criar um *Array*
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando um array
+array(1:12, c(2, 3, 2))
+```
+
+## Indexação de *Array*
+
+```{r echo=TRUE, prompt=TRUE}
+x <- array(1:12, c(2, 3, 2)) # Criando um array
+x[1, 1, 1] # Acessando
+x[1, 1, 1] <- 10; x[, , 1] # Alterando
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>

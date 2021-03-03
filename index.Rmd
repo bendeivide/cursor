@@ -62,7 +62,7 @@ A minha motivação para estudar sobre a linguagem `R`:
   - Falar sobre o entusiamos ao ler os materiais do Prof. Daniel e do Prof. Paulo Justiniano
 -->
 
-# <i class="fas fa-sitemap"></i> Proposta do curso <img src="images/Rlogo.png" align="right" height="139" id="propcurso"/>
+# <i class="fas fa-sitemap"></i> Proposta do curso <img src="images/logo2.png" align="right" height="139" id="propcurso"/>
 
 O curso R não tem como objetivo principal de ensinar análise de dados. Mas sim, proporcionar a você um conhecimento sobre a linguagem R, de modo que consiga usufruir todos os recursos que ela possa lhe proporcionar.
 
@@ -104,7 +104,7 @@ Em contrução...
 
 Citaremos alguns livros e materiais utilizados para o desenvolvimento desse curso, tais como:
 
- - [An introduction to `R`](https://cran.r-project.org/doc/manuals/R-intro.html#Introduction-and-preliminaries)
+
  - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
  - [R Language Definition](https://cran.r-project.org/doc/manuals/R-lang.html)
  - [R Internals](https://cran.r-project.org/doc/manuals/R-ints.html)
@@ -121,6 +121,8 @@ Temos dedicado uma parte do nosso trabalho no desenvolvimento de materiais em R,
 
 
 ## Pacotes R utilizados para esse curso {#pacutilizados}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YRSdoyfqp_g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Segue uma lista dos pacotes utilizados para o desenvolvimento do material desse curso:
 

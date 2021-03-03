@@ -1,0 +1,299 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 09 - Vetores"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introdução
+
+Podemos dizer que existem três tipos principais de **vetores atômicos**:
+
+- Numéricos (`numeric`):
+  - Inteiro (`integer`);
+  - Real (`double`);
+- Lógico (`logical`);
+- Caractere (`character`)
+
+Existem dois tipos raros que são os complexos (`complex`) e brutos (`raw`), que falaremos no módulo seguinte.
+
+## Escalares
+
+- Vetor de comprimento 1;
+- Sintaxe para valores especiais: `TRUE`, `FALSE`, `Inf`, `-Inf`, `NaN`, `NA`;
+
+```{r echo=TRUE, prompt=TRUE}
+# divisao de um numero por zero (+ infinito)
+x <- 50 / 0; x
+# divisao de um numero por zero (- infinito)
+-50 / 0
+# Resultado sem número do tipo NaN
+x - x
+```
+
+## Escalares
+
+```{r echo=TRUE, prompt=TRUE}
+# divisao de um numero por zero (+ infinito)
+x <- 50 / 0; x
+# divisao de um numero por zero (- infinito)
+-50 / 0
+# Resultado sem número do tipo NaN
+x - x
+```
+
+## Escalares
+
+- os vetores numéricos do tipo `double` podem ser representados de forma decima (`0.123`), científica (`1.23e5`), ou hexadecimal (`3E0A`);
+- os vetores numéricos do tipo `integer` são representados pela letra `L` ao final do **número inteiro**, isto é, `1L`, `1.23e5L`, etc.;
+- os caracteres são representados pelas palavras, letras, números ou caracteres especiais entre aspas, isto é, `"Ben"`, `"a"`. Pode ser utilizado também uma aspa, `'Ben'`, `'a'`, etc.
+
+## Vetores longos
+- Funções:
+  - concatenar `c()`
+  - valores sequenciais: `rep()`, `seq()`, `:`
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando um vetor 'double'
+vetor.num <- c(1, 2, 3, 4, 5); vetor.num; typeof(vetor.num)
+```
+
+## Vetores longos
+- Funções:
+  - concatenar `c()`
+  - valores sequenciais: `rep()`, `seq()`, `:`
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando uma sequência de 1 a 5
+vetor.num3 <- 1:5; vetor.num3; typeof(vetor.num3)
+```
+
+## Vetores longos
+
+```{r echo=TRUE, prompt=TRUE}
+vetor.num <- c(1, 2, 3, 4, 5); vetor.num2 <- c(1L, 2L, 3L, 4L, 5L)
+vetor.num3 <- 1:5
+##
+vetor.num == vetor.num2
+vetor.num == vetor.num3
+vetor.num2 == vetor.num3
+```
+
+## Vetores longos
+
+```{r echo=TRUE, prompt=TRUE}
+# Modo do objeto:
+typeof(vetor.num); typeof(vetor.num2); typeof(vetor.num3)
+# Memoria:
+lobstr::obj_size(vetor.num)
+lobstr::obj_size(vetor.num2)
+lobstr::obj_size(vetor.num3)
+```
+
+## Vetores longos
+
+```{r echo=TRUE, prompt=TRUE}
+# Memoria:
+lobstr::obj_size(vetor.num)
+lobstr::obj_size(vetor.num2)
+lobstr::obj_size(1:5)
+```
+
+## Vetores longos
+
+```{r echo=TRUE, prompt=TRUE}
+# Tamanho de memoria dos objetos
+lobstr::obj_size(1:10)
+lobstr::obj_size(1:10000)
+lobstr::obj_size(1:1000000)
+```
+
+## Vetores longos
+
+```{r echo=TRUE, prompt=TRUE}
+# Tamanho de memoria dos objetos
+lobstr::obj_size(c(1:10))
+lobstr::obj_size(c(1:10000))
+lobstr::obj_size(c(1:1000000))
+```
+
+## Manipulando vetores
+
+- Vetor de comprimento zero
+```{r echo=TRUE, prompt=TRUE}
+v1 <- numeric(0); length(v1)
+v2 <- character(0); length(v2)
+v3 <- logical(0); length(v2)
+```
+
+## Manipulando vetores
+
+```{r echo=TRUE, prompt=TRUE}
+# Vetor numerico de comprimento 0
+v1 <- numeric(0)
+v2 <- character(0)
+v3 <- logical(0)
+# Inserimos 3 elementos em v1 e depois imprimos o seu resultado
+v1[1] <- 5; v1[2] <- 3; v1[3] <- 10; v1; length(v1)
+```
+
+## Manipulando vetores
+
+```{r echo=TRUE, prompt=TRUE}
+# Vetor numerico de comprimento 0
+v1 <- numeric(0)
+# Inserimos 3 elementos em v1 e depois imprimos o seu resultado
+v1[1] <- 5; v1[2] <- 3; v1[3] <- 10
+# Imprimindo apenas o primeiro valor
+v1[1]
+# Imprimindo os dois ultimos
+v1[2:3]; v1[c(2, 3)]
+```
+
+## Aritmética e outras operações
+
+```{r echo=TRUE, prompt=TRUE}
+# Soma de dois vetores
+2 + 3
+# Exceto pela sintaxe, '+' eh uma chamada de funcao
+`+`(2, 3)
+```
+
+## Aritmética e outras operações
+
+```{r echo=TRUE, prompt=TRUE}
+# Subtracao de dois vetores
+3 - 2
+# Exceto pela sintaxe, '-' eh uma chamada de funcao
+`-`(3, 2)
+```
+
+## Aritmética e outras operações
+
+```{r echo=TRUE, prompt=TRUE}
+# Multiplicacao de dois vetores
+3 * 2
+# Exceto pela sintaxe, '*' eh uma chamada de funcao
+`*`(3, 2)
+```
+
+## Aritmética e outras operações
+
+```{r echo=TRUE, prompt=TRUE}
+# Divisao de dois vetores
+3 / 2
+# Exceto pela sintaxe, '/' eh uma chamada de funcao
+`/`(3, 2)
+```
+
+## Aritmética e outras operações
+
+```{r echo=TRUE, prompt=TRUE}
+c(4, 5, 6) + c(1, 2, 3) # Soma de vetores
+c(4, 5, 6) + c(1, 2, 3) # Subtracao de  vetores
+c(4, 5, 6) * c(1, 2, 3) # Multiplicacao dois vetores
+c(4, 5, 6) / c(1, 2, 3) # Divisao de dois vetores
+```
+
+## Aritmética e outras operações
+
+```{r echo=TRUE, prompt=TRUE}
+# Soma de vetores de comprimento diferente
+1:10 + 3:10
+# (1+3) (2+4) (3+5) ... (8+10) (9+3) (10+4)
+```
+## Aritmética e outras operações 
+
+| Função (Ou operador) | Finalidade |
+|:--------------------:|:----------:|
+|  `^` ou `**`         | Expoenciação binária, isto é `2^3` ou `2 ** 3` |
+|   `%/%`              | Divisão inteira  |
+|   `%%`               | Restante da divisão |
+|    `sum()`           | Soma de elementos do vetor |
+|     `prod()`         | Produtório dos elementos do vetor |
+|      `sqrt()`        | Raiz quadrada dos elementos de um vetor |
+|      `log()`         | Função Logaritmo neperiano |
+
+
+## Aritmética e outras operações 
+
+| Função (Ou operador) | Finalidade |
+|:--------------------:|:----------:|
+|      `exp()`         |  Função exponencial |
+|       `mean()`       | Média dos elementos de um vetor |
+|       `sd()`         | Desvio padrão dos elementos de um vetor|
+|       `var()`        |  Variância dos elementos de um vetor |
+|       `median()`     |  Mediana dos elementos de um vetor |
+
+## Operadores lógicos
+
+| Operador Lógico | Sintaxe  | Pergunta |
+|:---------------:|:-------: |:----------:|
+|    `<`          | `a < b`  |  `a` é menor que `b`? |         
+|    `>`          |  `a > b` |  `a` é maior que `b`?|
+|    `==`         | `a == b` |  `a` é igual `b`?|
+|    `!=`         | `a != b` |  `a` é diferente `b`? |
+|   `>=`          | `a >= b` | `a` é maior ou igual a `b`     |
+|   `<=`          | `a <= b` | `a` é menor ou igual a `b`? |
+|      `%in%`     | `"a" %in% c("a", "b", "c")` | O elemento `"a"` está no vetor `c("a", "b", "c")`? |
+
+## Operadores lógicos
+
+```{r echo=TRUE, prompt=TRUE}
+# Operador '>' entre vetores de comprimento 1
+1 > 3
+
+# Operador '<' com vetor de comprimento maior que 1
+1 < c(0, 1, 3)
+
+# Operador '==' entre vetores
+c(1, 2, 3) == c(3, 2, 1)
+```
+
+## Operadores lógicos
+
+```{r echo=TRUE, prompt=TRUE}
+# Operador '%in%' verificando se os elementos do primeiro vetor
+# estao no segundo vetor
+1 %in% c(3, 4, 5)
+c(1, 2) %in% c(3, 4, 5)
+c(1, 2, 3) %in% c(3, 4, 5)
+```
+
+## Operadores Booleanos
+
+| Operador Booleano (ou Função)        | Sintaxe | Pergunta |
+|:-----------------:|:--------------------------:|:-------:|
+|    `&` ou `&&`    |  `cond1 & cond2`           | As `cond1` e `cond2` são verdadeiras?|
+|     `|` ou `||`   | `cond1 | cond2`            | A `cond1` ou `cond2` é verdadeira? |
+| `xor()`           | `xor(cond1, cond2)`        | Apenas a `cond1` ou a `cond2` é verdadeiro?|
+| `!`               | `!cond1`                   | É falso a `cond1` ? |
+| `any()`           | `any(cond1, cond2, ...)`   | Alguma das condições são verdadeiras? |
+|   `all()`         |  `all(cond1, cond2, ...)`  | Todas as condições são verdadeiras?|
+
+## Operadores Booleanos
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando objetos
+x <- 1:3; y <- 1:3; z <- c(1, 2, 4)
+##
+x == y; y == z; x == y & y == z
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>

@@ -60,5 +60,11 @@ knitr::include_graphics("rversao1.png")
 - O termo "ambiente" é preferível a software, pois:
   - Ambiente: Sistema totalmente planejado e coerente;
   - Software: Incremento de ferramentas muito específicas e inflexíveis;
-  
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
+
 ## Referências

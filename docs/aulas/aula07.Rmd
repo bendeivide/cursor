@@ -9,7 +9,7 @@ output:
   ioslides_presentation:
     smaller: false
     transition: slower
-    logo: Rlogo.png
+    logo: logo2.png
     css: style.css
 ---
 
@@ -57,6 +57,11 @@ knitr::include_graphics("rscript05.png")
 
 - Usaremos a função `source()`
 
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
 
 
 

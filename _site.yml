@@ -9,7 +9,7 @@ twitter:
 google_analytics: UA-183980834-3
 navbar:
   logo:
-    image: images/logo.png
+    image: images/logo2.png
     href: https://www.r-project.org/
     source_url: https://github.com/bendeivide/cursor
   search: true
@@ -22,7 +22,7 @@ navbar:
         - text: "Basico"
           href: nbasico.html
         - text: "Intermediario"
-          href:
+          href: nintermediario.html
         - text: "Avancado"
           href:
 

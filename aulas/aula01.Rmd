@@ -9,7 +9,7 @@ output:
     widescreen: true
     smaller: false
     transition: slower
-    logo: Rlogo.png
+    logo: logo2.png
     css: style.css
 ---
 
@@ -38,4 +38,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <center>
 ![](ide_rstudio.png){width="80%"}
+</center>
+
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
 </center>

@@ -41,3 +41,56 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::include_graphics("images/rworks2.png")
 ```
 
+<!-- 
+Caracterizar melhor a linguagem R 
+
+- Linguagem interpretada
+- Escopo Léxico
+- Programação Funcional
+- Programação Metaparadigma
+- Programação dinâmica:
+Retirado do livro: hand-On Programming with R
+
+Em algumas linguagens, como C, Java e FORTRAN, você precisa compilar seu código legível por humanos em código legível por máquina (geralmente 1s e 0s) antes de executá-lo. Se você já programou nessa linguagem antes, pode estar se perguntando se precisa compilar seu código R antes de usá-lo. A resposta é não. R é uma linguagem de programação dinâmica, o que significa que R interpreta automaticamente seu código conforme você o executa.
+
+-->
+
+<!--
+Introdução aos objetos:
+  - Atômicos: objetos que não podem se conter
+  - Recursivos: Objetos que podem conter objetos de mesmo tipo
+  - Ver a função is.atomic() ou is.recursive()
+<!-- require(stats) -->
+
+<!-- is.a.r <- function(x) c(is.atomic(x), is.recursive(x)) -->
+
+<!-- is.a.r(c(a = 1, b = 3)) # TRUE FALSE -->
+<!-- is.a.r(list())          # FALSE TRUE - a list is a list -->
+<!-- is.a.r(list(2))         # FALSE TRUE -->
+<!-- is.a.r(lm)              # FALSE TRUE -->
+<!-- is.a.r(y ~ x)           # FALSE TRUE -->
+<!-- is.a.r(expression(x+1)) # FALSE TRUE -->
+<!-- is.a.r(quote(exp))      # FALSE FALSE -->
+-->
+
+
+<!--
+- Aprofundar e detalhar a parte de objetos de modo geral, não restringindo apenas aos vetores
+- Nos vetores de modo caractere, trabalhar bem sua utilização; ver o material da ecologia da USP
+-->
+
+<!-- Usar o manual https://cran.r-project.org/doc/manuals/r-release/R-lang.html para seguir a todos os tipos de objetos -->
+
+
+
+<!-- # Objetos -->
+
+<!-- ## Quadro de dados -->
+
+<!-- - data.frames() -->
+<!-- - tibble::tibble() -->
+
+
+<!-- Funções -->
+
+<!-- apresentar formas de se criar operadores binários especiais -->

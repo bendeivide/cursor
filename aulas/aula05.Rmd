@@ -9,7 +9,7 @@ output:
   ioslides_presentation:
     smaller: false
     transition: slower
-    logo: Rlogo.png
+    logo: logo2.png
     css: style.css
 ---
 
@@ -141,3 +141,9 @@ x <- 10 - 6; y <- 10 + 4; w <- "Maria Isabel"
 # Verificando o nomes contidos no ambiente global
 ls()
 ```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>

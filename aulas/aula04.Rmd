@@ -12,7 +12,7 @@ output:
     widescreen: true
     smaller: false
     transition: slower
-    logo: Rlogo.png
+    logo: logo2.png
     css: style.css
 ---
 
@@ -35,6 +35,12 @@ Esquema adaptado de @paradis2005, como o `R` trabalha:
 ```{r rworks, fig.cap = "Esquema de como o `R` funciona.", out.width="70%", fig.align='center'}
 knitr::include_graphics("rworks.png")
 ```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
 
 ## Referências
 

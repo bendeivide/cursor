@@ -9,7 +9,7 @@ output:
   ioslides_presentation:
     smaller: false
     transition: slower
-    logo: Rlogo.png
+    logo: logo2.png
     css: style.css
 ---
 
@@ -29,5 +29,9 @@ knitr::include_graphics("R-Rdata_Rhistory.png")
 knitr::include_graphics("Rdata_Rhistory.png")
 ```
 
+## Bons estudos!
 
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
 

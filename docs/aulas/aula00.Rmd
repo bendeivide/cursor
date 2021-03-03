@@ -9,7 +9,7 @@ output:
     widescreen: true
     smaller: false
     transition: slower
-    logo: Rlogo.png
+    logo: logo2.png
     css: style.css
 ---
 
@@ -86,5 +86,5 @@ knitr::include_graphics(c("inscritos_rbasico_2021.1.png"))
 ## Bons estudos!
 
 <center>
-[![](userben.png){width="50%"}](http://youtube.com/bendeivide)
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
 </center>
