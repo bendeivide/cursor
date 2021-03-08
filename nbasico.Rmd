@@ -1424,7 +1424,7 @@ knitr::include_graphics("images/imp-exp4.png")
 
 A outra forma é utilizar linhas de comando. Para isso utilizaremos a função `read.table()`. Antes de importarmos o banco de dados, algo interessante é inserir o arquivo de dados no diretório de trabalho no ambiente `r rlink`. Para verificar o ambiente de trabalho use a função `getwd()`. Para alterar o local do ambiente de trabalho use `setwd()`. Se esse procedimento não for realizado, o usuário deve informar na função `read.table()`, o local exato do arquivo de texto.
 
-Vamos usar como diretório o local `C:\cursor`. Lembre-se que no `r rlink` **a barra deve ser invertida**. Vamos inserir nesse diretório três arquivos *alfafa.txt*, *datast1980.txt* e *producao.csv*.
+Vamos usar como diretório o local `C:\cursor`. Lembre-se que no `r rlink`, **a barra deve ser invertida**. Vamos inserir nesse diretório três arquivos *alfafa.txt*, *datast1980.txt* e *producao.csv*.
 
 Os três conjuntos de dados são:
 
@@ -1485,11 +1485,27 @@ dados5 <- read.table(file = "C:/cursor/producao.csv", header = TRUE, dec = ",", 
 dados6 <- read.table(file = "producao.csv", header = TRUE, dec = ",", sep = ";")
 
 # Importando da internet
-
+dados7 <- read.table(file = "https://bendeivide.github.io/cursor/dados/alfafa.txt", header = TRUE)
 ```
 
-Na última linha de comando, mostramos que também é possível importar dados de arquivos de texto da internet, e claro considerando que o usuário está com acesso a internet no momento da importação.
+Na última linha de comando, mostramos que também é possível importar dados de arquivos de texto da internet, e claro considerando que o usuário está com acesso a internet no momento da importação. E um recurso interessante que pode ser feito, principalmente para este caso, é salvar o banco de dados em um arquivo de dados no `.RData`. Dessa forma, todos os dados, inclusive os importados da internet serão agora armazenados nesse tipo de arquivo, e não precisaremos, nesse caso, de acesso a internet. Para salvar, usamos a função `save()`. Para carregar os dados e armazená-lo no ambiente global, usamos a função `load()`. Vejamos,
 
+```{r echo=TRUE, eval=FALSE, prompt=TRUE}
+# Diretorio
+getwd()
+
+# Verificando os arquivos do diretorio de trabalho
+list.files()
+
+# Importando os dados da internet
+dados7 <- read.table(file = "https://bendeivide.github.io/cursor/dados/alfafa.txt", header = TRUE)
+
+# Salvando em '.RData'
+save(dados7, file = "alfafa.RData")
+
+# Carregando '.RData' para o ambiente global
+load("alfafa.RData")
+```
 
 Percebemos que as extensões *.txt* e *.csv* são idênticos, exceto pela estrutura de como os dados estão dispostos. Para comprovar isso, o usuário manualmente poderá mudar a entensão de um arquivo do tipo *.csv* para um arquivo *.txt* e observar em um bloco de notas.
 
@@ -1498,8 +1514,28 @@ Até esse momento do curso, usamos as funções no `r rlink` sem apresentar os a
 Diante disso, apresenamos alguns argumentos para a função `read.table()`, necessários para a importação dos dados.
 
 
+<!-- Acrescentar depois a diferenciação entre .RData ou .rda e .rds -->
 
+<!-- https://stackoverflow.com/questions/21370132/r-data-formats-rdata-rda-rds-etc -->
 
+<!-- > x <- 1:5 -->
+<!-- > save(x, file="x.Rda") -->
+<!-- > saveRDS(x, file="x.Rds") -->
+<!-- > rm(x) -->
+
+<!-- ## ASSIGN USING readRDS -->
+<!-- > new_x1 <- readRDS("x.Rds") -->
+<!-- > new_x1 -->
+<!-- [1] 1 2 3 4 5 -->
+
+<!-- ## 'ASSIGN' USING load -- note the result -->
+<!-- > new_x2 <- load("x.Rda") -->
+<!-- loading in to  <environment: R_GlobalEnv>  -->
+<!-- > new_x2 -->
+<!-- [1] "x" -->
+<!-- # NOTE: `load()` simply returns the name of the objects loaded. Not the values.  -->
+<!-- > x -->
+<!-- [1] 1 2 3 4 5 -->
 
 
 
