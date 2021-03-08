@@ -14,12 +14,7 @@
     visibility: hidden;
   }
   </style>
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
@@ -110,7 +105,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:site" content="@bendeivide"/>
 
   <!--/radix_placeholder_meta_tags-->
-
+  
   <meta name="citation_reference" content="citation_title=R for beginners;citation_publication_date=2005;citation_author=Emmanuel Paradis"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
@@ -2088,7 +2083,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Material
-
+ 
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
@@ -2160,6 +2155,7 @@ Material
 <li><a href="#arrays"><i class="fas fa-dice-three"></i> Matrizes multidimencionais</a></li>
 <li><a href="#lists"><i class="fas fa-dice-four"></i> Listas de dados</a></li>
 <li><a href="#dataframes"><i class="fas fa-dice-five"></i> Quadro de dados</a></li>
+<li><a href="#impexpdata"><i class="fas fa-database"></i> Importantdo/Exportando dados</a></li>
 </ul>
 <h2 id="section"></h2>
 <h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
@@ -2321,7 +2317,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x701d080&quot;</code></pre>
+<pre><code>[1] &quot;0x9029058&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2348,7 +2344,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x701d080&quot;</code></pre>
+<pre><code>[1] &quot;0x9029058&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2360,7 +2356,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xd8fbde8&quot;</code></pre>
+<pre><code>[1] &quot;0xdf1c150&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2388,7 +2384,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xd8fbd08&quot;</code></pre>
+<pre><code>[1] &quot;0xdf1c070&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2466,11 +2462,15 @@ Figure 6: John Chambers<a href="#fn12" class="footnote-ref" id="fnref12" role="d
 </p>
 </div>
 </div>
+<blockquote>
+<p>
 <ul>
 <li><strong>Princípio do Objeto</strong>: Tudo que existe em <code>R</code> é um objeto;</li>
 <li><strong>Princípio da Função</strong>: Tudo que acontece no <code>R</code> é uma chamada de função;</li>
 <li><strong>Princípio da Interface</strong>: Interfaces para outros programas são parte do <code>R</code>.</li>
 </ul>
+</p>
+</blockquote>
 <p>Ao longo de todo o curso, para os três módulos, iremos nos referir a esses princípios. Vamos inicialmente observar uma adaptação da ilustração feita por <span class="citation" data-cites="paradis2005"><a href="#ref-paradis2005" role="doc-biblioref">Paradis</a> (<a href="#ref-paradis2005" role="doc-biblioref">2005</a>)</span>, mostrando como o <code>R</code> trabalha, Figura <a href="#fig:rworks">7</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:rworks"></span>
@@ -2587,7 +2587,8 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 </code></pre>
 </div>
 <pre><code>[1] &quot;funcao&quot;        &quot;meu_nome&quot;      &quot;n&quot;             &quot;novo_ambiente&quot;
-[5] &quot;w&quot;             &quot;x&quot;             &quot;y&quot;            </code></pre>
+[5] &quot;rlink&quot;         &quot;rstudio&quot;       &quot;w&quot;             &quot;x&quot;            
+[9] &quot;y&quot;            </code></pre>
 </div>
 <p>Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto <code>meu_nome</code> é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.</p>
 <h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>
@@ -2629,6 +2630,8 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <p>Por fim, algo de muita importância para um programador, <strong>comente suas linhas de comando</strong>. Mas faça isso a partir do primeiro dia em que você criou o seu primeiro <em>Script</em>. Isso criará um hábito, uma vez que o arquivo não está sendo criado apenas para um momento, mas para futuras consultas. E quando voltamos a <em>Scripts</em> com muitas linhas de comando, principalmente depois de algum tempo, e sem comentários, possivelmente você passará alguns instantes para tentar entender o que foi escrito.</p>
 <p>Outra coisa importante, é a <strong>boa prática de escrita de um código</strong>, e o RStudio nos proporciona algumas ferramentas interessantes. Mas isso será visto mais a frente.</p>
 <h1 id="objetos"><i class="fas fa-arrow-circle-left"></i> Objetos</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6t9h9zgWyTE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Definimos um objeto como uma entidade no ambiente <code>R</code> com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo. Essas características são chamadas de <strong>atributos</strong>. Vamos entender o termo estrutura como a disposição de como está o seu conteúdo. Por exemplo, a estrutura de um objeto mais simples no <code>R</code> é um vetor atômico, pois os elementos contidos nele, apresenta o mesmo <strong>modo</strong>, um tipo de <strong>atributo</strong>. Falaremos nisso, mais à frente. De forma didática, adaptaremos a representação dos objetos no formato de diagrama.</p>
 <p>Vejamos o seguinte código:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2822,7 +2825,7 @@ attr(,&quot;row.names&quot;)
 <pre><code>[1] &quot;character&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto modo numerico (Inteiro)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10L</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10L</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> 
 </code></pre>
 </div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
@@ -3978,9 +3981,9 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 
 
 [[4]]
-function (x, ...)
+function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x00000000060378d0&gt;
+&lt;bytecode: 0x0000000009386b30&gt;
 &lt;environment: namespace:base&gt;
 
 [[5]]
@@ -3991,10 +3994,10 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando uma lista</span>
-<span class='va'>l0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>l01 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
-           l02 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>,
+<span class='va'>l0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>l01 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, 
+           l02 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>, 
            l03 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>,
-           l04 <span class='op'>=</span> <span class='va'>mean</span>,
+           l04 <span class='op'>=</span> <span class='va'>mean</span>, 
            l05 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Imprimindo o primeiro elemento (objeto) da lista 'l0'</span>
 <span class='va'>l0</span><span class='op'>$</span><span class='va'>l01</span>
@@ -4046,7 +4049,7 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um quadro de dados</span>
-<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, 
                     y <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>,
                     z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Imprimindo dados</span>
@@ -4103,7 +4106,7 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um quadro de dados</span>
-<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, 
                     y <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>,
                     z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Usando a funcao attach()</span>
@@ -4133,24 +4136,478 @@ expression(x ~ y)</code></pre>
 </div>
 </div>
 <p>Essa função <code>attach()</code> tem implicações, quando por exemplo se deseja inseri-la na construção de um pacote <code>R</code>. Iremos discutir esse ponto mais a frente. Para desanexar o quadro de dados, use <code>detach()</code>. A função <code>attach()</code> é genérica e pode ser usada em qualquer objeto de modo <code>list</code> ser anexado no caminho de busca.</p>
+<h1 id="impexpdata"><i class="fas fa-database"></i> Importantdo/Exportando dados</h1>
+<p>A importação/exportação de dados era algo que em poucas linhas conseguíamos explicar sobre o ambiente <code>R</code>, no sentido de análise de dados. Entretanto, observando o terceiro princípio do R, afirmado por <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>:</p>
+<blockquote>
+<p>
+<ul>
+<li><strong>Princípio da Interface</strong>: Interfaces para outros programas são parte do <code>R</code></li>
+</ul>
+</p>
+</blockquote>
+<p>Hoje é uma realidade a interação que o ambiente <code>R</code> tem com outras interfaces (programas, linguagens, etc.). A facilidade em utilizar outras linguagens dentro do ambiente <code>R</code> torna assim mais complexo a importação/exportação de dados, uma vez que o objetivo do <code>R</code>, apesar do <em>R Core Team</em> ainda limitar a sua definição como o ambiente para a computação estatística, a ferramenta se tornou tão versátil, que hoje torna humilde essa definição. Para mais detalhes acesse o manual <a href="https://cran.r-project.org/doc/manuals/r-release/R-data.html">R Data Import/Export</a>. Um outro fator e tema atual é a era dos grandes bancos de dados (<em>Big Data</em>), do qual se tem um grande conjunto de variáveis e necessitamos fazer a importação por APIs, por exemplo, ou outras vias. Temas como esses, abordaremos no módulo <a href="navancado.html" target="_blank">Programação em R (Nível Avançado)</a>.</p>
+<p>Nesse momento, limitaremos esse assunto ao objetivo de termos um conjunto de dados em arquivos de texto (extensões do tipo <em>.txt</em>, <em>.csv</em>, <em>xls</em>), formato binário (<em>.xls</em> ou <em>.xlsx</em>) ou digitados manualmente pelo teclado do computador. Assim, a primeira forma de como os dados estão dispostos, precisaremos importá-los e armazená-los em um quadro de dados (<em>data frame</em>), para que esteja disponível na área de trabalho (ambiente global) do <code>R</code>, e dessa forma, possamos utilizá-lo. Ao final do tratamento dos dados, podemos exportar essas informações para arquivos externos, e daí também, usaremos os arquivos de textos e o formato binário (<em>.xls</em>), mensionados anteriormente.</p>
+<h2 id="preparação-dos-dados">Preparação dos dados</h2>
+<p>A primeira coisa que devemos entender quando desejamos construir o arquivo de dados, é entender que sempre organizaremos as variáveis em colunas, com os seus valores em linhas, Figura <a href="#fig:bdados">12</a>. Sempre a primeira linha das colunas representarar o nome das variáveis. Esse é outro ponto importante, pois devemos ter a noção que alguma linguagem irá ler esse banco de dados. Assim, quanto mais caracteres diferentes do padrão ASCII, mais difícil será a leitura desses dados. Assim, sugerimos alguns padrões:</p>
+<ul>
+<li>Evitem símbolos fora do padrão alfanumérico;</li>
+<li>Evitem mistura de letras minúsculas com letras maiúsculas. Isso facilitará o acesso a essas variáveis. Contudo, lembre-se do padrão de nomes sintéticos permissíveis do <a href="http://bendeivide.github.io/cursor/">R</a>;</li>
+<li>Lembre-se que o banco de dados será utilizado para que um programa faça a sua leitura, portanto, deixe a formatação da apresentação dos dados para arquivos específico. Sendo assim, evitem comentários nesses arquivos, ou qualquer outro tipo de informação que não seja o banco de dados;</li>
+<li>Evitem palavras longas, por exemplo, <code>segundavariavel</code> (má escolha), <code>segvar</code> (boa escolha), <code>seg_var</code> (boa escolha);</li>
+<li>Evitem palavras compostas com espaço entre elas. Para isso use o símbolo <code>_</code>, por exemplo, <code>var 2</code> (má escolha), <code>var2</code> (boa escolha), <code>var_2</code> (boa escolha);</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:bdados"></span>
+<img src="images/banco_dados.png" alt="Modelo estrutural de um banco de dados." width="1080" />
+<p class="caption">
+Figure 12: Modelo estrutural de um banco de dados.
+</p>
+</div>
+</div>
+<h2 id="importando-dados">Importando dados</h2>
+<p>A função primária responável pela importação de dados é a função <code>scan()</code>. Por exemplo, funções como <code>read.table()</code>, <code>read.csv()</code> e <code>read.delim()</code>, usam a função <code>scan()</code> em seu algoritmo.</p>
+<p>A primeira ideia sobre importação de dados pode ser inserindo-os pelo teclado no próprio ambiente <a href="http://r-project.org/">R</a>. Para isso, usaremos a função <code>scan()</code>. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando e inserido os elementos do objeto dados</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scan.html'>scan</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Após executado essa linha de comando, aparecerá no console <code>1:</code> que significa, digitar o primeiro valor do objeto <code>x</code>, e depois clicar em <em>ENTER</em>. Depois <code>2:</code>, que significa digitar o segundo valor, e clicar em <em>ENTER</em>. Depois de inserido todos os valores necessários, aperte a tecla <em>ENTER</em> duas vezes no console, para sair da função <code>scan()</code>.</p>
+<p>O mais tradicional é usar programa para criação de banco de dados e deixá-lo pronto para o <code>R</code> lê-lo. O tipo de arquivo de texto que melhor controla a separação de variáveis é com a extensão <em>.csv</em>, uma vez que separamos as variáveis por “;” é o padrão. O arquivo de texto com extensão <em>.txt</em>, geralmente usa espaços. Isso acaba gerando problema de leitura no <a href="http://r-project.org/">R</a>, porque muitos usuários usam nomes de variáveis muito grandes, palavras compostas, de forma a desalinhar as colunas das variáveis. Daí, como a separação das variáveis é por meio de espaços, acaba gerando problema de leitura. Uma outra forma, é fazer importação de dados gerados pelo próprio <a href="http://r-project.org/">R</a>, extensão <em>.RData</em>.</p>
+<p>Temos a opção de usar um editor de banco de dados para essas extensões por meio de programas como MS Excel, Libre Office, dentre outros. Estes exportam arquivos binários do tipo <em>.xls</em>, <em>.xlsx</em>, dentre outros. Uma sugestão para diminuir complicações, é exportar os bancos de dados para arquivos de texto sitados acima, que também é possível ser exportado por esses programas. Isso evita a necessidade de ser instalado mais pacotes e dor de cabeça. Porém, para quem ainda deseja enfrentar, sugerimos a leitura do pacote <a href="https://readr.tidyverse.org/" target="_blank">readr</a>, como exemplo, porém existem diversos outros pacotes para este mesmo fim.</p>
+<p>Uma vez que o banco de dados está pronto, a leitura destes pode ser feita por alguns caminhos. Mostraremos o mais trivial que é o botão <em>Import Dataset</em>, terceiro quadrante, aba <em>Environment</em>, na IDE do <a href="http://rstudio.org/" target="_blank">RStudio</a>. Veja na Figura <a href="#fig:impexpdados">13</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:impexpdados"></span>
+<img src="images/imp-exp.png" alt="Usando o RStudio para importar dados." width="1786" />
+<p class="caption">
+Figure 13: Usando o RStudio para importar dados.
+</p>
+</div>
+</div>
+<p>Posteriormente, indique o arquivo para leitura. Aparece algumas opções de tipo de arquivo. Em nosso caso, usaremos a opção <em>From Text (base)</em>, que significa realizar a leitura para os tipos de arquivo <em>.txt</em> ou <em>.csv</em>. Daí os passos seguintes são:</p>
+<ol type="1">
+<li>Escolher o arquivo para leitura dos dados;</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:impexpdados2"></span>
+<img src="images/imp-exp2.png" alt="Usando o RStudio para importar dados." width="1790" />
+<p class="caption">
+Figure 14: Usando o RStudio para importar dados.
+</p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Configurar a leitura do banco de dados. Uma prévia pode ser vista no quadro <em>Data Frame</em>. Se for visualizado, algum problema, isso significa que deve ser informado opções adicionais como separador de variáveis (<em>Separator</em>), símbolo para casas decimais (<em>Decimal</em>), dentre outras opções. Por fim, digitar o nome associado ao objeto (<em>Name</em>) que será criado do tipo quadro de dados (<em>data frame</em>), e clicar no botão <em>Import</em>;</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:impexpdados3"></span>
+<img src="images/imp-exp3.png" alt="Usando o RStudio para importar dados." width="1782" />
+<p class="caption">
+Figure 15: Usando o RStudio para importar dados.
+</p>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Uma vez inserido, o RStudio apresenta a linha de comando utilizada para importar os dados no console (2º quadrante), o conjunto de dados (1º quadrante), e a ligação entre o nome e o objeto no ambiente global (3º quadrante).</li>
+</ol>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:impexpdados4"></span>
+<img src="images/imp-exp4.png" alt="Usando o RStudio para importar dados." width="1784" />
+<p class="caption">
+Figure 16: Usando o RStudio para importar dados.
+</p>
+</div>
+</div>
+<p>A outra forma é utilizar linhas de comando. Para isso utilizaremos a função <code>read.table()</code>. Antes de importarmos o banco de dados, algo interessante é inserir o arquivo de dados no diretório de trabalho no ambiente <a href="http://r-project.org/" target="_blank">R</a>. Para verificar o ambiente de trabalho use a função <code>getwd()</code>. Para alterar o local do ambiente de trabalho use <code>setwd()</code>. Se esse procedimento não for realizado, o usuário deve informar na função <code>read.table()</code>, o local exato do arquivo de texto.</p>
+<p>Vamos usar como diretório o local <code>C:\cursor</code>. Lembre-se que no <a href="http://r-project.org/" target="_blank">R</a> <strong>a barra deve ser invertida</strong>. Vamos inserir nesse diretório três arquivos <em>alfafa.txt</em>, <em>datast1980.txt</em> e <em>producao.csv</em>.</p>
+<p>Os três conjuntos de dados são:</p>
+<ul>
+<li><em>alfafa.txt</em></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">TRAT</th>
+<th style="text-align: left;">BLOCO</th>
+<th style="text-align: right;">PROD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">I</td>
+<td style="text-align: right;">2.89</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">II</td>
+<td style="text-align: right;">2.88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">III</td>
+<td style="text-align: right;">1.88</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">IV</td>
+<td style="text-align: right;">2.90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">2.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">VI</td>
+<td style="text-align: right;">2.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">I</td>
+<td style="text-align: right;">1.58</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">II</td>
+<td style="text-align: right;">1.28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">III</td>
+<td style="text-align: right;">1.22</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">IV</td>
+<td style="text-align: right;">1.21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">1.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">VI</td>
+<td style="text-align: right;">1.66</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">I</td>
+<td style="text-align: right;">2.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">II</td>
+<td style="text-align: right;">2.98</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">III</td>
+<td style="text-align: right;">1.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">IV</td>
+<td style="text-align: right;">1.95</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">1.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C</td>
+<td style="text-align: left;">VI</td>
+<td style="text-align: right;">1.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">I</td>
+<td style="text-align: right;">2.56</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">II</td>
+<td style="text-align: right;">2.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">III</td>
+<td style="text-align: right;">1.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">IV</td>
+<td style="text-align: right;">2.20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">V</td>
+<td style="text-align: right;">1.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">VI</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><em>datast1980.txt</em></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">trt</th>
+<th style="text-align: right;">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">19.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">32.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">27.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">32.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">33.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">17.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">24.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">27.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">25.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">24.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">17.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">19.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">11.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">15.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">20.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">21.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">20.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">18.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">18.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">14.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">14.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">11.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">11.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">14.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">17.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">19.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">19.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">16.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">20.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><em>producao.csv</em></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">7.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">8.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">6.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">8.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">6.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">7.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">9.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">6.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">4.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">5.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">7.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">6.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Diretorio</span>
+<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;E:/BEN_PROD/CURSOS E PALESTRAS/CURSOS/SITE/Curso_R&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando os arquivos no diretorio de trabalho</span>
+<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>list.files</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;_images&quot;            &quot;_site.yml&quot;          &quot;aulas&quot;             
+ [4] &quot;biblio.bib&quot;         &quot;cursor.Rproj&quot;       &quot;dados&quot;             
+ [7] &quot;DESCRIPTION&quot;        &quot;docs&quot;               &quot;images&quot;            
+[10] &quot;index.Rmd&quot;          &quot;navancado.Rmd&quot;      &quot;nbasico.Rmd&quot;       
+[13] &quot;nintermediario.Rmd&quot; &quot;R&quot;                  &quot;scripts&quot;           </code></pre>
+</div>
 <!--
-# <i class="fas fa-file-export"></i> Importantdo/Exportando dados {#exportdata}
-
-# <i class="fas fa-puzzle-piece"></i> Objetos
-
-
-Usar as ideias em Wickham:
-  - Na seção introdutoria sobre objetos:
-    - vinculação de outro nome a um objeto;
-    - rótulo;
-    - Quais atributos são possíveis;
-    - Quais os tipos de objetos;
-Usar as ideias de An Introduction to R:
-  - Seção 3.1
-Usar as ideias de R language definition:
-  - objetos
-
-
 # <i class="fas fa-file-code"></i> Boas práticas de como escrever um código {#goodcode}
 
 # <i class="fas fa-cubes"></i> Pacotes
@@ -4158,7 +4615,7 @@ Usar as ideias de R language definition:
 # Ambientes e caminho de busca (#env-searchpath)
 
 -->
-<div class="sourceCode" id="cb153"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.

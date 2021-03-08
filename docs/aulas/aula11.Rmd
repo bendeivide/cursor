@@ -31,8 +31,6 @@ sloop::s3_class(x) #Classe do objeto x
 ```{r echo=TRUE, prompt=TRUE}
 # Adicionando o atributo dim
 dim(x) <- c(2, 3, 2); x # 2 x 3 x 2 = 12 (Comp do vetor x)
-attributes(x) # Atributo de x
-sloop::s3_class(x) #classe do objeto
 ```
 
 ## Criando um *Array*

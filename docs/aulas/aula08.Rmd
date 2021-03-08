@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Retornando a afirmação de John Chambers
 
-- - **Princípio do Objeto**: Tudo que existe em `R` é um objeto
+- **Princípio do Objeto**: Tudo que existe em `R` é um objeto
 - Definimos um objeto como uma entidade no ambiente `R` com características internas contendo informações necessárias para interpretar sua estrutura e conteúdo
   - Atributos
   - Atributos intrínsecos: **modo** e **comprimento**

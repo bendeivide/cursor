@@ -34,14 +34,6 @@ Existem dois tipos raros que são os complexos (`complex`) e brutos (`raw`), que
 - Vetor de comprimento 1;
 - Sintaxe para valores especiais: `TRUE`, `FALSE`, `Inf`, `-Inf`, `NaN`, `NA`;
 
-```{r echo=TRUE, prompt=TRUE}
-# divisao de um numero por zero (+ infinito)
-x <- 50 / 0; x
-# divisao de um numero por zero (- infinito)
--50 / 0
-# Resultado sem número do tipo NaN
-x - x
-```
 
 ## Escalares
 
@@ -96,10 +88,6 @@ vetor.num2 == vetor.num3
 ```{r echo=TRUE, prompt=TRUE}
 # Modo do objeto:
 typeof(vetor.num); typeof(vetor.num2); typeof(vetor.num3)
-# Memoria:
-lobstr::obj_size(vetor.num)
-lobstr::obj_size(vetor.num2)
-lobstr::obj_size(vetor.num3)
 ```
 
 ## Vetores longos

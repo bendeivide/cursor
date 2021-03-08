@@ -108,6 +108,7 @@ Citaremos alguns livros e materiais utilizados para o desenvolvimento desse curs
  - [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html)
  - [R Language Definition](https://cran.r-project.org/doc/manuals/R-lang.html)
  - [R Internals](https://cran.r-project.org/doc/manuals/R-ints.html)
+ - [R Data Import/Export](https://cran.r-project.org/doc/manuals/r-release/R-data.html)
  - [Advanced R](https://adv-r.hadley.nz/) [@hadley2019]
  - [Advanced R Solutions](http://advanced-r-solutions.rbind.io/) [@hadleyetal2021]
  - [R Packages](https://r-pkgs.org/index.html) [@hadley2015]
