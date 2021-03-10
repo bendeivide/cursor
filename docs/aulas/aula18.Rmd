@@ -1,0 +1,214 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 18 - Boas práticas de como escrever um código"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: true
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Anexando pacotes
+library(magrittr)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+```
+
+## Introdução
+
+Nesse momento, entendemos os principais objetos para escrevermos os nossos *scripts*. Quando escrevemos um código, duas consequências ocorrem:
+- guardá-lo para futuras consultas, ou
+- compartilhamento.
+
+## Configurando o RStudio
+
+Uma primeira ferramenta que pode ser configurada para quem usa o `rstudio` é acionar todas as opções de diagnóstico do seu código. Para isso no menu: 
+
+- `Tools > Global options > Code > Editing`. Marque todas as opções em `General`;
+- `Tools > Global options > Code > Display`, Marque todas as opções;
+- `Tools > Global options > Code > Diagnostics`. Marque todas as opções em `R Diagnostics`.
+
+## Usando o pacote [styler](https://styler.r-lib.org)
+
+```{r stylecode, fig.cap = "Estilo de código com o pacote [styler](https://styler.r-lib.org).", out.width="80%", fig.align='center'}
+knitr::include_graphics("stylecode.gif")
+```
+
+## Nomes de arquivos
+
+```
+Boa escolha:
+-----------
+script.R
+nome_composto.R
+nome-composto.R
+
+Má escolha:
+-----------
+script.r
+nome composto.r
+```
+
+## Comentar as linhas de comando
+
+```
+Boa escolha:
+-----------
+# Objeto x
+x <- 1:10
+# Calculo da media
+mean(x)
+
+Má escolha:
+-----------
+x <- 1:10
+mean(x)
+```
+
+## Nomes de objetos
+
+```
+Boa escolha:
+-----------
+nome_curto
+aux1
+
+Má escolha:
+-----------
+nome_muito_grande
+Nome_Grande
+Aux1
+```
+
+## Nomes de objetos
+
+```
+Má escolha:
+-----------
+T <- "Nada"
+c <- 5
+sd <- 5 + 1
+mean <- 3 * 4
+```
+
+## Sintaxe
+
+```
+Boa escolha:
+-----------
+x <- 1:10
+media <- mean(x + 1 / length(x), na.rm = TRUE)
+base::mean(x)
+
+Má escolha:
+-----------
+x <- 1 : 10
+media<-mean(x+1/length(x),na.rm=TRUE)
+base :: mean(x)
+```
+
+## Usando [styler](https://styler.r-lib.org)
+
+```{r eval=TRUE, echo=TRUE, prompt=TRUE}
+comando <- "media<-mean(x+1/length(x),na.rm=TRUE)"
+styler::style_text(comando)
+```
+
+## Alinhamento com `<-` ou `=`
+
+```
+Boa escolha:
+-----------
+data.frame(a = 1,
+           b = "Ben")
+
+function(){
+  x    <- 10
+  vari <- x + 1
+  return(vari)
+}
+
+for (i in 1:10) i + 1
+
+Má escolha:
+-----------
+function () 1
+for(i in 1:10) i + 1
+```
+
+## Parênteses e colchetes
+
+```
+Boa escolha:
+-----------
+if (verbose)
+x11 <- mat[1, 1]
+x1  <- mat[1, ]
+
+Má escolha:
+-----------
+if ( verbose )
+x11 <- mat[1,1]
+x1  <- mat[1,]
+```
+
+## Chaves
+
+```
+Boa escolha:
+-----------
+fx <- function(x) {
+  if (x > 2) {
+    print("Maior que 2!")
+  } else {
+    print("Menor que 2!")
+  }
+}
+
+for (i in 1:10) x <- i + 1
+
+Má escolha:
+-----------
+fx <- function(x) {
+if (x > 2) {
+print("Maior que 2!")
+} else {
+print("Menor que 2!")
+}
+}
+
+for (i in 1:10) {x <- i + 1}
+```
+
+## Símbolo de `<-` e `=`
+
+```
+Boa escolha:
+-----------
+fx <- function(x = NULL) 10
+a  <- "Nome" 
+
+Má escolha:
+-----------
+fx = function(x = NULL) 10
+a = "Nome"
+```
+
+
+## Bons estudos!
+
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
+
+

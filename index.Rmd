@@ -134,6 +134,8 @@ Segue uma lista dos pacotes utilizados para o desenvolvimento do material desse 
 |[XR](https://cran.r-project.org/package=XR/) | Auxilia no estudo sobre a sintaxe do pacote |
 | [rlang](https://rlang.r-lib.org/) | Auxilia no estudo sobre a sintaxe do pacote |
 | [sloop](https://sloop.r-lib.org/) | Auxilia a compreender interativamente a programação orientada a objetos |
+| [styler](https://styler.r-lib.org) | Auxilia no estilo de código |
+| [formatR](https://yihui.org/formatr) | Auxilia no estilo de código |
 | [distill](https://rstudio.github.io/distill/) | Criação da página|
 
 

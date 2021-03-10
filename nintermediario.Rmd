@@ -93,4 +93,29 @@ Introdução aos objetos:
 
 <!-- Funções -->
 
+<!-- Os objetos de modo `function`, isto é, uma função, são objetos de primeira classe porque se comportam como qualquer outra estrutura de dados na linguagem `r rlink`, como atribuir nomes associados a esses objetos, passá-los como argumentos para outras funções, inserir dentro de funções, e até mesmo retorná-lo como resultado de funções. Vejamos, -->
+
 <!-- apresentar formas de se criar operadores binários especiais -->
+
+
+<!-- - Olhar escopo de variaveis seção 3.5: -->
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Global-environment -->
+
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Function-objects -->
+
+<!-- Falar sobre controle de fluxos usando paralelização -->
+<!-- - iterators -->
+<!-- - foreach -->
+<!-- - MonteCarlo -->
+
+<!-- Ref: R in a nutshel, -->
+
+<!-- ### Evitando loops -->
+
+<!-- ### Funções recursivas -->
+
+# Entendendo um pouco mais sobre objets
+
+# Programação orientada a objetos
+
+# Programação funcional

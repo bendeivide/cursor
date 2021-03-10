@@ -1,0 +1,303 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 16 - Estruturas de controle"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+```
+
+## Introdução
+
+As funções que utilizaremos, a seguir, são utilizadas quando desejamos realizar processos repetitivos para um determinado fim ou condicionado, as famosas estruturas de controle. Assim, como em outras linguagens, as funções utilizadas são: `if()`, `switch()`, `ifelse()`, `while()`, `repeat`, `for()`.
+
+## Ideia básica
+
+```
+função (condição) {
+  expressão
+}
+```
+
+## Função `if()`
+
+A sintaxe ...
+
+```
+if (condição) {
+  expressão sob condição = TRUE
+} else {
+  expressão sob condição = FALSE
+}
+```
+
+ou de forma alternativa:
+
+```
+if (condição) {
+  expressão sob condição = TRUE
+} 
+```
+
+## Exemplo 1
+
+```{r echo = TRUE, eval=TRUE, prompt=TRUE}
+# Objeto
+i <- 5
+# Estrutura if()
+if (i > 3) {
+  print("Maior que 3!")
+}
+```
+
+## Exemplo 2
+
+```{r echo = TRUE, eval=TRUE, prompt=TRUE}
+# Objeto numerico
+x <- 10
+
+# Estrutura 'if'
+if (is.numeric(x)) {
+  print("Isso é um número")
+} else {
+  print("Isso não é um número")
+}
+```
+
+## Exemplo 2
+
+```{r echo = TRUE, eval=TRUE, prompt=TRUE}
+# eh o mesmo que
+if (is.numeric(x) == TRUE) {
+  print("Isso é um número")
+} else {
+  print("Isso não é um número")
+}
+```
+
+## Exemplo 3
+
+```{r echo = TRUE, eval=TRUE, prompt=TRUE}
+# Objetos
+x <- 5
+w <- 3:8
+
+# Segunda forma
+if (x < w) x else w
+```
+
+## Função `ifelse()`
+
+Sintaxe ...
+
+```
+ifelse(condição, expressão sob TRUE, expressão sob FALSE)
+```
+
+## Exemplo 4
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE}
+# Objetos
+x <- 5
+w <- 3:8
+
+# Primeira sintaxe (Preferivel)
+ifelse(x < w, x, w)
+```
+
+## Exemplo 5
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE}
+x <- 2 # numero ou palavra
+
+# Estrutura 'if'
+if (is.character(x)) {
+  "palavra"
+} else {
+    if ((x %% 2) == 0) {
+      "numero_par"
+    } else {
+        if ((x %% 2) == 1) {
+          "numero_impar"
+        } 
+    } 
+}
+```
+
+## Exemplo 6
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE}
+# Objeto
+set.seed(15) # Fixando a semente
+x <- rnorm(1000) # Gerando 1000 numeros aleatorios
+
+# medida descritiva
+opcao <- "media" 
+# opcoes: "media", "mediana", 
+#         "medapar" (media #aparada)
+
+if (opcao == "media") {
+  cat("A média aritmética é:", round(mean(x), 4))
+} else {
+    if (opcao == "mediana") {
+      cat("A mediana é:", round(mean(x), 4))
+    } else {
+        if (opcao == "medpar") {
+          cat("A média aparada é:", round(mean(x, trim = 0.1), 4))
+        }
+    }
+}
+```
+
+## Função `switch()`
+
+Sintaxe...
+
+```
+switch (object,
+  case = action)
+```
+
+## Exemplo 7
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+switch(opcao,
+   media = cat("A média aritmética é:", round(mean(x), 4)),
+   mediana = cat("A mediana é:", round(mean(x), 4)),
+   medapar = cat("A média aparada é:", round(mean(x, trim = 0.1), 4))
+)
+```
+
+## Função `repeat()`
+
+Sintaxe...
+
+```
+repeat {
+   expressão ...
+}
+```
+
+## Exemplo 8
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Contador
+i <- 1
+# Loop repeat
+repeat {
+  if (i > 5) {
+    break
+  } else {
+    print(i)
+    i <- i + 1
+  }
+}
+```
+
+## Exemplo 9
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+i <- 1 # Contador
+repeat { # Loop repeat
+  if (i > 5) break
+  else if (i == 3) {
+      i <- i + 1
+      next
+    } else {
+      print(i)
+      i <- i + 1
+    }
+}
+```
+
+## Função `while()`
+
+Sintaxe...
+
+```
+while (condição) {
+   expressão ...
+}
+```
+
+## Exemplo 10
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Contador
+i <- 1
+# Loop while
+while (i <= 5) {
+  print(i)
+  i <- i + 1
+}
+```
+
+## Exemplo 11
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Contador
+i <- 1
+# Loop while
+while (i <= 5) {
+  if (i == 3) {
+    i <- i + 1
+    next
+  }
+  print(i)
+  i <- i + 1
+}
+```
+
+## Função `for()`
+
+Sintaxe...
+
+```
+for (contador in lista) {
+   expressão ...
+}
+```
+
+## Exemplo 12
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Loop for
+for (i in 1:5) {
+  print(i)
+}
+```
+
+## Exemplo 13
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Loop for
+for (i in 1:5) {
+  if (i == 3) {
+    next
+  }
+  print(i)
+}
+```
+
+## Bons estudos!
+
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
+
+

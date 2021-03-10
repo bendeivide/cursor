@@ -1,0 +1,245 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 17 - Como criar funções"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: true
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Anexando pacotes
+library(magrittr)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+```
+
+## Introdução
+
+Até esse momento, usamos funções já desenvolvidas no `r rlink`, seja dos pacotes da Base, seja via instalação dos pacotes via `r cran`. Agora, iremos desenvolver as nossas próprias funções. 
+
+Como falado nas aulas anteriores, a estrutura da função criada se mantém, argumento, corpo e ambiente. Para isso, usaremos a função `function`. O modo desse objeto é `closure`. Vejamos a sua sintaxe,
+
+## Sintaxe de `function()`
+
+```
+# Forma usual
+nome_funcao <- function(arg1, arg2, ...) {
+   corpo: comandos..
+}
+# Forma simplificada
+nome_funcao <- function(arg1, arg2, ...) corpo
+```
+
+## Exemplo 1
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Funcao
+fun1 <- function(x) {
+  res <- x + 1
+  return(res)
+}
+# Chamada
+fun1(x = 5)
+```
+
+## Componentes de `fun1()`
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Argumentos
+formals(fun1)
+
+# Corpo
+body(fun1)
+
+# Ambiente
+environment(fun1)
+```
+
+## Não é obrigatório `return()`
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Funcao
+fun2 <- function(x) x + 1
+# Executando
+fun2(5)
+```
+
+## Função anônima
+
+$$
+\int^{1}_{0}x^2dx = \frac{1}{3},
+$$
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+integrate(f = function(x) x^2, 
+          lower = 0, 
+          upper = 1)
+```
+
+## Chamada de função
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Funcao auxiliar 1
+aux1 <- function(x) x - mean(x)
+# Funcao auxiliar 2
+aux2 <- function(x) x^2
+# Funcao auxiliar 3
+aux3 <- function(x) {
+  sum(x) / (length(x) - 1)
+}
+# Gerando 100 numeros aleatorios de uma distribuicao normal
+set.seed(10)
+x <- rnorm(100)
+```
+
+## Chamada de função (continuação...)
+
+- Aninhado
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Calculo do desvio padrao (aninhado)
+sqrt(aux3(aux2(aux1(x))))
+```
+
+## Chamada de função (continuação...)
+
+- Intermediário
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Calculo do desvio padrao (intemediario)
+dp <- aux1(x)
+dp <- aux2(dp)
+dp <- aux3(dp)
+dp <- sqrt(dp)
+dp
+```
+
+## Chamada de função (continuação...)
+
+- Pipe
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Calculo do desvio padrao (pipe)
+x %>% 
+  aux1() %>%
+  aux2() %>%
+  aux3() %>%
+  sqrt() 
+```
+
+## Ordenamento de argumentos
+
+```{r echo=TRUE, error=TRUE, eval=TRUE, prompt=TRUE}
+estdesc <- function(x, opcao) {
+  res <- switch(opcao,
+           media = round(mean(x), 4),
+           mediana = round(mean(x), 4),
+           medapar = round(mean(x, trim = 0.1), 4))
+  return(res)
+}
+
+# Objeto
+set.seed(15)
+x <- rnorm(1000)
+```
+
+## Ordenamento de argumentos (continuação...)
+
+```{r echo=TRUE, error=TRUE, eval=TRUE, prompt=TRUE}
+# Argumentos nomeados na funcao
+estdesc(x = x, opcao = "media")
+estdesc(opcao = "media", x = x)
+```
+
+## Ordenamento de argumentos (continuação...)
+
+```{r echo=TRUE, error=TRUE, eval=TRUE, prompt=TRUE}
+# Argumentos não nomeados ordenados
+estdesc(x, "media")
+
+# Argumentos não ordenados (Gera erro)
+estdesc("media", x)
+```
+
+## Escopo léxico
+
+- Ambiente de funções
+- Ambiente de execuções
+
+## Exemplo 2
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+x <- 10
+fun <- function() {
+  x <- 2
+  x
+}
+# Chamando a funcao fun
+fun()
+```
+
+## Exemplo 3
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+x <- 10
+fun <- function() {
+  x
+}
+# Chamando a funcao fun
+fun()
+```
+
+## Caminho de busca
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+search()
+```
+
+## Pesquisa dinâmica
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Funcao
+fun <- function() x + 10
+# Objeto 1
+x <- 10
+# Chamada1
+fun()
+# Objeto 2
+x <- 20
+# Chamada 2
+fun()
+```
+
+## Novo começo
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Objeto
+n <- 1
+# Funcao
+fun <- function() {
+  n <- n + 1
+  n
+}
+# Chamada 1
+fun()
+# Chamada 2
+fun()
+```
+## Bons estudos!
+
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
+
+

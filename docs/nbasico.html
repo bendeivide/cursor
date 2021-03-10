@@ -108,6 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <meta name="citation_reference" content="citation_title=R for beginners;citation_publication_date=2005;citation_author=Emmanuel Paradis"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
+  <meta name="citation_reference" content="citation_title=R packages;citation_publication_date=2015;citation_publisher=Oâ€™Reilly Media;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <!--radix_placeholder_rmarkdown_metadata-->
@@ -2155,7 +2156,13 @@ Material
 <li><a href="#arrays"><i class="fas fa-dice-three"></i> Matrizes multidimencionais</a></li>
 <li><a href="#lists"><i class="fas fa-dice-four"></i> Listas de dados</a></li>
 <li><a href="#dataframes"><i class="fas fa-dice-five"></i> Quadro de dados</a></li>
-<li><a href="#impexpdata"><i class="fas fa-database"></i> Importantdo/Exportando dados</a></li>
+<li><a href="#impexpdata"><i class="fas fa-database"></i> Importando dados</a></li>
+<li><a href="#funcoes"><i class="fas fa-code"></i> Funções</a>
+<ul>
+<li><a href="#controle-fluxos">Estruturas de controle</a></li>
+<li><a href="#criar-funcoes">Como criar funções</a></li>
+</ul></li>
+<li><a href="#goodcode"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</a></li>
 </ul>
 <h2 id="section"></h2>
 <h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
@@ -2175,11 +2182,11 @@ Material
 <li>Aula 11: <a href="aulas/aula11.html" target="_blank"><em>Arrays</em></a></li>
 <li>Aula 12: <a href="aulas/aula12.html" target="_blank"><em>Lists</em></a></li>
 <li>Aula 13: <a href="aulas/aula13.html" target="_blank"><em>Data frames</em></a></li>
-<li>Aula 14: <a href="index.html">Importando/Exportando dados</a></li>
-<li>Aula 15: <a href="index.html">Funções</a></li>
-<li>Aula 16: <a href="index.html">Boas práticas de como escrever um código</a></li>
-<li>Aula 17: <a href="index.html">Como criar funções</a></li>
-<li>Aula 18: <a href="index.html">Controle de fluxos (<em>Loops</em>)</a></li>
+<li>Aula 14: <a href="aulas/aula14.html" target="_blank">Importando dados</a></li>
+<li>Aula 15: <a href="aulas/aula15.html" target="_blank">Funções</a></li>
+<li>Aula 16: <a href="aulas/aula16.html" target="_blank">Estruturas de controle</a></li>
+<li>Aula 17: <a href="aulas/aula17.html" target="_blank">Como criar funções</a></li>
+<li>Aula 18: <a href="aulas/aula18.html" target="_blank">Boas práticas de como escrever um código</a></li>
 <li>Aula 19: <a href="index.html">Pacotes</a></li>
 <li>Aula 20: <a href="index.html">Carregando e Anexando pacotes</a></li>
 <li>Aula 21: <a href="index.html">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
@@ -2317,7 +2324,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x89b63f0&quot;</code></pre>
+<pre><code>[1] &quot;0xbd75858&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2344,7 +2351,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x89b63f0&quot;</code></pre>
+<pre><code>[1] &quot;0xbd75858&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2356,7 +2363,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xd7198c8&quot;</code></pre>
+<pre><code>[1] &quot;0xe169528&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2384,7 +2391,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xd7197e8&quot;</code></pre>
+<pre><code>[1] &quot;0xe169448&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2586,9 +2593,9 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;funcao&quot;        &quot;meu_nome&quot;      &quot;n&quot;             &quot;novo_ambiente&quot;
-[5] &quot;rlink&quot;         &quot;rstudio&quot;       &quot;w&quot;             &quot;x&quot;            
-[9] &quot;y&quot;            </code></pre>
+<pre><code> [1] &quot;cran&quot;          &quot;funcao&quot;        &quot;meu_nome&quot;      &quot;n&quot;            
+ [5] &quot;novo_ambiente&quot; &quot;rlink&quot;         &quot;rstudio&quot;       &quot;w&quot;            
+ [9] &quot;x&quot;             &quot;y&quot;            </code></pre>
 </div>
 <p>Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto <code>meu_nome</code> é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.</p>
 <h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>
@@ -3167,6 +3174,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 </tbody>
 </table>
 <h1 id="vetores"><i class="fas fa-dice-one"></i> Vetores</h1>
+<!-- Faltou apresentar as operacoes logicas e booleanas dentro da indexação, exclusao de elementos -->
 <p>Podemos dizer que existem três tipos principais de vetores atômicos:</p>
 <ul>
 <li>Numéricos (<code>numeric</code>):
@@ -3983,7 +3991,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 [[4]]
 function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008b76b78&gt;
+&lt;bytecode: 0x0000000009376610&gt;
 &lt;environment: namespace:base&gt;
 
 [[5]]
@@ -4136,7 +4144,8 @@ expression(x ~ y)</code></pre>
 </div>
 </div>
 <p>Essa função <code>attach()</code> tem implicações, quando por exemplo se deseja inseri-la na construção de um pacote <code>R</code>. Iremos discutir esse ponto mais a frente. Para desanexar o quadro de dados, use <code>detach()</code>. A função <code>attach()</code> é genérica e pode ser usada em qualquer objeto de modo <code>list</code> ser anexado no caminho de busca.</p>
-<h1 id="impexpdata"><i class="fas fa-database"></i> Importantdo/Exportando dados</h1>
+<h1 id="impexpdata"><i class="fas fa-database"></i> Importando dados</h1>
+<!-- Depois inserir a exportacao de dados -->
 <p>A importação/exportação de dados era algo que em poucas linhas conseguíamos explicar sobre o ambiente <code>R</code>, no sentido de análise de dados. Entretanto, observando o terceiro princípio do R, afirmado por <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>:</p>
 <blockquote>
 <p>
@@ -4648,8 +4657,7 @@ Figure 16: Usando o RStudio para importar dados.
 </div>
 </div>
 <p>Percebemos que as extensões <em>.txt</em> e <em>.csv</em> são idênticos, exceto pela estrutura de como os dados estão dispostos. Para comprovar isso, o usuário manualmente poderá mudar a entensão de um arquivo do tipo <em>.csv</em> para um arquivo <em>.txt</em> e observar em um bloco de notas.</p>
-<p>Até esse momento do curso, usamos as funções no <a href="http://r-project.org/" target="_blank">R</a> sem apresentar os argumentos dessas funções dentro dos parênteses. Isso porque quando inserimos os valores dos argumentos na posição correta destes, não precisaremos inserir o nome dos argumentos. Por exemplo, já usamos anteriormente a função <code>mean()</code> que calcula a média de um conjunto de valores, por exemplo, <code>valores &lt;- 1:10</code>. Temos como primeiro argumento para essa função o <code>x</code> que representa um objeto <a href="http://r-project.org/" target="_blank">R</a> que recebe os valores para o cálculo. Assim, como sabemos que <code>x</code> é o primeiro argumento dessa função, podemos omitir o seu nome e calcular a média por <code>mean(valores)</code>, que é o mesmo que <code>mean(x = valores)</code>. Para mais detalhes, <code>?mean()</code>.</p>
-<p>Diante disso, apresenamos alguns argumentos para a função <code>read.table()</code>, necessários para a importação dos dados.</p>
+<p>Até esse momento do curso, usamos as funções no <a href="http://r-project.org/" target="_blank">R</a> sem apresentar os argumentos dessas funções dentro dos parênteses. Isso porque quando inserimos os valores dos argumentos na posição correta destes, não precisaremos inserir o nome dos argumentos. Por exemplo, já usamos anteriormente a função <code>mean()</code> que calcula a média de um conjunto de valores, por exemplo, <code>valores &lt;- 1:10</code>. Temos como primeiro argumento para essa função o <code>x</code> que representa um objeto <a href="http://r-project.org/" target="_blank">R</a> que recebe os valores para o cálculo. Assim, como sabemos que <code>x</code> é o primeiro argumento dessa função, podemos omitir o seu nome e calcular a média por <code>mean(valores)</code>, que é o mesmo que <code>mean(x = valores)</code>. Para mais detalhes, <code>?mean()</code>. Para mais detalhes sobre a função <code>read.table()</code>, use <code>?read.table()</code>.</p>
 <!-- Acrescentar depois a diferenciação entre .RData ou .rda e .rds -->
 <!-- https://stackoverflow.com/questions/21370132/r-data-formats-rdata-rda-rds-etc -->
 <!-- > x <- 1:5 -->
@@ -4668,15 +4676,878 @@ Figure 16: Usando o RStudio para importar dados.
 <!-- # NOTE: `load()` simply returns the name of the objects loaded. Not the values.  -->
 <!-- > x -->
 <!-- [1] 1 2 3 4 5 -->
-<!--
-# <i class="fas fa-file-code"></i> Boas práticas de como escrever um código {#goodcode}
+<!-- Inserir ao final uma ilustração com entrada e saída de dados -->
+<h1 id="funcoes"><i class="fas fa-code"></i> Funções</h1>
+<p>Mais uma vez, nos reportamos aos princípios do <a href="http://r-project.org/" target="_blank">R</a> (<span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>), mais especificamente ao segundo princípio,</p>
+<blockquote>
+<p>
+<ul>
+<li><strong>Princípio da função</strong>: Tudo que acontece no <a href="http://r-project.org/" target="_blank">R</a> é uma chamada de função.</li>
+</ul>
+</p>
+</blockquote>
+<p>Para que possamos compreender esse princípio, precisamos entender que uma função é um objeto, isto é, modo <code>function</code><a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>, assim como os vetores são, seguindo as mesmas ideias comentadas na seção anterior, e que as funções podem ser dividas em três componentes:</p>
+<ul>
+<li>Argumentos, função <code>formals()</code>,</li>
+<li>Corpo, função <code>body()</code> e</li>
+<li>Ambiente, função <code>environment()</code>.</li>
+</ul>
+<p>Para o caso das funções primitivas, escritas na linguagem <em>C</em>, essa regra foge a excessão, e será comentado nos módulos seguintes. Dizemos que funções são primitivas de modo <code>builtin</code> ou <code>special</code>.</p>
+<p>A ideia de função aqui não pensando como uma relação matemática, mas como um sistema que tem uma entrada e saída. Podemos ter funções no ambiente <a href="http://r-project.org/" target="_blank">R</a> que organiza dados, e não operações matemáticas por exemplo. Vejamos a função <code>sort()</code> do pacote <em>base</em> que ordena de forma crescente ou descrescente um conjunto de valores,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetor</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span>; <span class='va'>y</span>
+</code></pre>
+</div>
+<pre><code>[1] 5 3 4</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 3 4 5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Argumentos da funcao sort</span>
+<span class='fu'><a href='https://rdrr.io/r/base/formals.html'>formals</a></span><span class='op'>(</span><span class='va'>sort</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$x
 
+
+$decreasing
+[1] FALSE
+
+$...</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Corpo da funcao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/body.html'>body</a></span><span class='op'>(</span><span class='va'>sort</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>{
+    if (!is.logical(decreasing) || length(decreasing) != 1L) 
+        stop(&quot;&#39;decreasing&#39; must be a length-1 logical vector.\nDid you intend to set &#39;partial&#39;?&quot;)
+    UseMethod(&quot;sort&quot;)
+}</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>sort</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: namespace:base&gt;</code></pre>
+</div>
+<p>Nesse caso, os argumentos <code>x</code>, <code>decreascing</code> e <code>...</code>, são nomes que aguardam receber objetos para a execução da função <code>sort()</code>. Nem todos os argumentos necessitam receber objetos, a estes chamamos de argumentos padrão, como o caso do argumento <code>decreascing</code> com padrão igual a <code>FALSE</code>, que significa que o ordenamento dos dados será de forma não-decrescente. Observe que na função <code>sort()</code> entramos apenas com o argumento <code>x = y</code>, não precisando inserir <code>decreascing = FALSE</code>. Agora, para modificar o argumento padrão, basta acrescentar a alteração na função, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>y</span>, decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 5 4 3</code></pre>
+</div>
+<p>O <code>'...'</code> é um argumento especial e significa que pode conter qualquer número de argumentos. Geralmente é utilizado em uma função quando não se sabe o número exato de argumentos. Na subseção <a href="#criar-funcoes">Como criar funções</a>, entenderemos melhor.</p>
+<p>O próximo item é o corpo da função. É nele que inserirmos as instruções, isto é, as linhas de comandos necessárias a que destina a sua criação. Uma outra forma de acessarmos o corpo das funções é digitar no console apenas o seu nome sem o parêntese, isto é, <code>sort</code>.</p>
+<p>Por fim, o ambiente que no caso da função <code>sort()</code> representa o ambiente do pacote <em>base</em>, isto é, o <em>namespace</em> do pacote.</p>
+<p>Podemos observar que essas funções utilizadas até agora, não foram criadas pelo usuário. Estas funções vieram do que chamamos de pacotes. Alguns pacotes estão disponíveis quando instalamos o <a href="http://r-project.org/" target="_blank">R</a>, dizemos que estes são os pacotes da Base do <a href="http://r-project.org/" target="_blank">R</a>, para a linguagem. O principal pacote deles é o pacote <em>base</em>. Os demais pacotes desenvolvidos podem ser obtidos via <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, e falaremos mais adiante.</p>
+<p>O ambiente <a href="http://r-project.org/" target="_blank">R</a> apresenta uma versatilidade de manuais para a linguagem. Por exemplo, para verificar informações sobre um determinado pacote como o <em>base</em>, use <code>help(package = "base")</code>. A função <code>help</code> pode ser utilizada para funções de pacotes anexados. Por exemplo, <code>help("sort")</code>. O pacote <em>base</em> sempre estará anexado, isto é, disponível no caminho de busca para a utilização. Para os que não estão anexados, a função <code>help</code> deve informar o nome da função que necessita de ajuda, bem como o seu pacote. Por exemplo, temos uma função <code>read.dbf()</code> do pacote <em>foreign</em>, Base do <a href="http://r-project.org/" target="_blank">R</a>, porém, ele não está anexado<a href="#fn18" class="footnote-ref" id="fnref18" role="doc-noteref"><sup>18</sup></a> ao inicializar o <a href="http://r-project.org/" target="_blank">R</a>. Assim, caso não anexe o pacote, usando <code>library("foreign")</code>, a ajuda sobre a função pode ser realizada com <code>help("read.dbf", package = "foreign")</code>. Outras sintaxes para a função <code>help()</code> é usar <code>?</code> antes do nome de uma função de um pacote anexado, isto é, <code>?sort()</code>.</p>
+<p>Para os manuais de ajuda na internet, use <code>??</code> antes do nome da função, por exemplo <code>??sort()</code>, <code>read.dbf()</code>, etc. Essa sintaxe não precisa dos pacotes estarem anexados para ajuda de determinada função, porém o pacote necessita estar instalado. Para mais detalhes sobre pacotes, teremos uma seção sobre <a href="#pacotes">Pacotes</a>.</p>
+<p>As chamadas de funções no podem ocorrer de três formas: aninhada, intermediária ou de forma pipe. As duas primeiras formas da Base do <a href="http://r-project.org/" target="_blank">R</a>, e o segundo foi uma sintaxe utilizada pelo pacote <a href="https://magrittr.tidyverse.org/" target="_blank">magrittr</a>.</p>
+<p>Suponha que desejamos calcular o desvio padrão de um conjunto de valores. Vamos utilizar as três formas:</p>
+<ul>
+<li>Aninhado:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Gerando 100 numeros aleatorios de uma distribuicao normal</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='co'># Semente</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>
+
+<span class='co'># Calculando o desvio padrao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9412359</code></pre>
+</div>
+<ul>
+<li>intermediária:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Calculando o desvio padrao</span>
+<span class='va'>vari</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>desvpad</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>vari</span><span class='op'>)</span>; <span class='va'>desvpad</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9412359</code></pre>
+</div>
+<ul>
+<li>Pipe:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Anexando o pacote</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span>
+
+<span class='co'># Calculando o desvio padrao</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9412359</code></pre>
+</div>
+<p>A ideia da chamada de função aninhada é inserir função como argumento de funções sem necessidade de associar nomes aos objetos. A ordem de execução começa sempre da direita para a esquerda. No caso da chamada de função intermediária, associamos nomes a cada função, e os passos seguem. Por fim, o operador especial pipe (<code>%&gt;%</code>) tem como primeiro operando o primeiro argumento da função no segundo operando.</p>
+<p>Quando desenvolvemos pacotes, preferimos os dois primeiros, pois é a forma tradicional de chamadas de função no <a href="http://r-project.org/" target="_blank">R</a>. A chamada de função pipe é muito utilizada para ciência dos dados.</p>
+<h2 id="controle-fluxos">Estruturas de controle</h2>
+<p>As funções que utilizaremos, a seguir, são utilizadas quando desejamos realizar processos repetitivos para um determinado fim ou condicionado, as famosas estruturas de controle. Assim, como em outras linguagens, as funções utilizadas são: <code>if()</code>, <code>switch()</code>, <code>ifelse()</code>, <code>while()</code>, <code>repeat</code>, <code>for()</code>. Esses objetos tem modo <code>special</code><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>, porque as expressão não são necessariamente avaliadas. Já a função <code>ifelse()</code> é de modo <code>closure</code><a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>. Esse é um tipo de função implementado por <code>function()</code>.</p>
+<p>A ideias das estruturas de controle de modo <code>special</code> é:</p>
+<pre><code>função (condição) {
+  expressão
+}</code></pre>
+<p>A sintaxe das funções <code>repeat</code> e <code>swicth()</code> fogem um pouco desse padrão, e explicaremos em sua aplicação.</p>
+<p>Apesar da linguagem <a href="http://r-project.org/" target="_blank">R</a> ser interpretada, acaba ganhando a fama de que as funções <em>loops</em> são mais lentas. Em alguns casos, a construção do algoritmo proporciona isso e não a implementação dessas funções em si. Um exemplo que podemos citar, são as cópias de objetos podem ter um gasto de memória ativa imenso no processo e proporcionar um gasto computacional. E isso foi devido a forma de como o algoritmo copiou os objetos, e não as funções <em>lopps</em>. Veremos isso no módulo <a href="nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
+<p>A primeira estrutura é o <code>if()</code>, com sintaxe:</p>
+<pre><code>if (condição) {
+  expressão sob condição = TRUE
+} else {
+  expressão sob condição = FALSE
+}</code></pre>
+<p>ou de forma alternativa:</p>
+<pre><code>if (condição) {
+  expressão sob condição = TRUE
+} </code></pre>
+<p>Observe o primeiro exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto</span>
+<span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>5</span>
+<span class='co'># Estrutura if()</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>&gt;</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Maior que 3!"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Maior que 3!&quot;</code></pre>
+</div>
+<p>Vejamos mais um exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto numerico</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+
+<span class='co'># Estrutura 'if'</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>is.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Isso é um número"</span><span class='op'>)</span>
+<span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Isso não é um número"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Isso é um número&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># eh o mesmo que</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>is.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>==</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Isso é um número"</span><span class='op'>)</span>
+<span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Isso não é um número"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Isso é um número&quot;</code></pre>
+</div>
+<p>observe na primeira forma que a condição na função nós não precisamos perguntar se <code>is.numeric(x) == TRUE</code>, porque isso já é implícito na função, e acaba levando a primeira expressão <code>print("Isso é um número")</code>. No <a href="http://r-project.org/" target="_blank">R</a>, essa estrutura de controle não é vetorizado, isto é, se a condição houver um vetor lógico maior que 1, apenas os primeiros itens serão usados. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objetos</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>5</span>
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span>
+
+<span class='co'># Primeira sintaxe (Preferivel)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;</span> <span class='va'>w</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span>
+<span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+  <span class='va'>w</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 3 4 5 6 7 8</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma</span>
+<span class='co'># if (x &lt; w) x else w</span>
+</code></pre>
+</div>
+</div>
+<p>Como forma alternativa, pode ser usado a função <code>ifelse</code>, cuja sintaxe é:</p>
+<pre><code>ifelse(condição, expressão sob TRUE, expressão sob FALSE)</code></pre>
+<p>Assim, temos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objetos</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>5</span>
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fl'>3</span><span class='op'>:</span><span class='fl'>8</span>
+
+<span class='co'># Primeira sintaxe (Preferivel)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;</span> <span class='va'>w</span>, <span class='va'>x</span>, <span class='va'>w</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 3 4 5 5 5 5</code></pre>
+</div>
+<p>Podemos estar interessados em resultados específicos para determinadas condições. Por exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>2</span> <span class='co'># numero ou palavra</span>
+
+<span class='co'># Estrutura 'if'</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/character.html'>is.character</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='st'>"palavra"</span>
+<span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='kw'>if</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>%%</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>==</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='st'>"numero_par"</span>
+    <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+        <span class='kw'>if</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>%%</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='st'>"numero_impar"</span>
+        <span class='op'>}</span> 
+    <span class='op'>}</span> 
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;numero_par&quot;</code></pre>
+</div>
+<p>Outro exemplo seria,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>)</span> <span class='co'># Fixando a semente</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>1000</span><span class='op'>)</span> <span class='co'># Gerando 1000 numeros aleatorios</span>
+
+<span class='co'># medida descritiva</span>
+<span class='va'>opcao</span> <span class='op'>&lt;-</span> <span class='st'>"media"</span> <span class='co'># opcoes: "media", "mediana", "medapar" (media aparada)</span>
+
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>opcao</span> <span class='op'>==</span> <span class='st'>"media"</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A média aritmética é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='kw'>if</span> <span class='op'>(</span><span class='va'>opcao</span> <span class='op'>==</span> <span class='st'>"mediana"</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A mediana é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+        <span class='kw'>if</span> <span class='op'>(</span><span class='va'>opcao</span> <span class='op'>==</span> <span class='st'>"medpar"</span><span class='op'>)</span> <span class='op'>{</span>
+          <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A média aparada é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span>, trim <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+        <span class='op'>}</span>
+    <span class='op'>}</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>A média aritmética é: 0.037</code></pre>
+</div>
+<p>Poderíamos utilizar a função <code>switch()</code>, para esse mesmo código, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span><span class='op'>(</span><span class='va'>opcao</span>,
+   media <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A média aritmética é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>,
+   mediana <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A mediana é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>,
+   medapar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A média aparada é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span>, trim <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>A média aritmética é: 0.037</code></pre>
+</div>
+<p>As três estruturas de <em>loop</em> no <a href="http://r-project.org/" target="_blank">R</a> são: <code>repeat</code>, <code>while()</code> e <code>for()</code>. A primeira delas é <code>repeat</code>, apresentamos sua sintaxe:</p>
+<pre><code>repeat {
+   expressão ...
+}</code></pre>
+<p>Juntamente com o <code>repeat</code>, usamos as funções <code>break</code> e <code>next</code>, pois a função <code>repeat</code> não tem uma condição explícita. Vejamos, alguns exemplos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Contador</span>
+<span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='co'># Loop repeat</span>
+<span class='kw'>repeat</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>&gt;</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='kw'>break</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
+    <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+<p>Observe que quando <code>i &lt;- 6</code>, o ciclo entrou na condição <code>if(i &gt; 5)</code> e avaliou a função <code>break</code>, que resultou na quebra do ciclo. Assim, a função <code>print(i)</code> não foi mais acionada, e os resultados foram impressos até o número <code>5</code>. No próximo exemplo, acrescentamos a função <code>next</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Contador</span>
+<span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='co'># Loop repeat</span>
+<span class='kw'>repeat</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>&gt;</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='kw'>break</span>
+  <span class='op'>}</span> 
+  <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>{</span>
+      <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+      <span class='kw'>next</span>
+    <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+      <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
+      <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+    <span class='op'>}</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 1
+[1] 2
+[1] 4
+[1] 5</code></pre>
+</div>
+<p>Similar a essa função, temos <code>while()</code>, que agora, temos uma condição de parada, cuja sintaxe é:</p>
+<pre><code>while (condição) {
+   expressão ...
+}</code></pre>
+<p>Nessa função, também podemos usar as funções <code>break</code> e <code>next</code>, como usados na função <code>repeat</code>. Vejamos um exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Contador</span>
+<span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='co'># Loop while</span>
+<span class='kw'>while</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>&lt;=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
+  <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+<p>Nesse caso, não foi necessário utilizar a função <code>break</code>, devido a condição que ela permite impor ao ciclo. Vejamos um outro exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Contador</span>
+<span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='co'># Loop while</span>
+<span class='kw'>while</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>&lt;=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+    <span class='kw'>next</span>
+  <span class='op'>}</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
+  <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 1
+[1] 2
+[1] 4
+[1] 5</code></pre>
+</div>
+<p>Observamos a utilização da função <code>next</code>, similar ao que foi realizado com a função <code>repeat</code>. Por fim, a função <code>for()</code>, cuja sintaxe é dada por:</p>
+<pre><code>for (contador in lista) {
+   expressão ...
+}</code></pre>
+<p>Com essa função, também podemos utilizar <code>break</code> e <code>next</code>. Porém, o controle do ciclo nessa sitação é maior, e menos necessário essas funções. Vejamos um primeiro exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Loop for</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5</code></pre>
+</div>
+<p>Observe que a implementação, dos algoritmos anteriores, é bem mais simples usando a função <code>for()</code>. Vejamos um próximo exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Loop for</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='kw'>next</span>
+  <span class='op'>}</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 1
+[1] 2
+[1] 4
+[1] 5</code></pre>
+</div>
+<p>Mais uma vez, foi utilizado a função <code>next</code>, sem necessidade agora, de atualizar o contador <code>i</code>, uma vez que já está definido na função <code>for()</code>.</p>
+<p>Veremos na próxima subseção, que temos funções de alto nível que podem substituir as funções <em>loops</em>. São as chamadas funções da família <em>apply</em>.</p>
+<h2 id="criar-funcoes">Como criar funções</h2>
+<p>Até esse momento, usamos funções já desenvolvidas no <a href="http://r-project.org/" target="_blank">R</a>, seja dos pacotes da Base, seja via instalação dos pacotes via <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. Agora, iremos desenvolver as nossas próprias funções.</p>
+<p>Como falado anteriormente, no <a href="#funcoes">início dessa seção</a>, a estrutura da função criada se mantém, argumento, corpo e ambiente. Para isso, usaremos a função <code>function</code>. O modo desse objeto é <code>closure</code><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>. Vejamos a sua sintaxe,</p>
+<pre><code># Forma usual
+nome_funcao &lt;- function(arg1, arg2, ...) {
+   corpo: comandos..
+}
+# Forma simplificada
+nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
+<p>Vejamos um primeiro exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fun1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>1</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Nesse caso, temos uma função chamada <code>fun1</code>, cujo argumento de entrada é <code>x</code>. Observe que uma função é como um objeto do tipo vetor, associamos um nome ao objeto da mesma forma. O corpo apresenta uma delimitação por chaves <code>{...}</code>, em que apresenta um comando de atribuição <code>res</code> que se associa a soma <code>x + 1</code>, e por fim, o resultado dessa função, imprime <code>res</code>, por meio da função <code>return()</code>. Para utilizar essa função, fazemos</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>fun1</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 6</code></pre>
+</div>
+<p>O que aconteceu foi que ao assumir <code>x = 5</code>, essa informação foi repassada para o corpo da função, aonde existia <code>x</code>, foi substituído por <code>5</code>, para esse caso. A função <code>+</code> é chamada, a expressão <code>x + 1</code> avaliada, e nome res se associa ao resultado da expressão. Por fim, quando a função <code>fun1</code> é chamada, o resultado de <code>res</code> é impresso no console, por meio de <code>return(res)</code>. Vamos verificar os três componentes da função <code>fun1</code>,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Argumentos</span>
+<span class='fu'><a href='https://rdrr.io/r/base/formals.html'>formals</a></span><span class='op'>(</span><span class='va'>fun1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$x</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Corpo</span>
+<span class='fu'><a href='https://rdrr.io/r/base/body.html'>body</a></span><span class='op'>(</span><span class='va'>fun1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>{
+    res &lt;- x + 1
+    return(res)
+}</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>fun1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+</div>
+<p>O corpo da função é executado de forma sequencial, a partir da primeira linha até a última. Apesar de recomendado, também não é obrigatório o uso da função <code>return()</code>, veja</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao</span>
+<span class='va'>fun2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>1</span>
+<span class='co'># Executando</span>
+<span class='fu'>fun2</span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 6</code></pre>
+</div>
+<h3 id="função-anônima">Função anônima</h3>
+<p>Podemos também ter o que chamamos de <strong>função anônima</strong>, da qual não associamos nome as funções. Contudo, sendo criada esta não pode ser recuperada como qualquer outro objeto. Essa forma é interessante quando não precisamos dela após o seu uso. Por exemplo, queremos calcular a integral, <span class="math display">\[
+\int^{1}_{0}x^2dx = \frac{1}{3},
+\]</span></p>
+<p>e criamos uma função <span class="math inline">\(x^2\)</span>. Então,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>f <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span>, 
+          lower <span class='op'>=</span> <span class='fl'>0</span>, 
+          upper <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>0.3333333 with absolute error &lt; 3.7e-15</code></pre>
+</div>
+<p>A função <code>integrate</code> é utilizada para o cálculo de integral, do qual, passamos os argumentos, função (<code>f</code>), limite inferior (<code>lower</code>) e limite superior (<code>upper</code>) da integração, respectivamente. Observe que não houve necessidade de nomear a função no argumento, pois não há objetivo de reutilizado.</p>
+<h3 id="chamadas-de-função">Chamadas de função</h3>
+<p>As chamadas para essas funções ocorrem da mesma forma que as funções apresentadas da Base do <a href="http://r-project.org/" target="_blank">R</a>. Vejamos o cálculo do desvio padrão novamente,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao auxiliar 1</span>
+<span class='va'>aux1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='co'># Funcao auxiliar 2</span>
+<span class='va'>aux2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span>
+<span class='co'># Funcao auxiliar 3</span>
+<span class='va'>aux3</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>/</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Gerando 100 numeros aleatorios de uma distribuicao normal</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>
+
+<span class='co'># Calculo do desvio padrao (aninhado)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'>aux3</span><span class='op'>(</span><span class='fu'>aux2</span><span class='op'>(</span><span class='fu'>aux1</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9412359</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Calculo do desvio padrao (intemediario)</span>
+<span class='va'>dp</span> <span class='op'>&lt;-</span> <span class='fu'>aux1</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>dp</span> <span class='op'>&lt;-</span> <span class='fu'>aux2</span><span class='op'>(</span><span class='va'>dp</span><span class='op'>)</span>
+<span class='va'>dp</span> <span class='op'>&lt;-</span> <span class='fu'>aux3</span><span class='op'>(</span><span class='va'>dp</span><span class='op'>)</span>
+<span class='va'>dp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>dp</span><span class='op'>)</span>
+<span class='va'>dp</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9412359</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Calculo do desvio padrao (pipe)</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>aux1</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>aux2</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>aux3</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code>[1] 0.9412359</code></pre>
+</div>
+<h3 id="ordenação-de-argumentos">Ordenação de argumentos</h3>
+<p>Os argumentos nas funções podem ser nomeados ou não. Quando nomeados, a ordem como são inseridos na função não importa. Já os argumentos não nomeados, seus valores precisam estar na ordem como a função foi desenvolvida. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>estdesc</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>opcao</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='kw'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span><span class='op'>(</span><span class='va'>opcao</span>,
+           media <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span>,
+           mediana <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span>,
+           medapar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span>, trim <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Objeto</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>1000</span><span class='op'>)</span>
+
+<span class='co'># Argumentos nomeados na funcao</span>
+<span class='fu'>estdesc</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, opcao <span class='op'>=</span> <span class='st'>"media"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.037</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>estdesc</span><span class='op'>(</span>opcao <span class='op'>=</span> <span class='st'>"media"</span>, x <span class='op'>=</span> <span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.037</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Argumentos não nomeados ordenados</span>
+<span class='fu'>estdesc</span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"media"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.037</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Argumentos não ordenados (Gera erro)</span>
+<span class='fu'>estdesc</span><span class='op'>(</span><span class='st'>"media"</span>, <span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Error in switch(opcao, media = round(mean(x), 4), mediana = round(mean(x), : EXPR deve ser um vetor de comprimento 1</code></pre>
+</div>
+<h3 id="objeto-reticências-...">Objeto reticências (<code>...</code>)</h3>
+<p>O objeto reticências é do tipo <em>pairlist</em>, um tipo de objeto usado bastante internamente no <a href="http://r-project.org/" target="_blank">R</a>, e dificilmente utilizado no código interpretado. De modo que não temos acesso direto ao objeto <code>...</code>. Contudo, esse objeto tem um papel fundamental nas funções, quando damos a liberdade de inserir mais argumentos além dos definidos na função. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao que plota um grafico</span>
+<span class='va'>grafico</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, <span class='va'>...</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Vetores</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>; <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='co'># Chamada 1, com os argumentos definidos</span>
+<span class='fu'>grafico</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="nbasico_files/figure-html5/unnamed-chunk-84-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamada 2, inserindo argumentos nao definidos</span>
+<span class='fu'>grafico</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, main <span class='op'>=</span> <span class='st'>"Título"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="nbasico_files/figure-html5/unnamed-chunk-84-2.png" width="624" /></p>
+</div>
+<p>Isso ocorre, porque temos a função <code>plot()</code> no corpo da função <code>grafico()</code> que apresenta muitos argumentos. Dessa forma, criamos a função <code>grafico()</code>, com os argumentos que representam as coordenadas, mas a reticências (<code>...</code>) garantem que os demais argumentos de <code>plots</code>, omitidos, possam ser utilizados.</p>
+<h2 id="escopo-léxico">Escopo léxico</h2>
+<p>Vamos retornar aos componentes da função <code>fun1</code>,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Argumentos</span>
+<span class='fu'><a href='https://rdrr.io/r/base/formals.html'>formals</a></span><span class='op'>(</span><span class='va'>fun1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$x</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Corpo</span>
+<span class='fu'><a href='https://rdrr.io/r/base/body.html'>body</a></span><span class='op'>(</span><span class='va'>fun1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>{
+    res &lt;- x + 1
+    return(res)
+}</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>fun1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+</div>
+<p>Observe que o último componente é o ambiente onde o nome <code>fun1</code> foi associado a função. Este ambiente é chamado de <strong>ambiente de funções</strong>. Nesse caso é o ambiente global. Contudo, quando a função é executada, momentaneamente é criado o <strong>ambiente de execuções</strong>. É nesse ambiente que os nomes que estão no corpo da função são associados aos objetos. Vejamos um primeiro exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='va'>fun</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='co'># Chamando a funcao fun</span>
+<span class='fu'>fun</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+</div>
+<p>Por causa do ambiente de execução que o objeto <code>x</code> dentro da função é retornado, ao invés do que foi definido fora da função. Isso porque o ambiente de execução mascara os nomes definidos dentro da função dos nomes definidos fora da função. Esse é uma primeira característica do <strong>escopo léxico</strong> nas funções em <a href="http://r-project.org/" target="_blank">R</a>.</p>
+<p>Anteriormente, falamos sobre a <strong>atribuição</strong>, que representa a forma como os nomes se associam aos objetos. Agora, o <strong>escopo</strong> vem a ser a forma como os nomes encontram seus valores associados. O termo <strong>léxico</strong> significa que as funções podem encontrar nomes e seus respectivos valores associados, definidos no ambiente onde a função foi definida, isto é, no ambiente de função. Claro que isso segue regras, e a primeira foi a <strong>máscara de nome</strong> falada anteriormente.</p>
+<p>Porém quando não existe um nome vinculado a um objeto, e este foi definido no ambiente de função, o valor é repassado dentro para função. Observe,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='va'>fun</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='co'># Chamando a funcao fun</span>
+<span class='fu'>fun</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+</div>
+<p>O resultado de <code>fun()</code> foi <code>10</code>, porque como a função procurou no ambiente de execuções e não encontrou esse nome, a função foi até o ambiente superior, no caso, o ambiente de execuções. Como falado anteriormente, todo ambiente tem um pai (ou ambiente superior). Essa hierarquização é observada no caminho de busca, que pode ser acessado por <code>search()</code>, ou seja,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+[10] &quot;package:base&quot;     </code></pre>
+</div>
+<p>O ambiente corrente do <a href="http://r-project.org/" target="_blank">R</a> sempre será o ambiente ambiente global (<code>.GlobalEnv</code>). O ambiente de execução não aparece, porque ele é momentâneo. Então após buscar no ambiente de execução e não encontrar, é pelo caminho de busca que a função irá procurar pelos objetos inseridos no corpo da função. Ele só existe quando a função é chamada e não quando ela é definida, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao</span>
+<span class='va'>fun</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>10</span>
+<span class='co'># Objeto 1</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='co'># Chamada1</span>
+<span class='fu'>fun</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 20</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto 2</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>20</span>
+<span class='co'># Chamada 2</span>
+<span class='fu'>fun</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 30</code></pre>
+</div>
+<p>Observe que após ser criada a função <code>fun()</code>, o nome <code>x</code> se associou ao objeto <code>10</code>. Posteriormente, <code>fun()</code> foi chamada e o resultado foi <code>20</code>. Contudo, o nome <code>x</code> se associou a outro objeto <code>20</code>, e após a segunda chamada da função <code>fun()</code>, o resultado foi 30, porque a função procura os valores quando ela é executada, e não quando é criada, é a característica de <strong>pesquisa dinâmica</strong> do escopo léxico.</p>
+<p>Uma outra situação é a seguinte,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto</span>
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='co'># Funcao</span>
+<span class='va'>fun</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='va'>n</span> <span class='op'>+</span> <span class='fl'>1</span>
+  <span class='va'>n</span>
+<span class='op'>}</span>
+<span class='co'># Chamada 1</span>
+<span class='fu'>fun</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamada 2</span>
+<span class='fu'>fun</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+</div>
+<p>Nessas linhas de comando, poderíamos pensar que após ter executado a primeira chamada, que retornou valor <code>2</code>, a segunda chamada retornaria o valor <code>3</code>, como ocorre com as variáveis estáticas na linguagem <em>C</em>. Aqui nesse caso, resultado independente do número de chamadas será sempre o mesmo, porque uma outra característica do escopo léxico no <a href="http://r-project.org/" target="_blank">R</a> é o <strong>novo começo</strong>, porque a cada vez que a função é executada um novo ambiente de execução é criado, e portanto, cada execução dos comandos de atribuição e expressão são executados de forma independentes nas chamadas de funções.</p>
+<p>Algo que não havíamos falado anteriormente, é que a função <code>function()</code> permite que não seja definido argumentos, devido a flexibilidade do escopo léxico das funções em <a href="http://r-project.org/" target="_blank">R</a>. É essa característica que faz com que os comandos no corpo das funções encontrem os objetos que não estão definidos na própria função. Mais detalhes, será visto no módulo <a href="#nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
+<h1 id="goodcode"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</h1>
+<p>Nesse momento, entendemos os principais objetos para escrevermos os nossos <em>scripts</em>. Quando escrevemos um código, duas consequências ocorrem: - guardá-lo para futuras consultas, ou - compartilhamento.</p>
+<p>Nesses dois casos, percebemos que alguém irá ler esse código, ou até mesmo o próprio usuário, irá retornar àquelas linhas de código e tentar raciocinar quais as ideias por trás disso tudo. Para um melhor entendimento de seu <em>script</em>, nada mais importante do que uma boa escrita, separação das estruturas por hierarquização, comentários, etc.</p>
+<p>Uma primeira ferramenta que pode ser configurada para quem usa o <code>rstudio</code> é acionar todas as opções de diagnóstico do seu código. Para isso no menu:</p>
+<ul>
+<li><code>Tools &gt; Global options &gt; Code &gt; Editing</code>. Marque todas as opções em <code>General</code>;</li>
+<li><code>Tools &gt; Global options &gt; Code &gt; Display</code>, Marque todas as opções;</li>
+<li><code>Tools &gt; Global options &gt; Code &gt; Diagnostics</code>. Marque todas as opções em <code>R Diagnostics</code>.</li>
+</ul>
+<p>Com isso, colorações nas linhas de comando ocorrerão, distinguindo diversas estruturas, como linhas de comentário, funções, espaçamentos, dentre outras coisas.</p>
+<p>Uma vez feito isso, vamos para o passo seguinte que são as boas práticas de como se escrever um <em>script</em>. Temos algumas ferramentas prontas, como o pacote <a href="https://styler.r-lib.org">styler</a> e como alternativa o <a href="https://yihui.org/formatr">formatR</a>, que automatiza todo o nosso código seja em <em>script</em>, contido em um pacote, ou diretório. Acesse <a href="https://yihui.org/formatr" class="uri">https://yihui.org/formatr</a>, para mais detalhes. Para instalar e anexar o pacote <a href="https://styler.r-lib.org">styler</a>, use as linhas de comando:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Instalando pacote</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>styler</span><span class='op'>)</span>
+<span class='co'># Carregando e anexando</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-lib/styler'>styler</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Vejamos a seguinte ilustração, para entendermos a funcionabilidade desse pacote .</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:stylecode"></span>
+<img src="images/stylecode.gif" alt="Estilo de código com o pacote [styler](https://styler.r-lib.org)." width="80%" />
+<p class="caption">
+Figure 17: Estilo de código com o pacote <a href="https://styler.r-lib.org">styler</a>.
+</p>
+</div>
+</div>
+<p>Pela Figura <a href="#fig:stylecode">17</a>, percebemos que inicialmente, a leitura do código sem nenhum padrão de hierarquização, de funções dentro de funções, torna mais difícil a leitura quando não seguimos algumas regras básicas de espaçamentos iniciais nas linhas de comando. Ao passo que, após aplicar a função <code>styler:::style_active_file()</code>, conseguimos distinguir quais as funções que estão dentro de outras, bem como as suas expressões.</p>
+<h2 id="nomes-de-arquivos">Nomes de arquivos</h2>
+<p>Apesar de toda essa facilidade, vamos apresentar algumas ideias. A primeira noção é o nome do arquivo. Padronizem a extensão <code>.R</code> e evitem espaços em nomes compostos,</p>
+<pre><code>Boa escolha:
+-----------
+script.R
+nome_composto.R
+nome-composto.R
+
+Má escolha:
+-----------
+script.r
+nome composto.r</code></pre>
+<h2 id="comentar-as-linhas-de-comando">Comentar as linhas de comando</h2>
+<p>Sempre que escrever uma linha de comando ou uma sequência de linhas de comando para um mesmo fim, comente sobre a ideia que esse fragmento de código quer repassar, usando <code>#</code>. Evitem acentos e símbolos especiais, porque os novos acessos ao <em>script</em>, dependendo da codificação que o RStudio esteja utilizando ou o seu sistema operacional, pode desconfigurar todo o arquivo.</p>
+<pre><code>Boa escolha:
+-----------
+# Objeto x
+x &lt;- 1:10
+# Calculo da media
+mean(x)
+
+Má escolha:
+-----------
+x &lt;- 1:10
+mean(x)</code></pre>
+<h2 id="nomes-de-objetos">Nomes de objetos</h2>
+<p>Levem em consideração que nomes de objetos é uma forma de acessarmos os objetos no <a href="http://r-project.org/" target="_blank">R</a>, e não os nomes das variáveis que serão utilizados em nossos relatórios para escrever sobre um problema real. Portanto, a escolha desses nomes devem ser mais simples, curtos, sem acentos ou símbolos não ASCII, e de preferência apenas letras minúsculas.</p>
+<pre><code>Boa escolha:
+-----------
+nome_curto
+aux1
+
+Má escolha:
+-----------
+nome_muito_grande
+Nome_Grande
+Aux1</code></pre>
+<p>Sempre que possível evite nomes já utilizados no <a href="http://r-project.org/" target="_blank">R</a>, para outros fins,</p>
+<pre><code>Má escolha:
+-----------
+T &lt;- &quot;Nada&quot;
+c &lt;- 5
+sd &lt;- 5 + 1
+mean &lt;- 3 * 4</code></pre>
+<p>Para verificar se determinado nome já existe, use a função <code>exists()</code>, isto é, <code>exists("mean")</code>. Se a função retornar <code>TRUE</code>, significa que já existe esse nome, caso contrário, <code>FALSE</code>.</p>
+<h2 id="sintaxe">Sintaxe</h2>
+<p>Um dos erros mais comuns na sintaxe de um código é o <strong>espaçamento</strong> entre os operadores básicos na linguagem <a href="http://r-project.org/" target="_blank">R</a>, exceto para os operadores <code>:</code>, <code>::</code> e <code>:::</code>. Use sempre um espaço após a vírgula.</p>
+<pre><code>Boa escolha:
+-----------
+x &lt;- 1:10
+media &lt;- mean(x + 1 / length(x), na.rm = TRUE)
+base::mean(x)
+
+Má escolha:
+-----------
+x &lt;- 1 : 10
+media&lt;-mean(x+1/length(x),na.rm=TRUE)
+base :: mean(x)</code></pre>
+<p>Para facilitar pode ser utilizado a função <code>styler::style_text()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>comando</span> <span class='op'>&lt;-</span> <span class='st'>"media&lt;-mean(x+1/length(x),na.rm=TRUE)"</span>
+<span class='fu'>styler</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/styler/man/style_text.html'>style_text</a></span><span class='op'>(</span><span class='va'>comando</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>media &lt;- mean(x + 1 / length(x), na.rm = TRUE)</code></pre>
+</div>
+<p>Se necessário use mais de um espaço em uma linha para o alinhamento para <code>&lt;-</code> ou <code>=</code>, bem como um espaço antes do parêntese, a menos que seja uma função,</p>
+<pre><code>Boa escolha:
+-----------
+data.frame(a = 1,
+           b = &quot;Ben&quot;)
+
+function(){
+  x    &lt;- 10
+  vari &lt;- x + 1
+  return(vari)
+}
+
+for (i in 1:10) i + 1
+
+Má escolha:
+-----------
+function () 1
+for(i in 1:10) i + 1</code></pre>
+<p>Não insira espaços na condição entre parêntese ou nos itens de indexação, a menos que este último contenha uma vírgula,</p>
+<pre><code>Boa escolha:
+-----------
+if (verbose)
+x11 &lt;- mat[1, 1]
+x1  &lt;- mat[1, ]
+
+Má escolha:
+-----------
+if ( verbose )
+x11 &lt;- mat[1,1]
+x1  &lt;- mat[1,]</code></pre>
+<p>Quando usamos chaves em um comando, devemos evitar abri-lo e fechá-lo na mesma linha. E ainda, quando é função, as linhas de comando inseridas dentro das chaves, inserimos um recuo de dois espaços para entendermos a hierarquização das funções, isto é, função dentro de função. Veja,</p>
+<pre><code>Boa escolha:
+-----------
+fx &lt;- function(x) {
+  if (x &gt; 2) {
+    print(&quot;Maior que 2!&quot;)
+  } else {
+    print(&quot;Menor que 2!&quot;)
+  }
+}
+
+for (i in 1:10) { 
+  x &lt;- i + 1
+}
+
+Má escolha:
+-----------
+fx &lt;- function(x) {
+if (x &gt; 2) {
+print(&quot;Maior que 2!&quot;)
+} else {
+print(&quot;Menor que 2!&quot;)
+}
+}
+
+for (i in 1:10) {x &lt;- i + 1}</code></pre>
+<p>Observe também que sempre quando iniciamos a abertura de uma chave, damos um espaço para separar do fechamento do parêntese, sempre quando usamos em uma função. Por fim, sempre use a atribuição com <code>&lt;-</code>, e <code>=</code> para definir os argumentos de uma função,</p>
+<pre><code>Boa escolha:
+-----------
+fx &lt;- function(x = NULL) 10
+a  &lt;- &quot;Nome&quot; 
+
+Má escolha:
+-----------
+fx = function(x = NULL) 10
+a = &quot;Nome&quot;</code></pre>
+<p>Para códigos mais complexos, use o pacote <a href="https://styler.r-lib.org">styler</a> e como alternativa o <a href="https://yihui.org/formatr">formatR</a>, pois muito mais recursos podem ser utilizados. Para consultas, acesse também <span class="citation" data-cites="hadley2015"><a href="#ref-hadley2015" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2015" role="doc-biblioref">2015</a>)</span>, mais específico, <a href="https://r-pkgs.org/r.html#code-style">Estilo de código</a>, e ainda <a href="http://adv-r.had.co.nz/Style.html">Advanced R, 1ed, Style guide</a>, <a href="https://style.tidyverse.org/">The tidyverse style guide</a> e <a href="https://google.github.io/styleguide/Rguide.html">Google’s R Style Guide</a>.</p>
+<!--
 # <i class="fas fa-cubes"></i> Pacotes
 
 # Ambientes e caminho de busca (#env-searchpath)
 
 -->
-<div class="sourceCode" id="cb153"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.
@@ -4684,8 +5555,11 @@ Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <s
 <div id="ref-paradis2005" class="csl-entry" role="doc-biblioentry">
 Paradis, Emmanuel. 2005. <span>“<span>R</span> for Beginners.”</span> <a href="https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf">https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf</a>.
 </div>
+<div id="ref-hadley2015" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2015. <em><span>R</span> Packages</em>. 2nd ed. O’Reilly Media. <a href="https://r-pkgs.org/index.html">https://r-pkgs.org/index.html</a>.
+</div>
 <div id="ref-hadley2019" class="csl-entry" role="doc-biblioentry">
-Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
+———. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
 </div>
 <div id="ref-hadley2019" class="csl-entry" role="doc-biblioentry">
 ———. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
@@ -4710,6 +5584,11 @@ Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Flo
 <li id="fn14" role="doc-endnote"><p>ou também <code>double</code>, usando a função <code>typeof()</code><a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn15" role="doc-endnote"><p>sinônimo: <em>string</em>, cadeia de caracteres.<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn16" role="doc-endnote"><p>Diferente de outras linguagens, como a <code>C</code>, que o contador começa do número 0.<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17" role="doc-endnote"><p>Para esse caso, use <code>mode()</code> para verificar.<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn18" role="doc-endnote"><p>A anexação de um pacote no caminho de busca pressupõe que este esteja instalado no seu computador<a href="#fnref18" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn19" role="doc-endnote"><p>Use a função <code>typeof()</code> para verificar.<a href="#fnref19" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn20" role="doc-endnote"><p>Use a função <code>typeof()</code> para verificar.<a href="#fnref20" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn21" role="doc-endnote"><p>Use <code>typeof()</code> para verificar o modo.<a href="#fnref21" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
