@@ -96,7 +96,7 @@ cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
 
 ## Exercícios e Scripts via  [Shiny](https://shiny.rstudio.com/){target="_blank"} {#shiny}
 
-[Curso R via Shiny]{target="_blank"}
+[Curso R via Shiny](https://bendeivide.shinyapps.io/Curso-R/){target="_blank"}
 
 # <i class="fas fa-book"></i> Apresentação do curso {#apresentacao}
 
