@@ -85,8 +85,8 @@ cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
  - Script 04: ~
  - [Script 05](scripts/script05.txt){target="_blank"}: [Comandos](scripts/script05.R){target="_blank"}
  - Script 06: ~
- - [Script 07](https://github.com/bendeivide/cursor/blob/master/scripts/aula07/Aula07-primeiro_script.R){target="_blank"}: [.RData e .Rhistory](https://github.com/bendeivide/cursor/blob/master/scripts/aula07/Aula07-primeiro_script.R){target="_blank"}
- - Script 08:
+ - [Script 07](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}: [.RData e .Rhistory](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}
+ - [Script 08](scripts/aula08/Aula08.R){target="_blank"}: [Script08.txt](scripts/aula08/Aula08.txt){target="_blank"}
  - Script 09:
  - Script 10:
  - Script 11:
