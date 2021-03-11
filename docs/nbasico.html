@@ -14,12 +14,7 @@
     visibility: hidden;
   }
   </style>
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
@@ -110,7 +105,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:site" content="@bendeivide"/>
 
   <!--/radix_placeholder_meta_tags-->
-
+  
   <meta name="citation_reference" content="citation_title=R for beginners;citation_publication_date=2005;citation_author=Emmanuel Paradis"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=R packages;citation_publication_date=2015;citation_publisher=Oâ€™Reilly Media;citation_author=Hadley Wickham"/>
@@ -2089,7 +2084,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Material
-
+ 
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
@@ -2329,7 +2324,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xbd95e00&quot;</code></pre>
+<pre><code>[1] &quot;0xb585e60&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2356,7 +2351,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xbd95e00&quot;</code></pre>
+<pre><code>[1] &quot;0xb585e60&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2368,7 +2363,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xe1911a8&quot;</code></pre>
+<pre><code>[1] &quot;0xd97a8c0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2396,7 +2391,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xe1910c8&quot;</code></pre>
+<pre><code>[1] &quot;0xd97a7e0&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2598,8 +2593,8 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;cran&quot;          &quot;funcao&quot;        &quot;meu_nome&quot;      &quot;n&quot;
- [5] &quot;novo_ambiente&quot; &quot;rlink&quot;         &quot;rstudio&quot;       &quot;w&quot;
+<pre><code> [1] &quot;cran&quot;          &quot;funcao&quot;        &quot;meu_nome&quot;      &quot;n&quot;            
+ [5] &quot;novo_ambiente&quot; &quot;rlink&quot;         &quot;rstudio&quot;       &quot;w&quot;            
  [9] &quot;x&quot;             &quot;y&quot;            </code></pre>
 </div>
 <p>Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto <code>meu_nome</code> é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.</p>
@@ -2837,7 +2832,7 @@ attr(,&quot;row.names&quot;)
 <pre><code>[1] &quot;character&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto modo numerico (Inteiro)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10L</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10L</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> 
 </code></pre>
 </div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
@@ -3994,9 +3989,9 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 
 
 [[4]]
-function (x, ...)
+function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000009396c90&gt;
+&lt;bytecode: 0x0000000008b86510&gt;
 &lt;environment: namespace:base&gt;
 
 [[5]]
@@ -4007,10 +4002,10 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando uma lista</span>
-<span class='va'>l0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>l01 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
-           l02 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>,
+<span class='va'>l0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>l01 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, 
+           l02 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>, 
            l03 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>,
-           l04 <span class='op'>=</span> <span class='va'>mean</span>,
+           l04 <span class='op'>=</span> <span class='va'>mean</span>, 
            l05 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Imprimindo o primeiro elemento (objeto) da lista 'l0'</span>
 <span class='va'>l0</span><span class='op'>$</span><span class='va'>l01</span>
@@ -4062,7 +4057,7 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um quadro de dados</span>
-<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, 
                     y <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>,
                     z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Imprimindo dados</span>
@@ -4119,7 +4114,7 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um quadro de dados</span>
-<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, 
                     y <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>,
                     z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Usando a funcao attach()</span>
@@ -4730,7 +4725,7 @@ $...</code></pre>
 </code></pre>
 </div>
 <pre><code>{
-    if (!is.logical(decreasing) || length(decreasing) != 1L)
+    if (!is.logical(decreasing) || length(decreasing) != 1L) 
         stop(&quot;&#39;decreasing&#39; must be a length-1 logical vector.\nDid you intend to set &#39;partial&#39;?&quot;)
     UseMethod(&quot;sort&quot;)
 }</code></pre>
@@ -4911,8 +4906,8 @@ $...</code></pre>
     <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
         <span class='kw'>if</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>%%</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>{</span>
           <span class='st'>"numero_impar"</span>
-        <span class='op'>}</span>
-    <span class='op'>}</span>
+        <span class='op'>}</span> 
+    <span class='op'>}</span> 
 <span class='op'>}</span>
 </code></pre>
 </div>
@@ -4990,7 +4985,7 @@ $...</code></pre>
 <span class='kw'>repeat</span> <span class='op'>{</span>
   <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>&gt;</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
     <span class='kw'>break</span>
-  <span class='op'>}</span>
+  <span class='op'>}</span> 
   <span class='kw'>else</span> <span class='op'>{</span>
     <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>{</span>
       <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
@@ -5158,8 +5153,8 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <p>e criamos uma função <span class="math inline">\(x^2\)</span>. Então,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>f <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span>,
-          lower <span class='op'>=</span> <span class='fl'>0</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>f <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span>, 
+          lower <span class='op'>=</span> <span class='fl'>0</span>, 
           upper <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -5200,11 +5195,11 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <pre><code>[1] 0.9412359</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Calculo do desvio padrao (pipe)</span>
-<span class='va'>x</span> <span class='op'>%&gt;%</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>aux1</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>aux2</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>aux3</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='op'>)</span> 
 </code></pre>
 </div>
 <pre><code>[1] 0.9412359</code></pre>
@@ -5331,9 +5326,9 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;
- [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;
- [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
 [10] &quot;package:base&quot;     </code></pre>
 </div>
 <p>O ambiente corrente do <a href="http://r-project.org/" target="_blank">R</a> sempre será o ambiente ambiente global (<code>.GlobalEnv</code>). O ambiente de execução não aparece, porque ele é momentâneo. Então após buscar no ambiente de execução e não encontrar, é pelo caminho de busca que a função irá procurar pelos objetos inseridos no corpo da função. Ele só existe quando a função é chamada e não quando ela é definida, isto é,</p>
@@ -5520,7 +5515,7 @@ fx &lt;- function(x) {
   }
 }
 
-for (i in 1:10) {
+for (i in 1:10) { 
   x &lt;- i + 1
 }
 
@@ -5539,7 +5534,7 @@ for (i in 1:10) {x &lt;- i + 1}</code></pre>
 <pre><code>Boa escolha:
 -----------
 fx &lt;- function(x = NULL) 10
-a  &lt;- &quot;Nome&quot;
+a  &lt;- &quot;Nome&quot; 
 
 Má escolha:
 -----------
