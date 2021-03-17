@@ -37,20 +37,20 @@ Como motivação para esse momento, iremos realizar uma aplicação com as lingu
 ::: {.panel}
 ## Implementação em *Python*
 
-Vamos inicialmente instalar o pacote [reticulate](https://rstudio.github.io/reticulate/),
+Vamos inicialmente instalar o pacote [reticulate](https://rstudio.github.io/reticulate/){target="_blank"},
 
 ```{r, echo=TRUE, eval=FALSE, prompt=TRUE}
 install.packages(reticulate)
 ```
 
-Existem diversas formas de integração. Vamos pensar na forma mais básica, isto é, temos um [*script Python*](scripts/aula24/add.py), isto é, um arquivo com a extensão *.py*, e vamos carregá-lo no `r rlink`. O *script*, chamaremos de [add.py](scripts/aula24/add.py), que segue:
+Existem diversas formas de integração. Vamos pensar na forma mais básica, isto é, temos um [*script Python*](scripts/aula24/add.py){target="_blank"}, isto é, um arquivo com a extensão *.py*, e vamos carregá-lo no `r rlink`. O *script*, chamaremos de [add.py](scripts/aula24/add.py){target="_blank"}, que segue:
 
 ```{python, echo = TRUE, eval = FALSE}
 def add(x, y):
   return x + y
 ```
 
-Vamos agora chamar a função `add()` em um [*script R*](scripts/aula24/r-python.R):
+Vamos agora chamar a função `add()` em um [*script R*](scripts/aula24/r-python.R){target="_blank"}:
 
 ```{r echo=TRUE, prompt=TRUE}
 # Carregando o script add.py
@@ -62,13 +62,13 @@ add(5, 10)
 ::: {.panel}
 ## Implementação em *C++*
 
-Vamos instalar o pacote [Rcpp](http://www.rcpp.org/),
+Vamos instalar o pacote [Rcpp](http://www.rcpp.org/){target="_blank"},
 
 ```{r, echo=TRUE, eval=FALSE, prompt=TRUE}
 install.packages(Rcpp)
 ```
 
-Vamos realizar a mesma aplicação feita em *Python*, que segue o [*script C++*](scripts/aula24/add.cpp), com extensão *.cpp*,
+Vamos realizar a mesma aplicação feita em *Python*, que segue o [*script C++*](scripts/aula24/add.cpp){target="_blank"}, com extensão *.cpp*,
 
 ```{Rcpp, echo=TRUE, eval=FALSE}
 #include <Rcpp.h>
@@ -80,7 +80,7 @@ int add(int x, int y) {
 }
 ```
 
-Vamos agora chamar a função `add()` em um [*script R*](scripts/aula24/r-rcpp.R):
+Vamos agora chamar a função `add()` em um [*script R*](scripts/aula24/r-rcpp.R){target="_blank"}:
 
 ```{r, echo=TRUE, prompt=TRUE}
 # Carregando o script add.cpp
@@ -93,7 +93,7 @@ add(5, 10)
 ::: {.panel}
 ## Implementação em TclTk
 
-Nesse caso, não precisaremos instalar pacotes, pois o pacote `tcltk` é da Base do `r rlink`. Ao invés, anexe-o no caminho de busca, use `library(tcltk)`. Iremos implementar uma interface gráfica contendo uma janela com entradas de dois números e um botão para calcular a soma. Segue o [*script*](scripts/aula24/r-tcltk.R),
+Nesse caso, não precisaremos instalar pacotes, pois o pacote `tcltk` é da Base do `r rlink`. Ao invés, anexe-o no caminho de busca, use `library(tcltk)`. Iremos implementar uma interface gráfica contendo uma janela com entradas de dois números e um botão para calcular a soma. Segue o [*script*](scripts/aula24/r-tcltk.R){target="_blank"},
 
 ```{r tcltk, echo=TRUE, eval=FALSE, prompt=TRUE}
 # Anexando o pacote
@@ -144,6 +144,6 @@ O vídeo abaixo apresenta o resultado da interface.
 
 :::
 
-Existem outras formas de chamar as rotinas em *Python*, *C++* e *Tcl/Tk* no `r rlink`, implementadas nos pacotes [reticulate](https://rstudio.github.io/reticulate/), [Rcpp](http://www.rcpp.org/) e *tcltk*, respecitvamente. Contudo, iremos apresentá-los no módulo [Programação em R (Nível Avançado)](navancado.html), bem como a integração de outras linguagens.
+Existem outras formas de chamar as rotinas em *Python*, *C++* e *Tcl/Tk* no `r rlink`, implementadas nos pacotes [reticulate](https://rstudio.github.io/reticulate/){target="_blank"}, [Rcpp](http://www.rcpp.org/){target="_blank"} e *tcltk*, respecitvamente. Contudo, iremos apresentá-los no módulo [Programação em R (Nível Avançado)](navancado.html){target="_blank"}, bem como a integração de outras linguagens.
 
 
