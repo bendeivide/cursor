@@ -14,12 +14,7 @@
     visibility: hidden;
   }
   </style>
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+
  <!--radix_placeholder_import_source-->
  <!--/radix_placeholder_import_source-->
 
@@ -94,6 +89,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <meta property="description" itemprop="description" content="Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições"/>
 
+  <link rel="icon" type="image/png" href="images/favicon.png"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -110,7 +106,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:site" content="@bendeivide"/>
 
   <!--/radix_placeholder_meta_tags-->
-
+  
   <meta name="citation_reference" content="citation_title=R for beginners;citation_publication_date=2005;citation_author=Emmanuel Paradis"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=R packages;citation_publication_date=2015;citation_publisher=Oâ€™Reilly Media;citation_author=Hadley Wickham"/>
@@ -119,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography","link-citations","site"]}},"value":[{"type":"character","attributes":{},"value":["Programação em R (Nível Básico)"]},{"type":"character","attributes":{},"value":["Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições\n"]},{"type":"character","attributes":{},"value":["biblio.bib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography","link-citations"]}},"value":[{"type":"character","attributes":{},"value":["Programação em R (Nível Básico)"]},{"type":"character","attributes":{},"value":["Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições\n"]},{"type":"character","attributes":{},"value":["biblio.bib"]},{"type":"logical","attributes":{},"value":[true]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2045,6 +2041,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+  <link href="site_libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
+  <script src="site_libs/panelset-0.2.6/panelset.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2086,10 +2084,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <a href="index.html" aria-label="Home">
 <i class="fas fa-home" aria-hidden="true"></i>
 </a>
+<a href="about.html">Autor</a>
 <div class="nav-dropdown">
 <button class="nav-dropbtn">
 Material
-
+ 
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
@@ -2168,6 +2167,19 @@ Material
 <li><a href="#criar-funcoes">Como criar funções</a></li>
 </ul></li>
 <li><a href="#goodcode"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</a></li>
+<li><a href="#pacotes"><i class="fas fa-cubes"></i> Pacotes</a>
+<ul>
+<li><a href="#instpac">Instalação de um pacote</a></li>
+<li><a href="#objpac">Objetivos de um pacote</a></li>
+<li><a href="#funcpac">Utilizar as funções de um pacote</a></li>
+<li><a href="#attachpac">Carregando e anexando um pacote</a></li>
+<li><a href="#namespac">Namespace de um pacote</a></li>
+<li><a href="#carpac">Usando os operadores <code>::</code> e <code>:::</code></a></li>
+<li><a href="#search_path">Ambientes e Caminho de busca</a></li>
+<li><a href="#superatr">A superatribuição <code>&lt;&lt;-</code></a></li>
+</ul></li>
+<li><a href="#rinterface"><i class="fas fa-sort-alpha-down"></i> Interfaces com outras linguagens</a></li>
+<li><a href="#consideracoes"><i class="fas fa-calendar-minus"></i> Considerações e preparação para o módulo Programação em R (Nível Intermediário)</a></li>
 </ul>
 <h2 id="section"></h2>
 <h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
@@ -2194,8 +2206,8 @@ Material
 <li>Aula 18: <a href="aulas/aula18.html" target="_blank">Boas práticas de como escrever um código</a></li>
 <li>Aula 19: <a href="index.html">Pacotes</a></li>
 <li>Aula 20: <a href="index.html">Carregando e Anexando pacotes</a></li>
-<li>Aula 21: <a href="index.html">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
-<li>Aula 22: <a href="index.html"><em>Namespace</em> de um pacote</a></li>
+<li>Aula 21: <a href="index.html"><em>Namespace</em> de um pacote</a></li>
+<li>Aula 22: <a href="index.html">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
 <li>Aula 23: <a href="index.html">Ambientes e Caminhos de busca</a></li>
 <li>Aula 24: <a href="index.html">Interface com outras linguagens</a></li>
 <li>Aula 25: <a href="index.html">Considerações e Preparação para a Programação em R (Nível Intermediário)</a></li>
@@ -2329,7 +2341,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xbd76828&quot;</code></pre>
+<pre><code>[1] &quot;0x996f1b8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2356,7 +2368,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xbd76828&quot;</code></pre>
+<pre><code>[1] &quot;0x996f1b8&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2368,7 +2380,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xe1737f8&quot;</code></pre>
+<pre><code>[1] &quot;0xd9705e8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2396,7 +2408,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xe173718&quot;</code></pre>
+<pre><code>[1] &quot;0xd970508&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -2598,9 +2610,9 @@ Figure 7: Esquema de como o <code>R</code> funciona.
 <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;cran&quot;          &quot;funcao&quot;        &quot;meu_nome&quot;      &quot;n&quot;
- [5] &quot;novo_ambiente&quot; &quot;rlink&quot;         &quot;rstudio&quot;       &quot;w&quot;
- [9] &quot;x&quot;             &quot;y&quot;            </code></pre>
+<pre><code> [1] &quot;cran&quot;          &quot;funcao&quot;        &quot;github&quot;        &quot;meu_nome&quot;     
+ [5] &quot;n&quot;             &quot;novo_ambiente&quot; &quot;rlink&quot;         &quot;rstudio&quot;      
+ [9] &quot;w&quot;             &quot;x&quot;             &quot;y&quot;            </code></pre>
 </div>
 <p>Observe que todos os objetos criados até o momento estão listados, e o que é mais surpreendente é que ambientes podem conter outros ambientes e até mesmo se conter. Observe o objeto <code>meu_nome</code> é um ambiente e está contido no Ambiente global. Será sempre dessa forma que recuperaremos um objeto criado no console do R. Caso contrário, se no console esse comando não for de atribuição esse objeto é perdido.</p>
 <h1 id="filesdata"><i class="fas fa-file"></i> Arquivos <code>.Rdata</code> e <code>.Rhistory</code></h1>
@@ -2837,7 +2849,7 @@ attr(,&quot;row.names&quot;)
 <pre><code>[1] &quot;character&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto modo numerico (Inteiro)</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10L</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10L</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> 
 </code></pre>
 </div>
 <pre><code>[1] &quot;integer&quot;</code></pre>
@@ -3193,6 +3205,8 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 <p>Existem dois tipos raros que são os complexos (<code>complex</code>) e brutos (<code>raw</code>), que falaremos no módulo seguinte.</p>
 <h2 id="escalares">Escalares</h2>
 <p>O menor comprimento de um vetor é de tamanho um, conhecido também como um escalar. Porém, para o <code>R</code> tudo é observado como um vetor. As sintaxes para os tipos especiais são: - os vetores lógicos assumem valores: <code>TRUE</code> ou <code>FALSE</code>, ou abreviados, <code>T</code> ou <code>F</code>, respectivamente. Existem valores especiais devido a precisão de operações na programação, que são os chamados pontos flutuantes. Nesse caso temos: <code>Inf</code>, <code>-Inf</code> e <code>NaN</code>, quando o resultados tende a <span class="math inline">\(\infty\)</span>, <span class="math inline">\(-\infty\)</span>, sem número, respectivamente;</p>
+<!-- Inserir essa ideia sobre NA e NaN: -->
+<!-- https://jameshoward.us/2016/07/18/nan-versus-na-r/ -->
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># divisao de um numero por zero (+ infinito)</span>
@@ -3994,9 +4008,9 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 
 
 [[4]]
-function (x, ...)
+function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000009377320&gt;
+&lt;bytecode: 0x0000000008b77520&gt;
 &lt;environment: namespace:base&gt;
 
 [[5]]
@@ -4007,10 +4021,10 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando uma lista</span>
-<span class='va'>l0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>l01 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
-           l02 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>,
+<span class='va'>l0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>l01 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, 
+           l02 <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>, 
            l03 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>,
-           l04 <span class='op'>=</span> <span class='va'>mean</span>,
+           l04 <span class='op'>=</span> <span class='va'>mean</span>, 
            l05 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>~</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Imprimindo o primeiro elemento (objeto) da lista 'l0'</span>
 <span class='va'>l0</span><span class='op'>$</span><span class='va'>l01</span>
@@ -4062,7 +4076,7 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um quadro de dados</span>
-<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, 
                     y <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>,
                     z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Imprimindo dados</span>
@@ -4119,7 +4133,7 @@ expression(x ~ y)</code></pre>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um quadro de dados</span>
-<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>,
+<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, 
                     y <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>,
                     z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 <span class='co'># Usando a funcao attach()</span>
@@ -4151,6 +4165,8 @@ expression(x ~ y)</code></pre>
 <p>Essa função <code>attach()</code> tem implicações, quando por exemplo se deseja inseri-la na construção de um pacote <code>R</code>. Iremos discutir esse ponto mais a frente. Para desanexar o quadro de dados, use <code>detach()</code>. A função <code>attach()</code> é genérica e pode ser usada em qualquer objeto de modo <code>list</code> ser anexado no caminho de busca.</p>
 <h1 id="impexpdata"><i class="fas fa-database"></i> Importando dados</h1>
 <!-- Depois inserir a exportacao de dados -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HQN9-yfu3sQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>A importação/exportação de dados era algo que em poucas linhas conseguíamos explicar sobre o ambiente <code>R</code>, no sentido de análise de dados. Entretanto, observando o terceiro princípio do R, afirmado por <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>:</p>
 <blockquote>
 <p>
@@ -4683,6 +4699,8 @@ Figure 16: Usando o RStudio para importar dados.
 <!-- [1] 1 2 3 4 5 -->
 <!-- Inserir ao final uma ilustração com entrada e saída de dados -->
 <h1 id="funcoes"><i class="fas fa-code"></i> Funções</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DS9kce3wHpE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Mais uma vez, nos reportamos aos princípios do <a href="http://r-project.org/" target="_blank">R</a> (<span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>), mais especificamente ao segundo princípio,</p>
 <blockquote>
 <p>
@@ -4730,7 +4748,7 @@ $...</code></pre>
 </code></pre>
 </div>
 <pre><code>{
-    if (!is.logical(decreasing) || length(decreasing) != 1L)
+    if (!is.logical(decreasing) || length(decreasing) != 1L) 
         stop(&quot;&#39;decreasing&#39; must be a length-1 logical vector.\nDid you intend to set &#39;partial&#39;?&quot;)
     UseMethod(&quot;sort&quot;)
 }</code></pre>
@@ -4804,6 +4822,8 @@ $...</code></pre>
 <p>A ideia da chamada de função aninhada é inserir função como argumento de funções sem necessidade de associar nomes aos objetos. A ordem de execução começa sempre da direita para a esquerda. No caso da chamada de função intermediária, associamos nomes a cada função, e os passos seguem. Por fim, o operador especial pipe (<code>%&gt;%</code>) tem como primeiro operando o primeiro argumento da função no segundo operando.</p>
 <p>Quando desenvolvemos pacotes, preferimos os dois primeiros, pois é a forma tradicional de chamadas de função no <a href="http://r-project.org/" target="_blank">R</a>. A chamada de função pipe é muito utilizada para ciência dos dados.</p>
 <h2 id="controle-fluxos">Estruturas de controle</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FdGEXshaRJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>As funções que utilizaremos, a seguir, são utilizadas quando desejamos realizar processos repetitivos para um determinado fim ou condicionado, as famosas estruturas de controle. Assim, como em outras linguagens, as funções utilizadas são: <code>if()</code>, <code>switch()</code>, <code>ifelse()</code>, <code>while()</code>, <code>repeat</code>, <code>for()</code>. Esses objetos tem modo <code>special</code><a href="#fn19" class="footnote-ref" id="fnref19" role="doc-noteref"><sup>19</sup></a>, porque as expressão não são necessariamente avaliadas. Já a função <code>ifelse()</code> é de modo <code>closure</code><a href="#fn20" class="footnote-ref" id="fnref20" role="doc-noteref"><sup>20</sup></a>. Esse é um tipo de função implementado por <code>function()</code>.</p>
 <p>A ideias das estruturas de controle de modo <code>special</code> é:</p>
 <pre><code>função (condição) {
@@ -4911,8 +4931,8 @@ $...</code></pre>
     <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
         <span class='kw'>if</span> <span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>%%</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>{</span>
           <span class='st'>"numero_impar"</span>
-        <span class='op'>}</span>
-    <span class='op'>}</span>
+        <span class='op'>}</span> 
+    <span class='op'>}</span> 
 <span class='op'>}</span>
 </code></pre>
 </div>
@@ -4934,7 +4954,7 @@ $...</code></pre>
     <span class='kw'>if</span> <span class='op'>(</span><span class='va'>opcao</span> <span class='op'>==</span> <span class='st'>"mediana"</span><span class='op'>)</span> <span class='op'>{</span>
       <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A mediana é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
     <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
-        <span class='kw'>if</span> <span class='op'>(</span><span class='va'>opcao</span> <span class='op'>==</span> <span class='st'>"medpar"</span><span class='op'>)</span> <span class='op'>{</span>
+        <span class='kw'>if</span> <span class='op'>(</span><span class='va'>opcao</span> <span class='op'>==</span> <span class='st'>"medapar"</span><span class='op'>)</span> <span class='op'>{</span>
           <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"A média aparada é:"</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span>, trim <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
         <span class='op'>}</span>
     <span class='op'>}</span>
@@ -4990,16 +5010,15 @@ $...</code></pre>
 <span class='kw'>repeat</span> <span class='op'>{</span>
   <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>&gt;</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
     <span class='kw'>break</span>
-  <span class='op'>}</span>
+  <span class='op'>}</span> 
   <span class='kw'>else</span> <span class='op'>{</span>
     <span class='kw'>if</span> <span class='op'>(</span><span class='va'>i</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>{</span>
       <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
       <span class='kw'>next</span>
-    <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
-      <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
-      <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
     <span class='op'>}</span>
-  <span class='op'>}</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span>
+    <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+    <span class='op'>}</span>
 <span class='op'>}</span>
 </code></pre>
 </div>
@@ -5090,6 +5109,8 @@ $...</code></pre>
 <p>Mais uma vez, foi utilizado a função <code>next</code>, sem necessidade agora, de atualizar o contador <code>i</code>, uma vez que já está definido na função <code>for()</code>.</p>
 <p>Veremos na próxima subseção, que temos funções de alto nível que podem substituir as funções <em>loops</em>. São as chamadas funções da família <em>apply</em>.</p>
 <h2 id="criar-funcoes">Como criar funções</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/80J0_r-QZIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Até esse momento, usamos funções já desenvolvidas no <a href="http://r-project.org/" target="_blank">R</a>, seja dos pacotes da Base, seja via instalação dos pacotes via <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. Agora, iremos desenvolver as nossas próprias funções.</p>
 <p>Como falado anteriormente, no <a href="#funcoes">início dessa seção</a>, a estrutura da função criada se mantém, argumento, corpo e ambiente. Para isso, usaremos a função <code>function</code>. O modo desse objeto é <code>closure</code><a href="#fn21" class="footnote-ref" id="fnref21" role="doc-noteref"><sup>21</sup></a>. Vejamos a sua sintaxe,</p>
 <pre><code># Forma usual
@@ -5158,8 +5179,8 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <p>e criamos uma função <span class="math inline">\(x^2\)</span>. Então,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>f <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span>,
-          lower <span class='op'>=</span> <span class='fl'>0</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></span><span class='op'>(</span>f <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span>, 
+          lower <span class='op'>=</span> <span class='fl'>0</span>, 
           upper <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -5200,11 +5221,11 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <pre><code>[1] 0.9412359</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Calculo do desvio padrao (pipe)</span>
-<span class='va'>x</span> <span class='op'>%&gt;%</span>
+<span class='va'>x</span> <span class='op'>%&gt;%</span> 
   <span class='fu'>aux1</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>aux2</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'>aux3</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='op'>)</span> 
 </code></pre>
 </div>
 <pre><code>[1] 0.9412359</code></pre>
@@ -5271,7 +5292,7 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <p><img src="nbasico_files/figure-html5/unnamed-chunk-84-2.png" width="624" /></p>
 </div>
 <p>Isso ocorre, porque temos a função <code>plot()</code> no corpo da função <code>grafico()</code> que apresenta muitos argumentos. Dessa forma, criamos a função <code>grafico()</code>, com os argumentos que representam as coordenadas, mas a reticências (<code>...</code>) garantem que os demais argumentos de <code>plots</code>, omitidos, possam ser utilizados.</p>
-<h2 id="escopo-léxico">Escopo léxico</h2>
+<h2 id="esc_lexico">Escopo léxico</h2>
 <p>Vamos retornar aos componentes da função <code>fun1</code>,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -5296,7 +5317,7 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 </div>
 <pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
 </div>
-<p>Observe que o último componente é o ambiente onde o nome <code>fun1</code> foi associado a função. Este ambiente é chamado de <strong>ambiente de funções</strong>. Nesse caso é o ambiente global. Contudo, quando a função é executada, momentaneamente é criado o <strong>ambiente de execuções</strong>. É nesse ambiente que os nomes que estão no corpo da função são associados aos objetos. Vejamos um primeiro exemplo,</p>
+<p>Observe que o último componente é o ambiente onde o nome <code>fun1</code> foi associado a função. Este ambiente é chamado de <strong>ambiente envolvente</strong>. Nesse caso é o ambiente global. Contudo, quando a função é executada, momentaneamente é criado o <strong>ambiente de execução</strong>. É nesse ambiente que os nomes que estão no corpo da função são associados aos objetos. Vejamos um primeiro exemplo,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
@@ -5331,9 +5352,9 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;
- [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;
- [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
 [10] &quot;package:base&quot;     </code></pre>
 </div>
 <p>O ambiente corrente do <a href="http://r-project.org/" target="_blank">R</a> sempre será o ambiente ambiente global (<code>.GlobalEnv</code>). O ambiente de execução não aparece, porque ele é momentâneo. Então após buscar no ambiente de execução e não encontrar, é pelo caminho de busca que a função irá procurar pelos objetos inseridos no corpo da função. Ele só existe quando a função é chamada e não quando ela é definida, isto é,</p>
@@ -5383,6 +5404,8 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <p>Nessas linhas de comando, poderíamos pensar que após ter executado a primeira chamada, que retornou valor <code>2</code>, a segunda chamada retornaria o valor <code>3</code>, como ocorre com as variáveis estáticas na linguagem <em>C</em>. Aqui nesse caso, resultado independente do número de chamadas será sempre o mesmo, porque uma outra característica do escopo léxico no <a href="http://r-project.org/" target="_blank">R</a> é o <strong>novo começo</strong>, porque a cada vez que a função é executada um novo ambiente de execução é criado, e portanto, cada execução dos comandos de atribuição e expressão são executados de forma independentes nas chamadas de funções.</p>
 <p>Algo que não havíamos falado anteriormente, é que a função <code>function()</code> permite que não seja definido argumentos, devido a flexibilidade do escopo léxico das funções em <a href="http://r-project.org/" target="_blank">R</a>. É essa característica que faz com que os comandos no corpo das funções encontrem os objetos que não estão definidos na própria função. Mais detalhes, será visto no módulo <a href="#nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
 <h1 id="goodcode"><i class="fas fa-file-code"></i> Boas práticas de como escrever um código</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hn_H1bjmKGY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Nesse momento, entendemos os principais objetos para escrevermos os nossos <em>scripts</em>. Quando escrevemos um código, duas consequências ocorrem: - guardá-lo para futuras consultas, ou - compartilhamento.</p>
 <p>Nesses dois casos, percebemos que alguém irá ler esse código, ou até mesmo o próprio usuário, irá retornar àquelas linhas de código e tentar raciocinar quais as ideias por trás disso tudo. Para um melhor entendimento de seu <em>script</em>, nada mais importante do que uma boa escrita, separação das estruturas por hierarquização, comentários, etc.</p>
 <p>Uma primeira ferramenta que pode ser configurada para quem usa o <code>rstudio</code> é acionar todas as opções de diagnóstico do seu código. Para isso no menu:</p>
@@ -5520,7 +5543,7 @@ fx &lt;- function(x) {
   }
 }
 
-for (i in 1:10) {
+for (i in 1:10) { 
   x &lt;- i + 1
 }
 
@@ -5539,20 +5562,1069 @@ for (i in 1:10) {x &lt;- i + 1}</code></pre>
 <pre><code>Boa escolha:
 -----------
 fx &lt;- function(x = NULL) 10
-a  &lt;- &quot;Nome&quot;
+a  &lt;- &quot;Nome&quot; 
 
 Má escolha:
 -----------
 fx = function(x = NULL) 10
 a = &quot;Nome&quot;</code></pre>
 <p>Para códigos mais complexos, use o pacote <a href="https://styler.r-lib.org">styler</a> e como alternativa o <a href="https://yihui.org/formatr">formatR</a>, pois muito mais recursos podem ser utilizados. Para consultas, acesse também <span class="citation" data-cites="hadley2015"><a href="#ref-hadley2015" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2015" role="doc-biblioref">2015</a>)</span>, mais específico, <a href="https://r-pkgs.org/r.html#code-style">Estilo de código</a>, e ainda <a href="http://adv-r.had.co.nz/Style.html">Advanced R, 1ed, Style guide</a>, <a href="https://style.tidyverse.org/">The tidyverse style guide</a> e <a href="https://google.github.io/styleguide/Rguide.html">Google’s R Style Guide</a>.</p>
-<!--
-# <i class="fas fa-cubes"></i> Pacotes
+<h1 id="pacotes"><i class="fas fa-cubes"></i> Pacotes</h1>
+<p>O pacote em <a href="http://r-project.org/" target="_blank">R</a> é um diretório de arquivos necessários para carregar um código de funções, dados, documentações de ajuda, testes, etc. O próprio <a href="http://r-project.org/" target="_blank">R</a> em sua instalação, contém 30 pacotes, que dizemos que são as funções mínimas para a utilização da linguagem. Nesse diretório não há apenas códigos em <a href="http://r-project.org/" target="_blank">R</a>, mas um pacote fonte (do inglês, <em>source package</em>), contendo os arquivos mencionados acima, ou um arquivo compactado, de extensão <em>.tar.gz</em> do pacote fonte, ou um pacote instalado, resultado da função <code>R CMD INSTALL</code>, que será visto no módulo <a href="navancado.html">Programação em R (Nível Avançado)</a>. Isso acontece no SO <em>Linux</em>. Para as plataformas <em>Windows</em> e <em>Macintosh</em>, existem também os pacotes binários ou compactados com a extensão <em>.zip</em> ou <em>.tar.gz</em>.</p>
+<p>Um pacote, portanto é a unidade básica para o compartilhamento de um código. Atualmente, até 11/03/2021, <a href="https://cran.r-project.org/web/packages/">o número de pacotes disponíveis é 17.295</a>, e isso no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, isto é, na <em>Comprehenive R Archive Network</em>, o repositório oficial de pacotes no <a href="http://r-project.org/" target="_blank">R</a>. Qualquer usuário pode publicar um pacote e disponibilizá-lo sob o <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. Para isso, uma série de testes iniciais são realizados para verificar se não há problemas. Significa também se um pacote está disponível no <a href="http://cran.r-project.org/" target="_blank">CRAN</a> ele funcionará nas três plataformas mais usadas em sistema operacional, <em>SO Linux</em> ou sitemas <em>Unix</em>, <em>SO Windows</em> e <em>SO Macintosh</em>. Há outros repositórios que podem ser disponibilizados os pacotes, como por exemplo, no <a href="http://github.com/">GitHub</a>. Porém, não há a garantia de que possa estar funcionando corretamento em seu sistema operacional, como os pacotes disponíveis no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>.</p>
+<p>Para uma instalação mais rápida no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, há <a href="https://cran.r-project.org/mirrors.html">espelhos disponíveis</a> no Brasil, do qual o primeiro foi desenvolvido e está funcionando até hoje na UFPR.</p>
+<p>Contudo, uma coisa deve ficar claro, que erroneamente, alguns usuários chamam pacote de biblioteca. Nas documentações do <a href="http://r-project.org/" target="_blank">R</a>, biblioteca é o diretório onde os pacotes são instalados, também chamados de diretório de biblioteca ou diretório de arvores. O outro sentido de biblioteca é o de biblioteca compartilhada (dinâmica ou estática), que armazenam código compilado que se vinculam aos pacotes, por exemplo, no Windows são as DLLs.</p>
+<p>A estrutura básica de um pacote é apresentada na Figura <a href="#fig:esqpack">18</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:esqpack"></span>
+<img src="images/esqueleto.png" alt="Esqueleto básico de um pacote." width="232" />
+<p class="caption">
+Figure 18: Esqueleto básico de um pacote.
+</p>
+</div>
+</div>
+<p>Vejamos as ideias básicas desses subdiretórios e arquivos,</p>
+<ul>
+<li><strong>DESCRIPTION</strong>: Esse é um arquivo de texto, contendo informações básicas como o título do pacote, versão, licença, descrição, nome dos autores, e o mantenedor do pacote, isto é, para quando um pacote estiver com problema ou o <a href="http://cran.r-project.org/" target="_blank">CRAN</a> entre em contato, será para este último. Esses as informações obrigatórias que devem ter nesse arquivo.</li>
+<li><strong>NAMESPACE</strong>: Esse arquivo embora tenha tenha muita semelhança com a linguagem <a href="http://r-project.org/" target="_blank">R</a>, o seu conteúdo, se destina a importação e exportação de funções no pacote. Será nesse arquivo, que diremos quais os pacotes que ele depende, isto é, as funções, e quais as funções exportadas, visíveis, que devem ser apresentadas aos usuários.</li>
+<li><strong>R/</strong>: Esse subdiretório apresenta os <em>scripts</em> com as funções em <a href="http://r-project.org/" target="_blank">R</a>. é o cérebro do pacote.</li>
+<li><strong>man/</strong>: Esse subdiretório apresenta os arquivos de ajuda, com extensão <em>.Rd</em>. Isso significa, que uma vez instalado o pacote no <a href="http://r-project.org/" target="_blank">R</a>, o acesso aos manuais de ajuda do referido pacote, estarão disponíveis, graças a esses arquivos.</li>
+</ul>
+<h2 id="instpac">Instalação de um pacote</h2>
+<p>A instalação de um pacote via <a href="http://cran.r-project.org/" target="_blank">CRAN</a> pode ser feito pela função <code>install.packages(pkgs = "nome_pacote")</code>. Por exemplo, vamos tentar instalar o pacote <a href="https://cran.r-project.org/package=midrangeMCP">midrangeMCP</a>, da seguinte forma:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"midrangeMCP"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Pode ser que nesse processo, dependendo de onde o usuário esteja executando essa linha de comando, interface do <a href="http://r-project.org/" target="_blank">R</a> ou <a href="http://rstudio.org/" target="_blank">RStudio</a>, que seja solicitado o espelho por onde deseja fazer a instalação. Isso é apenas um atalho para ter um acesso mais rápido na instalação do pacote. A sugestão é escolher um espelho de seu país de origem.</p>
+<p>Uma forma simples de se ter detalhes do pacote na internet, tais como, baixar o pacote fonte ou o pacote binário do <a href="https://bendeivide.github.io/midrangeMCP/">midrangeMCP</a>, por exemplo, é sempre usar essa url: <a href="http://cran.r-project.org/package=midrangeMCP" class="uri">http://cran.r-project.org/package=midrangeMCP</a>. Para qualquer outro pacote, basta mudar o nome do pacote na url, e assim, estaremos na página do repositório do pacote. O pacote fonte, como falado anteriormente, é compactado com extensão <code>.tar.gz</code>, no caso, <a href="https://cran.r-project.org/src/contrib/midrangeMCP_3.1.1.tar.gz">midrangeMCP_3.1.1.tar.gz</a>. O pacote binário tem a compactação zipada, <a href="https://cran.r-project.org/bin/windows/contrib/4.1/midrangeMCP_3.1.1.zip">midrangeMCP_3.1.1.tar.zip</a> para o Windows e <a href="https://cran.r-project.org/bin/macosx/contrib/4.0/midrangeMCP_3.1.1.tgz">midrangeMCP_3.1.1.tgz</a> para o Macintosh. O acesso aos arquivos do pacote mencionados no esqueleto são disponíveis no pacote fonte.</p>
+<p>Uma outra forma possível de instalação é baixar o arquivo do pacote fonte para o seu computador e instalá-lo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span>pkgs <span class='op'>=</span> <span class='st'>"./midrangeMCP.tar.gz"</span>, repos <span class='op'>=</span> <span class='cn'>NULL</span>, type <span class='op'>=</span> <span class='st'>"source"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Consideramos que o arquivo do pacote esteja no diretório de trabalho do usuário. Caso contrário, deve ser informado o local onde pacote se encontra no computador. Para o Window ou Macintosh, é possível instalar também, a partir dos pacotes binários.</p>
+<p>Muitos dos desenvolvedores, estão disponibilizando seus projetos de pacotes, principalmente no <a href="http://github.com/" target="_blank">GitHub</a>, inclusive com manuals de ajuda com maiores detalhes. Pode ser possível instalar esses pacotes por esse repositório. Precisamos inicialmente do pacote <a href="https://devtools.r-lib.org/">devtools</a>, e posteriormente a instalação do pacote. Segue,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"devtools"</span><span class='op'>)</span>
+<span class='fu'>install_github</span><span class='op'>(</span><span class='st'>"bendeivide/midrangeMCP"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Contudo, devemos dar a preferência pela instalação via <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. Por lá, teremos a garantia que os pacotes estão estáveis para a utilização nas referidas plataformas mencionadas acima.</p>
+<h2 id="objpac">Objetivos de um pacote</h2>
+<p>A ideia de um pacote para um usuário <a href="http://r-project.org/" target="_blank">R</a> deve representar como uma ferramenta para otimizar suas atividades do dia-a-dia na utilização da linguagem. Suponha que o usuário seja um cientista de dados, e todos os dias ele carrega uma sequência de <em>scripts</em>, via <code>source</code>, para disponibilizar suas funções no ambiente global. Isso acaba gerando processos repetitivos de trabalho desnecessários.</p>
+<p>Ao invés, o cientista de dados pode desenvolver um pacote, e esse pacote conter todas as funções necessárias para as suas análises. De uma vez, o pacote instalado e anexado no caminho de busca, todas as suas funções estarão disponíveis para utilização. Portanto, o entendimento disso, permite uma maior eficiência de trabalho.</p>
+<p>Outro ponto é que a experiência contida em um pacote pode ser propagada mais facilmente para outros usuários, mostrando que o conhecimento é uma liberdade necessária. Tanto pelo <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, quanto por outras plataformas, o pacote pode ser disponibilizado.</p>
+<h2 id="funcpac">Utilizar as funções de um pacote</h2>
+<p>Uma vez instalado o pacote, precisamos carregar e anexá-lo, para que possamos utilizar os recursos disponíveis no pacote, como funções, dados, etc. Isso significa, disponibilizar na memória e inseri-lo no caminho de busca, respectivamente. Para fazer essas duas ações ao mesmo tempo, use a função <code>library()</code> ou <code>require()</code>. A primeira função se for utilizada sem argumento algum, retorna todos os pacotes instalados na bibioteca de pacotes do <a href="http://r-project.org/" target="_blank">R</a>. Vejamos o exemplo do pacote <a href="https://bendeivide.github.io/midrangeMCP/">midrangeMCP</a>,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Carregando e anexando o pacote midrangeMCP</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>midrangeMCP</span><span class='op'>)</span>
 
-# Ambientes e caminho de busca (#env-searchpath)
+<span class='co'># Usando a função MRtest() desse pacote</span>
+<span class='co'>#-----</span>
+<span class='co'># Dados simulados de um experimento em DIC (Delineamento Inteiramente Casualizado)</span>
 
--->
-<div class="sourceCode" id="cb217"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<span class='co'># Variavel resposta</span>
+<span class='va'>rv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100.08</span>, <span class='fl'>105.66</span>, <span class='fl'>97.64</span>, <span class='fl'>100.11</span>, <span class='fl'>102.60</span>, <span class='fl'>121.29</span>, <span class='fl'>100.80</span>,
+        <span class='fl'>99.11</span>, <span class='fl'>104.43</span>, <span class='fl'>122.18</span>, <span class='fl'>119.49</span>, <span class='fl'>124.37</span>, <span class='fl'>123.19</span>, <span class='fl'>134.16</span>,
+        <span class='fl'>125.67</span>, <span class='fl'>128.88</span>, <span class='fl'>148.07</span>, <span class='fl'>134.27</span>, <span class='fl'>151.53</span>, <span class='fl'>127.31</span><span class='op'>)</span>
+
+<span class='co'># Tratamento</span>
+<span class='va'>treat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>, each <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># Anava</span>
+<span class='va'>res</span>     <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/aov.html'>aov</a></span><span class='op'>(</span><span class='va'>rv</span><span class='op'>~</span><span class='va'>treat</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>DFerror</span> <span class='op'>&lt;-</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>Df</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>MSerror</span> <span class='op'>&lt;-</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>`Mean Sq`</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+
+<span class='co'># Aplicando testes</span>
+<span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'>midrangeMCP</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/midrangeMCP/man/MRtest.html'>MRtest</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>rv</span>,
+                  trt <span class='op'>=</span> <span class='va'>treat</span>,
+                  dferror <span class='op'>=</span> <span class='va'>DFerror</span>,
+                  mserror <span class='op'>=</span> <span class='va'>MSerror</span>,
+                  alpha <span class='op'>=</span> <span class='fl'>0.05</span>,
+                  main <span class='op'>=</span> <span class='st'>"PCMs"</span>,
+                  MCP <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"all"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>MCP&#39;s based on distributions of the studentized midrange and range
+
+Study:  PCMs 
+
+Summary:
+   Means   std r    Min    Max
+A 100.87  3.40 4  97.64 105.66
+B 105.95 10.33 4  99.11 121.29
+C 117.62  9.02 4 104.43 124.37
+D 127.97  4.74 4 123.19 134.16
+E 140.30 11.42 4 127.31 151.53
+
+ Mean Grouping Midrange Test
+
+Statistics: 
+  Exp.Mean      CV  MSerror Df n Stud.Midrange Ext.DMS  Int.DMS
+   118.542 7.08182 70.47488 15 5      1.089968 5.90246 4.575105
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g2
+C 117.62     g3
+B 105.95     g4
+A 100.87     g4
+
+Mean Grouping Range Test
+
+Statistics: 
+  Exp.Mean      CV  MSerror Df n Stud.Range      DMS
+   118.542 7.08182 70.47488 15 5   4.366985 18.33027
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g2
+C 117.62     g2
+B 105.95     g3
+A 100.87     g3
+
+SNK Midrange Test
+
+Statistics: 
+      Exp.Mean     CV MSerror Df n Stud.Midrange    DMS
+comp1  118.542 7.0818 70.4749 15 5        1.0900 5.9025
+comp2  118.542 7.0818 70.4749 15 4        1.1646 6.2159
+comp3  118.542 7.0818 70.4749 15 3        1.2828 6.7121
+comp4  118.542 7.0818 70.4749 15 2        1.5072 7.6536
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g1
+C 117.62   g1g2
+B 105.95   g1g2
+A 100.87     g2
+
+Tukey Midrange Test
+
+Statistics: 
+  Exp.Mean      CV  MSerror Df n Stud.Midrange Ext.DMS  Int.DMS
+   118.542 7.08182 70.47488 15 5      1.089968 5.90246 4.575105
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g2
+C 117.62     g3
+B 105.95     g4
+A 100.87     g4</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>MCP&#39;s based on distributions of the studentized midrange and range
+
+Study:  PCMs 
+
+Summary:
+   Means   std r    Min    Max
+A 100.87  3.40 4  97.64 105.66
+B 105.95 10.33 4  99.11 121.29
+C 117.62  9.02 4 104.43 124.37
+D 127.97  4.74 4 123.19 134.16
+E 140.30 11.42 4 127.31 151.53
+
+ Mean Grouping Midrange Test
+
+Statistics: 
+  Exp.Mean      CV  MSerror Df n Stud.Midrange Ext.DMS  Int.DMS
+   118.542 7.08182 70.47488 15 5      1.089968 5.90246 4.575105
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g2
+C 117.62     g3
+B 105.95     g4
+A 100.87     g4
+
+Mean Grouping Range Test
+
+Statistics: 
+  Exp.Mean      CV  MSerror Df n Stud.Range      DMS
+   118.542 7.08182 70.47488 15 5   4.366985 18.33027
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g2
+C 117.62     g2
+B 105.95     g3
+A 100.87     g3
+
+SNK Midrange Test
+
+Statistics: 
+      Exp.Mean     CV MSerror Df n Stud.Midrange    DMS
+comp1  118.542 7.0818 70.4749 15 5        1.0900 5.9025
+comp2  118.542 7.0818 70.4749 15 4        1.1646 6.2159
+comp3  118.542 7.0818 70.4749 15 3        1.2828 6.7121
+comp4  118.542 7.0818 70.4749 15 2        1.5072 7.6536
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g1
+C 117.62   g1g2
+B 105.95   g1g2
+A 100.87     g2
+
+Tukey Midrange Test
+
+Statistics: 
+  Exp.Mean      CV  MSerror Df n Stud.Midrange Ext.DMS  Int.DMS
+   118.542 7.08182 70.47488 15 5      1.089968 5.90246 4.575105
+
+Groups: 
+   Means Groups
+E 140.30     g1
+D 127.97     g2
+C 117.62     g3
+B 105.95     g4
+A 100.87     g4</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>midrangeMCP</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/midrangeMCP/man/MRbarplot.html'>MRbarplot</a></span><span class='op'>(</span><span class='va'>results</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="nbasico_files/figure-html5/unnamed-chunk-101-1.png" width="624" /></p>
+</div>
+<h2 id="attachpac">Carregando e anexando um pacote</h2>
+<p>Anteriormente, falamos que usamos a função <code>library()</code> ou <code>require()</code> para carregar e anexar um pacote para utilizar suas funções, após a instalação. Carregar um pacote significa disponibilizar na memória ativa. Para acessar uma função de um pacote após ter sido carregado, usamos o operador <code>::</code>, isto é, <code>nome_pacote::nome_função</code>. Isto significa, que será chamado a função necessária sem anexar o pacote no <a href="#search_path">caminho de busca</a>. Estudaremos a seguir um pouco mais sobre caminho de busca. Para esse momento, entenda que é um caminho hierarquizado de ambientes, isto é, objetos que armazenam, em forma de lista, nomes associados a objetos. A função para ver o caminho de busca é <code>search()</code>. Em nosso caso, temos:</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+[10] &quot;package:base&quot;     </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Carregando e chamando uma função de um pacote</span>
+<span class='fu'>midrangeMCP</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/midrangeMCP/man/MRwrite.html'>MRwrite</a></span><span class='op'>(</span><span class='va'>results</span>, extension <span class='op'>=</span> <span class='st'>"latex"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Table in latex of results of the MGM test
+
+% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Wed Mar 17 05:44:21 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrl}
+  \hline
+trt &amp; Means &amp; Groups \\ 
+  \hline
+E &amp; 140.30 &amp; g1 \\ 
+  D &amp; 127.97 &amp; g2 \\ 
+  C &amp; 117.62 &amp; g3 \\ 
+  B &amp; 105.95 &amp; g4 \\ 
+  A &amp; 100.87 &amp; g4 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+Table in latex of results of the MGR test
+
+% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Wed Mar 17 05:44:21 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrl}
+  \hline
+trt &amp; Means &amp; Groups \\ 
+  \hline
+E &amp; 140.30 &amp; g1 \\ 
+  D &amp; 127.97 &amp; g2 \\ 
+  C &amp; 117.62 &amp; g2 \\ 
+  B &amp; 105.95 &amp; g3 \\ 
+  A &amp; 100.87 &amp; g3 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+Table in latex of results of the MGM test
+
+% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Wed Mar 17 05:44:21 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrl}
+  \hline
+trt &amp; Means &amp; Groups \\ 
+  \hline
+E &amp; 140.30 &amp; g1 \\ 
+  D &amp; 127.97 &amp; g1 \\ 
+  C &amp; 117.62 &amp; g1g2 \\ 
+  B &amp; 105.95 &amp; g1g2 \\ 
+  A &amp; 100.87 &amp; g2 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+Table in latex of results of the TM test
+
+% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Wed Mar 17 05:44:21 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrl}
+  \hline
+trt &amp; Means &amp; Groups \\ 
+  \hline
+E &amp; 140.30 &amp; g1 \\ 
+  D &amp; 127.97 &amp; g2 \\ 
+  C &amp; 117.62 &amp; g3 \\ 
+  B &amp; 105.95 &amp; g4 \\ 
+  A &amp; 100.87 &amp; g4 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+Table in latex of results of descriptive statistics
+
+% latex table generated in R 4.0.3 by xtable 1.8-4 package
+% Wed Mar 17 05:44:21 2021
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrrrr}
+  \hline
+trt &amp; Means &amp; std &amp; r &amp; Min &amp; Max \\ 
+  \hline
+A &amp; 100.87 &amp; 3.40 &amp;   4 &amp; 97.64 &amp; 105.66 \\ 
+  B &amp; 105.95 &amp; 10.33 &amp;   4 &amp; 99.11 &amp; 121.29 \\ 
+  C &amp; 117.62 &amp; 9.02 &amp;   4 &amp; 104.43 &amp; 124.37 \\ 
+  D &amp; 127.97 &amp; 4.74 &amp;   4 &amp; 123.19 &amp; 134.16 \\ 
+  E &amp; 140.30 &amp; 11.42 &amp;   4 &amp; 127.31 &amp; 151.53 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+See yours tables in Console
+ Format: latex</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando novamente o caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+[10] &quot;package:base&quot;     </code></pre>
+</div>
+<p>Com as linhas de comando apresentadas anteriormente, percebemos ao executar a função <code>MRwrite()</code> do pacote <a href="https://bendeivide.github.io/midrangeMCP/">midrangeMCP</a>, usando <code>::</code> que o caminho de busca não foi alterado. Isso significa que o pacote não foi anexado, apenas carregado, ou seja, se o usuário desejar usar alguma função do pacote <a href="https://bendeivide.github.io/midrangeMCP/">midrangeMCP</a> digitando apenas o nome no console, não será possível, porque o pacote não está anexado ao caminho de busca.</p>
+<p>Vejamos uma outra situação,</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+[10] &quot;package:base&quot;     </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Carregando e anexando um pacote</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>midrangeMCP</span><span class='op'>)</span>
+
+<span class='co'># Verificando novamente o caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;package:midrangeMCP&quot; &quot;package:magrittr&quot;   
+ [4] &quot;package:stats&quot;       &quot;package:graphics&quot;    &quot;package:grDevices&quot;  
+ [7] &quot;package:utils&quot;       &quot;package:datasets&quot;    &quot;package:methods&quot;    
+[10] &quot;Autoloads&quot;           &quot;package:base&quot;       </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamando uma funcao do pacote</span>
+<span class='co'># guimidrangeMCP()</span>
+</code></pre>
+</div>
+</div>
+<p>Com o uso da função <code>library()</code>, percebemos que o caminho de busca foi alterado, porque agora temos o ambiente de pacote <code>package:midrangeMCP</code>. Isso significa que agora poderemos acessar os objetos desse pacote apenas digitando o nome associado a eles. Por fim, a última linha foi comentada, porque é uma interface gráfica ao usuário para o pacote, o que chamamos de <em>GUI</em> (do inglês, <em>Graphical User Interface</em>), mas que pode ser visualizado na Figura <a href="#fig:guimidrangeMCP">19</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:guimidrangeMCP"></span>
+<img src="images/midrangeMCP.png" alt="Interface para o pacote [midrangeMCP](https://bendeivide.github.io/midrangeMCP/)." width="80%" />
+<p class="caption">
+Figure 19: Interface para o pacote <a href="https://bendeivide.github.io/midrangeMCP/">midrangeMCP</a>.
+</p>
+</div>
+</div>
+<h2 id="namespac">Namespace de um pacote</h2>
+<p>No início da seção sobre pacotes, falamos sobre o esqueleto de um pacote, isto é, os componentes básicos de um pacote. Um dos arquivos é o <em>NAMESPACE</em>. Esse arquivo é respondsável pela exportação e importação de funções. As funções exportadas de um pacote, por meio desse arquivo, são aquelas visíveis após a anexação do pacote ao caminho de busca, ou por meio do operador <code>::</code>. As funções importadas são aquelas utilizadas de outros pacotes.</p>
+<p>As funções ditas internas do pacote, são aquelas não mencionadas no <em>NAMESPACE</em>. Em muitas situações, precisamos de funções internas necessárias para a finalidade do pacote, que muitas vezes não é objetivo final para disponibilidade dos usuários, mas códigos intermediários para a boa funcionabilidade do pacote. Dessa forma, uma boa escolha para que não haja conflitos em nomes associados a objetos no ambiente de trabalho, é a decisão de não exportá-los.</p>
+<p>Porém, quando se cria um pacote, por exemplo, pelo RStudio, o padrão no <em>NAMESPACE</em> é o comando:</p>
+<pre><code>exportPattern(&quot;^[^\\.]&quot;)</code></pre>
+<p>que significa que todas as funções no pacote serão exportadas que não iniciam por um ponto (“.”). Como toda função em um pacote precisa de um arquivo de ajuda (<em>.Rd</em>), todas as funções deverão ter esses tipos arquivos inseridos no subdiretório <em>man/</em>.</p>
+<p>Os primeiros pacotes submetidos ao CRAN na primeiras versões do <a href="http://r-project.org/" target="_blank">R</a>, não tinha o arquivo <em>NAMESPACE</em>. Por isso que quando tentamos instalar pacotes órfãs antigos, um dos erros é a falta desse arquivo.</p>
+<p>Mais detalhes sobre o desenvolvimento de pacotes será abordado no módulo <a href="navancado.html">Programação em R (Nível Avançado)</a>.</p>
+<h2 id="carpac">Usando os operadores <code>::</code> e <code>:::</code></h2>
+<p>Como falamos anteriormente, para chamarmos uma função sem a necessidade de anexar o pacote, usamos o operador <code>::</code>. Comentamos também, que algumas funções não eram exportadas pelo <em>NAMESPACE</em> de um pacote. Contudo, se desejarmos visualizar ou executá-las, poderemos utilizar o operador <code>:::</code>. Vejamos um exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Instale o pacote SMR</span>
+<span class='co'># install.packages(SMR) # Descomente a linha de comando para instalar</span>
+<span class='co'># Carregando e chamando funcoes exportadas do pacote SMR</span>
+<span class='fu'>SMR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/SMR/man/SMR.html'>pSMR</a></span><span class='op'>(</span>q <span class='op'>=</span> <span class='fl'>2</span>, size <span class='op'>=</span> <span class='fl'>10</span>, df <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.9905216</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Carregando e chamando funcoes nao exportadas ao pacote</span>
+<span class='fu'>SMR</span><span class='fu'>:::</span><span class='fu'>GaussLegendre</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$nodes
+[1] -0.8611363 -0.3399810  0.3399810  0.8611363
+
+$weights
+[1] 0.3478548 0.6521452 0.6521452 0.3478548</code></pre>
+</div>
+<p>As funções internas dos pacotes devem ser utilizadas com muita cautela, uma vez que são funções que podem passar por atualizações, mudanças. Isso porque, como não são funções exportadas, alguns pacotes podem passar por atualizações, e desse modo, estas funções também podem ser atualizadas ou até mesmo alteradas.</p>
+<p>Outro ponto interessante é que não se recomenda a utilização de importação de funções internas de outros pacotes no desenvolvimento de pacotes, uma vez que são funções que podem passar por mudanças drásticas, e portanto, gerar problemas nas rotinas. Se uma função em um pacote não foi exportada, é porque o desenvolvedor tem um bom motivo para tal situação. As funções exportadas são de fato a essência do objetivo de um pacote, e por isso que elas são exportadas.</p>
+<h2 id="search_path">Ambientes e Caminho de busca</h2>
+<p>Na seção sobre <a href="#funcoes">funções</a>, discutimos dois pontos interessantes sobre objetos, que é a atribuição e o escopo. E esses dois pontos estão intimamente relacionados ao objeto ambiente, de modo <code>"environment"</code>. O ambiente é um objeto que armazena, em forma de lista, as ligações dos nomes associados aos objetos. Porém, existem diferenças entre o objeto lista do objeto ambiente, com quatro exceções (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>):</p>
+<ul>
+<li>Cada nome deve ser único;</li>
+<li>Os nomes em um ambiente não são ordenados;</li>
+<li>Um ambiente tem um pai ou também chamado de ambiente superior;</li>
+<li>Ambientes não são copiados quando modificados.</li>
+</ul>
+<p>Muitas dessas definições são complexas para esse momento. E uma profundidade sobre o assunto, será abordada no módulo <a href="nintermediario.html">Programação em R (Nível Intermediário)</a>. Contudo, introduziremos algumas características importante os objetos ambiente.</p>
+<p>O ambiente de trabalho do <a href="http://r-project.org/" target="_blank">R</a> é conhecido como ambiente global, pois é onde todo o processo de interação da linguagem ocorre. Existe um nome específico associado a esse objeto, que é <code>.GlobalEnv</code>, ou também pode ser acessado pela função <code>globalenv()</code>. Para sabermos quais os nomes que existem nesse ambiente, usamos a função <code>ls()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Nomes no ambiente global</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>character(0)</code></pre>
+</div>
+<p>Quando o resultado da função é <code>character(0)</code>, significa que não existem nomes criados no ambiente global. O ambiente corrente de trabalho é informado pela função <code>environment()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Comparando os ambientes</span>
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>.GlobalEnv</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Forma errada de comparar ambientes (Erro...)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>==</span> <span class='va'>.GlobalEnv</span>
+</code></pre>
+</div>
+<pre><code>Error in environment() == .GlobalEnv: comparação (1) é possível apenas para tipos lista ou atômicos</code></pre>
+</div>
+<p>A segunda forma é equivocada, porque os ambientes não são vetores. Assim, como também não podemos utilizar o sistema de indexação, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando objetos no ambiente global</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>; <span class='va'>a</span> <span class='op'>&lt;-</span> <span class='st'>"Ben"</span>; <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span>
+<span class='co'># Verificando os nomes no ambiente global</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;x&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Acessando o objeto "a"</span>
+<span class='va'>.GlobalEnv</span><span class='op'>$</span><span class='va'>a</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Ben&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>.GlobalEnv</span><span class='op'>[[</span><span class='st'>"a"</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Ben&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Acessando o primeiro nome (Erro...)</span>
+<span class='va'>.GlobalEnv</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>Error in .GlobalEnv[[1]]: argumentos errados para obtenção de subconjuntos de um ambiente</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>A última linha de comando retorna um erro, porque os nomes em ambientes não são ordenados, ao invés, devemos chamar os resultados por meio de <code>$</code> ou .</p>
+<p>Poderemos criar um ambiente pela função <code>new.env()</code>, e inserir ligações dentre dele, como apresentado a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando objetos no ambiente global</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>; <span class='va'>a</span> <span class='op'>&lt;-</span> <span class='st'>"Ben"</span>; <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span>
+<span class='co'># Verificando os nomes no ambiente global</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;x&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um objeto ambiente no ambiente global</span>
+<span class='va'>amb1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Inserindo nomes nesse no ambiente "amb1"</span>
+<span class='va'>amb1</span><span class='op'>$</span><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fl'>3</span>; <span class='va'>amb1</span><span class='op'>$</span><span class='va'>e</span> <span class='op'>&lt;-</span> <span class='st'>"FALSE"</span>
+<span class='co'># Verificando nomes no ambiente global</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;a&quot;    &quot;amb1&quot; &quot;b&quot;    &quot;x&quot;   </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando nomes no ambiente "amb1"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span>envir <span class='op'>=</span> <span class='va'>amb1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;d&quot; &quot;e&quot;</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Todo ambiente tem um ambiente pai ou ambiente superior. Quando um nome não é encontrado no ambiente corrente, o <a href="http://r-project.org/" target="_blank">R</a> procurará no ambiente pai. Para saber, use <code>parent.env()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>parent.env</a></span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+</div>
+<p>O único ambiente que não tem pai é o ambiente vazio, objeto <code>emptyenv()</code>, que pode ser observado pela linha de comando:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>parent.env</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>emptyenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Error in parent.env(emptyenv()): o ambiente vazio não tem pai</code></pre>
+</div>
+<h2 id="superatr">A superatribuição <code>&lt;&lt;-</code></h2>
+<p>A atribuição (<code>&lt;-</code>) é uma função que associa um nome a um objeto no ambiente corrente. Quando usamos o <a href="http://r-project.org/" target="_blank">R</a>, quase sempre esse ambiente é o ambiente global. A superatribuição (<code>&lt;&lt;-</code>) cria um nome e o associa a um objeto no ambiente pai do ambiente de onde essa associação está sendo criada. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando o objeto x e o imprimindo</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1] 0</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando uma funcao com a superatribuicao</span>
+<span class='va'>f1</span> <span class='op'>&lt;-</span>  <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Obj2</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+  <span class='co'># Modificando x do ambiente global</span>
+  <span class='va'>x</span> <span class='op'>&lt;&lt;-</span> <span class='fl'>2</span>
+  <span class='co'># Imprimindo o ambiente de execucao</span>
+  <span class='va'>env</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='co'># Imprimindo o Obj2</span>
+  <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, <span class='st'>"Ambiente de execução"</span> <span class='op'>=</span> <span class='va'>env</span>, <span class='st'>"Ambiente Pai"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>parent.env</a></span><span class='op'>(</span><span class='va'>env</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='co'># Retornando a lista</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Imprimindo f1</span>
+<span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$x
+[1] 1
+
+$`Ambiente de execução`
+&lt;environment: 0x000000000e14b528&gt;
+
+$`Ambiente Pai`
+&lt;environment: R_GlobalEnv&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo x</span>
+<span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo o ambiente envolvente de f1</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>f1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo os nomes no ambiente global</span>
+<span class='co'># </span>
+</code></pre>
+</div>
+</div>
+<p>Esse caso é interessante porque vemos dois nomes associados a objetos em ambientes diferentes. Alguns ambientes são criados pela função <code>function()</code>, são os chamados ambientes funcionais. Um deles é o ambiente envolvente, já comentado na seção sobre <a href="#esc_lexico">funções</a>. O ambiente envolvente da função <code>f1</code> é o ambiente global. Já no corpo da função <code>f1</code>, um outro ambiente surge quando a função é chamada, é o ambiente de execução. Toda vez que a função é chamada, cria-se um novo ambiente de execução. Observemos os identificadores, em <code>Ambiente de execução</code>, quando executamos a função mais de uma vez,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: 0x000000000c0877e8&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: 0x000000000db4c540&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: 0x000000000d1eea98&gt;</code></pre>
+</div>
+<p>O ambiente pai do ambiente de execução, é o ambiente envolvente de <code>f1</code>, que nesse caso é o ambiente global. Assim, observe que o ocorre quando executamos o comando de superatribuição. O nome <code>x</code> no ambiente global passou a está associado ao valor 2, porque foi alterado por <code>&lt;&lt;-</code>, mas o nome <code>x</code> continuou associado ao valor 1, porque a função <code>f1()</code> retornou o valor 1. Isso mostra que a superatribuição não cria um objeto no ambiente atual, mas em um ambiente pai se não existe ou altera o nome existente. Vejamos o complemento dessa afirmação no próximo exemplo.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando os nomes no ambiente global</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>character(0)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando uma funcao</span>
+<span class='va'>f2</span> <span class='op'>&lt;-</span>  <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;&lt;-</span> <span class='fl'>2</span>
+<span class='op'>}</span>
+<span class='co'># Executando f2</span>
+<span class='fu'>f2</span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Verificando novamente os nomes no ambiente global</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;f2&quot; &quot;x&quot; </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Com a superatribuição executada dentro de <code>f2()</code> e como no ambiente pai não eistia o nome <code>x</code>, este foi criado e associado ao valor <code>2</code>. Um próximo exemplo, consideramos um ambiente envolvente que não seja o ambiente global. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao contador</span>
+<span class='va'>contador</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+  <span class='va'>env1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='co'># do something useful, then ...</span>
+    <span class='va'>i</span> <span class='op'>&lt;&lt;-</span> <span class='va'>i</span> <span class='op'>+</span> <span class='fl'>1</span>
+    <span class='va'>env2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span>
+    <span class='va'>res2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>i <span class='op'>=</span> <span class='va'>i</span>, `AmbExec_aux` <span class='op'>=</span> <span class='va'>env2</span>, `AmbExec_contador` <span class='op'>=</span> <span class='va'>env1</span><span class='op'>)</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>res2</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+<span class='co'># Chamada de funcao</span>
+<span class='va'>contador1</span> <span class='op'>&lt;-</span> <span class='fu'>contador</span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$i
+[1] 1
+
+$AmbExec_aux
+&lt;environment: 0x000000000c187320&gt;
+
+$AmbExec_contador
+&lt;environment: 0x000000000e056360&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$i
+[1] 2
+
+$AmbExec_aux
+&lt;environment: 0x000000000e398b70&gt;
+
+$AmbExec_contador
+&lt;environment: 0x000000000e056360&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$i
+[1] 3
+
+$AmbExec_aux
+&lt;environment: 0x000000000e501c60&gt;
+
+$AmbExec_contador
+&lt;environment: 0x000000000e056360&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamada de funcao</span>
+<span class='va'>contador2</span> <span class='op'>&lt;-</span> <span class='fu'>contador</span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'>contador2</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$i
+[1] 1
+
+$AmbExec_aux
+&lt;environment: 0x000000000c4958d8&gt;
+
+$AmbExec_contador
+&lt;environment: 0x000000000bb43040&gt;</code></pre>
+</div>
+<p>Quando uma função <code>function()</code> é criada dentro de outra função <code>function()</code> o ambiente de execução da função superior, <code>contador()</code>, é o ambiente envolvente da função interna, <code>aux()</code>. Dessa forma, o ambiente de execução de <code>contador()</code> não será mais efêmero, isto é, não será apagado após a execução, como pode ser visto em <code>contador1()</code>. Observamos que executamos <code>contador1()</code> três vezes. O nome <code>i</code> foi atualizado, devido a superatribuição, a cada chamada da mesma função. Ao passo que, quando realizamos uma nova chamada de <code>contador()</code>, por meio de <code>contador2()</code>, o resultado de <code>i</code> retora o valor <code>1</code>, porque um novo ambiente de execução para <code>contador()</code> foi criado, como pode ser observado.</p>
+<p>Os demais ambiente funcionais e exemplos, serão descritos no módulo <a href="nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
+<p>Por fim, uma última forma do <a href="http://r-project.org/" target="_blank">R</a> encontrar os nomes é pelo <strong>caminho de busca</strong>, que além dos ambientes criados e o ambiente global, existem os ambientes de pacotes. Toda vez que um pacote é anexado ao caminho de busca, o ambiente de pacote anexado será sempre o pai do ambiente global. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:magrittr&quot;  &quot;package:stats&quot;    
+ [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+ [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+[10] &quot;package:base&quot;     </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Anexando o pacote SMR</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>SMR</span><span class='op'>)</span>
+<span class='co'># Verificando o caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;package:SMR&quot;       &quot;package:magrittr&quot; 
+ [4] &quot;package:stats&quot;     &quot;package:graphics&quot;  &quot;package:grDevices&quot;
+ [7] &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
+[10] &quot;Autoloads&quot;         &quot;package:base&quot;     </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Carregando o pacote midrangeMCP</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>midrangeMCP</span><span class='op'>)</span>
+<span class='co'># Verificando o caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;package:midrangeMCP&quot; &quot;package:SMR&quot;        
+ [4] &quot;package:magrittr&quot;    &quot;package:stats&quot;       &quot;package:graphics&quot;   
+ [7] &quot;package:grDevices&quot;   &quot;package:utils&quot;       &quot;package:datasets&quot;   
+[10] &quot;package:methods&quot;     &quot;Autoloads&quot;           &quot;package:base&quot;       </code></pre>
+</div>
+<p>A lista dos ambientes no caminho de busca segue a ordem hierárquica dos ambientes, de modo que o ambiente global será sempre o ambiente de trabalho, isto é, o ambiente corrente. Não foi apresentado nessa lista, o ambiente vazio, <code>emptyenv()</code>. Mas, poderemos utilizar o pacote <a href="https://rlang.r-lib.org/">rlang</a> para isso.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um ambiente</span>
+<span class='va'>amb2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Verificando seus parentais</span>
+<span class='fu'>rlang</span><span class='fu'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/env_parent.html'>env_parents</a></span><span class='op'>(</span>env <span class='op'>=</span> <span class='va'>amb2</span>, last <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>emptyenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [[1]] $ &lt;env: global&gt;
+ [[2]] $ &lt;env: package:midrangeMCP&gt;
+ [[3]] $ &lt;env: package:SMR&gt;
+ [[4]] $ &lt;env: package:magrittr&gt;
+ [[5]] $ &lt;env: package:stats&gt;
+ [[6]] $ &lt;env: package:graphics&gt;
+ [[7]] $ &lt;env: package:grDevices&gt;
+ [[8]] $ &lt;env: package:utils&gt;
+ [[9]] $ &lt;env: package:datasets&gt;
+[[10]] $ &lt;env: package:methods&gt;
+[[11]] $ &lt;env: Autoloads&gt;
+[[12]] $ &lt;env: package:base&gt;
+[[13]] $ &lt;env: empty&gt;</code></pre>
+</div>
+<p>Dessa forma, é caminho de busca que o <a href="http://r-project.org/" target="_blank">R</a> procurará pelos nomes. Isso significa, que se o ambiente envolvente de uma função, por exemplo, for o ambiente vazio, o <a href="http://r-project.org/" target="_blank">R</a> procurará pelas funções básicas no pacote <em>base</em> e não será encontrado, pois nesse ambiente não há nomes e nem ambientes parentais. Por isso, que o <a href="http://r-project.org/" target="_blank">R</a> depende do escopo léxico para tudo. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando uma funcao</span>
+<span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>1</span>
+
+<span class='co'># Modificando o ambiente envolvente de f3</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>f3</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>emptyenv</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'># Dependencias externas da funcao f3</span>
+<span class='fu'>codetools</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/codetools/man/findGlobals.html'>findGlobals</a></span><span class='op'>(</span><span class='va'>f3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;+&quot; &quot;x&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamando a funcao f3</span>
+<span class='fu'>f3</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Error in x + 1: não foi possível encontrar a função &quot;+&quot;</code></pre>
+</div>
+<p>Isso não ocorre quando definimos o ambiente envolvente de <code>f3()</code> como sendo o ambiente global, porque quando a função buscar pelo operador de soma neste ambiente e não encontrar, <code>f3()</code> seguirá até o ambiente <code>package:base</code>, para encontrar o operador “<code>+</code>.”</p>
+<p>Por isso, que usar a função <code>attach()</code> para anexar objetos do tipo quadro de dados (<em>data frames</em>), por exemplo, pode se tornar um problema em um código, quando temos nomes iguais para objetos diferentes. Para isso, apresentamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># objeto quadro de dados</span>
+<span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>sd <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, var <span class='op'>=</span> <span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='co'># Caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;package:midrangeMCP&quot; &quot;package:SMR&quot;        
+ [4] &quot;package:magrittr&quot;    &quot;package:stats&quot;       &quot;package:graphics&quot;   
+ [7] &quot;package:grDevices&quot;   &quot;package:utils&quot;       &quot;package:datasets&quot;   
+[10] &quot;package:methods&quot;     &quot;Autoloads&quot;           &quot;package:base&quot;       </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># anexando "dados" ao caminho de busca</span>
+<span class='kw'><a href='https://rdrr.io/r/base/attach.html'>attach</a></span><span class='op'>(</span><span class='va'>dados</span><span class='op'>)</span>
+<span class='co'># Verificando novamente o caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;dados&quot;               &quot;package:midrangeMCP&quot;
+ [4] &quot;package:SMR&quot;         &quot;package:magrittr&quot;    &quot;package:stats&quot;      
+ [7] &quot;package:graphics&quot;    &quot;package:grDevices&quot;   &quot;package:utils&quot;      
+[10] &quot;package:datasets&quot;    &quot;package:methods&quot;     &quot;Autoloads&quot;          
+[13] &quot;package:base&quot;       </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo sd</span>
+<span class='va'>sd</span>
+</code></pre>
+</div>
+<pre><code>[1] 1 2 3</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Desanexando "dados"</span>
+<span class='kw'><a href='https://rdrr.io/r/base/detach.html'>detach</a></span><span class='op'>(</span><span class='va'>dados</span><span class='op'>)</span>
+<span class='co'># Imprimindo sd</span>
+<span class='va'>sd</span>
+</code></pre>
+</div>
+<pre><code>function (x, na.rm = FALSE) 
+sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
+    na.rm = na.rm))
+&lt;bytecode: 0x000000000c359230&gt;
+&lt;environment: namespace:stats&gt;</code></pre>
+</div>
+<p>Quando criamos o objeto <code>dados</code>, uma de suas colunas estava nomeada por <code>sd</code>, que também é o nome de uma função do pacote <em>stats</em>, que representa a variância. Porém, quando anexamos o objeto <code>dados</code> no caminho de busca, um novo ambiente é criado, como pai do ambiente global e com mesmo nome do objeto, e os elementos do objeto dados são copiados para esse ambiente. Assim, o nome <code>sd</code> foi procurado e não encontrado, seguindo a busca para o próximo ambiente que foi <code>dados</code>, e daí foi encontrado. Percebemos que também existe esse nome no ambiente do pacote <em>stats</em>, que é do tipo função. Entretanto, como o primeiro objeto encontrado associado a esse nome estava no ambiente dados, ele é retornado. Nesses casos, se usarmos a superatribuição, a alteração ocorrerá apenas na cópia dos elementos no ambiente anexado, e não nos elementos do objeto original. Caso haja a atribuição, o nome será criado no ambiente global.</p>
+<p>Isso pode acabar se tornando um problema se muitos objetos forem anexados. Por isso, é preferível o uso da indexação ou <code>$</code> para acessar os elementos de uma lista ou quadro de dados, evitando assim, conflitos na procura de nomes.</p>
+<p>Desse mesmo modo, poderíamos pensar que esses mesmo conflitos poderiam surgir dentro de um pacote. Porém, graças ao <em>NAMESPACE</em>, isso não ocorre, sendo um dos assuntos abordados nos próximos módulos.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<h1 id="rinterface"><i class="fas fa-sort-alpha-down"></i> Interfaces com outras linguagens</h1>
+<p>Como afirmado no terceiro princício,</p>
+<blockquote>
+<p>
+<ul>
+<li><strong>Princípio da Interface</strong>: Interfaces para outros programas são parte do <code>R</code>,</li>
+</ul>
+</p>
+</blockquote>
+<p>na base do <a href="http://r-project.org/" target="_blank">R</a> temos integrações prontas para implementar códigos em <em>C</em> e <em>FORTRAN</em>, como também outras linguagens. Por exemplo, na base do <a href="http://r-project.org/" target="_blank">R</a> existe um pacote chamado <code>tcltk</code> que integra a linguagem <em>Tcl/Tk</em> para o <a href="http://r-project.org/" target="_blank">R</a>. Esse pacote nos permite desenvolver interfaces gráficas para os nossos códigos.</p>
+<p>Diversos outros pacotes, disponibilizados sob o <a href="http://cran.r-project.org/" target="_blank">CRAN</a> realizaram diversas outras linguagens, que elencamos alguns,</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Pacote</th>
+<th style="text-align: center;">Linguagem integrada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>tcltk</code></td>
+<td style="text-align: center;">Linguagem <em>Tcl/Tk</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://github.com/cran/RGtk2">RGtk2</a></td>
+<td style="text-align: center;">Linguagem <em>Gtk+</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="http://www.rforge.net/rJava/">rJava</a></td>
+<td style="text-align: center;">Linguagem <em>Java</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://rmarkdown.rstudio.com/">rmarkdown</a></td>
+<td style="text-align: center;">Linguagens <em>HTML</em>, <em>JavaScript</em>, <em>CSS</em>, <em>Markdown</em>, <span class="math inline">\(\LaTeX\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="https://rstudio.github.io/reticulate/">reticulate</a></td>
+<td style="text-align: center;">Linguagem <em>Python</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="https://non-contradiction.github.io/JuliaCall/index.html">JuliaCall</a>, <a href="https://cran.r-project.org/web/packages/XRJulia/index.html">XRJulia</a></td>
+<td style="text-align: center;">Linguagem <em>Julia</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><a href="http://www.rcpp.org/">Rcpp</a></td>
+<td style="text-align: center;">Linguagem <em>C++</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><a href="http://gecoder.org/">gecoder</a></td>
+<td style="text-align: center;">Linguagem <em>Ruby</em></td>
+</tr>
+</tbody>
+</table>
+<p>Existe um aplicativo da web bem interessante que integra as linguagem <em>Julia</em>, <em>Python</em> e <a href="http://r-project.org/" target="_blank">R</a>, chamado <a href="https://jupyter.org/">Jupyter</a>. Muitas outras interfaces são integradas ao <a href="http://r-project.org/" target="_blank">R</a>. Ao longo do que formos pesquisando sobre mais pacotes, vamos atualizando a tabela.</p>
+<p>Como motivação para esse momento, iremos realizar uma aplicação com as linguagens <em>Python</em>, <em>C++</em> e <em>Tcl/tk</em>, para verificarmos que essas integrações são fáceis de serem realizadas. Claro, em algumas outras situações, como a integração do código <em>C</em> para <a href="http://r-project.org/" target="_blank">R</a> usando as funções <code>.C()</code> ou <code>.Call()</code> exigem um pouco mais de conhecimento. Contudo, no módulo Programação em R (Nível Avançado), iremos realizar algumas integrações com um abordagem mais profunda para algumas linguagens.</p>
+<div class="panelset">
+<section id="implementação-em-python" class="panel">
+<h2>Implementação em <em>Python</em></h2>
+<p>Vamos inicialmente instalar o pacote <a href="https://rstudio.github.io/reticulate/">reticulate</a>,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>reticulate</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Existem diversas formas de integração. Vamos pensar na forma mais básica, isto é, temos um <em>script Python</em>, isto é, um arquivo com a extensão <em>.py</em>, e vamos carregá-lo no <a href="http://r-project.org/" target="_blank">R</a>. O <em>script</em>, chamaremos de <a href="">add.py</a>, que segue:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb263"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add(x, y):</span>
+<span id="cb263-2"><a href="#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x <span class="op">+</span> y</span></code></pre></div>
+</div>
+<p>Vamos agora chamar a função <code>add()</code> em um <em>script R</em>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Carregando o script add.py</span>
+<span class='fu'>reticulate</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/reticulate/man/source_python.html'>source_python</a></span><span class='op'>(</span><span class='st'>'add.py'</span><span class='op'>)</span> 
+<span class='co'># Chamando a funcao add</span>
+<span class='fu'><a href='https://magrittr.tidyverse.org/reference/aliases.html'>add</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 15</code></pre>
+</div>
+</section>
+<section id="implementação-em-c" class="panel">
+<h2>Implementação em <em>C++</em></h2>
+<p>Vamos instalar o pacote <a href="http://www.rcpp.org/">Rcpp</a>,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='va'>Rcpp</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Vamos realizar a mesma aplicação feita em <em>Python</em>, que segue o <em>script C++</em>, com extensão <em>.cpp</em>,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb265"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb265-1"><a href="#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
+<span id="cb265-2"><a href="#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp;</span>
+<span id="cb265-3"><a href="#cb265-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-4"><a href="#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="co">// [[Rcpp::export]]</span></span>
+<span id="cb265-5"><a href="#cb265-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> add(<span class="dt">int</span> x, <span class="dt">int</span> y) {</span>
+<span id="cb265-6"><a href="#cb265-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> x + y;</span>
+<span id="cb265-7"><a href="#cb265-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<p>Vamos agora chamar a função <code>add()</code> em um <em>script R</em>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Carregando o script add.cpp</span>
+<span class='fu'>Rcpp</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/Rcpp/man/sourceCpp.html'>sourceCpp</a></span><span class='op'>(</span><span class='st'>"add.cpp"</span><span class='op'>)</span>
+<span class='co'># Chamando a funcao add</span>
+<span class='fu'><a href='https://magrittr.tidyverse.org/reference/aliases.html'>add</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 15</code></pre>
+</div>
+</section>
+<section id="implementação-em-tcltk" class="panel">
+<h2>Implementação em TclTk</h2>
+<p>Nesse caso, não precisaremos instalar pacotes, pois o pacote <code>tcltk</code> é da Base do <a href="http://r-project.org/" target="_blank">R</a>. Ao invés, anexe-o no caminho de busca, use <code>library(tcltk)</code>. Iremos implementar uma interface gráfica contendo uma janela com entradas de dois números e um botão para calcular a soma. Segue,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Anexando o pacote</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>tcltk</span><span class='op'>)</span>
+
+<span class='co'># Janela principal</span>
+<span class='va'>main</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tktoplevel</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>400</span>, height <span class='op'>=</span> <span class='fl'>300</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack.propagate</a></span><span class='op'>(</span><span class='va'>main</span>, <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='co'># Texto inicial</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tklabel</a></span><span class='op'>(</span><span class='va'>main</span>, text <span class='op'>=</span> <span class='st'>"Soma de dois números inteiros"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># Quadro 1</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='va'>q1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tkframe</a></span><span class='op'>(</span><span class='va'>main</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"top"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tklabel</a></span><span class='op'>(</span><span class='va'>q1</span>, text <span class='op'>=</span> <span class='st'>"Insira o primeiro número: "</span>, padx <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"left"</span>, anchor <span class='op'>=</span> <span class='st'>"e"</span><span class='op'>)</span>
+
+
+<span class='co'># Entrada 1</span>
+<span class='va'>var1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TclInterface.html'>tclVar</a></span><span class='op'>(</span><span class='st'>"Insira um número inteiro"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='va'>entry1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tkentry</a></span><span class='op'>(</span><span class='va'>q1</span>, textvariable <span class='op'>=</span> <span class='va'>var1</span>, width <span class='op'>=</span> <span class='fl'>25</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"left"</span>, anchor <span class='op'>=</span> <span class='st'>"ne"</span><span class='op'>)</span>
+
+<span class='co'># Quadro 2</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='va'>q2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tkframe</a></span><span class='op'>(</span><span class='va'>main</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"top"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tklabel</a></span><span class='op'>(</span><span class='va'>q2</span>, text <span class='op'>=</span> <span class='st'>"Insira o segundo número: "</span>, padx <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"left"</span>, anchor <span class='op'>=</span> <span class='st'>"e"</span><span class='op'>)</span>
+
+<span class='co'># Entrada 2</span>
+<span class='va'>var2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TclInterface.html'>tclVar</a></span><span class='op'>(</span><span class='st'>"Insira um número inteiro"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='va'>entry2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tkentry</a></span><span class='op'>(</span><span class='va'>q2</span>, textvariable <span class='op'>=</span> <span class='va'>var2</span>, width <span class='op'>=</span> <span class='fl'>25</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"left"</span>, anchor <span class='op'>=</span> <span class='st'>"ne"</span><span class='op'>)</span>
+<span class='co'># Botao </span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='va'>botao</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tkbutton</a></span><span class='op'>(</span><span class='va'>main</span>, text <span class='op'>=</span> <span class='st'>"Somar dois números"</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"top"</span><span class='op'>)</span>
+<span class='co'># Funcao auxiliar</span>
+<span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TclInterface.html'>tclvalue</a></span><span class='op'>(</span><span class='va'>var1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|</span> <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TclInterface.html'>tclvalue</a></span><span class='op'>(</span><span class='va'>var2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tklabel</a></span><span class='op'>(</span><span class='va'>main</span>, text <span class='op'>=</span> <span class='st'>"Insira Valores numéricos!"</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"top"</span><span class='op'>)</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='op'>{</span>
+    <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TclInterface.html'>tclvalue</a></span><span class='op'>(</span><span class='va'>var1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TclInterface.html'>tclvalue</a></span><span class='op'>(</span><span class='va'>var2</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkpack</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/tcltk/TkWidgets.html'>tklabel</a></span><span class='op'>(</span><span class='va'>main</span>, text <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"A soma é igual a "</span>, <span class='va'>res</span><span class='op'>)</span><span class='op'>)</span>, side <span class='op'>=</span> <span class='st'>"top"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>}</span> 
+<span class='co'># Acao ao Botao</span>
+<span class='fu'><a href='https://rdrr.io/r/tcltk/TkCommands.html'>tkbind</a></span><span class='op'>(</span><span class='va'>botao</span>, <span class='st'>"&lt;ButtonRelease&gt;"</span>, <span class='va'>f1</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>O vídeo abaixo apresenta o resultado da interface.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u1AQoCEfOF0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</section>
+</div>
+<p>Existem outras formas de chamar as rotinas em <em>Python</em>, <em>C++</em> e <em>Tcl/Tk</em> no <a href="http://r-project.org/" target="_blank">R</a>, implementadas nos pacotes <a href="https://rstudio.github.io/reticulate/">reticulate</a>, <a href="http://www.rcpp.org/">Rcpp</a> e <em>tcltk</em>, respecitvamente. Contudo, iremos apresentá-los no módulo <a href="navancado.html">Programação em R (Nível Avançado)</a>, bem como a integração de outras linguagens.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h1 id="consideracoes"><i class="fas fa-calendar-minus"></i> Considerações e preparação para o módulo Programação em R (Nível Intermediário)</h1>
+<p>Nesse módulo, tentamos tratar as ideias básicas por trás dos três princípios do <a href="http://r-project.org/" target="_blank">R</a>, mas principalmente os fundamentos de um objeto e a ideia sobre função. Tentamos repassar algo mais técnico sobre esta linguagem. Contudo, sabemos que algo introdutório deve ter uma flexibilidade quanto a profundidade das discussões e exemplos abordados. Mesmo assim, esse módulo dará suporte para problemas mais complexos que abordaremos para os módulos seguintes.</p>
+<p>Faremos constantemente atualizações, quando necessárias, para melhorar esse material, e assim, auxiliar nos estudos de quem desejar entrar no mundo da linguagem <code>R</code>. Para isso, pedimos também a sua contribuição como leitor. Caso encontre alguma discordância nesse material ou complementos sobre a discussão, entre em contato pelas nossas redes sociais, como também por email: <a href="mailto:ben.deivide@ufsj.edu.br" target="_blank">ben.deivide@ufsj.edu.br</a>. Será muito bom podermos compartilhar as nossas experiências, uma vez que o <em>conhecimento é uma liberdade necessária</em>.</p>
+<p>Na Figura <a href="#fig:rworks1">20</a>, apresentamos um resumo do que vem para o módulo <a href="#nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:rworks1"></span>
+<img src="images/rworks2.png" alt="Relembrando como o `R` funciona." width="110%" />
+<p class="caption">
+Figure 20: Relembrando como o <code>R</code> funciona.
+</p>
+</div>
+</div>
+<p>Dentre os assuntos abordados, teremos:</p>
+<ul>
+<li>Aprofundamento sobre os objetos, associando-os com a tipagem da linguagem <em>C</em>;</li>
+<li>Cópias de objetos;</li>
+<li>Aprofundamento sobre Ambientes;</li>
+<li>Programação Orientada a objetos, bem como estudo de Métodos e Classes;</li>
+<li>Programação Funcional:
+<ul>
+<li>Evitando loops;</li>
+<li>Eficiência;</li>
+<li>Programando em baixo nível;</li>
+</ul></li>
+<li>Introdução a Criação de Pacotes;</li>
+<li>Gráficos;</li>
+<li>Criação de documentos estáticas e dinâmicas;</li>
+</ul>
+<p>Dessa forma, agradecemos imensamente o interesse como leitor, e também lhe provoco para participar juntamente conosco nessa propagação de conhecimento. <a href="nintermediario.html">Até o próximo módulo!</a></p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.

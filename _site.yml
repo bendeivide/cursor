@@ -7,6 +7,7 @@ output_dir: "docs"
 twitter:
   site: "@bendeivide"
 google_analytics: UA-183980834-3
+favicon: images/favicon.png
 navbar:
   logo:
     image: images/logo2.png
@@ -17,6 +18,8 @@ navbar:
     - text: "Home"
       href: index.html
       icon: fas fa-home
+    - text: Autor
+      href: about.html
     - text: "Material"
       menu:
         - text: "Basico"

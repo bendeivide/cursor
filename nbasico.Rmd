@@ -4,15 +4,17 @@ description: |
   Esse módulo terá o objetivo de apresentar de forma introdutória a **sintaxe** e **semântica** da linguagem `R`, enfatizando definições importantíssimas para a linguagem como **objeto**, **função** e **pacote**, como também outras definições
 bibliography: biblio.bib
 link-citations: true
-site: distill::distill_website
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+
 # Links
 rlink <- "[R](http://r-project.org/){target='_blank'}"
 rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
 cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
 ```
 
 # Sumário 
@@ -41,6 +43,17 @@ cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
   - [Estruturas de controle](#controle-fluxos)
   - [Como criar funções](#criar-funcoes)
 - [<i class="fas fa-file-code"></i> Boas práticas de como escrever um código](#goodcode)
+- [<i class="fas fa-cubes"></i> Pacotes](#pacotes)
+  - [Instalação de um pacote](#instpac)
+  - [Objetivos de um pacote](#objpac)
+  - [Utilizar as funções de um pacote](#funcpac)
+  - [Carregando e anexando um pacote](#attachpac)
+  - [Namespace de um pacote](#namespac)
+  - [Usando os operadores `::` e `:::`](#carpac)
+  - [Ambientes e Caminho de busca](#search_path)
+  - [A superatribuição `<<-`](#superatr)
+- [<i class="fas fa-sort-alpha-down"></i> Interfaces com outras linguagens](#rinterface)
+- [<i class="fas fa-calendar-minus"></i> Considerações e preparação para o módulo Programação em R (Nível Intermediário)](#consideracoes)
 
 ##
 
@@ -70,8 +83,8 @@ cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
  - Aula 18: [Boas práticas de como escrever um código](aulas/aula18.html){target="_blank"}
  - Aula 19: [Pacotes](index.html)
  - Aula 20: [Carregando e Anexando pacotes](index.html)
- - Aula 21: [Quando devemos utilizar os operadores `::` e `:::`](index.html)
- - Aula 22: [*Namespace* de um pacote](index.html)
+ - Aula 21: [*Namespace* de um pacote](index.html)
+ - Aula 22: [Quando devemos utilizar os operadores `::` e `:::`](index.html)
  - Aula 23: [Ambientes e Caminhos de busca](index.html)
  - Aula 24: [Interface com outras linguagens](index.html)
  - Aula 25: [Considerações e Preparação para a Programação em R (Nível Intermediário)](index.html)
@@ -862,6 +875,10 @@ Existem dois tipos raros que são os complexos (`complex`) e brutos (`raw`), que
 O menor comprimento de um vetor é de tamanho um, conhecido também como um escalar. Porém, para o `R` tudo é observado como um vetor. As sintaxes para os tipos especiais são:
 - os vetores lógicos assumem valores: `TRUE` ou `FALSE`, ou abreviados, `T` ou `F`, respectivamente. Existem valores especiais devido a precisão de operações na programação, que são os chamados pontos flutuantes. Nesse caso temos: `Inf`, `-Inf` e `NaN`, quando o resultados tende a $\infty$, $-\infty$, sem número, respectivamente;
 
+
+<!-- Inserir essa ideia sobre NA e NaN: -->
+<!-- https://jameshoward.us/2016/07/18/nan-versus-na-r/ -->
+
 ```{r echo=TRUE, prompt=TRUE}
 # divisao de um numero por zero (+ infinito)
 x <- 50 / 0; x
@@ -1362,6 +1379,8 @@ Essa função `attach()` tem implicações, quando por exemplo se deseja inseri-
 
 <!-- Depois inserir a exportacao de dados -->
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HQN9-yfu3sQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 A importação/exportação de dados era algo que em poucas linhas conseguíamos explicar sobre o ambiente `R`, no sentido de análise de dados. Entretanto, observando o terceiro princípio do R, afirmado por @chambers2016:
 
 <blockquote>
@@ -1552,6 +1571,8 @@ Até esse momento do curso, usamos as funções no `r rlink` sem apresentar os a
 
 # <i class="fas fa-code"></i> Funções {#funcoes}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DS9kce3wHpE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Mais uma vez, nos reportamos aos princípios do `r rlink` (@chambers2016), mais especificamente ao segundo princípio,
 
 <blockquote>
@@ -1647,6 +1668,8 @@ Quando desenvolvemos pacotes, preferimos os dois primeiros, pois é a forma trad
 
 
 ## Estruturas de controle {#controle-fluxos}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FdGEXshaRJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 As funções que utilizaremos, a seguir, são utilizadas quando desejamos realizar processos repetitivos para um determinado fim ou condicionado, as famosas estruturas de controle. Assim, como em outras linguagens, as funções utilizadas são: `if()`, `switch()`, `ifelse()`, `while()`, `repeat`, `for()`. Esses objetos tem modo `special`^[Use a função `typeof()` para verificar.], porque as expressão não são necessariamente avaliadas. Já a função `ifelse()` é de modo `closure`^[Use a função `typeof()` para verificar.]. Esse é um tipo de função implementado por `function()`.
 
@@ -1779,7 +1802,7 @@ if (opcao == "media") {
     if (opcao == "mediana") {
       cat("A mediana é:", round(mean(x), 4))
     } else {
-        if (opcao == "medpar") {
+        if (opcao == "medapar") {
           cat("A média aparada é:", round(mean(x, trim = 0.1), 4))
         }
     }
@@ -1833,11 +1856,10 @@ repeat {
     if (i == 3) {
       i <- i + 1
       next
-    } else {
-      print(i)
-      i <- i + 1
     }
-  }
+    print(i)
+    i <- i + 1
+    }
 }
 ```
 
@@ -1911,6 +1933,8 @@ Mais uma vez, foi utilizado a função `next`, sem necessidade agora, de atualiz
 Veremos na próxima subseção, que temos funções de alto nível que podem substituir as funções *loops*. São as chamadas funções da família *apply*.
 
 ## Como criar funções {#criar-funcoes}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/80J0_r-QZIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Até esse momento, usamos funções já desenvolvidas no `r rlink`, seja dos pacotes da Base, seja via instalação dos pacotes via `r cran`. Agora, iremos desenvolver as nossas próprias funções. 
 
@@ -2064,7 +2088,7 @@ grafico(x = x, y = y, main = "Título")
 
 Isso ocorre, porque temos a função `plot()` no corpo da função `grafico()` que apresenta muitos argumentos. Dessa forma, criamos a função `grafico()`, com os argumentos que representam as coordenadas, mas a reticências (`...`) garantem que os demais argumentos de `plots`, omitidos, possam ser utilizados.
 
-## Escopo léxico
+## Escopo léxico {#esc_lexico}
 
 Vamos retornar aos componentes da função `fun1`,
 
@@ -2079,7 +2103,7 @@ body(fun1)
 environment(fun1)
 ```
 
-Observe que o último componente é o ambiente onde o nome `fun1` foi associado a função. Este ambiente é chamado de **ambiente de funções**. Nesse caso é o ambiente global. Contudo, quando a função é executada, momentaneamente é criado o **ambiente de execuções**. É nesse ambiente que os nomes que estão no corpo da função são associados aos objetos. Vejamos um primeiro exemplo,
+Observe que o último componente é o ambiente onde o nome `fun1` foi associado a função. Este ambiente é chamado de **ambiente envolvente**. Nesse caso é o ambiente global. Contudo, quando a função é executada, momentaneamente é criado o **ambiente de execução**. É nesse ambiente que os nomes que estão no corpo da função são associados aos objetos. Vejamos um primeiro exemplo,
 
 ```{r echo=TRUE, eval = TRUE, prompt=TRUE}
 x <- 10
@@ -2151,6 +2175,8 @@ Algo que não havíamos falado anteriormente, é que a função `function()` per
 
 
 # <i class="fas fa-file-code"></i> Boas práticas de como escrever um código {#goodcode}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hn_H1bjmKGY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Nesse momento, entendemos os principais objetos para escrevermos os nossos *scripts*. Quando escrevemos um código, duas consequências ocorrem:
 - guardá-lo para futuras consultas, ou
@@ -2359,13 +2385,11 @@ a = "Nome"
 Para códigos mais complexos, use o pacote [styler](https://styler.r-lib.org) e como alternativa o [formatR](https://yihui.org/formatr), pois muito mais recursos podem ser utilizados. Para consultas, acesse também @hadley2015, mais específico, [Estilo de código](https://r-pkgs.org/r.html#code-style), e ainda [Advanced R, 1ed, Style guide](http://adv-r.had.co.nz/Style.html), [The tidyverse style guide](https://style.tidyverse.org/) e [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html).
 
 
-<!--
-# <i class="fas fa-cubes"></i> Pacotes
+```{r, child="_nbasico/pacotes.Rmd"}
+```
 
-# Ambientes e caminho de busca (#env-searchpath)
+```{r, child="_nbasico/rinterface.Rmd"}
+```
 
--->
-
-
-
-
+```{r, child="_nbasico/consideracoes.Rmd"}
+```
