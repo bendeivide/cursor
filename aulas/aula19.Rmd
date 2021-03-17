@@ -61,12 +61,10 @@ knitr::include_graphics("esqueleto.png")
 
 - Instalação (CRAN)
 ```{r echo=TRUE, eval=FALSE, }
-options(width = 30)
 install.packages("midrangeMCP")
 ```
 - Pacote fonte (Local)
 ```{r echo=TRUE, eval=FALSE, prompt=TRUE}
-options(width = 30)
 install.packages(pkgs = "./midrangeMCP.tar.gz", 
 repos = NULL, type = "source")
 ```
