@@ -3,9 +3,9 @@
 
 O pacote em `r rlink` é um diretório de arquivos necessários para carregar um código de funções, dados, documentações de ajuda, testes, etc. O próprio `r rlink` em sua instalação, contém 30 pacotes, que dizemos que são as funções mínimas para a utilização da linguagem. Nesse diretório não há apenas códigos em `r rlink`, mas um pacote fonte (do inglês, *source package*), contendo os arquivos mencionados acima, ou um arquivo compactado, de extensão *.tar.gz* do pacote fonte, ou um pacote instalado, resultado da função `R CMD INSTALL`, que será visto no módulo [Programação em R (Nível Avançado)](navancado.html). Isso acontece no SO *Linux*. Para as plataformas *Windows* e *Macintosh*, existem também os pacotes binários ou compactados com a extensão *.zip* ou *.tar.gz*. 
 
-Um pacote, portanto é a unidade básica para o compartilhamento de um código. Atualmente, até 11/03/2021, [o número de pacotes disponíveis é 17.295](https://cran.r-project.org/web/packages/), e isso no `r cran`, isto é, na *Comprehenive R Archive Network*, o repositório oficial de pacotes no `r rlink`. Qualquer usuário pode publicar um pacote e disponibilizá-lo sob o `r cran`. Para isso, uma série de testes iniciais são realizados para verificar se não há problemas. Significa também se um pacote está disponível no `r cran` ele funcionará nas três plataformas mais usadas em sistema operacional, *SO Linux* ou sitemas *Unix*, *SO Windows* e *SO Macintosh*. Há outros repositórios que podem ser disponibilizados os pacotes, como por exemplo, no [GitHub](http://github.com/). Porém, não há a garantia de que possa estar funcionando corretamento em seu sistema operacional, como os pacotes disponíveis no `r cran`.
+Um pacote, portanto é a unidade básica para o compartilhamento de um código. Atualmente, até 11/03/2021, [o número de pacotes disponíveis é 17.295](https://cran.r-project.org/web/packages/){target="_blank"}, e isso no `r cran`, isto é, na *Comprehenive R Archive Network*, o repositório oficial de pacotes no `r rlink`. Qualquer usuário pode publicar um pacote e disponibilizá-lo sob o `r cran`. Para isso, uma série de testes iniciais são realizados para verificar se não há problemas. Significa também se um pacote está disponível no `r cran` ele funcionará nas três plataformas mais usadas em sistema operacional, *SO Linux* ou sitemas *Unix*, *SO Windows* e *SO Macintosh*. Há outros repositórios que podem ser disponibilizados os pacotes, como por exemplo, no [GitHub](http://github.com/){target="_blank"}. Porém, não há a garantia de que possa estar funcionando corretamento em seu sistema operacional, como os pacotes disponíveis no `r cran`.
 
-Para uma instalação mais rápida no `r cran`, há [espelhos disponíveis](https://cran.r-project.org/mirrors.html) no Brasil, do qual o primeiro foi desenvolvido e está funcionando até hoje na UFPR.
+Para uma instalação mais rápida no `r cran`, há [espelhos disponíveis](https://cran.r-project.org/mirrors.html){target="_blank"} no Brasil, do qual o primeiro foi desenvolvido e está funcionando até hoje na UFPR.
 
 Contudo, uma coisa deve ficar claro, que erroneamente, alguns usuários chamam pacote de biblioteca. Nas documentações do `r rlink`, biblioteca é o diretório onde os pacotes são instalados, também chamados de diretório de biblioteca ou diretório de arvores. O outro sentido de biblioteca é o de biblioteca compartilhada (dinâmica ou estática), que armazenam código compilado que se vinculam aos pacotes, por exemplo, no Windows são as DLLs.
 
@@ -36,7 +36,7 @@ Uma forma simples de se ter detalhes do pacote na internet, tais como, baixar o 
 
 Uma outra forma possível de instalação é baixar o arquivo do pacote fonte para o seu computador e instalá-lo,
 
-```{r echo=TRUE, eval=FALSE}
+```{r echo=TRUE, eval=FALSE, prompt=TRUE}
 install.packages(pkgs = "./midrangeMCP.tar.gz", repos = NULL, type = "source")
 ```
 
@@ -50,6 +50,10 @@ install_github("bendeivide/midrangeMCP")
 ```
 
 Contudo, devemos dar a preferência pela instalação via `r cran`. Por lá, teremos a garantia que os pacotes estão estáveis para a utilização nas referidas plataformas mencionadas acima.
+
+Alguns pacotes, por falta de manutenção, seja por atualizações do `r rlink` ou por qualquer outro motivo, podem se tornar incompatíveis para utilização sobre alguns dos três sistemas operacionais básicos (SO Windows, Unix e SO Mac) exigidos pelo `r rlink`. Dessa forma, se as correções não forem feitas, estes pacotes e tornam órfãos, ou seja, desativados sob o `r cran`. O primeiros pacotes sob o `r cran`, por exemplo, não tinham o arquivo *NAMESPACE*, que hoje é exigido. Qualquer tentativa de instalação desses pacotes nessas situações, não serão bem sucedidas. Dessa forma, fizemos uma vídeo-aula, como tentativa de recuperar os pacotes desativados. Porém, deixemos claro que nem sempre é possível a instalação de pacotes desativados.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FKItT65gphM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Objetivos de um pacote {#objpac}
 

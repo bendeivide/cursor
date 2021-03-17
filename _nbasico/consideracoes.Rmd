@@ -24,6 +24,6 @@ Dentre os assuntos abordados, teremos:
 - Gráficos;
 - Criação de documentos estáticas e dinâmicas;
 
-Dessa forma, agradecemos imensamente o interesse como leitor, e também lhe provoco para participar juntamente conosco nessa propagação de conhecimento. [Até o próximo módulo!](nintermediario.html)
+Dessa forma, agradecemos imensamente o interesse como leitor, e também lhe provoco para participar juntamente conosco nessa propagação de conhecimento. [Até o próximo módulo!](nintermediario.html){target="_blank"}
 
 

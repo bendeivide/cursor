@@ -81,13 +81,13 @@ github <- "[GitHub](http://github.com/){target='_blank'}"
  - Aula 16: [Estruturas de controle](aulas/aula16.html){target="_blank"}
  - Aula 17: [Como criar funções](aulas/aula17.html){target="_blank"}
  - Aula 18: [Boas práticas de como escrever um código](aulas/aula18.html){target="_blank"}
- - Aula 19: [Pacotes](index.html)
- - Aula 20: [Carregando e Anexando pacotes](index.html)
- - Aula 21: [*Namespace* de um pacote](index.html)
- - Aula 22: [Quando devemos utilizar os operadores `::` e `:::`](index.html)
- - Aula 23: [Ambientes e Caminhos de busca](index.html)
- - Aula 24: [Interface com outras linguagens](index.html)
- - Aula 25: [Considerações e Preparação para a Programação em R (Nível Intermediário)](index.html)
+ - Aula 19: [Pacotes](aulas/aula19.html){target="_blank"}
+ - Aula 20: [Carregando e Anexando pacotes](aulas/aula20.html){target="_blank"}
+ - Aula 21: [*Namespace* de um pacote](aulas/aula21.html){target="_blank"}
+ - Aula 22: [Quando devemos utilizar os operadores `::` e `:::`](aulas/aula22.html){target="_blank"}
+ - Aula 23: [Ambientes e Caminhos de busca](aulas/aula23.html){target="_blank"}
+ - Aula 24: [Interface com outras linguagens](aulas/aula24.html){target="_blank"}
+ - Aula 25: [Considerações e Preparação para a Programação em R (Nível Intermediário)](aulas/aula25.html){target="_blank"}
  
 
 ## Scripts {#scripts}

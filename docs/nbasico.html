@@ -2204,13 +2204,13 @@ Material
 <li>Aula 16: <a href="aulas/aula16.html" target="_blank">Estruturas de controle</a></li>
 <li>Aula 17: <a href="aulas/aula17.html" target="_blank">Como criar funções</a></li>
 <li>Aula 18: <a href="aulas/aula18.html" target="_blank">Boas práticas de como escrever um código</a></li>
-<li>Aula 19: <a href="index.html">Pacotes</a></li>
-<li>Aula 20: <a href="index.html">Carregando e Anexando pacotes</a></li>
-<li>Aula 21: <a href="index.html"><em>Namespace</em> de um pacote</a></li>
-<li>Aula 22: <a href="index.html">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
-<li>Aula 23: <a href="index.html">Ambientes e Caminhos de busca</a></li>
-<li>Aula 24: <a href="index.html">Interface com outras linguagens</a></li>
-<li>Aula 25: <a href="index.html">Considerações e Preparação para a Programação em R (Nível Intermediário)</a></li>
+<li>Aula 19: <a href="aulas/aula19.html" target="_blank">Pacotes</a></li>
+<li>Aula 20: <a href="aulas/aula20.html" target="_blank">Carregando e Anexando pacotes</a></li>
+<li>Aula 21: <a href="aulas/aula21.html" target="_blank"><em>Namespace</em> de um pacote</a></li>
+<li>Aula 22: <a href="aulas/aula22.html" target="_blank">Quando devemos utilizar os operadores <code>::</code> e <code>:::</code></a></li>
+<li>Aula 23: <a href="aulas/aula23.html" target="_blank">Ambientes e Caminhos de busca</a></li>
+<li>Aula 24: <a href="aulas/aula24.html" target="_blank">Interface com outras linguagens</a></li>
+<li>Aula 25: <a href="aulas/aula25.html" target="_blank">Considerações e Preparação para a Programação em R (Nível Intermediário)</a></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2341,7 +2341,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x5f9bc80&quot;</code></pre>
+<pre><code>[1] &quot;0x99fc2a8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2368,7 +2368,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x5f9bc80&quot;</code></pre>
+<pre><code>[1] &quot;0x99fc2a8&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2380,7 +2380,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xd97e700&quot;</code></pre>
+<pre><code>[1] &quot;0xd97a888&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2408,7 +2408,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xd97e620&quot;</code></pre>
+<pre><code>[1] &quot;0xd97a7a8&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -4010,7 +4010,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 [[4]]
 function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000009388198&gt;
+&lt;bytecode: 0x0000000008b782b0&gt;
 &lt;environment: namespace:base&gt;
 
 [[5]]
@@ -5571,8 +5571,8 @@ a = &quot;Nome&quot;</code></pre>
 <p>Para códigos mais complexos, use o pacote <a href="https://styler.r-lib.org">styler</a> e como alternativa o <a href="https://yihui.org/formatr">formatR</a>, pois muito mais recursos podem ser utilizados. Para consultas, acesse também <span class="citation" data-cites="hadley2015"><a href="#ref-hadley2015" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2015" role="doc-biblioref">2015</a>)</span>, mais específico, <a href="https://r-pkgs.org/r.html#code-style">Estilo de código</a>, e ainda <a href="http://adv-r.had.co.nz/Style.html">Advanced R, 1ed, Style guide</a>, <a href="https://style.tidyverse.org/">The tidyverse style guide</a> e <a href="https://google.github.io/styleguide/Rguide.html">Google’s R Style Guide</a>.</p>
 <h1 id="pacotes"><i class="fas fa-cubes"></i> Pacotes</h1>
 <p>O pacote em <a href="http://r-project.org/" target="_blank">R</a> é um diretório de arquivos necessários para carregar um código de funções, dados, documentações de ajuda, testes, etc. O próprio <a href="http://r-project.org/" target="_blank">R</a> em sua instalação, contém 30 pacotes, que dizemos que são as funções mínimas para a utilização da linguagem. Nesse diretório não há apenas códigos em <a href="http://r-project.org/" target="_blank">R</a>, mas um pacote fonte (do inglês, <em>source package</em>), contendo os arquivos mencionados acima, ou um arquivo compactado, de extensão <em>.tar.gz</em> do pacote fonte, ou um pacote instalado, resultado da função <code>R CMD INSTALL</code>, que será visto no módulo <a href="navancado.html">Programação em R (Nível Avançado)</a>. Isso acontece no SO <em>Linux</em>. Para as plataformas <em>Windows</em> e <em>Macintosh</em>, existem também os pacotes binários ou compactados com a extensão <em>.zip</em> ou <em>.tar.gz</em>.</p>
-<p>Um pacote, portanto é a unidade básica para o compartilhamento de um código. Atualmente, até 11/03/2021, <a href="https://cran.r-project.org/web/packages/">o número de pacotes disponíveis é 17.295</a>, e isso no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, isto é, na <em>Comprehenive R Archive Network</em>, o repositório oficial de pacotes no <a href="http://r-project.org/" target="_blank">R</a>. Qualquer usuário pode publicar um pacote e disponibilizá-lo sob o <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. Para isso, uma série de testes iniciais são realizados para verificar se não há problemas. Significa também se um pacote está disponível no <a href="http://cran.r-project.org/" target="_blank">CRAN</a> ele funcionará nas três plataformas mais usadas em sistema operacional, <em>SO Linux</em> ou sitemas <em>Unix</em>, <em>SO Windows</em> e <em>SO Macintosh</em>. Há outros repositórios que podem ser disponibilizados os pacotes, como por exemplo, no <a href="http://github.com/">GitHub</a>. Porém, não há a garantia de que possa estar funcionando corretamento em seu sistema operacional, como os pacotes disponíveis no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>.</p>
-<p>Para uma instalação mais rápida no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, há <a href="https://cran.r-project.org/mirrors.html">espelhos disponíveis</a> no Brasil, do qual o primeiro foi desenvolvido e está funcionando até hoje na UFPR.</p>
+<p>Um pacote, portanto é a unidade básica para o compartilhamento de um código. Atualmente, até 11/03/2021, <a href="https://cran.r-project.org/web/packages/" target="_blank">o número de pacotes disponíveis é 17.295</a>, e isso no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, isto é, na <em>Comprehenive R Archive Network</em>, o repositório oficial de pacotes no <a href="http://r-project.org/" target="_blank">R</a>. Qualquer usuário pode publicar um pacote e disponibilizá-lo sob o <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. Para isso, uma série de testes iniciais são realizados para verificar se não há problemas. Significa também se um pacote está disponível no <a href="http://cran.r-project.org/" target="_blank">CRAN</a> ele funcionará nas três plataformas mais usadas em sistema operacional, <em>SO Linux</em> ou sitemas <em>Unix</em>, <em>SO Windows</em> e <em>SO Macintosh</em>. Há outros repositórios que podem ser disponibilizados os pacotes, como por exemplo, no <a href="http://github.com/" target="_blank">GitHub</a>. Porém, não há a garantia de que possa estar funcionando corretamento em seu sistema operacional, como os pacotes disponíveis no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>.</p>
+<p>Para uma instalação mais rápida no <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, há <a href="https://cran.r-project.org/mirrors.html" target="_blank">espelhos disponíveis</a> no Brasil, do qual o primeiro foi desenvolvido e está funcionando até hoje na UFPR.</p>
 <p>Contudo, uma coisa deve ficar claro, que erroneamente, alguns usuários chamam pacote de biblioteca. Nas documentações do <a href="http://r-project.org/" target="_blank">R</a>, biblioteca é o diretório onde os pacotes são instalados, também chamados de diretório de biblioteca ou diretório de arvores. O outro sentido de biblioteca é o de biblioteca compartilhada (dinâmica ou estática), que armazenam código compilado que se vinculam aos pacotes, por exemplo, no Windows são as DLLs.</p>
 <p>A estrutura básica de um pacote é apresentada na Figura <a href="#fig:esqpack">18</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -5617,6 +5617,9 @@ Figure 18: Esqueleto básico de um pacote.
 </div>
 </div>
 <p>Contudo, devemos dar a preferência pela instalação via <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. Por lá, teremos a garantia que os pacotes estão estáveis para a utilização nas referidas plataformas mencionadas acima.</p>
+<p>Alguns pacotes, por falta de manutenção, seja por atualizações do <a href="http://r-project.org/" target="_blank">R</a> ou por qualquer outro motivo, podem se tornar incompatíveis para utilização sobre alguns dos três sistemas operacionais básicos (SO Windows, Unix e SO Mac) exigidos pelo <a href="http://r-project.org/" target="_blank">R</a>. Dessa forma, se as correções não forem feitas, estes pacotes e tornam órfãos, ou seja, desativados sob o <a href="http://cran.r-project.org/" target="_blank">CRAN</a>. O primeiros pacotes sob o <a href="http://cran.r-project.org/" target="_blank">CRAN</a>, por exemplo, não tinham o arquivo <em>NAMESPACE</em>, que hoje é exigido. Qualquer tentativa de instalação desses pacotes nessas situações, não serão bem sucedidas. Dessa forma, fizemos uma vídeo-aula, como tentativa de recuperar os pacotes desativados. Porém, deixemos claro que nem sempre é possível a instalação de pacotes desativados.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FKItT65gphM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <h2 id="objpac">Objetivos de um pacote</h2>
 <p>A ideia de um pacote para um usuário <a href="http://r-project.org/" target="_blank">R</a> deve representar como uma ferramenta para otimizar suas atividades do dia-a-dia na utilização da linguagem. Suponha que o usuário seja um cientista de dados, e todos os dias ele carrega uma sequência de <em>scripts</em>, via <code>source</code>, para disponibilizar suas funções no ambiente global. Isso acaba gerando processos repetitivos de trabalho desnecessários.</p>
 <p>Ao invés, o cientista de dados pode desenvolver um pacote, e esse pacote conter todas as funções necessárias para as suas análises. De uma vez, o pacote instalado e anexado no caminho de busca, todas as suas funções estarão disponíveis para utilização. Portanto, o entendimento disso, permite uma maior eficiência de trabalho.</p>
@@ -5828,7 +5831,7 @@ A 100.87     g4</code></pre>
 <pre><code>Table in latex of results of the MGM test
 
 % latex table generated in R 4.0.3 by xtable 1.8-4 package
-% Wed Mar 17 06:09:39 2021
+% Wed Mar 17 09:41:32 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5848,7 +5851,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the MGR test
 
 % latex table generated in R 4.0.3 by xtable 1.8-4 package
-% Wed Mar 17 06:09:39 2021
+% Wed Mar 17 09:41:32 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5868,7 +5871,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the MGM test
 
 % latex table generated in R 4.0.3 by xtable 1.8-4 package
-% Wed Mar 17 06:09:39 2021
+% Wed Mar 17 09:41:32 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5888,7 +5891,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the TM test
 
 % latex table generated in R 4.0.3 by xtable 1.8-4 package
-% Wed Mar 17 06:09:39 2021
+% Wed Mar 17 09:41:32 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5908,7 +5911,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of descriptive statistics
 
 % latex table generated in R 4.0.3 by xtable 1.8-4 package
-% Wed Mar 17 06:09:39 2021
+% Wed Mar 17 09:41:32 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrrrrr}
@@ -6158,7 +6161,7 @@ $weights
 [1] 1
 
 $`Ambiente de execução`
-&lt;environment: 0x000000000d928c90&gt;
+&lt;environment: 0x000000000dd21570&gt;
 
 $`Ambiente Pai`
 &lt;environment: R_GlobalEnv&gt;</code></pre>
@@ -6186,17 +6189,17 @@ $`Ambiente Pai`
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x000000000d54d0a0&gt;</code></pre>
+<pre><code>&lt;environment: 0x000000000db62010&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x000000000db752f0&gt;</code></pre>
+<pre><code>&lt;environment: 0x000000000db710c0&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x000000000d2198a8&gt;</code></pre>
+<pre><code>&lt;environment: 0x000000000d211f70&gt;</code></pre>
 </div>
 <p>O ambiente pai do ambiente de execução, é o ambiente envolvente de <code>f1</code>, que nesse caso é o ambiente global. Assim, observe que o ocorre quando executamos o comando de superatribuição. O nome <code>x</code> no ambiente global passou a está associado ao valor 2, porque foi alterado por <code>&lt;&lt;-</code>, mas o nome <code>x</code> continuou associado ao valor 1, porque a função <code>f1()</code> retornou o valor 1. Isso mostra que a superatribuição não cria um objeto no ambiente atual, mas em um ambiente pai se não existe ou altera o nome existente. Vejamos o complemento dessa afirmação no próximo exemplo.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -6249,10 +6252,10 @@ $`Ambiente Pai`
 [1] 1
 
 $AmbExec_aux
-&lt;environment: 0x000000000c865df0&gt;
+&lt;environment: 0x000000000dbd3c10&gt;
 
 $AmbExec_contador
-&lt;environment: 0x000000000c59df80&gt;</code></pre>
+&lt;environment: 0x000000000bc2ef68&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
@@ -6261,10 +6264,10 @@ $AmbExec_contador
 [1] 2
 
 $AmbExec_aux
-&lt;environment: 0x000000000dd4d8e8&gt;
+&lt;environment: 0x000000000e058aa0&gt;
 
 $AmbExec_contador
-&lt;environment: 0x000000000c59df80&gt;</code></pre>
+&lt;environment: 0x000000000bc2ef68&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
@@ -6273,10 +6276,10 @@ $AmbExec_contador
 [1] 3
 
 $AmbExec_aux
-&lt;environment: 0x000000000b994120&gt;
+&lt;environment: 0x000000000e56f520&gt;
 
 $AmbExec_contador
-&lt;environment: 0x000000000c59df80&gt;</code></pre>
+&lt;environment: 0x000000000bc2ef68&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamada de funcao</span>
 <span class='va'>contador2</span> <span class='op'>&lt;-</span> <span class='fu'>contador</span><span class='op'>(</span><span class='op'>)</span>
@@ -6287,10 +6290,10 @@ $AmbExec_contador
 [1] 1
 
 $AmbExec_aux
-&lt;environment: 0x000000000c1073f0&gt;
+&lt;environment: 0x000000000bab4e48&gt;
 
 $AmbExec_contador
-&lt;environment: 0x000000000da72820&gt;</code></pre>
+&lt;environment: 0x000000000db72838&gt;</code></pre>
 </div>
 <p>Quando uma função <code>function()</code> é criada dentro de outra função <code>function()</code> o ambiente de execução da função superior, <code>contador()</code>, é o ambiente envolvente da função interna, <code>aux()</code>. Dessa forma, o ambiente de execução de <code>contador()</code> não será mais efêmero, isto é, não será apagado após a execução, como pode ser visto em <code>contador1()</code>. Observamos que executamos <code>contador1()</code> três vezes. O nome <code>i</code> foi atualizado, devido a superatribuição, a cada chamada da mesma função. Ao passo que, quando realizamos uma nova chamada de <code>contador()</code>, por meio de <code>contador2()</code>, o resultado de <code>i</code> retora o valor <code>1</code>, porque um novo ambiente de execução para <code>contador()</code> foi criado, como pode ser observado.</p>
 <p>Os demais ambiente funcionais e exemplos, serão descritos no módulo <a href="nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
@@ -6417,7 +6420,7 @@ $AmbExec_contador
 <pre><code>function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x000000000c8db230&gt;
+&lt;bytecode: 0x000000000b9fe130&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 <p>Quando criamos o objeto <code>dados</code>, uma de suas colunas estava nomeada por <code>sd</code>, que também é o nome de uma função do pacote <em>stats</em>, que representa a variância. Porém, quando anexamos o objeto <code>dados</code> no caminho de busca, um novo ambiente é criado, como pai do ambiente global e com mesmo nome do objeto, e os elementos do objeto dados são copiados para esse ambiente. Assim, o nome <code>sd</code> foi procurado e não encontrado, seguindo a busca para o próximo ambiente que foi <code>dados</code>, e daí foi encontrado. Percebemos que também existe esse nome no ambiente do pacote <em>stats</em>, que é do tipo função. Entretanto, como o primeiro objeto encontrado associado a esse nome estava no ambiente dados, ele é retornado. Nesses casos, se usarmos a superatribuição, a alteração ocorrerá apenas na cópia dos elementos no ambiente anexado, e não nos elementos do objeto original. Caso haja a atribuição, o nome será criado no ambiente global.</p>
@@ -6622,7 +6625,7 @@ Figure 20: Relembrando como o <code>R</code> funciona.
 <li>Gráficos;</li>
 <li>Criação de documentos estáticas e dinâmicas;</li>
 </ul>
-<p>Dessa forma, agradecemos imensamente o interesse como leitor, e também lhe provoco para participar juntamente conosco nessa propagação de conhecimento. <a href="nintermediario.html">Até o próximo módulo!</a></p>
+<p>Dessa forma, agradecemos imensamente o interesse como leitor, e também lhe provoco para participar juntamente conosco nessa propagação de conhecimento. <a href="nintermediario.html" target="_blank">Até o próximo módulo!</a></p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
