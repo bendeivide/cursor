@@ -78,8 +78,6 @@ Rcpp::sourceCpp("add.cpp") # Carregando o script add.cpp
 add(5, 10) # Chamando a funcao add
 ```
 
-## Implemento em `Tcl/tk`
-
 ## Implementação em TclTk {.smaller}
 
 - Pacote `tcltk`
