@@ -83,7 +83,7 @@ github <- "[GitHub](http://github.com/){target='_blank'}"
  - Aula 18: [Boas práticas de como escrever um código](aulas/aula18.html){target="_blank"}
  - Aula 19: [Pacotes](aulas/aula19.html){target="_blank"}
  - Aula 20: [Carregando e Anexando pacotes](aulas/aula20.html){target="_blank"}
- - Aula 21: [*Namespace* de um pacote](aulas/aula21.html){target="_blank"}
+ - Aula 21: [*NAMESPACE* de um pacote](aulas/aula21.html){target="_blank"}
  - Aula 22: [Quando devemos utilizar os operadores `::` e `:::`](aulas/aula22.html){target="_blank"}
  - Aula 23: [Ambientes e Caminhos de busca](aulas/aula23.html){target="_blank"}
  - Aula 24: [Interface com outras linguagens](aulas/aula24.html){target="_blank"}
@@ -1459,19 +1459,19 @@ Os três conjuntos de dados são:
 - *alfafa.txt*
 
 ```{r echo=FALSE, prompt=TRUE}
-knitr::kable(read.table("E:/BEN_PROD/CURSOS E PALESTRAS/CURSOS/SITE/Curso_R/dados/alfafa.txt", header = T), align = 'c')
+knitr::kable(read.table("E:/BEN_PROD/CURSOS_PALESTRAS/CURSOS/SITE/Curso_R/dados/alfafa.txt", header = T), align = 'c')
 ```
 
 - *datast1980.txt*
 
 ```{r echo=FALSE, prompt=TRUE}
-knitr::kable(read.table("E:/BEN_PROD/CURSOS E PALESTRAS/CURSOS/SITE/Curso_R/dados/datast1980.txt", header = T, dec = ","), align = 'c')
+knitr::kable(read.table("E:/BEN_PROD/CURSOS_PALESTRAS/CURSOS/SITE/Curso_R/dados/datast1980.txt", header = T, dec = ","), align = 'c')
 ```
 
 - *producao.csv*
 
 ```{r echo=FALSE, prompt=TRUE}
-knitr::kable(read.table("E:/BEN_PROD/CURSOS E PALESTRAS/CURSOS/SITE/Curso_R/dados/producao.csv", header = T, sep = ";"), align = 'c')
+knitr::kable(read.table("E:/BEN_PROD/CURSOS_PALESTRAS/CURSOS/SITE/Curso_R/dados/producao.csv", header = T, sep = ";"), align = 'c')
 ```
 
 Vejamos as linhas de comando para importar os dados.
@@ -2393,3 +2393,4 @@ Para códigos mais complexos, use o pacote [styler](https://styler.r-lib.org) e 
 
 ```{r, child="_nbasico/consideracoes.Rmd"}
 ```
+

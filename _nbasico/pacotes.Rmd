@@ -183,7 +183,7 @@ Com o uso da função `library()`, percebemos que o caminho de busca foi alterad
 knitr::include_graphics("images/midrangeMCP.png")
 ```
 
-## Namespace de um pacote {#namespac}
+## *NAMESPACE* de um pacote {#namespac}
 
 No início da seção sobre pacotes, falamos sobre o esqueleto de um pacote, isto é, os componentes básicos de um pacote. Um dos arquivos é o *NAMESPACE*. Esse arquivo é respondsável pela exportação e importação de funções. As funções exportadas de um pacote, por meio desse arquivo, são aquelas visíveis após a anexação do pacote ao caminho de busca, ou por meio do operador `::`. As funções importadas são aquelas utilizadas de outros pacotes. 
 
@@ -346,8 +346,8 @@ f1()
 x
 # Imprimindo o ambiente envolvente de f1
 environment(f1)
-# Imprimindo os nomes no ambiente global
-# 
+# Imprimindo os nomes do ambiente global
+ls()
 ```
 
 Esse caso é interessante porque vemos dois nomes associados a objetos em ambientes diferentes. Alguns ambientes são criados pela função `function()`, são os chamados ambientes funcionais. Um deles é o ambiente envolvente, já comentado na seção sobre [funções](#esc_lexico). O ambiente envolvente da função `f1` é o ambiente global. Já no corpo da função `f1`, um outro ambiente surge quando a função é chamada, é o ambiente de execução. Toda vez que a função é chamada, cria-se um novo ambiente de execução. Observemos os identificadores, em `Ambiente de execução`, quando executamos a função mais de uma vez,
@@ -376,6 +376,8 @@ f2 <-  function() {
 f2()
 # Verificando novamente os nomes no ambiente global
 ls()
+# Verificando o valor de x
+x
 ```
 
 ```{r}
