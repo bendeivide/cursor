@@ -26,6 +26,15 @@ output:
 
 Ben Dêivide estuda Estatística computacional, mais especificamente, o ambiente R. Estudos na área de Estatística Experimental e Probabilidade, como também no ensino da Estatística, Professor, Adjunto, C1. Atualmente trabalha na Universidade Federal de São João del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG.
 
+## Localidade da UFSJ, campus Alto Paraopeba
+
+```{r echo=FALSE, warning=FALSE}
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=-43.74496, lat=-20.52206, popup="UFSJ, campus Alto Paraopeba")
+```
+
 ## Educação
 
 **Universidade Federal de Lavras**             | Lavras, MG
@@ -38,6 +47,6 @@ Eng. Agrônomo                       | Julho 2005 - Julho 2010
 
 ## Experiência
 
-**Ambiente R** | Estudo Atual | Janeiro 2005 - Present
+**Ambiente R** | Estudo Atual | Janeiro 2005 - Presente
 
 **Estatística e Probabilidade** | Pesquisa Científica | June 2010 - Presente

@@ -55,12 +55,16 @@ Ainda durante a graduação, além de conhecer os materiais de Estatística do P
 
 Tudo isso me levou a essa outra grande paixão hoje que é estudar essa linguagem. Com o apoio inicial do Prof. Daniel Furtado, durante a pós-graduação, e agora na UFSJ, com os  alunos que trabalham comigo de iniciação científica, juntos com mais alguns outros parceiros de estrada, chegamos a publicação de alguns pacotes `R` sob o CRAN, segue em ordem de publicação, [SMR](http://cran.r-project.org/package=SMR), [midrangeMCP](http://cran.r-project.org/package=midrangeMCP), [TVMM](http://http://cran.r-project.org/package=TVMM), [cppcor](http://cran.r-project.org/package=cppcor), [MCPtests](http://cran.r-project.org/package=MCPtests). Para projetos futuros, temos os pacotes [statscience](http://bendeivide.github.io/statscience), [meupacoter](http://bendeivide.github.io/meupacoter), `leem` (Laboratório de Ensino à Estatística e Matemática) dentre outros ainda não disponíveis.
 
-<!--
-A minha motivação para estudar sobre a linguagem `R`:
+Para saber mais sobre o autor, veja a seção [autor](about.html), na barra de navegação da página.
 
-- Falar sobre a graduação, monitoria de Estatística;
-  - Falar sobre o entusiamos ao ler os materiais do Prof. Daniel e do Prof. Paulo Justiniano
--->
+## local de trabalho (UFSJ), campus Alto Paraopeba
+
+```{r echo=FALSE, warning=FALSE}
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=-43.74496, lat=-20.52206, popup="UFSJ, campus Alto Paraopeba")
+```
 
 # <i class="fas fa-sitemap"></i> Proposta do curso <img src="images/logo2.png" align="right" height="139" id="propcurso"/>
 
