@@ -1,6 +1,6 @@
 ---
 title: "Programação em R (Nível Básico)"
-subtitle: "Aula 22 - *Quando devemos utilizar os operadores `::` e `:::`"
+subtitle: "Aula 22 - Quando devemos utilizar os operadores `::` e `:::`"
 author: "Ben Deivide"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 bibliography: biblio.bib

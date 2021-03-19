@@ -1,6 +1,6 @@
 ---
 title: "Programação em R (Nível Básico)"
-subtitle: "Aula 25 - Considerações e preparação para o módulo Prgramação em R (Nível Intermediário)"
+subtitle: "Aula 25 - Considerações e preparação para o módulo Programação em R (Nível Intermediário)"
 author: "Ben Deivide"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 bibliography: biblio.bib

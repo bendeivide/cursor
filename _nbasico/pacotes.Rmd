@@ -1,5 +1,6 @@
 # <i class="fas fa-cubes"></i> Pacotes {#pacotes}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ImIj8iBo6CQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 O pacote em `r rlink` é um diretório de arquivos necessários para carregar um código de funções, dados, documentações de ajuda, testes, etc. O próprio `r rlink` em sua instalação, contém 30 pacotes, que dizemos que são as funções mínimas para a utilização da linguagem. Nesse diretório não há apenas códigos em `r rlink`, mas um pacote fonte (do inglês, *source package*), contendo os arquivos mencionados acima, ou um arquivo compactado, de extensão *.tar.gz* do pacote fonte, ou um pacote instalado, resultado da função `R CMD INSTALL`, que será visto no módulo [Programação em R (Nível Avançado)](navancado.html). Isso acontece no SO *Linux*. Para as plataformas *Windows* e *Macintosh*, existem também os pacotes binários ou compactados com a extensão *.zip* ou *.tar.gz*. 
 
@@ -136,6 +137,8 @@ midrangeMCP::MRbarplot(results)
 
 ## Carregando e anexando um pacote {#attachpac}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ImIj8iBo6CQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Anteriormente, falamos que usamos a função `library()` ou `require()` para carregar e anexar um pacote para utilizar suas funções, após a instalação. Carregar um pacote significa disponibilizar na memória ativa. Para acessar uma função de um pacote após ter sido carregado, usamos o operador `::`, isto é, `nome_pacote::nome_função`. Isto significa, que será chamado a função necessária sem anexar o pacote no [caminho de busca](#search_path). Estudaremos a seguir um pouco mais sobre caminho de busca. Para esse momento, entenda que é um caminho hierarquizado de ambientes, isto é, objetos que armazenam, em forma de lista, nomes associados a objetos. A função para ver o caminho de busca é `search()`. Em nosso caso, temos:
 
 ```{r echo=FALSE}
@@ -185,6 +188,8 @@ knitr::include_graphics("images/midrangeMCP.png")
 
 ## *NAMESPACE* de um pacote {#namespac}
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U-75Un1Sr94" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 No início da seção sobre pacotes, falamos sobre o esqueleto de um pacote, isto é, os componentes básicos de um pacote. Um dos arquivos é o *NAMESPACE*. Esse arquivo é respondsável pela exportação e importação de funções. As funções exportadas de um pacote, por meio desse arquivo, são aquelas visíveis após a anexação do pacote ao caminho de busca, ou por meio do operador `::`. As funções importadas são aquelas utilizadas de outros pacotes. 
 
 As funções ditas internas do pacote, são aquelas não mencionadas no *NAMESPACE*. Em muitas situações, precisamos de funções internas necessárias para a finalidade do pacote, que muitas vezes não é objetivo final para disponibilidade dos usuários, mas códigos intermediários para a boa funcionabilidade do pacote. Dessa forma, uma boa escolha para que não haja conflitos em nomes associados a objetos no ambiente de trabalho, é a decisão de não exportá-los.
@@ -201,6 +206,8 @@ Os primeiros pacotes submetidos ao CRAN na primeiras versões do `r rlink`, não
 Mais detalhes sobre o desenvolvimento de pacotes será abordado no módulo [Programação em R (Nível Avançado)](navancado.html).
 
 ## Usando os operadores `::` e `:::` {#carpac}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gm6YA-heLJ8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Como falamos anteriormente, para chamarmos uma função sem a necessidade de anexar o pacote, usamos o operador `::`. Comentamos também, que algumas funções não eram exportadas pelo *NAMESPACE* de um pacote. Contudo, se desejarmos visualizar ou executá-las, poderemos utilizar o operador `:::`. Vejamos um exemplo,
 
@@ -219,6 +226,7 @@ Outro ponto interessante é que não se recomenda a utilização de importação
 
 
 ## Ambientes e Caminho de busca {#search_path}
+
 
 Na seção sobre [funções](#funcoes), discutimos dois pontos interessantes sobre objetos, que é a atribuição e o escopo. E esses dois pontos estão intimamente relacionados ao objeto ambiente, de modo `"environment"`. O ambiente é um objeto que armazena, em forma de lista, as ligações dos nomes associados aos objetos. Porém, existem diferenças entre o objeto lista do objeto ambiente, com quatro exceções (@hadley2019):
 
