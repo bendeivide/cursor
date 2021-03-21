@@ -99,12 +99,24 @@ github <- "[GitHub](http://github.com/){target='_blank'}"
  - [Script 05](scripts/script05.txt){target="_blank"}: [Comandos](scripts/script05.R){target="_blank"}
  - Script 06: ~
  - [Script 07](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}: [.RData e .Rhistory](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}
- - [Script 08](scripts/aula08/Aula08.R){target="_blank"}: [Script08.txt](scripts/aula08/Aula08.txt){target="_blank"}
+ - [Script 08](scripts/aula08/script08.R){target="_blank"}: [Script08.txt](scripts/aula08/script08.txt){target="_blank"}
  - Script 09:
  - Script 10:
  - Script 11:
  - Script 12:
  - Script 13:
+ - Script 14:
+ - Script 15:
+ - Script 16:
+ - Script 17:
+ - Script 18:
+ - [Script 19](scripts/aula19/script19.R){target="_blank"}: [Script19.txt](scripts/aula19/script19.txt){target="_blank"}
+ - [Script 20](scripts/aula20/script20.R){target="_blank"}: [Script20.txt](scripts/aula20/script20.txt){target="_blank"}
+ - [Script 21](scripts/aula21/script21.R){target="_blank"}: [Script21.txt](scripts/aula21/script21.txt){target="_blank"}
+ - [Script 22](scripts/aula22/script22.R){target="_blank"}: [Script22.txt](scripts/aula22/script22.txt){target="_blank"}
+ - [Script 23](scripts/aula23/script.R){target="_blank"}: [Script23.txt](scripts/aula23/script23.txt){target="_blank"}
+ - Script 24: [r-python.R](scripts/aula24/r-python.R){target="_blank"}, [r-rcpp.R](scripts/aula24/r-rcpp.R){target="_blank"}, [r-tcltk.R](scripts/aula24/r-tcltk.R){target="_blank"}, [add.cpp](scripts/aula24/add.cpp){target="_blank"}, [add.py](scripts/aula24/add.py){target="_blank"}
+ - Script 25: ~
 
 
 ## Exercícios e Scripts via  [Shiny](https://shiny.rstudio.com/){target="_blank"} {#shiny}
