@@ -99,7 +99,7 @@ github <- "[GitHub](http://github.com/){target='_blank'}"
  - [Script 05](scripts/script05.txt){target="_blank"}: [Comandos](scripts/script05.R){target="_blank"}
  - Script 06: ~
  - [Script 07](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}: [.RData e .Rhistory](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}
- - [Script 08](scripts/aula08/script08.R){target="_blank"}: [Script08.txt](scripts/aula08/script08.txt){target="_blank"}
+ - [Script 08](scripts/aula08/script08.R){target="_blank"}: [Script08.txt](scripts/aula08/script08_2.txt){target="_blank"}; [Script 08_2](scripts/aula08/script08_2.R){target="_blank"}: [Script08_2.txt](scripts/aula08/script08_2.txt){target="_blank"}
  - Script 09:
  - Script 10:
  - Script 11:
@@ -719,7 +719,7 @@ A diferença existente nos objetos `y` e `y2` para as funções `mode()` e `type
 Veja que o resultado é `TRUE`, isto é, sim eles são iguais. Agora, veja a próxima linha de comando:
 
 ```{r echo=TRUE, prompt=TRUE}
-# 10 eh igual a 10L ?
+# 10 eh identico a 10L ?
 identical(10, 10L)
 ```
 

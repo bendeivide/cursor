@@ -1,5 +1,5 @@
 ############################################
-# Script 22 - Ambientes e Caminho de busca
+# Script 23 - Ambientes e Caminho de busca
 # Curso R - Programacao em R (Nivel Basico)
 # Prof. Ben Deivide
 ############################################
