@@ -100,7 +100,7 @@ github <- "[GitHub](http://github.com/){target='_blank'}"
  - Script 06: ~
  - [Script 07](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}: [.RData e .Rhistory](scripts/aula07/Aula07-primeiro_script.R){target="_blank"}
  - [Script 08](scripts/aula08/script08.R){target="_blank"}: [Script08.txt](scripts/aula08/script08_2.txt){target="_blank"}; [Script 08_2](scripts/aula08/script08_2.R){target="_blank"}: [Script08_2.txt](scripts/aula08/script08_2.txt){target="_blank"}
- - Script 09:
+ - [Script 09](scripts/aula09/Aula09.R){target="_blank"}: [Vetores](scripts/aula09/Aula09.R){target="_blank"}
  - Script 10:
  - Script 11:
  - Script 12:

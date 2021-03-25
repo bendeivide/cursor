@@ -114,8 +114,91 @@ Introdução aos objetos:
 
 <!-- ### Funções recursivas -->
 
-# Entendendo um pouco mais sobre objets
+
+# Projetos no RStudio
+
+# Projetos R no Github
+
+# Entendendo um pouco mais sobre objetos
+
+## Manipulando vetores de modo `character`
+
+### pacote tidytext
+https://juliasilge.com/blog/learn-tidytext-learnr/
+https://juliasilge.shinyapps.io/learntidytext/
+
+## Objetos modo `raw`
+
+## Objetos modo `complex`
+
+## Outro tipo de estrutura de dados `tibble`
+tibble::tibble()
+
+## Manipulações com objetos
+
+## Cópias de objetos
 
 # Programação orientada a objetos
 
-# Programação funcional
+## Classes e Métodos
+
+## Programação funcional
+
+## Função operadores binários ou unirios
+
+### pacote magritt -> %>% (pipe - lê-se paipe)
+
+
+## Evitando loops
+
+## Funções recursivas
+
+## Programação defensiva
+
+### Função `stop()`
+### Função `Warning`
+
+## Controle de fluxos usando paralelização
+<!-- - iterators -->
+<!-- - foreach -->
+
+## Gráficos
+
+ - Dispositivo gráfico:
+        - ggplot
+        - tmap
+        - graficos interativos (animate): 
+           sites: https://mode.com/blog/r-data-visualization-packages/
+           sites: https://towardsdatascience.com/animating-your-data-visualizations-like-a-boss-using-r-f94ae20843e3
+
+# Introdução a desenvolvimento de pacotes
+
+# Ambientes
+
+# Banco de dados e APIs, SQL
+
+# Criação de documentações no R
+
+## Documentos Web (estatística e dinâmica)
+
+### Páginas de pacote (pkgdown)
+
+### Livros (bookdown)
+
+### Blogs e websites (distill, blogdown)
+
+## Documentos (PDF, WORD, EPUB)
+
+### Documentos estatísticos 
+
+### Documentos animados
+
+### Relatórios dinâmicos
+
+
+
+
+
+
+
+
