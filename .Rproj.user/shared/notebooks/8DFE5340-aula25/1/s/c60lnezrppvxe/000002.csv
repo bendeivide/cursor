@@ -1,0 +1,4 @@
+"0","# Carregando o script add.cpp
+Rcpp::sourceCpp(""add.cpp"")
+"
+"2","path[1]=""E:/BEN_PROD/CURSOS_PALESTRAS/CURSOS/SITE/Curso_R/aulas/../inst/include"": O sistema não pode encontrar o caminho especificado"

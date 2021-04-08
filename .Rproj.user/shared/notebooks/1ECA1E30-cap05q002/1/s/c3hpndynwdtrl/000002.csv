@@ -1,0 +1,4 @@
+"0","#set.seed(10)"
+"0","pa <- round(runif(1, 0, 0.75), 4)"
+"0","pb <- round(1 - pa, 4)"
+"0","paub <- round(pa + pb - pa * pb, 4)"

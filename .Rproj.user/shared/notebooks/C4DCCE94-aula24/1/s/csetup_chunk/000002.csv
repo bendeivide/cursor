@@ -1,0 +1,7 @@
+"0","knitr::opts_chunk$set(echo = FALSE)"
+"0","# Anexando pacotes"
+"0","library(magrittr)"
+"0","# Links"
+"0","rlink <- ""[R](http://r-project.org/){target='_blank'}"""
+"0","rstudio <- ""[RStudio](http://rstudio.org/){target='_blank'}"""
+"0","cran <- ""[CRAN](http://cran.r-project.org/){target='_blank'}"""
