@@ -1,0 +1,52 @@
+---
+title: "Ben Dêivide"
+image: "images/ben.png"
+links:
+  - label: Página Pessoal
+    url: "https://bendeivide.github.io/"
+  - label: Lattes
+    url: "http://lattes.cnpq.br/4118572120481367"
+  - label: GitHub
+    url: "https://github.com/bendeivide"
+  - label: Email
+    url: "mailto:bendeivide@ufsj.edu.br"
+output:
+  postcards::trestles
+---
+ 
+```{js, echo=FALSE}  
+(function() {  
+  for (const link of document.getElementsByTagName('a')) {  
+    if (/^(https?:)?\/\//.test(link.getAttribute('href'))) link.target = '_blank';  
+  }  
+})();  
+```   
+ 
+## Bio
+
+Ben Dêivide estuda Estatística computacional, mais especificamente, o ambiente R. Estudos na área de Estatística Experimental e Probabilidade, como também no ensino da Estatística, Professor, Adjunto, C1. Atualmente trabalha na Universidade Federal de São João del-Rei (UFSJ), campus Alto Paraopeba, Ouro Branco/MG.
+
+## Localidade da UFSJ, campus Alto Paraopeba
+
+```{r echo=FALSE, warning=FALSE}
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=-43.74496, lat=-20.52206, popup="UFSJ, campus Alto Paraopeba")
+```
+
+## Educação
+
+**Universidade Federal de Lavras**             | Lavras, MG
+
+Pós-Dr./Dr./Ms. em Estatística | Fevereiro 2012 - Julho 2019
+
+**Universidade Federal Rural do Semiárido (UFERSA)** | Mossoró, RN
+
+Eng. Agrônomo                       | Julho 2005 - Julho 2010
+
+## Experiência
+
+**Ambiente R** | Estudo Atual | Janeiro 2005 - Presente
+
+**Estatística e Probabilidade** | Pesquisa Científica | June 2010 - Presente

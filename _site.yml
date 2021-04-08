@@ -1,0 +1,48 @@
+name: "progr"
+title: "Curso R"
+description: |
+  Curso R
+header-includes:
+output_dir: "docs"
+twitter:
+  site: "@bendeivide"
+google_analytics: UA-183980834-3
+favicon: images/favicon.png
+navbar:
+  logo:
+    image: images/logo2.png
+    href: https://www.r-project.org/
+    source_url: https://github.com/bendeivide/cursor
+  search: true
+  left:
+    - text: "Home"
+      href: index.html
+      icon: fas fa-home
+    - text: Autor
+      href: about.html
+    - text: "Material"
+      menu:
+        - text: "Basico"
+          href: nbasico.html
+        - text: "Intermediario"
+          href: nintermediario.html
+        - text: "Avancado"
+          href:
+
+  right:
+    - icon: fab fa-facebook
+      href: https://www.facebook.com/bendeivide/
+    - icon: fab fa-instagram
+      href: https://www.instagram.com/bendeivide/
+    - icon: fab fa-blogger
+      href: https://benalana.blogspot.com/
+    - icon: fab fa-youtube-square
+      href: http://youtube.com/bendeivide/
+    - icon: fab fa-twitter
+      href: http://twitter.com/bendeivide/
+    - icon: fab fa-linkedin
+      href: https://www.linkedin.com/in/bendeivide/
+    - icon: fa-github fa-lg
+      href: https://github.com/bendeivide/cursor/
+output: distill::distill_article
+

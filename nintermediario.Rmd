@@ -1,0 +1,295 @@
+---
+title: "Programação em R (Nível Intermediário)"
+description: |
+  Esse módulo ...
+bibliography: biblio.bib
+link-citations: true
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+# Sumário 
+
+- Em construção...
+
+##
+
+# <i class="fas fa-folder-open"></i> Materiais para este módulo {#materiais}
+
+
+## Slides de Aulas {#slidesaulas}
+
+ - Aula 00: [Apresentação do Curso](aulas/aula00.html)
+ - Aula 01: [Revisão de como o R trabalha]()
+
+## Scripts {#scripts}
+ - Script 00: 
+
+
+## Scripts via  [Shiny](https://shiny.rstudio.com/) {#shiny}
+
+[Curso R via Shiny](https://bendeivide.shinyapps.io/Curso-R/)
+
+# <i class="fas fa-book"></i> Apresentação do curso {#apresentacao}
+
+# Revisão de como o R trabalha
+
+```{r rworks, fig.cap = "Relembrando como o `R` funciona.", out.width="100%", fig.align='center'}
+knitr::include_graphics("images/rworks2.png")
+```
+
+<!-- 
+Caracterizar melhor a linguagem R 
+
+- Linguagem interpretada
+- Escopo Léxico
+- Programação Funcional
+- Programação Metaparadigma
+- Programação dinâmica:
+Retirado do livro: hand-On Programming with R
+
+Em algumas linguagens, como C, Java e FORTRAN, você precisa compilar seu código legível por humanos em código legível por máquina (geralmente 1s e 0s) antes de executá-lo. Se você já programou nessa linguagem antes, pode estar se perguntando se precisa compilar seu código R antes de usá-lo. A resposta é não. R é uma linguagem de programação dinâmica, o que significa que R interpreta automaticamente seu código conforme você o executa.
+
+-->
+
+<!--
+Introdução aos objetos:
+  - Atômicos: objetos que não podem se conter
+  - Recursivos: Objetos que podem conter objetos de mesmo tipo
+  - Ver a função is.atomic() ou is.recursive()
+<!-- require(stats) -->
+
+<!-- is.a.r <- function(x) c(is.atomic(x), is.recursive(x)) -->
+
+<!-- is.a.r(c(a = 1, b = 3)) # TRUE FALSE -->
+<!-- is.a.r(list())          # FALSE TRUE - a list is a list -->
+<!-- is.a.r(list(2))         # FALSE TRUE -->
+<!-- is.a.r(lm)              # FALSE TRUE -->
+<!-- is.a.r(y ~ x)           # FALSE TRUE -->
+<!-- is.a.r(expression(x+1)) # FALSE TRUE -->
+<!-- is.a.r(quote(exp))      # FALSE FALSE -->
+-->
+
+
+<!--
+- Aprofundar e detalhar a parte de objetos de modo geral, não restringindo apenas aos vetores
+- Nos vetores de modo caractere, trabalhar bem sua utilização; ver o material da ecologia da USP
+-->
+
+<!-- Usar o manual https://cran.r-project.org/doc/manuals/r-release/R-lang.html para seguir a todos os tipos de objetos -->
+
+
+
+<!-- # Objetos -->
+
+<!-- ## Quadro de dados -->
+
+<!-- - data.frames() -->
+<!-- - tibble::tibble() -->
+
+
+<!-- Funções -->
+
+<!-- Os objetos de modo `function`, isto é, uma função, são objetos de primeira classe porque se comportam como qualquer outra estrutura de dados na linguagem `r rlink`, como atribuir nomes associados a esses objetos, passá-los como argumentos para outras funções, inserir dentro de funções, e até mesmo retorná-lo como resultado de funções. Vejamos, -->
+
+<!-- apresentar formas de se criar operadores binários especiais -->
+
+
+<!-- - Olhar escopo de variaveis seção 3.5: -->
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Global-environment -->
+
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Function-objects -->
+
+<!-- Falar sobre controle de fluxos usando paralelização -->
+<!-- - iterators -->
+<!-- - foreach -->
+<!-- - MonteCarlo -->
+
+<!-- Ref: R in a nutshel, -->
+
+<!-- ### Evitando loops -->
+
+<!-- ### Funções recursivas -->
+
+
+# Projetos no RStudio
+
+# Projetos R no Github
+
+# Entendendo um pouco mais sobre objetos
+
+## Manipulando vetores de modo `character`
+
+### pacote tidytext
+<!-- https://juliasilge.com/blog/learn-tidytext-learnr/ -->
+<!-- https://juliasilge.shinyapps.io/learntidytext/ -->
+
+## Objetos modo `raw`
+
+## Objetos modo `complex`
+
+## Outro tipo de estrutura de dados `tibble`
+<!-- tibble::tibble() -->
+
+## Manipulações com objetos
+
+## Cópias de objetos
+
+# Programação orientada a objetos
+
+## Classes e Métodos
+
+# Programação funcional
+
+## Função operadores binários ou unirios
+
+### pacote magritt -> %>% (pipe - lê-se paipe)
+
+<!-- -   Minus, can be unary or binary -->
+<!-- +   Plus, can be unary or binary -->
+<!-- !   Unary not -->
+<!-- ~   Tilde, used for model formulae, can be either unary or binary -->
+<!-- ?   Help -->
+<!-- :   Sequence, binary (in model formulae: interaction) -->
+<!-- *   Multiplication, binary -->
+<!-- /   Division, binary -->
+<!-- ^   Exponentiation, binary -->
+<!-- %x% Special binary operators, x can be replaced by any valid name -->
+<!-- %%  Modulus, binary -->
+<!-- %/% Integer divide, binary -->
+<!-- %*% Matrix product, binary -->
+<!-- %o% Outer product, binary -->
+<!-- %x% Kronecker product, binary -->
+<!-- %in%    Matching operator, binary (in model formulae: nesting) -->
+<!-- <   Less than, binary -->
+<!-- >   Greater than, binary -->
+<!-- ==  Equal to, binary -->
+<!-- >=  Greater than or equal to, binary -->
+<!-- <=  Less than or equal to, binary -->
+<!-- &   And, binary, vectorized -->
+<!-- &&  And, binary, not vectorized -->
+<!-- |   Or, binary, vectorized -->
+<!-- ||  Or, binary, not vectorized -->
+<!-- <-  Left assignment, binary -->
+<!-- ->  Right assignment, binary -->
+<!-- $   List subset, binary -->
+
+
+
+
+## Evitando loops
+
+## Funções recursivas
+
+## Programação defensiva
+
+### Função `stop()`
+### Função `Warning`
+
+## Controle de fluxos usando paralelização
+<!-- - iterators -->
+<!-- - foreach -->
+
+## Gráficos
+
+<!--  - Dispositivo gráfico: -->
+<!--         - ggplot -->
+<!--         - tmap -->
+<!--         - graficos interativos (animate):  -->
+<!--            sites: https://mode.com/blog/r-data-visualization-packages/ -->
+<!--            sites: https://towardsdatascience.com/animating-your-data-visualizations-like-a-boss-using-r-f94ae20843e3 -->
+
+# Introdução a desenvolvimento de pacotes
+
+# Ambientes
+
+# Banco de dados e APIs, SQL
+
+# Criação de documentações no R
+
+## Documentos Web (estatística e dinâmica)
+
+### Páginas de pacote (pkgdown)
+
+### Livros (bookdown)
+
+### Blogs e websites (distill, blogdown)
+
+## Documentos (PDF, WORD, EPUB)
+
+### Documentos estatísticos 
+
+### Documentos animados
+
+### Relatórios dinâmicos
+
+
+<!-- Curso R <http://bendeivide.github.io/cursor> -->
+<!-- Módulo: Programação em R (Nível Intermediário) -->
+
+<!-- Ementa: -->
+
+<!-- 1. Caracterizando melhor a linguagem R -->
+<!--   1.1. Linguagem interpretada -->
+<!--   1.2. Escopo léxico -->
+<!--   1.3. Programação Funcional -->
+<!--   1.4. Programação Meta-paradigma -->
+<!--   1.5. Programação dinâmica -->
+<!-- 2. Projetos no RStudio -->
+<!-- 3. Projetos R no GitHub -->
+<!-- 4. Entendendo um pouco mais sobre objetos -->
+<!--   4.1. Manipulando strings -->
+<!--   4.2. Objeto 'tibble' -->
+<!--   4.3. manipulações com objetos -->
+<!--   4.4. Cópias de objetos -->
+<!-- 5. Programação orientada a objetos -->
+<!--   5.1. Classes e métodos -->
+<!--   5.2. ... -->
+<!-- 6. Programação Funcional -->
+<!--   6.1. Operadores binários -->
+<!--   6.2. Sintaxe da família de Pacotes Tidyverse -->
+<!--   6.3 Evitando loops -->
+<!--   6.4. Funções recursivas -->
+<!--   6.5. Programação defensiva -->
+<!--   6.6. Controle de fluxos usando paralelização -->
+<!-- 7. Gráficos -->
+<!-- 8. Introdução a desenvolvimento de pacotes -->
+<!-- 9. Aprofundamento sobre ambientes -->
+<!-- 10. Banco de dados -->
+<!-- 11. Criação de documentações no R -->
+<!--   11.1. Documentos Web -->
+<!--     11.1.1 Páginas estatísticas -->
+<!--     11.1.2. Páginas dinâmicas -->
+<!--   11.2. Documentações de pacotes -->
+<!--      11.2.1. Documentações de ajuda .Rd -->
+<!--      11.2.2.  Página Web de pacotes    -->
+<!--   11.3. Livros -->
+<!--   11.4. Blogs e websites -->
+<!--   11.5. Relatórios -->
+<!--     11.5.1. Relatórios animados -->
+<!--     11.5.2. Relatórios dinâmicos -->
+<!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
