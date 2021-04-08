@@ -1,0 +1,74 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 13 - Quadro de dados"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introdução
+
+O objeto quadro de dados (*Data frame*) é uma lista com classe `data.frame`, em que contém dois atributos. Porém, com algumas restrições:
+
+- Os componentes devem ser vetores uni ou multidimencionais, listas ou até mesmo quadro de dados;
+- As colunas das matrizes, listas ou quadro de dados são inseridas como colunas do quadro de dados;
+- A partir da versão R (4.0.0), padrão `stringsAsFactors = FALSE`;
+- Os objetos inseridos no quadro de dados devem ter o mesmo comprimento.
+
+Importar dados para um objeto R (`read.table()`)=> Quadro de dados
+
+## Criando um quadro de dados
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando um quadro de dados
+dados <- data.frame(x = 1:10, 
+                    y = letters[1:10],
+                    z = rep(c(TRUE, FALSE), 5))
+# Imprimindo dados
+dados
+```
+
+## Indexação de um quadro de dados
+
+```{r echo=TRUE, prompt=TRUE}
+# Acessando os elementos de forma de lista
+dados[[1]]
+dados$x
+```
+
+## Indexação de um quadro de dados
+
+```{r echo=TRUE, prompt=TRUE}
+dados[1, ] # Coluna 1
+dados[1, 1] # Elemento da linha 1 coluna 1
+(dados[1, 1] <- 10) # Alterando dados[1,1]
+```
+
+## Anexando objetos do quadro de dados no caminho de busca
+
+```{r echo=TRUE, error=TRUE, prompt=TRUE}
+# Criando um quadro de dados
+dados <- data.frame(x = 1:10, 
+                    y = letters[1:10],
+                    z = rep(c(TRUE, FALSE), 5))
+# Usando a funcao attach()
+attach(dados)
+x # Acessando os elementos
+detach(dados); x # Desanexando dados
+```
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
