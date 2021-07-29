@@ -86,5 +86,5 @@ Agradecemos também aos mais de **450** inscritos nesse módulo.
 ## Bons estudos!
 
 <center>
-[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
 </center>
