@@ -31,6 +31,18 @@ Inserir nas secoes:
 knitr::include_graphics(c("pragramacaoR-nivel_intermediario.jpeg"))
 ```
 
+## Democratizando Conhecimento (Selo DC) 
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Livro
+
+<center>
+[![](book-eambr.png)](https://bendeivide.github.io/books/eambr/){target='_blank'}
+</center>
+
 ## Agradecimentos
 ```{r, out.width = "40%", echo=FALSE, fig.align='center'}
 # two figs side by side
@@ -40,7 +52,7 @@ knitr::include_graphics(c("catel.png",
 
 ## Agradecimentos
 
-Agradecemos também aos mais de **400** inscritos nesse módul
+Agradecemos também aos mais de **450** inscritos nesse módulo.
 
 ## Objetivo do curso: Nível Intermediário
 
@@ -86,5 +98,5 @@ Agradecemos também aos mais de **400** inscritos nesse módul
 ## Bons estudos!
 
 <center>
-[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
 </center>
