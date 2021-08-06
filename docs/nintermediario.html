@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -107,6 +108,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
+  <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
+  <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
+  <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -2035,7 +2039,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.9/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2191,7 +2195,7 @@ Material
 <h2 id="slidesaulas">Slides de Aulas</h2>
 <ul>
 <li>Aula 26: <a href="aulas/aula26.html" target="_blank">Apresentação do Curso</a></li>
-<li>Aula 27: <a href="">Revisão de como o R trabalha</a></li>
+<li>Aula 27: <a href="aulas/aula27.html" target="_blank">Caracterizando melhor o ambiente R</a></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2212,7 +2216,7 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 </p>
 </div>
 </div>
-<p>Vamos inicialmente caracterizar melhor o R. Por que usamos os termos <strong>linguagem</strong>, <strong>software</strong> ou <strong>ambiente</strong> para o <code>R</code>? Na página do <code>R</code>, na seção <a href="https://www.r-project.org/about.html"><em>about</em></a> se inicia com a primeira pergunta: O que é o R? Em resposta da própria página e utilizando também como resposta a nossa indagação inicial, o “R é uma linguagem e ambiente para computação estatística e gráficos,” que ainda complementa que essa linguagem é uma implementação diferente da linguagem <code>S</code>, linguagem essa do qual inclui as principais implementações para análise estatística. Contudo, ocorrem algumas diferenças dentre as quais já apresentamos no <a href="nbasico.html#rhistory">módulo básico</a>, a presença do <strong>escopo léxico</strong> no <code>R</code>, que não ocorre na linguagem <code>S</code>. Desse modo, percebemos que o <code>R</code> é uma <strong>linguagem interpretada</strong>, pois além da linguagem <code>S</code> (o que fácil para os usuários a implementação do código), a sua base foi programada em <code>C</code> e <code>FORTRAN</code> (para computação mais intensiva). Mas também, adjetivamos o <code>R</code> como <strong>ambiente de software</strong> ao invés de apenas <strong>software</strong>, e aqui predominaremos esse termo, pois segundo ainda na própia página se “pretende caracterizá-lo como um sistema totalmente planejado e coerente, ao invés de um acréscimo incremental de ferramentas muito específicas e inflexíveis, como é frequentemente o caso com <em>outros softwares de análise de dados</em>.” Assim, esse ambiente inclui:</p>
+<p>Vamos inicialmente caracterizar melhor o R. Por que usamos os termos <strong>linguagem</strong>, <strong>software</strong> ou <strong>ambiente</strong> para o <code>R</code>? Na página do <code>R</code>, na seção <a href="https://www.r-project.org/about.html"><em>about</em></a> se inicia com a primeira pergunta: O que é o R? Em resposta da própria página e utilizando também como resposta a nossa indagação inicial, o “R é uma linguagem e ambiente para computação estatística e gráficos,” que ainda complementa que essa linguagem é uma implementação diferente da linguagem <code>S</code>, linguagem essa do qual inclui as principais implementações para análise estatística. Contudo, ocorrem algumas diferenças dentre as quais já apresentamos no <a href="nbasico.html#rhistory">módulo básico</a>, a presença do <strong>escopo léxico</strong> no <code>R</code>, que não ocorre na linguagem <code>S</code>. Desse modo, percebemos que o <code>R</code> é uma <strong>linguagem interpretada</strong>, pois além da linguagem <code>S</code> (o que fácil para os usuários a implementação do código), a sua base foi programada em <code>C</code> e <code>FORTRAN</code> (para computação mais intensiva). Mas também, adjetivamos o <code>R</code> como <strong>ambiente de software</strong> ao invés de apenas <strong>software</strong>, e aqui predominaremos esse termo, pois segundo ainda na própia página do <code>R</code> se “pretende caracterizá-lo como um sistema totalmente planejado e coerente, ao invés de um acréscimo incremental de ferramentas muito específicas e inflexíveis, como é frequentemente o caso com <em>outros softwares de análise de dados</em>.” Assim, esse ambiente inclui:</p>
 <ul>
 <li>manipulação de dados;</li>
 <li>operações com matrizes;</li>
@@ -2229,8 +2233,65 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 </div>
 <pre><code>[1] 10</code></pre>
 </div>
-<p>Percebemos no <code>R</code> o código é automaticamente interpretado conforme o usuário executa. Desse modo, caracterizamos a linguagem de <strong>programação dinâmica</strong>.</p>
-<p>A ideia do <code>R</code> como uma linguagem de programação com <strong>estilo funcional</strong>, se deve pelo fato da linguagem ter funções de primeira classe, <code>function()</code>, isto é, funções que se comportam como qualquer outro objeto no ambiente <code>R</code>. Por exemplo, podemos atribuir nomes as nossas funções, armazená-las em listas, serem criadas dentro de outras funções, serem argumentos de outras funções, ou até ser um resultado de uma função. Mas o <code>R</code> não é estritamente funcional. A definição de programação funcional apresenta algumas características, dentre elas, que a linguagem apresente:</p>
+<p>Percebemos no <code>R</code> o código é automaticamente interpretado conforme o usuário executa. Desse modo, caracterizamos a linguagem de <strong>programação dinâmica</strong>. A ideia se estende a avaliação de funções, a extensão da linguagem sem o uso de macros, e a manipulação com ambiente. Ainda mais, podemos afirmar também que essa dinamicidade está relacionada ao fato do <code>R</code> também ser uma <strong>linguagem fortemente e dinamicamente tipada</strong>. Nesse caso, os valores contidos nos objetos é que são tipados. Por exemplo, vetores atômicos apresentam sempre elementos com mesmo tipo. Porém, à medida que adicionamos elementos ao vetor, pode haver a coersão da tipagem dos elementos, quando esses elementos apresentam tipos diferentes, como foi abordado no módulo básico, na seção <a href="nbasico.html#coersao">coersão</a>. Vejamos um exemplo, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>vetor</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>vetor</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;logical&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>vetor</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>vetor</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;double&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>vetor</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"1"</span>; <span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>vetor</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;character&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>vetor</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1&quot; &quot;1&quot; &quot;1&quot;</code></pre>
+</div>
+<p>Observemos que o objeto associado ao nome <code>vetor</code> vai alterando a tipagem por coersão, é o comportamento dinâmico da linguagem. Observe que o nome <code>vetor</code> é um objeto de tipo <em>symbol</em> e o vetor <code>c("1", "1" "1")</code> é outro objeto, cujos os elementos foram coagidos a tipagem <code>character</code>. Claro, que o acesso ao vetor só é possível recuperar da memória ativa, se este estiver associado a algum nome, no caso <code>vetor</code>. Porém, não é o nome que altera o seu tipo, mas os elementos do objeto associado a este nome, em que, por ser um verto atômico, seus elementos devem apresentar o mesmo tipo.</p>
+<p>A ideia do <code>R</code> como uma linguagem de programação com <strong>estilo funcional</strong>, se deve pelo fato da linguagem ter funções de primeira classe, <code>function()</code>, isto é, funções que se comportam como qualquer outro objeto no ambiente <code>R</code>. Por exemplo, podemos atribuir nomes as nossas funções, armazená-las em listas, serem criadas dentro de outras funções, serem argumentos de outras funções, ou até ser um resultado de uma função. Inclusive na versão do <code>R</code> 4.1, a função <code>function()</code> ganhou um novo formato, que também pode ser usado. Vejamos o exemplo:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Forma original</span>
+<span class='va'>soma1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>1</span>; <span class='fu'>soma1</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Forma alternativa (&gt;= R 4.1)</span>
+<span class='va'>soma1</span> <span class='op'>&lt;-</span> \<span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>1</span>; <span class='fu'>soma1</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+</div>
+<p>Para complementar atualizações dessa versão, uma outra importante foi implemento da função <em>pipe</em> (<code>%&gt;%</code>). Originalmente, a função <em>pipe</em> (lê-se paipe) é do pacote <a href="https://magrittr.tidyverse.org/">magrittr</a> da família de pacotes <a href="https://www.tidyverse.org/">tidyverse</a>, do qual é um operador binário em que o primeiro operando é um objeto para a entrada de dados, e o segundo é uma função. Nesse caso, o objeto no primeiro operando entrará no primeiro argumento da função no segundo operando. Vejamos um exemplo, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># install.packages(magrittr) # Instalando o pacote</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://magrittr.tidyverse.org'>magrittr</a></span><span class='op'>)</span> <span class='co'># anexando o pacote</span>
+<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> <span class='op'>%&gt;%</span> <span class='va'>mean</span>
+</code></pre>
+</div>
+<pre><code>[1] 5.5</code></pre>
+</div>
+<p>Observe que calculamos a média do vetor <code>1:10</code>. Agora, a versão do <em>pipe</em> nativa no <code>R</code> (&gt;= 4.1), sua sintaxe é <code>|&gt;</code>. Vejamos o mesmo exemplo usado anteriormente, agora com a função nativa, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 5.5</code></pre>
+</div>
+<p>A diferença no caso do <em>pipe</em> nativo é que no segundo argumento, além do nome da função, acrescemos o parênteses sem seus argumentos. <strong>Lembrando que o primeiro operando entrará no primeiro argumento da função (segundo operando)</strong>.</p>
+<p>Retornando a programação funcional, sabemos que o <code>R</code> não é estritamente funcional. A definição de programação funcional apresenta algumas características, dentre elas, que a linguagem apresente:</p>
 <ul>
 <li>Composição de funções;</li>
 <li>Funções puras;</li>
@@ -2250,7 +2311,10 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <p>A caracterização de <strong>funções puras</strong>, significa que as funções sempre retornam o mesmo resultado, dados os mesmos parâmetros de entrada, isto significa que não existe <strong>efeito colateral</strong>. Um exemplo de função pura, pode ser como:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fpura</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>1</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fpura</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>is.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span><span class='op'>(</span><span class='st'>"x deve ser numérico"</span><span class='op'>)</span>
+  <span class='va'>x</span> <span class='op'>+</span> <span class='fl'>1</span>
+<span class='op'>}</span>
 <span class='fu'>fpura</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2287,10 +2351,20 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 </div>
 </div>
 <p>Para a execução dessas linhas de comando, sugerimos que não utilizem diretamente o RStudio, porque a IDE sempre faz uma referência a cada objeto. Sugerimos que utilize a própria interface do <code>R</code>. Esse tema será aprodundado mais a frente, na seção <a href="#aprof-objetos">entendendo um pouco mais sobre objetos</a>.</p>
-<p>O <code>R</code> não é uma linguagem totalmente orientada a objetos, como afirmado por alguns. Apesar, de um dos princípios do <code>R</code> que tudo é um objeto, não significa dizer que tudo é orientado a objetos. Isso se deve ao fato de que os primeiro objetos criados no <code>R</code>, que chamaremos de <strong>objetos base</strong>, foram desenvolvidos baseados na linguagem <code>S</code>. E nesse tempo não havia qualquer cogitação de que fosse necessário um sistema de programação orientada a objetos (POO). Veremos mais a frente, que a distinção básica entre objetos base e objetos baseados em sistemas orientados a objetos, chamaremos de <strong>objetos OO</strong>, é que estes últimos terão o atributo <code>class</code>, do qual podemos consultá-lo pela função <code>attr()</code>. Vejamos, alguns exemplos:</p>
+<p>Por fim, duas outras características importantes do estilo funcional da linguagem, é o <strong>escopo léxico</strong> das funções, assunto abordado no <a href="nbasico.html">módulo básico</a>, e a <strong>execução preguiçosa</strong>, do qual o argumentos das funções são avaliados apenas quando utilizados. Vejamos, o exemplo a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objetos OO</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>preguicoso</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span> <span class='op'>=</span> <span class='fu'>faux</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>  <span class='va'>a</span> <span class='op'>*</span> <span class='fl'>100</span>
+<span class='fu'>preguicoso</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 400</code></pre>
+</div>
+<p>Observemos nesse caso, que o argumento <code>b</code> recebe uma função <code>aux()</code> que não existe. Contudo, ao executar a linha de comando seguindo, a função <code>preguicoso</code> retorna o resultado <code>400</code> sem erro. Isso porque como não foi necessário utilizar o argumento <code>b</code> no corpo da função, este não foi avaliado, e portanto, sem retorno de erro da função <code>preguicoso</code>. Iremos mais a frente, detalhar essa característica de modo mais aprofundado.</p>
+<p>O <code>R</code> não é uma linguagem totalmente orientada a objetos, como afirmado por alguns. Apesar, de um dos princípios do <code>R</code> que tudo é um objeto, não significa dizer que tudo é orientado a objetos. Isso se deve ao fato de que os primeiro objetos criados no <code>R</code>, que chamaremos de <strong>objetos base</strong>, foram desenvolvidos baseados na linguagem <code>S</code>. E nesse tempo não havia qualquer cogitação de que fosse necessário um sistema de programação orientada a objetos (POO). Veremos mais a frente, que a distinção básica entre objetos base e objetos baseados em sistemas orientados a objetos, chamaremos de <strong>objetos POO</strong>, é que estes últimos terão o atributo <code>class</code>, do qual podemos consultá-lo pela função <code>attr()</code>. Vejamos, alguns exemplos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objetos POO</span>
 <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='fu'>ggplot2</span><span class='fu'>::</span><span class='va'><a href='https://ggplot2.tidyverse.org/reference/diamonds.html'>diamonds</a></span>, <span class='st'>"class"</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2302,21 +2376,209 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 </div>
 <pre><code>NULL</code></pre>
 </div>
-<p>Quando não há o atributo <code>class</code>, isto é, <code>NULL</code>, é objeto base. Contudo, iremos na seção <a href="#poo">Programação orientada a objetos</a> saber em que sistemas esses objetos estão orientados, porque no <code>R</code>, diferentemente de outras linguagens, existem vários sistemas POO, como: S3, S4 e R6.</p>
+<p>Quando não há o atributo <code>class</code>, isto é, <code>NULL</code>, é objeto base. Contudo, iremos na seção <a href="#poo">Programação orientada a objetos</a> saber em que sistemas esses objetos estão orientados, porque no <code>R</code>, diferentemente de outras linguagens, existem vários sistemas POO, como: S3, S4 R5 (classes de referências), R6, dentre outros.</p>
 <p>Por fim, como última caracterização do <code>R</code> abordada é como uma linguagem de programação metaparadigma ocorre porque pela própria linguagem, poderemos inspecioná-la, modificá-la, por ela mesma, como se fosse um objeto, o que acaba tornando uma ferramenta muito poderosa. E isso será tema abordado mais a frente.</p>
 <p>Portanto, esclarecido isso, e ainda com as demais características apresentadas no <a href="nbasico.html">módulo básico</a>, dizemos que o <code>R</code> é:</p>
 <ul>
 <li>um ambiente de software livre e código aberto, com licença GNU;</li>
 <li>umalinguagem de programação interpretada;</li>
-<li>de escopo lêxico;</li>
 <li>uma linguagem de programação dinâmica;</li>
-<li>uma linguagem de programação funcional;</li>
-<li>uma linguagem de programação orientada a objetos; e</li>
+<li>uma linguagem de programação funcional;
+<ul>
+<li>de escopo lêxico;</li>
+<li>avaliação preguiçosa;</li>
+</ul></li>
+<li>uma linguagem de programação orientada a objetos;</li>
+<li>uma linguagem de tipagem forte e dinâmica; e</li>
 <li>uma linguagem de programação metaparadigma.</li>
 </ul>
+<!-- # Evolução do R -->
+<!-- https://en.wikipedia.org/wiki/R_(programming_language) -->
 <h1 id="poo"><i class="fas fa-puzzle-piece"></i> Programação orientada a objetos</h1>
 <p>Assim como no nosso dia a dia podemos realizar uma mesma tarefa de modos diferentes, isso ocorre também na programação. Nesse caso, dizemos que esses modos são os paradigmas da programação. E a programação orientada a objetos (POO) é um desses paradigmas que veio para contornar alguns problemas da programação estrutural, um outro paradigma.</p>
-<p>Antes de apresentarmos outras diferenças entre os objetos base e objetos OO, se faz necessário entendermos alguns conceitos da POO, do qual tudo se desencadeará pelos termos <strong>classe</strong>, <strong>objeto</strong> e <strong>método</strong>. Para isso, vamos ilustrar alguns termos baseados no nosso cotidiano. Uma das grandes cobiças nessa era digital é ter um bom <em>smartphone</em> para que possamos estar conectados nessa era digital, bem não sei se foi bem esse objetivo do <em>smartphone</em>, mas consideremos que tenha sido. Essa escolha se deve a algumas características tamanho, cor, desempenho, câmera, dentre outras. Mesmo que seu aparelho apresente um IMEI (Código de identificação do aparelho) único</p>
+<p>Antes de apresentarmos outras diferenças entre os objetos base e objetos OO, se faz necessário entendermos alguns conceitos da POO, do qual tudo se desencadeará pelos termos <strong>classe</strong>, <strong>objeto</strong> e <strong>método</strong>. Para isso, vamos ilustrar alguns termos baseados no nosso cotidiano. Uma das grandes cobiças nessa era digital é ter um bom <em>smartphone</em> para que possamos estar conectados nessa era digital, bem não sei se foi bem esse objetivo do <em>smartphone</em>, mas consideremos que tenha sido. Essa escolha se deve a algumas <em>características</em> tamanho, cor, desempenho, câmera, dentre outras. Outro fator que pode ter sido o motido da sua escolha é o <em>comportamento</em> desse celular, como o seu desempenho do processador, a velocidade com o qual se desenvolve as atividades, a forma como os aplicativos reagem as suas ações, o sistema como o algoritmo baseado em inteligência artificial interage com todo o sistema operacional do aparelho, dentre outros. Nesse momento, fazendo uma relação com o ambiente <code>R</code>, dizemos que o celular que desejamos é o objeto, suas características são os atributos do objeto, e o comportamento será o método aplicado a este objeto na programação orientada a objetos.</p>
+<p>Mesmo que seu aparelho apresente um IMEI (Código de identificação do aparelho) único, nós sabemos que existem diversos aparelhos com essa mesma configuração, modelo e marca, alguns outros com pequenas características que o diferenciam, mas conseguimos identificar ainda assim, esse objeto como um celular. Portanto, podemos dizer que o celular é uma <em>classe</em> para o ambiente <code>R</code>, em que apesar de termos diversos objetos, estes são identificados dentro de um conjunto de características que o definem como celular. Nesse caso, dizemos ainda que o celular que escolhemos é uma <em>instância</em> dessa classe, que apesar de ter atributos próprios, ainda assim, é identificado como um celular. Desse modo, ao ser definidos as classes de determinados objetos, a linguagem saberá utilizar o método correto para tal objeto, isso significa que mesmo que não saibamos como ocorre, devemos confiar que ocorrerá. Isso é programação orientada a objetos.</p>
+<p>Teríamos mais analogias para abordar, como <strong>encapsulamento</strong>, <strong>hierarquias</strong> , <strong>envio (ou despacho) de método</strong>, <strong>polimorfismo</strong>, <strong>subclasses</strong>, <strong>superclasses</strong>, dentre outras. Mas, vamos deixar para discutir ao longo das aplicações.</p>
+<p>Assim, esse paradigma da programação permite associarmos o desenvolvimento do nosso código pra dentro de nossa realidade humana. Porém a ideia de POO dentro do <code>R</code> sai do escopo de implementações densenvolvidas em outras linguagens. Antes de entrarmos no tema propriamente dito, queremos ressaltar que não estamos interessados em repassar uma POO eficiente, devido a todo o cunho teórico exigido para o assunto. Mas, queremos repassar como os principais sistemas de POO foram desenvolvidos dentro do <code>R</code>.</p>
+<h2 id="nem-tudo-é-orientado-a-objetos-no-r">Nem tudo é orientado a objetos no R</h2>
+<p>Uma primeira ideia que temos que saber é que apenas de um dos princípios que tudo no <code>R</code> é um objeto, mas nem tudo é orientado a objetos. Isso ocorre, porque discutimos anteriormente, que o <code>R</code> é um dialeto da linguagem <code>S</code>. No início do desenvolvimento da linguagem <code>S</code>, John Chambers e seus colaboradores nem cogitavam para a implementação do código a programação orientada a objetos, desse modo, o <code>R</code> quando começou a ser densevolvido, os primeiros objetos desenvolvidos foram vêm dessas primeiras versões da linguagem <code>S</code>, sem ainda a implementação de POO.</p>
+<p>Dessa forma, vamos distinguir o <code>R</code> com dois tipos de objetos:</p>
+<ul>
+<li><strong>Objetos POO</strong> (Objetos para POO)</li>
+<li><strong>Objetos base</strong> (Objetos não voltados a POO)</li>
+</ul>
+<p>A principal diferença técnica é que um <strong>objeto POO</strong> terá o atributo <code>class</code>, e o <strong>objeto base</strong>, não. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto "data.frame"</span>
+<span class='va'>objPOO</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span>, b <span class='op'>=</span> <span class='st'>"1"</span>, c <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='co'># Objeto "data.frame" eh um objeto POO?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/is.object.html'>is.object</a></span><span class='op'>(</span><span class='va'>objPOO</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetor de comprimento 10</span>
+<span class='va'>objBASE</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
+<span class='co'># O vetor eh um objeto POO?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/is.object.html'>is.object</a></span><span class='op'>(</span><span class='va'>objBASE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+</div>
+<p>Pela função <code>is.object()</code>, sabemos se um objeto é de POO ou não. Entretanto, no <code>R</code> temos diversos sistemas POO, alguns da base de instalação do programa, e outros disponíveis no CRAN. Detalharemos os tipos, a seguir.</p>
+<h2 id="objetos-base">Objetos base</h2>
+<p>Existem 24 tipos de objetos diferentes no <code>R</code> (antes eram 26, porém o objetos referentes a fatores e fatores ordenados foram retirados). A base de criação desses objetos foram a linguagem <code>C</code>, e que na realidade são ponteiros para uma estrutura com <code>typedef</code> <code>SEXPREC</code>. Os seus tipos estão representados por <code>SEXPTYPE</code>, que determina como as características da estrutura são usadas. Para mais detalhes, ler <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">R Language Definition</a> e <a href="https://cran.r-project.org/doc/manuals/r-release/R-ints.html">R Internals</a>. Alguns tipos são importantes para o usuário <code>R</code>, outros apenas com importância interna ao ambiente <code>R</code>, dos quais esses tipos podem ser identificados pela função <code>typeof()</code>, que segue:</p>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 41%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Representação em <code>R</code></th>
+<th style="text-align: left;">Representação em <code>C</code> (<code>SEXPTYPE</code>)</th>
+<th style="text-align: left;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>NULL</code></td>
+<td style="text-align: left;"><code>NILSXP</code></td>
+<td style="text-align: left;">Único vetor que tem comprimento zero e não pode ter atributo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>logical</code></td>
+<td style="text-align: left;"><code>LGLSXP</code></td>
+<td style="text-align: left;">Vetores lógicos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>integer</code></td>
+<td style="text-align: left;"><code>INTSXP</code></td>
+<td style="text-align: left;">Vetores inteiros</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>double</code></td>
+<td style="text-align: left;"><code>REALSXP</code></td>
+<td style="text-align: left;">Vetores reais</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>complex</code></td>
+<td style="text-align: left;"><code>CPLXSXP</code></td>
+<td style="text-align: left;">Vetores complexos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>character</code></td>
+<td style="text-align: left;"><code>STRSXP</code></td>
+<td style="text-align: left;">Vetores caracteres (<em>strings</em>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>list</code></td>
+<td style="text-align: left;"><code>VECSXP</code></td>
+<td style="text-align: left;">Listas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>raw</code></td>
+<td style="text-align: left;"><code>RAWSXP</code></td>
+<td style="text-align: left;">Vetores brutos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>closure</code></td>
+<td style="text-align: left;"><code>CLOSXP</code></td>
+<td style="text-align: left;">Funções criadas por meio de <code>function()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>special</code></td>
+<td style="text-align: left;"><code>SPECIALSXP</code></td>
+<td style="text-align: left;">Funções primitivas (funções básicas e operadores) que são escritas principalmente na linguagem <code>C</code>. Desse modo, essas funções não apresentam as três estruturas básicas de uma função do tipo <code>closure</code>, como <code>formals()</code>, <code>body()</code>, <code>environment()</code>, que são todas <code>NULL</code>. Aprofundaremos esse objeto no <a href="navancado.html">módulo avançado</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>bultin</code></td>
+<td style="text-align: left;"><code>BUILTINSXP</code></td>
+<td style="text-align: left;">Funções primitivas (funções básicas e operadores) que são escritas principalmente na linguagem <code>C</code>. Desse modo, essas funções não apresentam as três estruturas básicas de uma função do tipo <code>closure</code>, como <code>formals()</code>, <code>body()</code>, <code>environment()</code>, que são todas <code>NULL</code>. Aprofundaremos esse objeto no <a href="navancado.html">módulo avançado</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>environment</code></td>
+<td style="text-align: left;"><code>ENVSXP</code></td>
+<td style="text-align: left;">Ambientes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>S4</code></td>
+<td style="text-align: left;"><code>S4SXP</code></td>
+<td style="text-align: left;">Objetos com sistema POO <strong>S4</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>symbol</code></td>
+<td style="text-align: left;"><code>SYMSXP</code></td>
+<td style="text-align: left;">Nomes associados aos objetos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>language</code></td>
+<td style="text-align: left;"><code>LANGSXP</code></td>
+<td style="text-align: left;">Objetos de linguagem, que abordaremos na seção sobre metaprogramação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>pairlist</code></td>
+<td style="text-align: left;"><code>LISTSXP</code></td>
+<td style="text-align: left;">Argumento das funções</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>expression</code></td>
+<td style="text-align: left;"><code>EXPRESXP</code></td>
+<td style="text-align: left;">Vetores de expressão</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>externalptr</code></td>
+<td style="text-align: left;"><code>EXTPTRSXP</code></td>
+<td style="text-align: left;">Apontador externo, são vetores exóticos que tem importância para a linguagem <code>C</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>weakref</code></td>
+<td style="text-align: left;"><code>WEAKREFSXP</code></td>
+<td style="text-align: left;">Referência fraca, são vetores exóticos que tem importância para a linguagem <code>C</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>bytecode</code></td>
+<td style="text-align: left;"><code>BCODESXP</code></td>
+<td style="text-align: left;">Código de byte, são vetores exóticos que tem importância para a linguagem <code>C</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>promise</code></td>
+<td style="text-align: left;"><code>PROMSXP</code></td>
+<td style="text-align: left;">Promessas, são objetos responsáveis pelo pelo carregamento preguiçoso dos argumentos de uma função</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>...</code></td>
+<td style="text-align: left;"><code>DOTSXP</code></td>
+<td style="text-align: left;">Objeto utilizado como um argumento da função, que indica que posteriormente, após a criação de uma função, ainda assim, podem ser inseridos mais argumentos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>any</code></td>
+<td style="text-align: left;"><code>ANYSXP</code></td>
+<td style="text-align: left;">Objeto que representa de qualquer tipo. Raramente utilizado em <code>R</code>, mas aparece por exemplo em <code>as.vector(x, mode = "any")</code>, considerando que <code>x</code> é um objeto <code>R</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">-</td>
+<td style="text-align: left;"><code>CHARSXP</code></td>
+<td style="text-align: left;">Cadeia de caracteres internas, isto é, um tipo de escalar <em>string</em>, usado somente internamente</td>
+</tr>
+</tbody>
+</table>
+<p>Todas as funcões que usam esses <strong>objetos base</strong> e apresentam comportamento diferentes, não usam o sitema POO, porque foram implementadas em sua maioria na linguagem <code>C</code>, usando a instrução <code>switch</code>, em que também aprofundaremos no <a href="navancado.html">módulo avançado</a>.</p>
+<h2 id="sistemas-de-poo-no-r">Sistemas de POO no <code>R</code></h2>
+<p>Usando as ideias de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, complementadas por <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, dizemos que o paradigma da programação orientada a objetos pode ser dividida em dois ramos:</p>
+<ul>
+<li><strong>POO encapsulada</strong>: os métodos são encapsulado em suas classes, isto é, os objetos nesse estilo de programação contém os seus comportamentos;</li>
+<li><strong>POO funcional</strong>: os métodos pertencem as funções, das quais serão aplicadas aos objetos de determinada classe.</li>
+</ul>
+<p>O <code>R</code> em sua base, apresenta três sistemas de POO: <strong>S3</strong>, <strong>S4</strong> e <strong>CR</strong> (classes de referência). No <em>CRAN</em>, existem diversas implementações de POO, das quais podemos citar: <strong>R6</strong> (pacote <a href="https://r6.r-lib.org/">R6</a>), <a href="https://github.com/HenrikBengtsson/R.oo">R.oo</a>, <a href="https://github.com/hadley/proto">proto</a>, dentre outros.</p>
+<p>Exploraremos para esse momento, apenas o sistema <strong>S3</strong> (POO funcional), em que o sitema <strong>S4</strong> também apresenta o paradigma POO funcional. Esses dois sistemas foram a evolução da implementação de POO na linguagem <code>S</code> implementadas no <code>R</code>. Contudo, os seus nomes geram a impressão de que também haviam os sistemas S1 e S2, mas não, os nomes <strong>S3</strong> e <strong>S4</strong> se devem as versões da linguagem <code>S</code>, como evolução da linguagem em si. Nesses momentos, foram o marco para a incorporação da programação orientada a objetos na linguagem, em que antes não existia, por isso, não haver sistemas S1 e S2.</p>
+<p>Para complementar a carcterização dos sistemas citados, os sistemas <strong>RC</strong> e <strong>R6</strong> apresentam o paradigma POO encapsulado. Os demais sistemas implementados nos pacotes disponíveis no CRAN, como <a href="https://github.com/HenrikBengtsson/R.oo">R.oo</a> fornece algum formalismo em cima de S3 e torna possível ter objetos S3 mutáveis (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), e <a href="https://github.com/hadley/proto">proto</a> que implementa outro estilo de OOP baseado na ideia de protótipos , que confundem as distinções entre classes e instâncias de classes (objetos) (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), do qual foi o sistema implementado para o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
+<h2 id="sistema-s3">Sistema S3</h2>
+<!-- Depois modificar esse parágrafo inicial, após descrever os demais métodos -->
+<p>Poderíamos descrever todos os sistemas, porém restringiremos ao sistema <strong>S3</strong>, por uma única razão, é o sistema amplamente empregado aos objetos do pacote base, bem como na maioria dos pacotes disponíveis no <em>CRAN</em>.</p>
+<h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
 <!--
 Introdução aos objetos:
   - Atômicos: objetos que não podem se conter
@@ -2341,19 +2603,6 @@ Introdução aos objetos:
 <!-- ## Quadro de dados -->
 <!-- - data.frames() -->
 <!-- - tibble::tibble() -->
-<!-- Funções -->
-<!-- Os objetos de modo `function`, isto é, uma função, são objetos de primeira classe porque se comportam como qualquer outra estrutura de dados na linguagem [R](http://r-project.org/){target='_blank'}, como atribuir nomes associados a esses objetos, passá-los como argumentos para outras funções, inserir dentro de funções, e até mesmo retorná-lo como resultado de funções. Vejamos, -->
-<!-- apresentar formas de se criar operadores binários especiais -->
-<!-- - Olhar escopo de variaveis seção 3.5: -->
-<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Global-environment -->
-<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Function-objects -->
-<!-- Falar sobre controle de fluxos usando paralelização -->
-<!-- - iterators -->
-<!-- - foreach -->
-<!-- - MonteCarlo -->
-<!-- Ref: R in a nutshel, -->
-<!-- ### Evitando loops -->
-<!-- ### Funções recursivas -->
 <h1 id="projetos-no-rstudio">Projetos no RStudio</h1>
 <h1 id="projetos-r-no-github">Projetos R no Github</h1>
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
@@ -2367,9 +2616,20 @@ Introdução aos objetos:
 <!-- tibble::tibble() -->
 <h2 id="manipulações-com-objetos">Manipulações com objetos</h2>
 <h2 id="cópias-de-objetos">Cópias de objetos</h2>
-<h1 id="poo">Programação orientada a objetos</h1>
-<h2 id="classes-e-métodos">Classes e Métodos</h2>
 <h1 id="programação-funcional">Programação funcional</h1>
+<!-- Funções -->
+<!-- Os objetos de modo `function`, isto é, uma função, são objetos de primeira classe porque se comportam como qualquer outra estrutura de dados na linguagem [R](http://r-project.org/){target='_blank'}, como atribuir nomes associados a esses objetos, passá-los como argumentos para outras funções, inserir dentro de funções, e até mesmo retorná-lo como resultado de funções. Vejamos, -->
+<!-- apresentar formas de se criar operadores binários especiais -->
+<!-- - Olhar escopo de variaveis seção 3.5: -->
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Global-environment -->
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Function-objects -->
+<!-- Falar sobre controle de fluxos usando paralelização -->
+<!-- - iterators -->
+<!-- - foreach -->
+<!-- - MonteCarlo -->
+<!-- Ref: R in a nutshel, -->
+<!-- ### Evitando loops -->
+<!-- ### Funções recursivas -->
 <h2 id="função-operadores-binários-ou-unirios">Função operadores binários ou unirios</h2>
 <h3 id="pacote-magritt---pipe---lê-se-paipe">pacote magritt -&gt; %&gt;% (pipe - lê-se paipe)</h3>
 <!-- -   Minus, can be unary or binary -->
@@ -2405,6 +2665,11 @@ Introdução aos objetos:
 <h2 id="programação-defensiva">Programação defensiva</h2>
 <h3 id="função-stop">Função <code>stop()</code></h3>
 <h3 id="função-warning">Função <code>Warning</code></h3>
+<h2 id="escopo-léxico">Escopo léxico</h2>
+<h2 id="execução-preguiçosa">Execução preguiçosa</h2>
+<!-- https://www.r-bloggers.com/2018/07/about-lazy-evaluation/ -->
+<!-- https://colinfay.me/tidyeval-1/ -->
+<!-- http://colinfay.me/r-language-definition/objects.html#promise-objects -->
 <h2 id="controle-de-fluxos-usando-paralelização">Controle de fluxos usando paralelização</h2>
 <!-- - iterators -->
 <!-- - foreach -->
@@ -2470,7 +2735,15 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
+Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.
+</div>
+<div id="ref-hadley2019" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
