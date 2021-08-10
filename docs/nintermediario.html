@@ -110,6 +110,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
+  <meta name="citation_reference" content="citation_title=Software for data analysis: Programming with R;citation_publication_date=2008;citation_publisher=Springer;citation_author=John M. Chambers"/>
+  <meta name="citation_reference" content="citation_title=Statistical methods in S;citation_publication_date=1991;citation_publisher=Chapman &amp; Hall;citation_author=John M. Chambers;citation_author=Trevor J. Hastie"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
@@ -2193,7 +2195,7 @@ Material
 <li>Aula 26: <a href="aulas/aula26.html" target="_blank">Apresentação do Curso</a></li>
 <li>Aula 27: <a href="aulas/aula27.html" target="_blank">Caracterizando melhor o ambiente R</a></li>
 <li>Aula 28: <a href="aulas/aula28.html" target="_blank">Introdução a POO no ambiente R</a></li>
-<li>Aula 29: <a href="aulas/aula29.html" target="_blank">Introdução a POO no ambiente R</a></li>
+<li>Aula 29: <a href="aulas/aula29.html" target="_blank">Tipos de objetos base</a></li>
 <li>Aula 30: <a href="aulas/aula30.html" target="_blank">Sistemas de POO no R</a></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
@@ -2325,12 +2327,12 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1]  0.5653997  0.5426009 -0.9397684</code></pre>
+<pre><code>[1]  1.0103510  0.1895208 -0.5078738</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1]  1.72348327  0.07134131 -0.38157561</code></pre>
+<pre><code>[1] -1.861267  2.252850  2.244353</code></pre>
 </div>
 <p>A <strong>imutabilidade</strong> na programação funcional apresenta em uma linguagem na situação em que uma variável ou objeto é criado, e este não pode ser modificado. Esta é outra característica que ocorre no <code>R</code>, mas não para todos os objetos em que exitem nomes associados, é o caso da <strong>modificação no local</strong>. Por exemplo, vamos apresentar um contra-exemplo de que nem todos os objetos no <code>R</code> são imutáveis. Vejamos:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2576,7 +2578,163 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <p>Para complementar a carcterização dos sistemas citados, os sistemas <strong>RC</strong> e <strong>R6</strong> apresentam o paradigma POO encapsulado. Os demais sistemas implementados nos pacotes disponíveis no CRAN, como <a href="https://github.com/HenrikBengtsson/R.oo">R.oo</a> fornece algum formalismo em cima de S3 e torna possível ter objetos S3 mutáveis (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), e <a href="https://github.com/hadley/proto">proto</a> que implementa outro estilo de OOP baseado na ideia de protótipos , que confundem as distinções entre classes e instâncias de classes (objetos) (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), do qual foi o sistema implementado para o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
 <h2 id="sistema-s3">Sistema S3</h2>
 <!-- Depois modificar esse parágrafo inicial, após descrever os demais métodos -->
-<p>Poderíamos descrever todos os sistemas, porém restringiremos ao sistema <strong>S3</strong>, por uma única razão, é o sistema amplamente empregado aos objetos do pacote base, bem como na maioria dos pacotes disponíveis no <em>CRAN</em>.</p>
+<p>Poderíamos descrever todos os sistemas, porém restringiremos ao sistema <strong>S3</strong>, por uma única razão, é o sistema amplamente empregado aos objetos dos pacotes <strong>base</strong> e <strong>stats</strong>, bem como na maioria dos pacotes disponíveis no <em>CRAN</em>. Mais detalhes sobre o sistema, sugerimos leituras em <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="chambers2008"><a href="#ref-chambers2008" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="chambers1991"><a href="#ref-chambers1991" role="doc-biblioref">Chambers and Hastie</a> (<a href="#ref-chambers1991" role="doc-biblioref">1991</a>)</span>, dentre outros materiais.</p>
+<p>Como falado anteriormente, um objeto POO terá sempre um atributo <code>class</code>, em que podemos utilizar a função <code>atributes</code> para verificar isso. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>quadro_dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span>, b <span class='op'>=</span> <span class='cn'>TRUE</span>, c <span class='op'>=</span> <span class='st'>"A"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>quadro_dados</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$names
+[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+
+$class
+[1] &quot;data.frame&quot;
+
+$row.names
+[1] 1</code></pre>
+</div>
+<p>O fato do objeto <code>quadro_dados</code> ter o atributo <code>class=data.frame</code>, lhe dá um comportamento especial a determinadas funções genéricas. Vejamos como imprimos essa função pela funcão <code>print()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>quadro_dados</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  a    b c
+1 1 TRUE A</code></pre>
+</div>
+<p>Removendo esse atributo do objeto, por meio da função <code>unclass()</code>, voltamos ao tipo de objeto base subjascente. Dessa forma, a função <code>print</code> perde esse comportamento especial, apresentada a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>quadro_dados</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$a
+[1] 1
+
+$b
+[1] TRUE
+
+$c
+[1] &quot;A&quot;
+
+attr(,&quot;row.names&quot;)
+[1] 1</code></pre>
+</div>
+<p>Isso significa, que o objeto <code>data.frame</code> perde seu comportamento especial e retorna ao mesmo comportamento de uma lista. Afinal, falamos no módulo básico que um objeto <code>data.frame</code> é uma lista.</p>
+<h3 id="funções-genéricas">Funções genéricas</h3>
+<p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong>, que buscam o método específico para determinada classe de um objeto. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>useMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos esta função como pesquisa por funções genéricas. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcoes do tipo "closure" que nao pertencem ao sistema S3</span>
+<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/isS3stdGen.html'>isS3stdGeneric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/ftype.html'>ftype</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;function&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao generica S3 em funcoes do tipo "closure"</span>
+<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/isS3stdGen.html'>isS3stdGeneric</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>mean 
+TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/ftype.html'>ftype</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;S3&quot;      &quot;generic&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># funcoes primitivas e internas que nao pertencem ao sistema S3</span>
+<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/isS3stdGen.html'>isS3stdGeneric</a></span><span class='op'>(</span><span class='va'>inherits</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/ftype.html'>ftype</a></span><span class='op'>(</span><span class='va'>inherits</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;internal&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#-----</span>
+<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/isS3stdGen.html'>isS3stdGeneric</a></span><span class='op'>(</span><span class='va'>unclass</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/ftype.html'>ftype</a></span><span class='op'>(</span><span class='va'>unclass</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;primitive&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># funcoes genericas do sistema S3 que sao primitivas e internas</span>
+<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/isS3stdGen.html'>isS3stdGeneric</a></span><span class='op'>(</span><span class='va'>length</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/ftype.html'>ftype</a></span><span class='op'>(</span><span class='va'>length</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;primitive&quot; &quot;generic&quot;  </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#--</span>
+<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/isS3stdGen.html'>isS3stdGeneric</a></span><span class='op'>(</span><span class='va'>unlist</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/ftype.html'>ftype</a></span><span class='op'>(</span><span class='va'>unlist</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;internal&quot; &quot;generic&quot; </code></pre>
+</div>
+<p>As funções genéricas do tipo <code>closure</code> terão no corpo de sua função a chamada <code>UseMethod</code>. Essa é a identificação básica de uma função genérica. Podemos observar, como exemplo, a função <code>mean</code>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mean</span>
+</code></pre>
+</div>
+<pre><code>function (x, ...) 
+UseMethod(&quot;mean&quot;)
+&lt;bytecode: 0x0000000008e43770&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+</div>
+<p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. O que ocorre nesse caso, é que estas funções não usam a chamada <code>useMethod</code>. Desse modo, as funções primitivas e internas podem ser identificadas, pelo objeto <code>.S3PrimitiveGenerics</code>, um vetor de caracteres, que seguem:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>.S3PrimitiveGenerics</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;anyNA&quot;          &quot;as.character&quot;   &quot;as.complex&quot;    
+ [4] &quot;as.double&quot;      &quot;as.environment&quot; &quot;as.integer&quot;    
+ [7] &quot;as.logical&quot;     &quot;as.call&quot;        &quot;as.numeric&quot;    
+[10] &quot;as.raw&quot;         &quot;c&quot;              &quot;dim&quot;           
+[13] &quot;dim&lt;-&quot;          &quot;dimnames&quot;       &quot;dimnames&lt;-&quot;    
+[16] &quot;is.array&quot;       &quot;is.finite&quot;      &quot;is.infinite&quot;   
+[19] &quot;is.matrix&quot;      &quot;is.na&quot;          &quot;is.nan&quot;        
+[22] &quot;is.numeric&quot;     &quot;length&quot;         &quot;length&lt;-&quot;      
+[25] &quot;levels&lt;-&quot;       &quot;names&quot;          &quot;names&lt;-&quot;       
+[28] &quot;rep&quot;            &quot;seq.int&quot;        &quot;xtfrm&quot;         </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Outras funcoes primitivas</span>
+<span class='op'>(</span><span class='va'>outros_obj_S3_primitivos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"["</span>, <span class='st'>"[["</span>, <span class='st'>"$"</span>, <span class='st'>"[&lt;-"</span>, <span class='st'>"[[&lt;-"</span>, <span class='st'>"$&lt;-"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;[&quot;    &quot;[[&quot;   &quot;$&quot;    &quot;[&lt;-&quot;  &quot;[[&lt;-&quot; &quot;$&lt;-&quot; </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Outras funcoes internas nao primitivas</span>
+<span class='op'>(</span><span class='va'>outros_obj_S3_primitivos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"unlist"</span>, <span class='st'>"cbind"</span>, <span class='st'>"rbind"</span>, <span class='st'>"as.vector"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;unlist&quot;    &quot;cbind&quot;     &quot;rbind&quot;     &quot;as.vector&quot;</code></pre>
+</div>
+<p>Algumas outras funções como <code>is.name</code> que é sinônimo da função <code>is.symbol</code>, assim como a função <code>as.numeric</code> é sinônimo da função <code>as.double</code></p>
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
 <!--
 Introdução aos objetos:
@@ -2733,10 +2891,16 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb19"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
+Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.
+</div>
 <div id="ref-chambers2016" class="csl-entry" role="doc-biblioentry">
-Chambers, John M. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.
+———. 2016. <em>Extending <span>R</span></em>. The <span>R</span> <span>S</span>eries. Boca Raton, Florida: Chapman; Hall/CRC.
+</div>
+<div id="ref-chambers1991" class="csl-entry" role="doc-biblioentry">
+Chambers, John M., and Trevor J. Hastie. 1991. <em>Statistical Methods in <span>S</span></em>. London: Chapman &amp; Hall.
 </div>
 <div id="ref-hadley2019" class="csl-entry" role="doc-biblioentry">
 Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
