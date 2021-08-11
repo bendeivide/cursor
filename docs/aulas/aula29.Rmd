@@ -1,0 +1,133 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 29 - Tipo de objetos base"
+author: "Ben Dêivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation:
+    smaller: true
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Revisando
+
+No R, temos:
+
+- Objetos POO (Objetos para POO)
+- Objetos base (Objetos sem POO)
+
+Diferenciação: atributo `class`
+
+```{r echo=TRUE, include=TRUE}
+# Objeto "data.frame"
+objPOO <- data.frame(a = 1, b = "1", c = TRUE)
+# Objeto "data.frame" eh um objeto POO?
+is.object(objPOO)
+
+# Vetor de comprimento 10
+objBASE <- 1:10
+# O vetor eh um objeto POO?
+is.object(objBASE)
+```
+
+## Como saber os tipos de objetos base
+
+- Funções:
+  - `typeof()` ✔️
+  - `mode()`  ✖️
+  - `storage.mode()` ✖️
+
+## Tipo de objetos base
+
+|Representação em `R`| Representação em `C` (`SEXPTYPE`)| Descrição|
+|:-------------------|:--------------------|:---------|
+|`NULL`              | `NILSXP`            |   Único vetor que tem comprimento zero e não pode ter atributo       |
+| `logical`          |  `LGLSXP`           | Vetores lógicos |
+|  `integer`         |   `INTSXP`          | Vetores inteiros |
+| `double`           |    `REALSXP`        | Vetores reais |
+|  `complex`         |    `CPLXSXP`        | Vetores complexos |
+|  `character`       |     `STRSXP`        | Vetores caracteres (*strings*)|
+|  `list`            |    `VECSXP`         | Listas |
+|   `raw`            |      `RAWSXP`       | Vetores brutos|
+
+
+## Tipo de objetos base
+
+|Representação em `R`| Representação em `C` (`SEXPTYPE`)| Descrição|
+|:-------------------|:--------------------|:---------|
+|   `closure`        |   `CLOSXP`          | Funções criadas por meio de `function()`|
+|    `special`     | `SPECIALSXP`          | Funções primitivas (funções básicas e operadores) que são escritas principalmente na linguagem `C`. Desse modo, essas funções não apresentam as três estruturas básicas de uma função do tipo `closure`, como `formals()`, `body()`, `environment()`, que são todas `NULL`. Aprofundaremos esse objeto no [módulo avançado](navancado.html) |
+
+
+
+## Tipo de objetos base
+
+|Representação em `R`| Representação em `C` (`SEXPTYPE`)| Descrição|
+|:-------------------|:--------------------|:---------|
+|    `bultin`     | `BUILTINSXP`          | Funções primitivas (funções básicas e operadores) que são escritas principalmente na linguagem `C`. Desse modo, essas funções não apresentam as três estruturas básicas de uma função do tipo `closure`, como `formals()`, `body()`, `environment()`, que são todas `NULL`. Aprofundaremos esse objeto no [módulo avançado](navancado.html) |
+|  `environment`  |  `ENVSXP`             | Ambientes|
+|   `S4`          |   `S4SXP`             | Objetos com sistema POO **S4**|
+
+
+## Tipo de objetos base
+
+|Representação em `R`| Representação em `C` (`SEXPTYPE`)| Descrição|
+|:-------------------|:--------------------|:---------|
+|     `symbol`    |  `SYMSXP`             | Nomes associados aos objetos|
+|    `language`   |     `LANGSXP`         | Objetos de linguagem, que abordaremos na seção sobre metaprogramação|
+|    `pairlist` |       `LISTSXP`         | Argumento das funções|
+|  `expression` |     `EXPRESXP`          | Vetores de expressão|
+|   `externalptr` |   `EXTPTRSXP`         | Apontador externo, são vetores exóticos que tem importância para a linguagem `C`|
+
+
+## Tipo de objetos base
+
+|Representação em `R`| Representação em `C` (`SEXPTYPE`)| Descrição|
+|:-------------------|:--------------------|:---------|
+| `weakref`  |         `WEAKREFSXP`       | Referência fraca, são vetores exóticos que tem importância para a linguagem `C`|
+|  `bytecode` |         `BCODESXP`        | Código de byte, são vetores exóticos que tem importância para a linguagem `C`|
+|  `promise` |         `PROMSXP`     |  Promessas, são objetos responsáveis pelo pelo carregamento preguiçoso dos argumentos de uma função|
+
+
+## Tipo de objetos base
+
+|Representação em `R`| Representação em `C` (`SEXPTYPE`)| Descrição|
+|:-------------------|:--------------------|:---------|
+|   `...`    | `DOTSXP`   | Objeto utilizado como um argumento da função, após a criação de uma função, ainda assim, podem ser inseridos mais argumentos|
+| `any` |  `ANYSXP`   | Raramente utilizado em `R`, mas aparece por exemplo em `as.vector(x, mode = "any")`, considerando que `x` é um objeto `R`|
+|  -  | `CHARSXP`  | Cadeia de caracteres internas, isto é, um tipo de escalar *string*, usado somente internamente|
+
+## Verificação e coersão
+
+- Verificação: `is.<nome_função>`
+- Coersão: `as.<nome_funcão>`
+  
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

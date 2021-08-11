@@ -1,0 +1,67 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 10 - Matrizes bidimensionais"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introdução
+
+A apresentação dos próximos objetos daqui pra frente, desde matrizes até quadro de dados (*data frame*) não é apresentar todas as manipulações possíveis sobre esses objetos
+
+- Matriz = atributo `dim` + vetor atômico
+
+## Vetor bidimensional
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando um vetor atomico
+x <- 1:6; x
+
+# Verificando se o objeto 'x' tem atributo adicionado
+attributes(x)
+
+# Vamos verificar a classe do objeto x
+sloop::s3_class(x)
+```
+
+## Vetor bidimensional
+
+```{r echo=TRUE, prompt=TRUE}
+# Adicionando o atributo dim (ou attr(x, "dim") <- c(2, 3))
+dim(x) <- c(2, 3); x # 2 x 3 = 6 (Comp do vetor)
+attributes(x) # Verificando novamente 'x'
+sloop::s3_class(x) # Verificando a classe do objeto
+```
+
+## Matriz bidimensional
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando uma matriz
+matrix(1:6, 2, 3)
+```
+
+## Indexação de matrizes
+
+```{r echo=TRUE, prompt=TRUE}
+x <- matrix(1:6, 2, 3, byrow = TRUE);x # Criando uma matriz
+x[1, 1] # Acessando
+x[1, 1] <- 10; x # Alterando
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
