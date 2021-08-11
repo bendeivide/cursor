@@ -1,14 +1,14 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 28 - Introdução a POOo no ambiente R"
+subtitle: "Aula 28 - Introdução a POO no ambiente R"
 author: "Ben Dêivide"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
-  ioslides_presentation:
-    smaller: true
+  ioslides_presentation: 
     transition: slower
     logo: logo2.png
     css: style-cursor-ni.css
+    highlight: null
 ---
 
 ```{r setup, include=FALSE}
@@ -64,7 +64,7 @@ No R, temos:
 
 Diferenciação: atributo `class`
 
-```{r echo=TRUE, include=TRUE}
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
 # Objeto "data.frame"
 objPOO <- data.frame(a = 1, b = "1", c = TRUE)
 # Objeto "data.frame" eh um objeto POO?

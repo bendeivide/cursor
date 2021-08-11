@@ -69,7 +69,7 @@ Assim, esse ambiente inclui:
 
 ## Linguagem de programação fortemente e dinamicamente tipada
 
-```{r echo=TRUE, include=TRUE}
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
 vetor <- TRUE; typeof(vetor)
 vetor[2] <- 1; typeof(vetor)
 vetor[3] <- "1"; typeof(vetor); vetor
@@ -87,7 +87,7 @@ vetor[3] <- "1"; typeof(vetor); vetor
 
 ## Composição de funções
 
-```{r echo=TRUE, include=TRUE}
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
 x <- 1:10
 media <- function(x) mean(x)
 media(x)
@@ -97,7 +97,7 @@ media(x)
 
 - Função pura
 
-```{r echo=TRUE, include=TRUE}
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
 fpura <- function(x) {
   if (!is.numeric(x)) stop("x deve ser numérico")
   x + 1
@@ -107,7 +107,7 @@ fpura(x = 2)
 
 - Função que não é pura
 
-```{r echo=TRUE, include=TRUE}
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
 rnorm(n = 3)
 rnorm(n = 3)
 ```
@@ -134,7 +134,7 @@ lobstr::obj_addr(x)
 
 - Exemplo 1: As funções têm acesso ao escopo em que foram criadas
 
-```{r ex1, echo=TRUE, , prompt=TRUE}
+```{r ex1, echo=TRUE, , prompt=TRUE, collapse=TRUE}
 # Criando um nome "n" associado a um objeto 10 no escopo da funcao
 n <- 10
 
@@ -231,9 +231,7 @@ is.object(objBASE)
 
 ```{r echo=TRUE, include=TRUE}
 diamonds <- ggplot2::diamonds
-
 summary(diamonds$carat)
-
 summary(diamonds$cut)
 
 ```

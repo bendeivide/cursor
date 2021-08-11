@@ -5,8 +5,8 @@ author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
-  ioslides_presentation:
-    smaller: true
+  ioslides_presentation: 
+    smaller: yes
     transition: slower
     logo: logo2.png
     css: style-cursor-ni.css
@@ -38,6 +38,15 @@ Inserir nas secoes:
 - Classe
 - Objeto
 - Método
+
+```{r echo=TRUE, include=TRUE}
+.S3PrimitiveGenerics
+# Outras funcoes primitivas
+(outros_obj_S3_primitivos <- c("[", "[[", "$", "[<-", "[[<-", "$<-"))
+# Outras funcoes internas nao primitivas
+(outros_obj_S3_primitivos <- c("unlist", "cbind", "rbind", "as.vector"))
+```
+
 
 **OBS.:** No `R`, essas ideias são um pouco diferentes de outras linguagens!
 
