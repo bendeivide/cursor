@@ -2197,6 +2197,7 @@ Material
 <li>Aula 28: <a href="aulas/aula28.html" target="_blank">Introdução a POO no ambiente R</a></li>
 <li>Aula 29: <a href="aulas/aula29.html" target="_blank">Tipos de objetos base</a></li>
 <li>Aula 30: <a href="aulas/aula30.html" target="_blank">Sistemas de POO no R</a></li>
+<li>Aula 31: <a href="aulas/aula31.html" target="_blank">Sistema S3</a></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2624,7 +2625,7 @@ attr(,&quot;row.names&quot;)
 </div>
 <p>Isso significa, que o objeto <code>data.frame</code> perde seu comportamento especial e retorna ao mesmo comportamento de uma lista. Afinal, falamos no módulo básico que um objeto <code>data.frame</code> é uma lista.</p>
 <h3 id="funções-genéricas">Funções genéricas</h3>
-<p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong>, que buscam o método específico para determinada classe de um objeto. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>useMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos esta função como pesquisa por funções genéricas. Vejamos,</p>
+<p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong>, que buscam o método específico para determinada classe de um objeto. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>UseMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos, principalmente, a função <code>sloop::ftype()</code> como pesquisa por funções genéricas. Vejamos,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcoes do tipo "closure" que nao pertencem ao sistema S3</span>
@@ -2694,7 +2695,8 @@ TRUE </code></pre>
 </div>
 <pre><code>[1] &quot;internal&quot; &quot;generic&quot; </code></pre>
 </div>
-<p>As funções genéricas do tipo <code>closure</code> terão no corpo de sua função a chamada <code>UseMethod</code>. Essa é a identificação básica de uma função genérica. Podemos observar, como exemplo, a função <code>mean</code>:</p>
+<p>A função <code>sloop::ftype()</code> retorna um vetor de caracteres de comprimento 1 ou 2. Quando retorna apenas um valor, do qual não obtemos o resultado <code>generic</code>, significa que esta função não é genérica, como é o caso da função <code>data</code>. Quando há um retorno de dois valores, e um deles é <code>generic</code>, significa dizer que a função é genérica, em que o primeiro valor, representa o sistema POO, como é o caso da função <code>mean</code>. No caso, das funções primitivas/internas que estão no pacote <code>base</code>, o primeiro resultado da função <code>sloop::ftype()</code> para a referida função será <code>primitive</code> ou <code>internal</code>, e se houver o segundo valor de nome <code>generic</code>, se confirma que também é um função primitiva genérica do método <strong>S3</strong></p>
+<p>As funções genéricas do tipo <code>closure</code> terão no corpo de sua função a chamada <code>UseMethod</code>, uma função primitiva . Essa é a identificação básica de uma função genérica. Podemos observar, como exemplo, a função <code>mean</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mean</span>
@@ -2702,10 +2704,10 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e43c50&gt;
+&lt;bytecode: 0x0000000008e44468&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
-<p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. O que ocorre nesse caso, é que estas funções não usam a chamada <code>useMethod</code>. Desse modo, as funções primitivas e internas podem ser identificadas, pelo objeto <code>.S3PrimitiveGenerics</code>, um vetor de caracteres, que seguem:</p>
+<p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. O que ocorre nesse caso, é que estas funções não usam a chamada <code>UseMethod</code>. Desse modo, as funções primitivas e internas podem ser identificadas, pelo objeto <code>.S3PrimitiveGenerics</code>, um vetor de caracteres, que seguem:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>.S3PrimitiveGenerics</span>
@@ -2734,7 +2736,175 @@ UseMethod(&quot;mean&quot;)
 </div>
 <pre><code>[1] &quot;unlist&quot;    &quot;cbind&quot;     &quot;rbind&quot;     &quot;as.vector&quot;</code></pre>
 </div>
-<p>Algumas outras funções como <code>is.name</code> que é sinônimo da função <code>is.symbol</code>, assim como a função <code>as.numeric</code> é sinônimo da função <code>as.double</code>. Existem outras funções genéricas que também são primitivas/internas, são as funções genéricas de grupos, tais como</p>
+<p>Algumas outras funções como <code>is.name</code> que é sinônimo da função <code>is.symbol</code>, assim como a função <code>as.numeric</code> é sinônimo da função <code>as.double</code>. Existem outras funções genéricas que também são primitivas/internas, são as funções genéricas do grupo <strong>S3</strong> que não estão descritos no objeto <code>.S3PrimitiveGenerics</code>. Há quatro desses grupos para que os métodos <strong>S3</strong> podem ser escritos, denominados: grupo <code>Math</code>, grupo <code>Ops</code>, grupo <code>Summary</code> e grupo <code>Complex</code>. Detalhamos as funções:</p>
+<ul>
+<li>Grupo <code>Math</code>:
+<ul>
+<li><code>abs</code>, <code>sign</code>, <code>sqrt</code>, <code>floor</code>, <code>ceiling</code>, <code>trunc</code>, <code>round</code>, <code>signif</code></li>
+<li><code>exp</code>, <code>log</code>, <code>expm1</code>, <code>log1p</code>, <code>cos</code>, <code>sin</code>, <code>tan</code>, <code>cospi</code>, <code>sinpi</code>, <code>tanpi</code>, <code>acos</code>, <code>asin</code>, <code>atan</code>, <code>cosh</code>, <code>sinh</code>, <code>tanh</code>, <code>acosh</code>, <code>asinh</code>, <code>atanh</code></li>
+<li><code>lgamma</code>, <code>gamma</code>, <code>digamma</code>, <code>trigamma</code></li>
+<li><code>cumsum</code>, <code>cumprod</code>, <code>cummax</code>, <code>cummin</code></li>
+</ul></li>
+<li>Grupo <code>Ops</code>:
+<ul>
+<li><code>"+"</code>, <code>"-"</code>, <code>"*"</code>, <code>"/"</code>, <code>"^"</code>, <code>"%%"</code>, <code>"%/%"</code></li>
+<li><code>"&amp;"</code>, <code>"|"</code>, <code>"!"</code></li>
+<li><code>"=="</code>, <code>"!="</code>, <code>"&lt;"</code>, <code>"&lt;="</code>, <code>"&gt;="</code>, <code>"&gt;"</code></li>
+</ul></li>
+<li>Grupo <code>Summary</code>:
+<ul>
+<li><code>all</code>, <code>any</code>, <code>sum</code>, <code>prod</code>, <code>min</code>, <code>max</code>, <code>range</code></li>
+</ul></li>
+<li>Grupo <code>Complex</code>:
+<ul>
+<li>Arg, <code>Conj</code>, <code>Im</code>, <code>Mod</code>, <code>Re</code></li>
+</ul></li>
+</ul>
+<p>Apesar não termos funções com nomes <code>Math</code>, <code>Ops</code>, <code>Summary</code> e <code>Complex</code> no pacote <code>base</code>, e portanto, também não serem objetos <code>R</code>, podemos fornecer métodos para estes, como por exemplo, no pacote <code>base</code>, temos métodos como:</p>
+<ul>
+<li>Métodos de <code>Math</code>:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span><span class='st'>"Math"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] Math,CsparseMatrix-method  Math,ddenseMatrix-method  
+ [3] Math,denseMatrix-method    Math,dgeMatrix-method     
+ [5] Math,diagonalMatrix-method Math,nonStructure-method  
+ [7] Math,sparseMatrix-method   Math,sparseVector-method  
+ [9] Math,structure-method      Math.data.frame           
+[11] Math.Date                  Math.difftime             
+[13] Math.factor                Math.POSIXt               
+[15] Math.quosure*              Math.vctrs_sclr*          
+[17] Math.vctrs_vctr*          
+see &#39;?methods&#39; for accessing help and source code</code></pre>
+</div>
+<ul>
+<li>Métodos de <code>Summary</code>:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span><span class='st'>"Summary"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] Summary,abIndex-method       Summary,ddenseMatrix-method 
+ [3] Summary,ddiMatrix-method     Summary,dsparseMatrix-method
+ [5] Summary,indMatrix-method     Summary,ldenseMatrix-method 
+ [7] Summary,ldiMatrix-method     Summary,lMatrix-method      
+ [9] Summary,Matrix-method        Summary,ndenseMatrix-method 
+[11] Summary,nMatrix-method       Summary,nsparseVector-method
+[13] Summary,sparseVector-method  Summary.data.frame          
+[15] Summary.Date                 Summary.difftime            
+[17] Summary.factor               Summary.numeric_version     
+[19] Summary.ordered              Summary.POSIXct             
+[21] Summary.POSIXlt              Summary.quosure*            
+[23] Summary.roman*               Summary.unit*               
+[25] Summary.vctrs_sclr*          Summary.vctrs_vctr*         
+see &#39;?methods&#39; for accessing help and source code</code></pre>
+</div>
+<ul>
+<li>Métodos de <code>Complex</code>:</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span><span class='st'>"Complex"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] Complex.vctrs_sclr*
+see &#39;?methods&#39; for accessing help and source code</code></pre>
+</div>
+<p>Os métodos que estão com asterisco é porque não são exportados do namespace dos pacotes em que essas funções foram criadas. Para isso, use <code>:::</code>, <code>getS3method</code> ou <code>getAnywhere</code>. Por exemplo, se tentarmos procurar pelo método <code>str.data.frame</code> no console, não iremos encontrar porque ela não foi exportada pelo <em>namespace</em> do pacote <code>utils</code>. Para acessar o referido método, segue:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Primeira forma:</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/getAnywhere.html'>getAnywhere</a></span><span class='op'>(</span><span class='st'>"str.data.frame"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>A single object matching &#39;str.data.frame&#39; was found
+It was found in the following places
+  registered S3 method for str from namespace utils
+  namespace:utils
+with value
+
+function (object, ...) 
+{
+    if (!is.data.frame(object)) {
+        warning(&quot;str.data.frame() called with non-data.frame -- coercing to one.&quot;)
+        object &lt;- data.frame(object)
+    }
+    cl &lt;- oldClass(object)
+    cl &lt;- cl[cl != &quot;data.frame&quot;]
+    if (0 &lt; length(cl)) 
+        cat(&quot;Classes&quot;, paste(sQuote(cl), collapse = &quot;, &quot;), &quot;and &quot;)
+    cat(&quot;&#39;data.frame&#39;:\t&quot;, nrow(object), &quot; obs. of  &quot;, (p &lt;- length(object)), 
+        &quot; variable&quot;, if (p != 1) 
+            &quot;s&quot;, if (p &gt; 0) 
+            &quot;:&quot;, &quot;\n&quot;, sep = &quot;&quot;)
+    if (length(l &lt;- list(...)) &amp;&amp; any(&quot;give.length&quot; == names(l))) 
+        invisible(NextMethod(&quot;str&quot;, ...))
+    else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
+        from = &quot;data.frame&quot;), ...))
+}
+&lt;bytecode: 0x0000000026f4a150&gt;
+&lt;environment: namespace:utils&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/getS3method.html'>getS3method</a></span><span class='op'>(</span><span class='st'>"str"</span>, <span class='st'>"data.frame"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>function (object, ...) 
+{
+    if (!is.data.frame(object)) {
+        warning(&quot;str.data.frame() called with non-data.frame -- coercing to one.&quot;)
+        object &lt;- data.frame(object)
+    }
+    cl &lt;- oldClass(object)
+    cl &lt;- cl[cl != &quot;data.frame&quot;]
+    if (0 &lt; length(cl)) 
+        cat(&quot;Classes&quot;, paste(sQuote(cl), collapse = &quot;, &quot;), &quot;and &quot;)
+    cat(&quot;&#39;data.frame&#39;:\t&quot;, nrow(object), &quot; obs. of  &quot;, (p &lt;- length(object)), 
+        &quot; variable&quot;, if (p != 1) 
+            &quot;s&quot;, if (p &gt; 0) 
+            &quot;:&quot;, &quot;\n&quot;, sep = &quot;&quot;)
+    if (length(l &lt;- list(...)) &amp;&amp; any(&quot;give.length&quot; == names(l))) 
+        invisible(NextMethod(&quot;str&quot;, ...))
+    else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
+        from = &quot;data.frame&quot;), ...))
+}
+&lt;bytecode: 0x0000000026f4a150&gt;
+&lt;environment: namespace:utils&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
+<span class='fu'>utils</span><span class='fu'>:::</span><span class='va'><a href='https://rdrr.io/r/utils/str.html'>str.data.frame</a></span>
+</code></pre>
+</div>
+<pre><code>function (object, ...) 
+{
+    if (!is.data.frame(object)) {
+        warning(&quot;str.data.frame() called with non-data.frame -- coercing to one.&quot;)
+        object &lt;- data.frame(object)
+    }
+    cl &lt;- oldClass(object)
+    cl &lt;- cl[cl != &quot;data.frame&quot;]
+    if (0 &lt; length(cl)) 
+        cat(&quot;Classes&quot;, paste(sQuote(cl), collapse = &quot;, &quot;), &quot;and &quot;)
+    cat(&quot;&#39;data.frame&#39;:\t&quot;, nrow(object), &quot; obs. of  &quot;, (p &lt;- length(object)), 
+        &quot; variable&quot;, if (p != 1) 
+            &quot;s&quot;, if (p &gt; 0) 
+            &quot;:&quot;, &quot;\n&quot;, sep = &quot;&quot;)
+    if (length(l &lt;- list(...)) &amp;&amp; any(&quot;give.length&quot; == names(l))) 
+        invisible(NextMethod(&quot;str&quot;, ...))
+    else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
+        from = &quot;data.frame&quot;), ...))
+}
+&lt;bytecode: 0x0000000026f4a150&gt;
+&lt;environment: namespace:utils&gt;</code></pre>
+</div>
+<p>Os métodos do pacote <code>base</code> com asterisco do método ge</p>
+<h3 id="método-s3">Método <strong>S3</strong></h3>
+<p>Falando sobre as funções genéricas primitivas….</p>
+<p>Além de as funções internas/primitivas não terem a chamada <code>UseMethod</code>, que podem dificultar a identificação de uma função genérica, algumas delas não estão</p>
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
 <!--
 Introdução aos objetos:
@@ -2891,7 +3061,7 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb38"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.

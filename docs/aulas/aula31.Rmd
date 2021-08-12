@@ -1,6 +1,6 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 30 - Sistemas de POO no R"
+subtitle: "Aula 31 - Sistema S3 (POO no R)"
 author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -33,28 +33,7 @@ Inserir nas secoes:
 [![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
 </center>
 
-## Revisando (POO)
-
-- Classe
-- Objeto
-- Método
-
-```{r echo=TRUE, include=TRUE}
-.S3PrimitiveGenerics
-# Outras funcoes primitivas
-(outros_obj_S3_primitivos <- c("[", "[[", "$", "[<-", "[[<-", "$<-"))
-# Outras funcoes internas nao primitivas
-(outros_obj_S3_primitivos <- c("unlist", "cbind", "rbind", "as.vector"))
-```
-
-
-**OBS.:** No `R`, essas ideias são um pouco diferentes de outras linguagens!
-
-<center>
-![](poo-funcional.png){height= width="100%"}
-</center>
-
-## Tipos de Sistemas POO
+## Revisando Tipos de Sistemas POO
 
 Segundo @chambers2016:
 
@@ -65,12 +44,41 @@ Segundo @chambers2016:
 ![](poo-funcional.png){height= width="100%"}
 </center>
 
-## Exemplos de sistemas
 
-- Base do `R`: **S3**, **S4**, **CR**
-- CRAN: R6 **R6** (pacote [R6](https://r6.r-lib.org/)), [R.oo](https://github.com/HenrikBengtsson/R.oo), [proto](https://github.com/hadley/proto), dentre outros.
+## Sistema S3
 
-OBS.: Módulo Intermediário - **S3**
+- Função Genérica: `fgenerica()`
+- classe: `classe`
+- Objeto de uma classe (Primeiro argumento da Função genérica)
+- Método: `fgenerica.classe()`
+
+## Ilustração
+
+<center>
+![](sistS3.png){height= width="80%"}
+</center>
+## Aplicação
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Funcao generica
+quem <- function(x) UseMethod("quem")
+## Metodos
+quem.eh <- function(x) print("Sou eu!")
+quem.default <- function(x) print("??")
+# Aplicacao:
+pessoa <- "ben" # objeto sem atributo 'class'
+quem(pessoa) # Aplicando o metodo S3
+#--------
+class(pessoa) <- "eh"
+quem(pessoa)
+#---------
+quem(unclass(pessoa)) # unclass omite o atributo 'class' ao objeto
+#---------
+class(pessoa) <- "outro" # Mudando o atributo 'class'
+quem(pessoa)
+```
+
+
 
 ## Bons estudos!
 
