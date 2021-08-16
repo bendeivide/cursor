@@ -2139,8 +2139,17 @@ Material
 <div class="d-article">
 <h1 id="sumário">Sumário</h1>
 <ul>
-<li><a href="#caracteristasR"><i class="fab fa-r-project"></i> Caracterizando melhor o ambiente R</a> <!-- - Revisão de como o R trabalha --> <!-- - Linguagem interpretada --> <!-- - Escopo léxico --> <!-- - Programação Funcional --> <!-- - Programação Meta-paradigma --> <!-- - Programação dinâmica --> <!-- - Programação Orientada a Objetos --></li>
-<li><a href="#poo"><i class="fas fa-puzzle-piece"></i> Programação orientada a objetos</a></li>
+<li><a href="#caracteristasR"><i class="fab fa-r-project"></i> Caracterizando melhor o ambiente R</a></li>
+<li><a href="#poo"><i class="fas fa-puzzle-piece"></i> Programação orientada a objetos</a>
+<ul>
+<li><a href="#objetos-oo-base">Nem tudo é orientado a objetos no R</a></li>
+<li><a href="#objetos-base">Objetos base</a></li>
+<li><a href="#sistemas-poo">Sistemas de POO no <code>R</code></a></li>
+<li><a href="#sistemaS3">Sistema S3</a>
+<ul>
+<li><a href="#fgenericas">Funções genéricas</a></li>
+</ul></li>
+</ul></li>
 <li><a href=""><i class="fas fa-arrow-circle-left"></i> Entendendo um pouco mais sobre objetos no <code>R</code></a>
 <ul>
 <li>Manipulações com objetos</li>
@@ -2198,6 +2207,12 @@ Material
 <li>Aula 29: <a href="aulas/aula29.html" target="_blank">Tipos de objetos base</a></li>
 <li>Aula 30: <a href="aulas/aula30.html" target="_blank">Sistemas de POO no R</a></li>
 <li>Aula 31: <a href="aulas/aula31.html" target="_blank">Sistema S3</a></li>
+<li>Aula 32: <a href="aulas/aula32.html" target="_blank">Sistema S3: Funções genéricas (POO no R)</a></li>
+<li>Aula 33: <a href="aulas/aula33.html" target="_blank">Sistema S3: Chamada <em>UseMethod</em> (POO no R)</a></li>
+<li>Aula 34: <a href="aulas/aula34.html" target="_blank">Sistema S3: Criando funções genéricas (POO no R)</a></li>
+<li>Aula 35: <a href="aulas/aula35.html" target="_blank">Sistema S3: Classes e classes implícitas (POO no R)</a></li>
+<li>Aula 36: <a href="aulas/aula36.html" target="_blank">Sistema S3: Métodos (POO no R)</a></li>
+<li>Aula 37: <a href="aulas/aula37.html" target="_blank">Sistema S3: Envio (despacho) de métodos e hierarquias</a></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2402,7 +2417,7 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <p>Mesmo que seu aparelho apresente um IMEI (Código de identificação do aparelho) único, nós sabemos que existem diversos aparelhos com essa mesma configuração, modelo e marca, alguns outros com pequenas características que o diferenciam, mas conseguimos identificar ainda assim, esse objeto como um celular. Portanto, podemos dizer que o celular é uma <em>classe</em> para o ambiente <code>R</code>, em que apesar de termos diversos objetos, estes são identificados dentro de um conjunto de características que o definem como celular. Nesse caso, dizemos ainda que o celular que escolhemos é uma <em>instância</em> dessa classe, que apesar de ter atributos próprios, ainda assim, é identificado como um celular. Desse modo, ao ser definidos as classes de determinados objetos, a linguagem saberá utilizar o método correto para tal objeto, isso significa que mesmo que não saibamos como ocorre, devemos confiar que ocorrerá. Isso é programação orientada a objetos.</p>
 <p>Teríamos mais analogias para abordar, como <strong>encapsulamento</strong>, <strong>hierarquias</strong> , <strong>envio (ou despacho) de método</strong>, <strong>polimorfismo</strong>, <strong>subclasses</strong>, <strong>superclasses</strong>, dentre outras. Mas, vamos deixar para discutir ao longo das aplicações.</p>
 <p>Assim, esse paradigma da programação permite associarmos o desenvolvimento do nosso código pra dentro de nossa realidade humana. Porém a ideia de POO dentro do <code>R</code> sai do escopo de implementações densenvolvidas em outras linguagens. Antes de entrarmos no tema propriamente dito, queremos ressaltar que não estamos interessados em repassar uma POO eficiente, devido a todo o cunho teórico exigido para o assunto. Mas, queremos repassar como os principais sistemas de POO foram desenvolvidos dentro do <code>R</code>.</p>
-<h2 id="nem-tudo-é-orientado-a-objetos-no-r">Nem tudo é orientado a objetos no R</h2>
+<h2 id="objetos-oo-base">Nem tudo é orientado a objetos no R</h2>
 <p>Uma primeira ideia que temos que saber é que apenas de um dos princípios que tudo no <code>R</code> é um objeto, mas nem tudo é orientado a objetos. Isso ocorre, porque discutimos anteriormente, que o <code>R</code> é um dialeto da linguagem <code>S</code>. No início do desenvolvimento da linguagem <code>S</code>, John Chambers e seus colaboradores nem cogitavam para a implementação do código a programação orientada a objetos, desse modo, o <code>R</code> quando começou a ser densevolvido, os primeiros objetos desenvolvidos foram vêm dessas primeiras versões da linguagem <code>S</code>, sem ainda a implementação de POO.</p>
 <p>Dessa forma, vamos distinguir o <code>R</code> com dois tipos de objetos:</p>
 <ul>
@@ -2568,7 +2583,7 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 </tbody>
 </table>
 <p>Todas as funcões que usam esses <strong>objetos base</strong> e apresentam comportamento diferentes, não usam o sitema POO, porque foram implementadas em sua maioria na linguagem <code>C</code>, usando a instrução <code>switch</code>, em que também aprofundaremos no <a href="navancado.html">módulo avançado</a>.</p>
-<h2 id="sistemas-de-poo-no-r">Sistemas de POO no <code>R</code></h2>
+<h2 id="sistemas-poo">Sistemas de POO no <code>R</code></h2>
 <p>Usando as ideias de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, complementadas por <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, dizemos que o paradigma da programação orientada a objetos pode ser dividida em dois ramos:</p>
 <ul>
 <li><strong>POO encapsulada</strong>: os métodos são encapsulado em suas classes, isto é, os objetos nesse estilo de programação contém os seus comportamentos;</li>
@@ -2577,7 +2592,7 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <p>O <code>R</code> em sua base, apresenta três sistemas de POO: <strong>S3</strong>, <strong>S4</strong> e <strong>CR</strong> (classes de referência). No <em>CRAN</em>, existem diversas implementações de POO, das quais podemos citar: <strong>R6</strong> (pacote <a href="https://r6.r-lib.org/">R6</a>), <a href="https://github.com/HenrikBengtsson/R.oo">R.oo</a>, <a href="https://github.com/hadley/proto">proto</a>, dentre outros.</p>
 <p>Exploraremos para esse momento, apenas o sistema <strong>S3</strong> (POO funcional), em que o sitema <strong>S4</strong> também apresenta o paradigma POO funcional. Esses dois sistemas foram a evolução da implementação de POO na linguagem <code>S</code> implementadas no <code>R</code>. Contudo, os seus nomes geram a impressão de que também haviam os sistemas S1 e S2, mas não, os nomes <strong>S3</strong> e <strong>S4</strong> se devem as versões da linguagem <code>S</code>, como evolução da linguagem em si. Nesses momentos, foram o marco para a incorporação da programação orientada a objetos na linguagem, em que antes não existia, por isso, não haver sistemas S1 e S2.</p>
 <p>Para complementar a carcterização dos sistemas citados, os sistemas <strong>RC</strong> e <strong>R6</strong> apresentam o paradigma POO encapsulado. Os demais sistemas implementados nos pacotes disponíveis no CRAN, como <a href="https://github.com/HenrikBengtsson/R.oo">R.oo</a> fornece algum formalismo em cima de S3 e torna possível ter objetos S3 mutáveis (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), e <a href="https://github.com/hadley/proto">proto</a> que implementa outro estilo de OOP baseado na ideia de protótipos , que confundem as distinções entre classes e instâncias de classes (objetos) (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), do qual foi o sistema implementado para o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
-<h2 id="sistema-s3">Sistema S3</h2>
+<h2 id="sistemaS3">Sistema S3</h2>
 <!-- Depois modificar esse parágrafo inicial, após descrever os demais métodos -->
 <p>Poderíamos descrever todos os sistemas, porém restringiremos ao sistema <strong>S3</strong>, por uma única razão, é o sistema amplamente empregado aos objetos dos pacotes <strong>base</strong> e <strong>stats</strong>, bem como na maioria dos pacotes disponíveis no <em>CRAN</em>. Mais detalhes sobre o sistema, sugerimos leituras em <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="chambers2008"><a href="#ref-chambers2008" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="chambers1991"><a href="#ref-chambers1991" role="doc-biblioref">Chambers and Hastie</a> (<a href="#ref-chambers1991" role="doc-biblioref">1991</a>)</span>, dentre outros materiais.</p>
 <p>Como falado anteriormente, um objeto POO terá sempre um atributo <code>class</code>, em que podemos utilizar a função <code>atributes</code> para verificar isso. Vejamos,</p>
@@ -2624,8 +2639,8 @@ attr(,&quot;row.names&quot;)
 [1] 1</code></pre>
 </div>
 <p>Isso significa, que o objeto <code>data.frame</code> perde seu comportamento especial e retorna ao mesmo comportamento de uma lista. Afinal, falamos no módulo básico que um objeto <code>data.frame</code> é uma lista.</p>
-<h3 id="funções-genéricas">Funções genéricas</h3>
-<p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong>, que buscam o método específico para determinada classe de um objeto. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>UseMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos, principalmente, a função <code>sloop::ftype()</code> como pesquisa por funções genéricas. Vejamos,</p>
+<h3 id="fgenericas">Funções genéricas</h3>
+<p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong>, que buscam o método específico para determinada classe de um objeto. Esta função representa um intermediário do sistema <strong>S3</strong>, do qual define os argumentos de entrada, e na sequência, encontra o método certo, baseado na classe do objeto associado ao primeiro argumento da função genérica. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>UseMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos, principalmente, a função <code>sloop::ftype()</code> como pesquisa por funções genéricas. Vejamos,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcoes do tipo "closure" que nao pertencem ao sistema S3</span>
@@ -2704,7 +2719,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e44468&gt;
+&lt;bytecode: 0x0000000008e63ec0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. O que ocorre nesse caso, é que estas funções não usam a chamada <code>UseMethod</code>. Desse modo, as funções primitivas e internas podem ser identificadas, pelo objeto <code>.S3PrimitiveGenerics</code>, um vetor de caracteres, que seguem:</p>
@@ -2846,7 +2861,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000026f4a150&gt;
+&lt;bytecode: 0x000000003feb6d98&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2872,7 +2887,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000026f4a150&gt;
+&lt;bytecode: 0x000000003feb6d98&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2898,13 +2913,205 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000026f4a150&gt;
+&lt;bytecode: 0x000000003feb6d98&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
-<p>Os métodos do pacote <code>base</code> com asterisco do método ge</p>
-<h3 id="método-s3">Método <strong>S3</strong></h3>
-<p>Falando sobre as funções genéricas primitivas….</p>
+<p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Todos os objetos do pacote 'base'</span>
+<span class='va'>todosobj</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>objects</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>baseenv</a></span><span class='op'>(</span><span class='op'>)</span>, all.names <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>; 
+<span class='co'># Mostre apenas os primeiros (ver todos remova 'head')</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>todosobj</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;-&quot;         &quot;-.Date&quot;    &quot;-.POSIXt&quot;  &quot;!&quot;         &quot;!.hexmode&quot;
+[6] &quot;!.octmode&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quantos objetos no pacote 'base'?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>todosobj</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 1373</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quais sao funcoes primitivas?</span>
+<span class='va'>objprimitivos</span> <span class='op'>&lt;-</span> <span class='va'>todosobj</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>todosobj</span>,  <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/is.function.html'>is.primitive</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='va'>x</span>, envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>baseenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>]</span>
+<span class='co'># Mostre os primeiros (ver todos remova 'head')</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>objprimitivos</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;-&quot;   &quot;!&quot;   &quot;!=&quot;  &quot;$&quot;   &quot;$&lt;-&quot; &quot;%%&quot; </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quantos primitivos ('buitin' ou 'special')?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>objprimitivos</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 204</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quais sao primitivos genéricos (Sistema S3)?</span>
+<span class='va'>ehPrimitivaGenerica</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>primitiva</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>fprimitiva</span> <span class='op'>&lt;-</span> <span class='fu'>getFunction</span><span class='op'>(</span><span class='va'>primitiva</span>, mustFind <span class='op'>=</span> <span class='cn'>FALSE</span>, where <span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ns-internal.html'>asNamespace</a></span><span class='op'>(</span><span class='st'>"base"</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>ehgenerica</span> <span class='op'>&lt;-</span> <span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/ftype.html'>ftype</a></span><span class='op'>(</span><span class='va'>fprimitiva</span><span class='op'>)</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='va'>ehgenerica</span> <span class='op'>==</span> <span class='st'>"generic"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='cn'>TRUE</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='cn'>FALSE</span>
+<span class='op'>}</span>
+<span class='co'># Mostre os primeiros (ver todos remova 'head')</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>objprimitivos</span>, <span class='va'>ehPrimitivaGenerica</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    -     !    !=     $   $&lt;-    %% 
+ TRUE FALSE  TRUE  TRUE  TRUE  TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quantas sao primitivas genericas?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>objprimitivos</span>, <span class='va'>ehPrimitivaGenerica</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 100</code></pre>
+</div>
+<h3 id="UseMethod">Entendendo melhor a chamada <code>UseMethod</code></h3>
+<p>Na seção anterior, falamos que as funções genéricas do tipo <code>closure</code>, usam no corpo da função a chamada <code>UseMethod</code>. Esta é uma função primitiva, desenvolvida em <code>C</code>, porém usa a correspondência padrão de argumentos, com sintaxe dada por:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='va'>generic</span>, <span class='va'>object</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>em que o argumento <code>generic</code> representa o nome da função genérica (obrigatório para utilizar na chamada de <code>UseMethod</code>), e o segundo argumento <code>object</code> é o objeto cuja classe determina o método a ser enviado para execução pela função genérica. O argumento <code>objeto</code> representa o primeiro argumento da função genérica, e portanto, na prática usamos apenas o argumento <code>generic</code>, uma vez que a função <code>UseMethod</code> se encarrega do resto.</p>
+<p>Uma outra coisa importante é que a chamada da função <code>UseMethod</code> deve ser usada apenas no corpo de uma função, isto é, <code>function(x) UseMethod("fgenerica")</code>. Caso contrário, ocorre o retorno de erro, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fgenerica</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Error in eval(expr, envir, enclos): &#39;função&#39; genérica não é uma função</code></pre>
+</div>
+<p>Desse modo, a forma correta de declarar a chamada de função <code>Usemethod</code>, baseado no exemplo anterior, deve ser apresentado como segue,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Primeira sintaxe</span>
+<span class='va'>fgenerica</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+<span class='co'># Segunda sintaxe</span>
+<span class='va'>fgenerica</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Terceira sintaxe</span>
+<span class='va'>fgenerica</span> <span class='op'>&lt;-</span> \<span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+<span class='co'># Quarta sintaxe</span>
+<span class='va'>fgenerica</span> <span class='op'>&lt;-</span> \<span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+<span class='op'>}</span> 
+</code></pre>
+</div>
+</div>
+<p>Portanto, o objeto associado ao nome <code>fgenerica</code> é o que chamamos de função genérica. Nesse caso, o código interno de <code>UseMethod</code> examina o atributo <code>class</code> no objeto do primeiro argumento da função genérica, que no caso da função genérica <code>fgenerica</code> anterior, é o argumento <code>x</code>.</p>
+<p>Uma coisa interessante, é que a função <code>UseMethod</code> por ser primitiva, não cria seu próprio ambiente, mas a sua chamada ocorre no ambiente de chamada, isto é, no ambiente de execução da função genérica. Além do mais, como o ambiente de chamada da função <code>UseMethod</code> é o ambiente de execução da função genérica, um código interno em <code>UseMethod</code> faz com que o ambiente de chamada seja finalizado após o método ter sido avaliado. Em outras palavras, o que for escrito no corpo da função genérica após a chamada <code>UseMethod</code>, não será executado nem avaliado. Vejamos um exemplo, para clarear o que estamos falando, que segue,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao generica</span>
+<span class='va'>quem</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Isso pode ser impresso!"</span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"quem"</span><span class='op'>)</span>
+  <span class='co'>## Apos a Chamada UseMethod o ambiente eh encerrado!</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Isso nao sera impresso!"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'>## Metodo</span>
+<span class='va'>quem.eh</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Sou eu! (arg x)"</span><span class='op'>)</span>
+<span class='co'># Aplicacao:</span>
+<span class='va'>pessoa</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span> <span class='co'># objeto sem atributo 'class'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>pessoa</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"eh"</span>
+<span class='fu'>quem</span><span class='op'>(</span><span class='va'>pessoa</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Isso pode ser impresso!&quot;
+[1] &quot;Sou eu! (arg x)&quot;</code></pre>
+</div>
+<p>Observemos nesse caso, que a linha de comando no corpo da função genérica <code>quem</code>, antes da chamada <code>UseMethod</code> é avaliada e executada, porém, o que ocorre após não é executado, uma vez, que não é impresso no console o resultado <code>"Isso nao sera impresso!"</code>. Logo, após a chamada de <code>UseMethod</code> e o envio de método para <code>quem.eh</code> e a ocorrência de sua execução, o ambiente de execução de <code>quem</code> é finalizado, do qual, <code>print("Isso nao sera impresso!")</code> não é executado.</p>
+<h3 id="criando_fgenericas">Criando funções genéricas</h3>
+<p>Como já mostrado em alguns exemplos na seção anterior, a forma de criar uma função genérica é por meio da inserção no corpo da criação de uma função, a chamada <code>UseMethod</code>. A ideia da função genérica, é encontrar o método específico para uma determinada instância de classe (objeto). Desse modo, criamos uma função genérica da seguinte forma:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao generica</span>
+<span class='va'>quem</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"quem"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Assim, <code>quem</code> é uma função genérica. Esta função tem o objetivo, por meio de <code>UseMethod</code>, identificar a classe do objeto definido em <code>x</code>, e depois o envio de método, isto é, encontrar o método (objeto função) específico para a classe do objeto em <code>x</code>.</p>
+<h3 id="classeS3">Classe e classe implícita</h3>
+<p>Usuário de outras linguagens que estudaram POO , por exemplo em <em>Java</em>, <em>C++</em>, <em>Python</em>, devem estar muito confusos, até esse momento, como o sistema <strong>S3</strong> não tem uma forma usual de definir uma classe.</p>
+<h3 id="metodoS3">Método <strong>S3</strong></h3>
+<p>O método no sistema S3 tem a seguinte estrutura no nome da função <code>'nome_funcao_generica'.'nome_classe'</code>. Vamos supor que criamos uma classe para o objeto <code>pessoa</code>, com atributo <code>class</code> sendo <code>eh</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto</span>
+<span class='va'>pessoa</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span>
+<span class='co'># Atribuindo classe ao objeto 'pessoa'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>pessoa</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"eh"</span>
+</code></pre>
+</div>
+</div>
+<p>Como falado no módulo básico, os atributos não modificam os valores dos objetos. Então até aqui, nada de novo. Para criarmos o método, baseado na função genérica <code>quem</code> e na classe <code>eh</code>, criamos uma função <code>quem.eh</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## Metodo</span>
+<span class='va'>quem.eh</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Sou eu!"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Algo muito importante no método é que a função deve ter os mesmos argumentos da função genérica. Finalizado a criação do método, o que ocorrerá agora é que não precisaremos chamar o método pelo próprio método, mas pela função genérica, é o que chamamos de <strong>envio de método</strong> (ou despacho de método). Essa é a caixa preta da POO, devemos acreditar que isso ocorrerá, claro, se todo o processo de criação estiver correto.</p>
+<p>Uma outro método que se sugere fazer é o padrão (<code>default</code>), para que se a função genérica não encontrar o método específico, ela procurará pelo método padrão. Vejamos a implementação, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto</span>
+<span class='va'>pessoa</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span>
+<span class='co'># Atribuindo classe ao objeto 'pessoa'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>pessoa</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"eh"</span>
+<span class='co'>## Metodo 'eh'</span>
+<span class='va'>quem.eh</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Sou eu!"</span><span class='op'>)</span>
+<span class='co'>## Metodo 'padrao'</span>
+<span class='va'>quem.default</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"??"</span><span class='op'>)</span>
+<span class='co'>#-----------------------------------------</span>
+<span class='co'># Aplicacao:</span>
+<span class='va'>pessoa</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span> <span class='co'># objeto sem atributo 'class'</span>
+<span class='co'># Usando a funcao generica</span>
+<span class='fu'>quem</span><span class='op'>(</span><span class='va'>pessoa</span><span class='op'>)</span> <span class='co'># Aplicando o metodo padrao</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;??&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#--------</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>pessoa</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"eh"</span>
+<span class='fu'>quem</span><span class='op'>(</span><span class='va'>pessoa</span><span class='op'>)</span> <span class='co'># Aplicando o metodo eh</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Sou eu!&quot;</code></pre>
+</div>
+<p>Uma outra forma de criar método é por meio de funções primitivas genéricas. No fim da seção <a href="#funcoes_genericas">Funções genéricas</a>, mostramos um código como encontrar as funções primitivas genéricas. O procedimento será o mesmo, isto é, determinado a função genérica, por exemplo, <code>print</code>, e posteriormente, definir uma classe específica para um objeto. Vamos implementar um método para <code>print</code>, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto classe 'comp'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>; <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"comp"</span>
+<span class='co'># Metodo 'comp'</span>
+<span class='va'>print.comp</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"O comprimento de "</span>, <span class='va'>x</span>, <span class='st'>" eh "</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Aplicacao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># Metodo 'comp'</span>
+</code></pre>
+</div>
+<pre><code>O comprimento de  1 2 3 4 5 6 7 8 9 10  eh  10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># Metodo 'defaut'</span>
+</code></pre>
+</div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
 <p>Além de as funções internas/primitivas não terem a chamada <code>UseMethod</code>, que podem dificultar a identificação de uma função genérica, algumas delas não estão</p>
+<h3 id="envio-de-método">Envio de método</h3>
+<h3 id="mecanismo-de-herança">Mecanismo de herança</h3>
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
 <!--
 Introdução aos objetos:
@@ -2943,6 +3150,16 @@ Introdução aos objetos:
 <h2 id="manipulações-com-objetos">Manipulações com objetos</h2>
 <h2 id="cópias-de-objetos">Cópias de objetos</h2>
 <h1 id="programação-funcional">Programação funcional</h1>
+<h2 id="funções-primitivas">Funções primitivas</h2>
+<!-- Usar a referencia "Software for data analysis - programming with R", 2008 - @chambers2008 -->
+<!-- Algumas funções no `R` (objetos `R`) não apresentam a estrutura básica convencional de uma função no ambiente, como argumento, corpo da função e ambiente. Isto porque, essas funções foram implementadas principalemente em linguagem `C`, não em linguagem `R`, que chamamos de funções primitivas. Essas funções são encontradas apenas no pacote `base`, e sua grande vantagem é o seu desempenho, devido a sua implementação ter sido desenvolvida em linguagem de baixo nível. -->
+<!-- Caso imprima uma dessas funções para visualizar a estrutura interna do código, será recebido no console, apenas a chamada de função `.Primitive`. Vejamos um exemplo, -->
+<!-- ```{r echo=TRUE, include=TRUE} -->
+<!-- # Operador unário "soma" (Funcao primitiva: tipo "builtin") -->
+<!-- `+` -->
+<!-- ``` -->
+<!-- Desse modo, por meio da implementação realizada por Chambers(p.463-465; p.477-479(PDF)), vamos criar uma rotina para ser possível verificar quais as funções primitivas do pacote `base`, -->
+<!-- As diferenças entre as funções `buitin` e `special` são ... p.465 (PDF, p.479) -->
 <!-- Funções -->
 <!-- Os objetos de modo `function`, isto é, uma função, são objetos de primeira classe porque se comportam como qualquer outra estrutura de dados na linguagem [R](http://r-project.org/){target='_blank'}, como atribuir nomes associados a esses objetos, passá-los como argumentos para outras funções, inserir dentro de funções, e até mesmo retorná-lo como resultado de funções. Vejamos, -->
 <!-- apresentar formas de se criar operadores binários especiais -->
@@ -3061,7 +3278,7 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb44"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.
