@@ -79,7 +79,7 @@ utils::isS3stdGeneric(unlist)
 sloop::ftype(unlist)
 ```
 
-## Funções (`"closure"`) genéricas
+## Funções (*"closure"*) genéricas
 
 ```{r echo=TRUE, include=TRUE}
 mean
