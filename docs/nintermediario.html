@@ -2148,6 +2148,10 @@ Material
 <li><a href="#sistemaS3">Sistema S3</a>
 <ul>
 <li><a href="#fgenericas">Funções genéricas</a></li>
+<li><a href="#UseMethod">Entendendo melhor a chamada <code>UseMethod</code></a></li>
+<li><a href="#criando_fgenericas">Criando funções genéricas</a></li>
+<li><a href="#classeS3">Classe e classe implícita</a></li>
+<li><a href="#metodoS3">Método S3</a></li>
 </ul></li>
 </ul></li>
 <li><a href=""><i class="fas fa-arrow-circle-left"></i> Entendendo um pouco mais sobre objetos no <code>R</code></a>
@@ -2710,7 +2714,7 @@ TRUE </code></pre>
 </div>
 <pre><code>[1] &quot;internal&quot; &quot;generic&quot; </code></pre>
 </div>
-<p>A função <code>sloop::ftype()</code> retorna um vetor de caracteres de comprimento 1 ou 2. Quando retorna apenas um valor, do qual não obtemos o resultado <code>generic</code>, significa que esta função não é genérica, como é o caso da função <code>data</code>. Quando há um retorno de dois valores, e um deles é <code>generic</code>, significa dizer que a função é genérica, em que o primeiro valor, representa o sistema POO, como é o caso da função <code>mean</code>. No caso, das funções primitivas/internas que estão no pacote <code>base</code>, o primeiro resultado da função <code>sloop::ftype()</code> para a referida função será <code>primitive</code> ou <code>internal</code>, e se houver o segundo valor de nome <code>generic</code>, se confirma que também é um função primitiva genérica do método <strong>S3</strong></p>
+<p>A função <code>sloop::ftype()</code> retorna um vetor de caracteres de comprimento 1 ou 2. Quando retorna apenas um valor, do qual não obtemos o resultado <code>generic</code>, significa que esta função não é genérica, como é o caso da função <code>data</code>. Quando há um retorno de dois valores, e um deles é <code>generic</code>, significa dizer que a função é genérica, em que o primeiro valor, representa o sistema POO, como é o caso da função <code>mean</code>. No caso, das funções primitivas/internas que estão no pacote <code>base</code>, o primeiro resultado da função <code>sloop::ftype()</code> para a referida função será <code>primitive</code> ou <code>internal</code>, e se houver o segundo valor de nome <code>generic</code>, se confirma que também é um função primitiva genérica do método <strong>S3</strong>.</p>
 <p>As funções genéricas do tipo <code>closure</code> terão no corpo de sua função a chamada <code>UseMethod</code>, uma função primitiva . Essa é a identificação básica de uma função genérica. Podemos observar, como exemplo, a função <code>mean</code>:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2719,7 +2723,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e63ec0&gt;
+&lt;bytecode: 0x0000000008e44330&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. O que ocorre nesse caso, é que estas funções não usam a chamada <code>UseMethod</code>. Desse modo, as funções primitivas e internas podem ser identificadas, pelo objeto <code>.S3PrimitiveGenerics</code>, um vetor de caracteres, que seguem:</p>
@@ -2861,7 +2865,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000003feb6d98&gt;
+&lt;bytecode: 0x00000000207350e0&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2887,7 +2891,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000003feb6d98&gt;
+&lt;bytecode: 0x00000000207350e0&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2913,7 +2917,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000003feb6d98&gt;
+&lt;bytecode: 0x00000000207350e0&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3041,8 +3045,167 @@ function (object, ...)
 </div>
 <p>Assim, <code>quem</code> é uma função genérica. Esta função tem o objetivo, por meio de <code>UseMethod</code>, identificar a classe do objeto definido em <code>x</code>, e depois o envio de método, isto é, encontrar o método (objeto função) específico para a classe do objeto em <code>x</code>.</p>
 <h3 id="classeS3">Classe e classe implícita</h3>
-<p>Usuário de outras linguagens que estudaram POO , por exemplo em <em>Java</em>, <em>C++</em>, <em>Python</em>, devem estar muito confusos, até esse momento, como o sistema <strong>S3</strong> não tem uma forma usual de definir uma classe.</p>
-<h3 id="metodoS3">Método <strong>S3</strong></h3>
+<p>Usuário de outras linguagens que estudaram POO , por exemplo em <em>Java</em>, <em>C++</em>, <em>Python</em>, devem estar muito confusos, até esse momento, como o sistema <strong>S3</strong> não tem uma forma usual de definir uma classe. Para isso, basta usar o atributo <code>class</code> em um objeto. Desse modo, este se torna uma instância da classe.</p>
+<p>Já vimos no módulo básico como verificar os atributos em um objeto, por meio da função <code>attributes()</code>. Vamos expandir um pouco mais, antes de passarmos para o atributo <code>class</code>. Vejamos a seguir, como inserir um ou mais de um atributo aos objetos, bem como eliminá-los.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto</span>
+<span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Inserindo atributos em um objeto (1ª Forma)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='st'>"dim"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>5</span><span class='op'>)</span> <span class='co'># 1º Atributo 'dim'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='st'>"class"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span> <span class='co'># 2º Atributo 'ben'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='st'>"nada"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"1"</span>  <span class='co'># 3º Atributo 'nada'</span>
+
+<span class='co'># Visualizar os atributos em x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$dim
+[1] 2 5
+
+$class
+[1] &quot;ben&quot;
+
+$nada
+[1] &quot;1&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Eliminando um determinado atributo ('nada')</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='st'>"nada"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span> <span class='co'># Remove atribuindo 'NULL'</span>
+
+<span class='co'># Visualizar os atributos em x, sem o atributo 'nada'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$dim
+[1] 2 5
+
+$class
+[1] &quot;ben&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Eliminar todos os atributos</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+
+<span class='co'># Visualizando x sem atributos</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>NULL</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Inserindo os atributos todos de uma vez</span>
+<span class='fu'>mostattributes</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>dim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>5</span><span class='op'>)</span>, class <span class='op'>=</span> <span class='st'>"ben"</span>, nada <span class='op'>=</span> <span class='st'>"1"</span><span class='op'>)</span>
+
+<span class='co'># Verificando se um objeto apresenta determinado atributo, por exemplo, class='nada'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>inherits</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"nada"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Outra forma de inserir mais de um atributo</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, dim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>5</span><span class='op'>)</span>, class <span class='op'>=</span> <span class='st'>"ben"</span>, nada <span class='op'>=</span> <span class='st'>"1"</span><span class='op'>)</span>
+
+<span class='co'># Casos especificos, podem ter funcoes proprias</span>
+<span class='co'># para inserir atributos, por exemplo, 'class'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='st'>"class"</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>; <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='co'># removendo o atributo 'class'</span>
+</code></pre>
+</div>
+<pre><code>$dim
+[1] 2 5
+
+$nada
+[1] &quot;1&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span>; <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$dim
+[1] 2 5
+
+$nada
+[1] &quot;1&quot;
+
+$class
+[1] &quot;ben&quot;</code></pre>
+</div>
+<p>Percebemos que alguns atributos têm funções próprias, além do atributo <code>class</code>, temos <code>dim</code>, <code>levels</code>, <code>names</code>, <code>dimnames</code>, dentre outros.</p>
+<p>Para esse caso, iremos nos concentrar apenas no atributo <code>class</code>. Seguindo as próprias recomendações de <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, e com razão, podemos utilizar qualquer conjunto de caracteres para nominar a classe de interesse. Porém, evitemos utilizar o ponto (“.”) como parte dos caracteres para nominar a classe, porque na próxima seção, veremos que o ponto é parte da criação de um método, em que nominamos o método pela junção do nome da função genérica mais o nome da classe, separados por um ponto. E para evitar confusão, seguiremos essa sugestão.</p>
+<p>Desse modo, poderemos retirar um objeto como instância de uma classe, removendo o atributo <code>class</code>. Essa flexibilidade na prática, não apresenta grandes problemas, um vez que como afirmado por <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, o R não impede do programador atirar no próprio pé, desde que ele não aponte a arma para o pé e puxe o gatilho. Mais a frente, apresentaremos algumas sugestões propostas por <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, do qual adotaremos.</p>
+<p>Uma outra característica do atributo <code>class</code> é que este pode ser um vetor de caracteres. Por exemplo, um vetor atômico do tipo fator é largamente utilizado na estatística, quando queremos representar os níveis de um tratamento, em que para usar a função <code>aov()</code>, função para a realização da análise de variância, um dos argumentos da função faz-se necessário ser um fator. Em algumas situações, além de ser um fator, é importante que os níveis sejam ordenados, na estatística descritiva, chamamos também de variáveis qualitativas ordinais.</p>
+<p>Para criarmos um vetor do tipo fator, usamos a função <code>factor</code>, e a sua ordenação, ou usamos em <code>factor</code>, o argumento <code>ordered=TRUE</code>, ou criamos um fator ordenado pela função <code>ordered()</code>. Usando este último, e associando a um nome, vamos perceber que o atributo <code>class</code> desse objeto é um vetor de comprimento 2, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>ordered</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;ordered&quot; &quot;factor&quot; </code></pre>
+</div>
+<p>Essa sequência será responsável pelo <strong>mecanismo de herança</strong> de métodos, que discutiremos mais a frente. No entanto, quando o objeto em <a href="http://r-project.org/" target="_blank">R</a> não é objeto POO, a função <code>class</code> pode retornar resultados equivocados quanto ao despacho do método. Por exemplo, vamos criar um vetor multidimensional, do tipo <code>array</code>, e verificarmos o que a função <code>class</code> retorna,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;matrix&quot; &quot;array&quot; </code></pre>
+</div>
+<p>Porém, usando a função <code>sloop::s3_class()</code> ou <code>.class2</code>, perceberemos uma maior detalhamento, observemos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/array.html'>array</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_class.html'>s3_class</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;matrix&quot;  &quot;integer&quot; &quot;numeric&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>.class2</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;matrix&quot;  &quot;array&quot;   &quot;integer&quot; &quot;numeric&quot;</code></pre>
+</div>
+<p>Isso é o que chamamos de <strong>classes implícitas</strong> aos objetos base, que não tem o atributo <code>class</code> definido. Segundo <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, a <strong>classe implícita</strong>, obtida de objetos base, apresenta um vetor de três conjuntos de caracteres (<em>strings</em>):</p>
+<ul>
+<li><code>array</code> ou <code>matrix</code>, se o objeto tiver dimensão;</li>
+<li>resultado de <code>typeof</code>, com algumas variações;</li>
+<li><code>numeric</code>, se os valores forem <code>integer</code> (inteiro) ou <code>double</code> (real).</li>
+</ul>
+<p>Para mostrarmos que a função <code>class</code> não retorna corretamente o <strong>despacho de método</strong> utilizado, isto é, para qual método a chamada da função genérica (<code>UseMethod</code>) foi executado, vamos utilizar a função <code>sloop::s3_dispatch()</code>. O despacho ocorrerá no método que contém (<code>=&gt;</code>). Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo o despacho do objeto associado a 'y'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   print.matrix
+   print.integer
+   print.numeric
+=&gt; print.default</code></pre>
+</div>
+<p>Observe que o despacho ocorreu em <code>print.default</code>. O que fica mais claro, nesse segundo exemplo, o que queremos afirmar,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto com classe implícita (sem atributo 'class')</span>
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='co'># Imprimindo class</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando o despacho em 'print'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   print.double
+   print.numeric
+=&gt; print.default</code></pre>
+</div>
+<p>Observemos nesse caso que <code>class</code> retorna <code>numeric</code>, e o despacho ocorre em <code>print.default</code>, e não em <code>print.numeric</code> como verificado por <code>class</code>, ficando mais evidente o que falamos anteriormente. Na seção <a href="#envio-herança">envio de método e mecanismos de herança</a>, detalharemos um pouco mais sobre o assunto.</p>
+<p>Por fim, um último ponto que queríamos abordar são os termos técnicos como <strong>subclasse</strong> e <strong>superclasse</strong>. Anteriormente, vimos o objeto <code>x &lt;- ordered(1:5)</code> que era um fator ordenado, e que o seu atributo <code>class</code> era um vetor de comprimento 2, isto é, <code>"ordered" "factor"</code>. Dizemos que <code>"ordered"</code> é uma subclasse de <code>"factor"</code> porque o antecede no vetor, assim como <code>"factor"</code> é considerada uma superclasse para <code>"ordered"</code> porque o precede. A rigor, o sistema <strong>S3</strong> não faz imposição nenhuma a estas classes, mas veremos na seção <a href="#envio-herança">envio de método e mecanismos de herança</a>, algumas estratégias para isso.</p>
+<h3 id="metodoS3">Método S3</h3>
 <p>O método no sistema S3 tem a seguinte estrutura no nome da função <code>'nome_funcao_generica'.'nome_classe'</code>. Vamos supor que criamos uma classe para o objeto <code>pessoa</code>, com atributo <code>class</code> sendo <code>eh</code>, isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3053,7 +3216,7 @@ function (object, ...)
 </code></pre>
 </div>
 </div>
-<p>Como falado no módulo básico, os atributos não modificam os valores dos objetos. Então até aqui, nada de novo. Para criarmos o método, baseado na função genérica <code>quem</code> e na classe <code>eh</code>, criamos uma função <code>quem.eh</code>, isto é,</p>
+<p>Como falado no módulo básico, os atributos não modificam os valores dos objetos. Então até aqui, nada de novo. Para criarmos o método, baseado na função genérica <code>quem</code>, criada anteriormente, e na classe <code>eh</code>, criamos um método (objeto de modo <code>function</code> no <code>R</code>, ou tipo <code>closure</code>) <code>quem.eh</code>, isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## Metodo</span>
@@ -3061,7 +3224,7 @@ function (object, ...)
 </code></pre>
 </div>
 </div>
-<p>Algo muito importante no método é que a função deve ter os mesmos argumentos da função genérica. Finalizado a criação do método, o que ocorrerá agora é que não precisaremos chamar o método pelo próprio método, mas pela função genérica, é o que chamamos de <strong>envio de método</strong> (ou despacho de método). Essa é a caixa preta da POO, devemos acreditar que isso ocorrerá, claro, se todo o processo de criação estiver correto.</p>
+<p>Algo muito importante no método é que a função deve ter os mesmos argumentos da função genérica, a menos que seja utilizado o objeto <code>...</code> na função genérica. Finalizado a criação do método, o que ocorrerá agora é que não precisaremos chamar o método pelo próprio método, mas pela função genérica, é o que chamamos de <strong>envio de método</strong> (ou <strong>despacho de método</strong>). Essa é a caixa preta da POO, devemos acreditar que isso ocorrerá, claro, se todo o processo de criação estiver correto.</p>
 <p>Uma outro método que se sugere fazer é o padrão (<code>default</code>), para que se a função genérica não encontrar o método específico, ela procurará pelo método padrão. Vejamos a implementação, a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3089,7 +3252,109 @@ function (object, ...)
 </div>
 <pre><code>[1] &quot;Sou eu!&quot;</code></pre>
 </div>
-<p>Uma outra forma de criar método é por meio de funções primitivas genéricas. No fim da seção <a href="#funcoes_genericas">Funções genéricas</a>, mostramos um código como encontrar as funções primitivas genéricas. O procedimento será o mesmo, isto é, determinado a função genérica, por exemplo, <code>print</code>, e posteriormente, definir uma classe específica para um objeto. Vamos implementar um método para <code>print</code>, a seguir.</p>
+<p>Retornando sobre a função <code>UseMethod</code>, quando inserimos os dois arguemntos <code>generic</code> e <code>object</code> no corpo da função genérica, e definimos em <code>object</code> qual o objeto que a função observará o atributo <code>class</code>, a chamada de função <code>UseMethod</code> desconsiderará o primeiro argumento da função genérica, independente de ter um atributo <code>class</code> ou não. Vejamos um exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao generica</span>
+<span class='va'>quem</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"quem"</span>, <span class='va'>x</span><span class='op'>)</span>
+<span class='co'># Metodos</span>
+<span class='va'>quem.eh</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Sou eu!"</span><span class='op'>)</span>
+<span class='va'>quem.outro</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Outro!"</span><span class='op'>)</span>
+<span class='va'>quem.default</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Qualquer um!"</span><span class='op'>)</span>
+<span class='co'># Objeto em UseMethod sem o atributo 'class'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span>
+<span class='co'># Objeto no primeiro argument de fgenerica</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='st'>"ninguem"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"outro"</span>
+<span class='co'># O despacho ocorre em quem.default</span>
+<span class='fu'>quem</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Qualquer um!&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Removendo quem.defaul, a fgenerica retorna erro</span>
+<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='st'>"quem.default"</span><span class='op'>)</span>; <span class='fu'>quem</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Error in UseMethod(&quot;quem&quot;, x): método não aplicável para &#39;quem&#39; aplicado a um objeto de classe &quot;character&quot;</code></pre>
+</div>
+<p>Contudo, se o objeto definido em <code>object</code> não tiver o atributo <code>class</code>, e não houver um despacho para o método <code>fgenerica.default</code>, a função genérica (<code>fgenerica</code>) retorna um erro. Vejamos outro exemplo,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>quem</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"quem"</span>, <span class='va'>x</span><span class='op'>)</span>
+<span class='va'>quem.eh</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Sou eu!"</span><span class='op'>)</span>
+<span class='va'>quem.outro</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Outro!"</span><span class='op'>)</span>
+<span class='va'>quem.default</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Qualquer um!"</span><span class='op'>)</span>
+
+<span class='co'># Objeto em UseMethod</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"ben"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"eh"</span>
+<span class='co'># Objeto no primeiro argument de fgenerica</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='st'>"ninguem"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"outro"</span>
+<span class='co'># Executando a funcao generica</span>
+<span class='fu'>quem</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Sou eu!&quot;</code></pre>
+</div>
+<p>Uma coisa interessante que ocorre com a chamada <code>UseMethod</code>, que foge a exceção do padrão de chamadas das funções. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao (Primeiro caso)</span>
+<span class='va'>h</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='fu'>h</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> x  y 
+10 10 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#----------------------------------------</span>
+<span class='co'># Funcao generica e metodo (Segundo caso)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"g"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># metodo padrao</span>
+<span class='va'>g.default</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
+<span class='co'># Avaliacao</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='fu'>g</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>x y 
+1 1 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#----------------------------------------</span>
+<span class='co'># Funcao generica e metodo (Terceiro caso)</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"g"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># metodo padrao</span>
+<span class='va'>g.default</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
+<span class='co'># Avaliacao</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='fu'>g</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> x  y 
+ 1 10 </code></pre>
+</div>
+<p>Observemos no primeiro caso, em que definimos duas variáveis globais <code>x &lt;- 1</code> e <code>y &lt;- 1</code>, ao serem utilizadas como argumentos da função <code>h()</code>, percebemos que após a chamada de <code>h()</code>, o ambiente de execução é criado temporariamente, e lá existe três instâncias <code>x &lt;- 10</code>, <code>y &lt;- 10</code> e a chamada <code>c(x = x, y = y)</code>, em que esta última busca por <code>x</code> e <code>y</code>, que é encontrado nas duas instâncias anteriores, e que portanto, sobrepõe a entrada dos argumentos. Logo, o resultado de <code>h(x, y)</code> será um vetor de comprimento 2, com valores 10 e 10, respectivamente.</p>
+<p>No segundo caso, temos uma função genérica, e aqui surge algo meio inconsistente, aparentemente com a chamada <code>UseMethod</code> no corpo da função genérica. Mais vez, esta função nos surpreende, porque ela não permite a alteração dos argumentos definidos na função genérica com variáveis definidas no código interno dessa função, para posteriormente, seguir no despacho do método. Observemos na função genérica<code>g()</code>, que apesar de associado valores para os nomes <code>x</code> e <code>y</code>, todos iguais a <code>10</code>, ao chamarmos <code>g()</code>, definimos para os seus argumentos <code>x</code> e <code>y</code> valores iguais a <code>1</code>, e o que ocorre após a chamada dessa função é um vetor de <code>1s</code> (uns). Isto siginifica, que as instâncias internas da função genérica, não alteraram os argumentos da função, e o despacho de método segue para <code>g.default()</code>.</p>
+<p>Por fim, temos o terceiro caso, cuja função genérica apresenta apenas um argumento, <code>x</code>. Observemos nesse caso, que o código interno do método <code>g.default()</code> procura por um objeto associado a <code>y</code>, que é encontrado primeiro no ambiente de execução da função genérica, cujo resultado é <code>10</code>. Porém, mesmo havendo um nome <code>x</code> associado ao valor <code>10</code>, no ambiente de execução da função genérica, a chamada <code>UseMethod</code> preserva o argumento <code>x = 1</code> definido em <code>g()</code>, que despacha para o método. Ao final, o resultado da função genérica é um vetor com valores <code>1</code> e <code>10</code>, respectivamente.</p>
+<p>Uma outra forma de criar um método é por meio de funções primitivas genéricas. No fim da seção <a href="#funcoes_genericas">Funções genéricas</a>, mostramos um código como encontrar as funções primitivas genéricas. O procedimento será o mesmo, isto é, determinado a função genérica, por exemplo, <code>print</code>, e posteriormente, definir uma classe específica para um objeto. Vamos implementar um método para <code>print</code>, a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto classe 'comp'</span>
@@ -3109,9 +3374,81 @@ function (object, ...)
 </div>
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
-<p>Além de as funções internas/primitivas não terem a chamada <code>UseMethod</code>, que podem dificultar a identificação de uma função genérica, algumas delas não estão</p>
-<h3 id="envio-de-método">Envio de método</h3>
-<h3 id="mecanismo-de-herança">Mecanismo de herança</h3>
+<p>Além de as funções internas/primitivas não terem a chamada <code>UseMethod</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, que podem dificultar a identificação de uma função genérica, alguns de seus métodos não estão exportadas pelo <em>namespace</em> do pacote base. Para verificarmos o código interno (instruções) desses métodos, podemos usar três funções: <code>:::</code>, <code>getS3method</code> ou <code>getAnywhere</code>, já comentados na seção <a href="#fgenericas">Funções genéricas</a>.</p>
+<p>Podemos usar a função <code>utils::methods()</code>, <code>sloop::s3_methods_generic()</code> ou <code>sloop::s3_methods_class()</code>. Com essas, funções podemos saber por meio do nome ou da função genérica ou pelo nome da classe, quais os métodos disponíveis. Vejamos pelo código a seguir, por exemplo usando a função genérica <code>print</code>, quais os métodos disponíveis, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Usando o nome da funcao generica</span>
+<span class='co'># utils::methods(print) </span>
+<span class='co'>##  [1] print.acf*                        </span>
+<span class='co'>##  [2] print.AES*                        </span>
+<span class='co'>##  [3] print.all_vars*                   </span>
+<span class='co'>##  [4] print.anova*                      </span>
+<span class='co'>##  [5] print.ansi_string*                </span>
+<span class='co'>##  [6] print.ansi_style* </span>
+<span class='co'>##  ...</span>
+<span class='co'># Usando agora a funcao s3_methods_generic</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_methods_class.html'>s3_methods_generic</a></span><span class='op'>(</span><span class='st'>"print"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 306 x 4
+   generic class    visible source             
+   &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;   &lt;chr&gt;              
+ 1 print   acf      FALSE   registered S3method
+ 2 print   AES      FALSE   registered S3method
+ 3 print   all_vars FALSE   registered S3method
+ 4 print   anova    FALSE   registered S3method
+ 5 print   any_vars FALSE   registered S3method
+ 6 print   aov      FALSE   registered S3method
+ 7 print   aovlist  FALSE   registered S3method
+ 8 print   ar       FALSE   registered S3method
+ 9 print   Arima    FALSE   registered S3method
+10 print   arima0   FALSE   registered S3method
+# ... with 296 more rows</code></pre>
+</div>
+<p>Observamos, pelos pacotes instalados no computador do qual escrevemos esse material, apresenta para a função genérica <code>print</code>, 284 métodos. Porém, observamos que a última função <code>sloop::s3_methods_generic()</code> apresenta um maior detalhamento dos métodos, como por exemplo, a visibilidade de suas instruções no <em>console</em>, e ainda de qual pacote o método foi desenvolvido. Nesse caso, quando na coluna <em>visible</em>, um determinado método retorna <code>FALSE</code>, que é equivalente a um asterisco no resultado, por meio da função <code>methods()</code>, que significa que o método não é exportado do <em>namespace</em> do pacote, em que esse método foi desenvolvido. Contudo, mostramos anteriormente, alternativas de como acessar esses métodos.</p>
+<p>De outro modo, poderíamos está interessados em métodos baseados em uma determinada classe. Nesse caso, vejamos um exemplo para a classe <code>factor</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Usando o nome da funcao generica</span>
+<span class='fu'>utils</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span>class <span class='op'>=</span> <span class='va'>factor</span><span class='op'>)</span> <span class='co'># Imprimindo os primeiros metodos para a classe 'factor'</span>
+</code></pre>
+</div>
+<pre><code> [1] [             [[            [[&lt;-          [&lt;-          
+ [5] all.equal     Arith         as.character  as.data.frame
+ [9] as.Date       as.list       as.logical    as.POSIXlt   
+[13] as.vector     c             cbind2        coerce       
+[17] Compare       droplevels    format        initialize   
+[21] is.na&lt;-       length&lt;-      levels&lt;-      Logic        
+[25] Math          Ops           plot          print        
+[29] rbind2        relevel       relist        rep          
+[33] show          slotsFromS3   summary       Summary      
+[37] xtfrm        
+see &#39;?methods&#39; for accessing help and source code</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Usando agora a funcao s3_methods_generic</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_methods_class.html'>s3_methods_class</a></span><span class='op'>(</span><span class='st'>"factor"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 28 x 4
+   generic       class  visible source
+   &lt;chr&gt;         &lt;chr&gt;  &lt;lgl&gt;   &lt;chr&gt; 
+ 1 [             factor TRUE    base  
+ 2 [[            factor TRUE    base  
+ 3 [[&lt;-          factor TRUE    base  
+ 4 [&lt;-           factor TRUE    base  
+ 5 all.equal     factor TRUE    base  
+ 6 as.character  factor TRUE    base  
+ 7 as.data.frame factor TRUE    base  
+ 8 as.Date       factor TRUE    base  
+ 9 as.list       factor TRUE    base  
+10 as.logical    factor TRUE    base  
+# ... with 18 more rows</code></pre>
+</div>
+<h3 id="envio-herança">Envio de método e mecanismo de herança</h3>
+<h3 id="estratégias-para-o-sistema-s3">Estratégias para o sistema S3</h3>
+<p>Constutor, validador e ajudante</p>
+<h3 id="estilos-de-objetos-poo">Estilos de objetos POO</h3>
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
 <!--
 Introdução aos objetos:
@@ -3278,7 +3615,7 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb56"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.
@@ -3293,6 +3630,12 @@ Chambers, John M., and Trevor J. Hastie. 1991. <em>Statistical Methods in <span>
 Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
 </div>
 </div>
+<section class="footnotes" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Funções primitivas chamam as funções em linguagem <code>C</code>, <code>DispatchGroup()</code> ou <code>DispatchOrEval()</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

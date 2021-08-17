@@ -204,7 +204,7 @@ Inserir nas secoes:
 {data-background=boards.jpg data-background-size=cover}
 -->
 
-<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  class="smaller " id="selo-dc">
+<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  id="selo-dc" class="smaller ">
 
 <center>
 
@@ -212,7 +212,7 @@ Inserir nas secoes:
 
 </center>
 
-</article></slide><slide class=""><hgroup><h2>Funções genéricas</h2></hgroup><article  class="smaller " id="funções-genéricas">
+</article></slide><slide class=""><hgroup><h2>Funções genéricas</h2></hgroup><article  id="funções-genéricas" class="smaller ">
 
 <ul>
 <li>Funções genéricas são:
@@ -224,14 +224,14 @@ Inserir nas secoes:
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Como identificar funções genéricas</h2></hgroup><article  class="smaller " id="como-identificar-funções-genéricas">
+</article></slide><slide class=""><hgroup><h2>Como identificar funções genéricas</h2></hgroup><article  id="como-identificar-funções-genéricas" class="smaller ">
 
 <ul>
 <li><code>utils::isS3stdGeneric()</code></li>
 <li><code>sloop::ftype()</code></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Exemplos</h2></hgroup><article  class="smaller " id="exemplos">
+</article></slide><slide class=""><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Funcoes do tipo &quot;closure&quot; que nao pertencem ao sistema S3
 utils::isS3stdGeneric(data)
@@ -245,7 +245,7 @@ utils::isS3stdGeneric(mean)
 sloop::ftype(mean)
 ## [1] &quot;S3&quot;      &quot;generic&quot;</pre>
 
-</article></slide><slide class=""><hgroup><h2>Exemplos</h2></hgroup><article  class="smaller " id="exemplos-1">
+</article></slide><slide class=""><hgroup><h2>Exemplos</h2></hgroup><article  id="exemplos-1" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># funcoes primitivas e internas que nao pertencem ao sistema S3
 utils::isS3stdGeneric(inherits)
@@ -268,16 +268,16 @@ utils::isS3stdGeneric(unlist)
 sloop::ftype(unlist)
 ## [1] &quot;internal&quot; &quot;generic&quot;</pre>
 
-</article></slide><slide class=""><hgroup><h2>Funções (<em>&ldquo;closure&rdquo;</em>) genéricas</h2></hgroup><article  class="smaller " id="funções-closure-genéricas">
+</article></slide><slide class=""><hgroup><h2>Funções (<em>&ldquo;closure&rdquo;</em>) genéricas</h2></hgroup><article  id="funções-closure-genéricas" class="smaller ">
 
 <pre class = 'prettyprint lang-r'>mean</pre>
 
 <pre >## function (x, ...) 
 ## UseMethod(&quot;mean&quot;)
-## &lt;bytecode: 0x0000000008e42c60&gt;
+## &lt;bytecode: 0x0000000008e42e28&gt;
 ## &lt;environment: namespace:base&gt;</pre>
 
-</article></slide><slide class=""><hgroup><h2>Funções primitivas/internas genéricas</h2></hgroup><article  class="smaller " id="funções-primitivasinternas-genéricas">
+</article></slide><slide class=""><hgroup><h2>Funções primitivas/internas genéricas</h2></hgroup><article  id="funções-primitivasinternas-genéricas" class="smaller ">
 
 <ul>
 <li>Objeto <code>.S3PrimitiveGenerics</code>:</li>
@@ -299,29 +299,54 @@ sloop::ftype(unlist)
 (outros_obj_S3_primitivos &lt;- c(&quot;unlist&quot;, &quot;cbind&quot;, &quot;rbind&quot;, &quot;as.vector&quot;))
 ## [1] &quot;unlist&quot;    &quot;cbind&quot;     &quot;rbind&quot;     &quot;as.vector&quot;</pre>
 
-</article></slide><slide class=""><hgroup><h2>Funções primitivas/internas genéricas</h2></hgroup><article  class="smaller " id="funções-primitivasinternas-genéricas-1">
+</article></slide><slide class=""><hgroup><h2>Grupos genéricos</h2></hgroup><article  id="grupos-genéricos" class="smaller ">
 
 <ul>
 <li>Grupos genéricos: Grupo <code>Math</code>, Grupo <code>Ops</code>, Grupo <code>Summary</code> e grupo <code>Complex</code></li>
+<li>Grupo <code>Math</code>:
+
+<ul>
+<li><code>abs</code>, <code>sign</code>, <code>sqrt</code>, <code>floor</code>, <code>ceiling</code>, <code>trunc</code>, <code>round</code>, <code>signif</code></li>
+<li><code>exp</code>, <code>log</code>, <code>expm1</code>, <code>log1p</code>, <code>cos</code>, <code>sin</code>, <code>tan</code>, <code>cospi</code>, <code>sinpi</code>, <code>tanpi</code>, <code>acos</code>, <code>asin</code>, <code>atan</code>, <code>cosh</code>, <code>sinh</code>, <code>tanh</code>, <code>acosh</code>, <code>asinh</code>, <code>atanh</code></li>
+<li><code>lgamma</code>, <code>gamma</code>, <code>digamma</code>, <code>trigamma</code></li>
+<li><code>cumsum</code>, <code>cumprod</code>, <code>cummax</code>, <code>cummin</code></li>
+</ul></li>
+<li>Grupo <code>Ops</code>:
+
+<ul>
+<li><code>&quot;+&quot;</code>, <code>&quot;-&quot;</code>, <code>&quot;*&quot;</code>, <code>&quot;/&quot;</code>, <code>&quot;^&quot;</code>, <code>&quot;%%&quot;</code>, <code>&quot;%/%&quot;</code></li>
+<li><code>&quot;&amp;&quot;</code>, <code>&quot;|&quot;</code>, <code>&quot;!&quot;</code></li>
+<li><code>&quot;==&quot;</code>, <code>&quot;!=&quot;</code>, <code>&quot;&lt;&quot;</code>, <code>&quot;&lt;=&quot;</code>, <code>&quot;&gt;=&quot;</code>, <code>&quot;&gt;&quot;</code></li>
+</ul></li>
+<li>Grupo <code>Summary</code>:
+
+<ul>
+<li><code>all</code>, <code>any</code>, <code>sum</code>, <code>prod</code>, <code>min</code>, <code>max</code>, <code>range</code></li>
+</ul></li>
+<li>Grupo <code>Complex</code>:
+
+<ul>
+<li>Arg, <code>Conj</code>, <code>Im</code>, <code>Mod</code>, <code>Re</code></li>
+</ul></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>.S3PrimitiveGenerics
-##  [1] &quot;anyNA&quot;          &quot;as.character&quot;   &quot;as.complex&quot;     &quot;as.double&quot;     
-##  [5] &quot;as.environment&quot; &quot;as.integer&quot;     &quot;as.logical&quot;     &quot;as.call&quot;       
-##  [9] &quot;as.numeric&quot;     &quot;as.raw&quot;         &quot;c&quot;              &quot;dim&quot;           
-## [13] &quot;dim&lt;-&quot;          &quot;dimnames&quot;       &quot;dimnames&lt;-&quot;     &quot;is.array&quot;      
-## [17] &quot;is.finite&quot;      &quot;is.infinite&quot;    &quot;is.matrix&quot;      &quot;is.na&quot;         
-## [21] &quot;is.nan&quot;         &quot;is.numeric&quot;     &quot;length&quot;         &quot;length&lt;-&quot;      
-## [25] &quot;levels&lt;-&quot;       &quot;names&quot;          &quot;names&lt;-&quot;        &quot;rep&quot;           
-## [29] &quot;seq.int&quot;        &quot;xtfrm&quot;
-# Outras funcoes primitivas
-(outros_obj_S3_primitivos &lt;- c(&quot;[&quot;, &quot;[[&quot;, &quot;$&quot;, &quot;[&lt;-&quot;, &quot;[[&lt;-&quot;, &quot;$&lt;-&quot;))
-## [1] &quot;[&quot;    &quot;[[&quot;   &quot;$&quot;    &quot;[&lt;-&quot;  &quot;[[&lt;-&quot; &quot;$&lt;-&quot;
-# Outras funcoes internas nao primitivas
-(outros_obj_S3_primitivos &lt;- c(&quot;unlist&quot;, &quot;cbind&quot;, &quot;rbind&quot;, &quot;as.vector&quot;))
-## [1] &quot;unlist&quot;    &quot;cbind&quot;     &quot;rbind&quot;     &quot;as.vector&quot;</pre>
+</article></slide><slide class=""><hgroup><h2>Grupos genéricos</h2></hgroup><article  id="grupos-genéricos-1" class="smaller ">
 
-</article></slide><slide class=""><hgroup><h2>Como saber quais e quantas são as funções primitivas/internas?</h2></hgroup><article  class="smaller " id="como-saber-quais-e-quantas-são-as-funções-primitivasinternas">
+<ul>
+<li>Grupos genéricos: Grupo <code>Math</code>, Grupo <code>Ops</code>, Grupo <code>Summary</code> e grupo <code>Complex</code></li>
+<li>Grupo <code>Summary</code>:
+
+<ul>
+<li><code>all</code>, <code>any</code>, <code>sum</code>, <code>prod</code>, <code>min</code>, <code>max</code>, <code>range</code></li>
+</ul></li>
+<li>Grupo <code>Complex</code>:
+
+<ul>
+<li>Arg, <code>Conj</code>, <code>Im</code>, <code>Mod</code>, <code>Re</code></li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Como saber quais e quantas são as funções primitivas/internas?</h2></hgroup><article  id="como-saber-quais-e-quantas-são-as-funções-primitivasinternas" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Todos os objetos do pacote &#39;base&#39;
 todosobj &lt;- objects(baseenv(), all.names = TRUE); 
@@ -335,7 +360,7 @@ length(todosobj)</pre>
 
 <pre >## [1] 1373</pre>
 
-</article></slide><slide class=""><hgroup><h2>Como saber quais e quantas são as funções primitivas/internas?</h2></hgroup><article  class="smaller " id="como-saber-quais-e-quantas-são-as-funções-primitivasinternas-1">
+</article></slide><slide class=""><hgroup><h2>Como saber quais e quantas são as funções primitivas/internas?</h2></hgroup><article  id="como-saber-quais-e-quantas-são-as-funções-primitivasinternas-1" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Quais sao funcoes primitivas?
 objprimitivos &lt;- todosobj[sapply(todosobj,  
@@ -355,7 +380,7 @@ ehPrimitivaGenerica &lt;- function(primitiva) {
   } else FALSE
 }</pre>
 
-</article></slide><slide class=""><hgroup><h2>Como saber quais e quantas são as funções primitivas/internas?</h2></hgroup><article  class="smaller " id="como-saber-quais-e-quantas-são-as-funções-primitivasinternas-2">
+</article></slide><slide class=""><hgroup><h2>Como saber quais e quantas são as funções primitivas/internas?</h2></hgroup><article  id="como-saber-quais-e-quantas-são-as-funções-primitivasinternas-2" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Mostre os primeiros (ver todos remova &#39;head&#39;)
 head(sapply(objprimitivos, ehPrimitivaGenerica))
@@ -365,7 +390,7 @@ head(sapply(objprimitivos, ehPrimitivaGenerica))
 sum(sapply(objprimitivos, ehPrimitivaGenerica))
 ## [1] 100</pre>
 
-</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  class="smaller " id="bons-estudos">
+</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  id="bons-estudos" class="smaller ">
 
 <center>
 
