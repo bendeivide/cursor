@@ -1,6 +1,6 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 35 - Sistema S3:  Método S3 (POO no R)"
+subtitle: "Aula 36 - Sistema S3:  Método S3 (POO no R)"
 author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"

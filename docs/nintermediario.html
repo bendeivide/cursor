@@ -2230,8 +2230,12 @@ Material
 <h2 id="shiny">Scripts via <a href="https://shiny.rstudio.com/">Shiny</a></h2>
 <p><a href="https://bendeivide.shinyapps.io/Curso-R/">Curso R via Shiny</a></p>
 <h1 id="apresentacao"><i class="fas fa-book"></i> Apresentação do curso</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tegLquZ1jsw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>O Curso <code>R</code> será todo aprensentado no formato online, sendo que as aulas terão vídeos como suporte, postados no canal <a href="http://youtube.com/bendeivide" target="_blank">Youtube/Ben Dêivide</a> divulgados ao longo do material. Os vídeos serão bem objetivos de curta duração para que usem como suporte com o material escrito. Como complemento desse material, disponibilizaremos os <a href="#scripts"><em>scripts</em></a> com os comandos utilizados em cada aula e sua versão em <a href="#shiny"><em>Shiny</em></a> para os que não quiserem realizar inicialmente a instalação do R e do RStudio, poderão utilizar uma versão <em>online</em> do material juntamente com a linguagem <code>R</code>.</p>
 <h1 id="caracteristasR"><i class="fab fa-r-project"></i> Caracterizando melhor o ambiente R</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mrJqW8yJLx0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Ao estudarmos o <a href="nbasico.html">módulo básico</a> do Curso R, conseguimos obter uma visão geral sobre o ambiente <code>R</code>, de modo que o aprofundamento sobre a linguagem se faz necessário, para quem deseja não apenas executar rotinas prontas, mas de fato, um contribuidor para a linguagem, como também um desenvolvedor de suas próprias funções.</p>
 <p>Na Figura <a href="#fig:rworks">1</a>, apresentamos um resumo do que buscamos repassar no primeiro módulo. Agora, iremos no módulo intermediário, de fato, entender os dois princípios: Objeto e Função, para que fique claro que nem tudo no <code>R</code> é orientado a objetos, e que a rigor o <code>R</code> não é uma linguagem de programação funcional. Com essas informações, dentre outras, o programador poderá ter um maior controle sobre o desenvolvimento de suas próprias rotinas e funções.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2421,12 +2425,16 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <!-- # Evolução do R -->
 <!-- https://en.wikipedia.org/wiki/R_(programming_language) -->
 <h1 id="poo"><i class="fas fa-puzzle-piece"></i> Programação orientada a objetos</h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/x4gpW5Ip-uE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Assim como no nosso dia a dia podemos realizar uma mesma tarefa de modos diferentes, isso ocorre também na programação. Nesse caso, dizemos que esses modos são os paradigmas da programação. E a programação orientada a objetos (POO) é um desses paradigmas que veio para contornar alguns problemas da programação estrutural, um outro paradigma.</p>
 <p>Antes de apresentarmos outras diferenças entre os objetos base e objetos OO, se faz necessário entendermos alguns conceitos da POO, do qual tudo se desencadeará pelos termos <strong>classe</strong>, <strong>objeto</strong> e <strong>método</strong>. Para isso, vamos ilustrar alguns termos baseados no nosso cotidiano. Uma das grandes cobiças nessa era digital é ter um bom <em>smartphone</em> para que possamos estar conectados nessa era digital, bem não sei se foi bem esse objetivo do <em>smartphone</em>, mas consideremos que tenha sido. Essa escolha se deve a algumas <em>características</em> tamanho, cor, desempenho, câmera, dentre outras. Outro fator que pode ter sido o motido da sua escolha é o <em>comportamento</em> desse celular, como o seu desempenho do processador, a velocidade com o qual se desenvolve as atividades, a forma como os aplicativos reagem as suas ações, o sistema como o algoritmo baseado em inteligência artificial interage com todo o sistema operacional do aparelho, dentre outros. Nesse momento, fazendo uma relação com o ambiente <code>R</code>, dizemos que o celular que desejamos é o objeto, suas características são os atributos do objeto, e o comportamento será o método aplicado a este objeto na programação orientada a objetos.</p>
 <p>Mesmo que seu aparelho apresente um IMEI (Código de identificação do aparelho) único, nós sabemos que existem diversos aparelhos com essa mesma configuração, modelo e marca, alguns outros com pequenas características que o diferenciam, mas conseguimos identificar ainda assim, esse objeto como um celular. Portanto, podemos dizer que o celular é uma <em>classe</em> para o ambiente <code>R</code>, em que apesar de termos diversos objetos, estes são identificados dentro de um conjunto de características que o definem como celular. Nesse caso, dizemos ainda que o celular que escolhemos é uma <em>instância</em> dessa classe, que apesar de ter atributos próprios, ainda assim, é identificado como um celular. Desse modo, ao ser definidos as classes de determinados objetos, a linguagem saberá utilizar o método correto para tal objeto, isso significa que mesmo que não saibamos como ocorre, devemos confiar que ocorrerá. Isso é programação orientada a objetos.</p>
 <p>Teríamos mais analogias para abordar, como <strong>encapsulamento</strong>, <strong>hierarquias</strong> , <strong>envio (ou despacho) de método</strong>, <strong>polimorfismo</strong>, <strong>subclasses</strong>, <strong>superclasses</strong>, dentre outras. Mas, vamos deixar para discutir ao longo das aplicações.</p>
 <p>Assim, esse paradigma da programação permite associarmos o desenvolvimento do nosso código pra dentro de nossa realidade humana. Porém a ideia de POO dentro do <code>R</code> sai do escopo de implementações densenvolvidas em outras linguagens. Antes de entrarmos no tema propriamente dito, queremos ressaltar que não estamos interessados em repassar uma POO eficiente, devido a todo o cunho teórico exigido para o assunto. Mas, queremos repassar como os principais sistemas de POO foram desenvolvidos dentro do <code>R</code>.</p>
 <h2 id="objetos-oo-base">Nem tudo é orientado a objetos no R</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/npVwzYBIpZ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Uma primeira ideia que temos que saber é que apenas de um dos princípios que tudo no <code>R</code> é um objeto, mas nem tudo é orientado a objetos. Isso ocorre, porque discutimos anteriormente, que o <code>R</code> é um dialeto da linguagem <code>S</code>. No início do desenvolvimento da linguagem <code>S</code>, John Chambers e seus colaboradores nem cogitavam para a implementação do código a programação orientada a objetos, desse modo, o <code>R</code> quando começou a ser densevolvido, os primeiros objetos desenvolvidos foram vêm dessas primeiras versões da linguagem <code>S</code>, sem ainda a implementação de POO.</p>
 <p>Dessa forma, vamos distinguir o <code>R</code> com dois tipos de objetos:</p>
 <ul>
@@ -2593,6 +2601,8 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 </table>
 <p>Todas as funcões que usam esses <strong>objetos base</strong> e apresentam comportamento diferentes, não usam o sitema POO, porque foram implementadas em sua maioria na linguagem <code>C</code>, usando a instrução <code>switch</code>, em que também aprofundaremos no <a href="navancado.html">módulo avançado</a>.</p>
 <h2 id="sistemas-poo">Sistemas de POO no <code>R</code></h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nvSuHOK5ZPE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Usando as ideias de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, complementadas por <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, dizemos que o paradigma da programação orientada a objetos pode ser dividida em dois ramos:</p>
 <ul>
 <li><strong>POO encapsulada</strong>: os métodos são encapsulado em suas classes, isto é, os objetos nesse estilo de programação contém os seus comportamentos;</li>
@@ -2602,6 +2612,8 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <p>Exploraremos para esse momento, apenas o sistema <strong>S3</strong> (POO funcional), em que o sitema <strong>S4</strong> também apresenta o paradigma POO funcional. Esses dois sistemas foram a evolução da implementação de POO na linguagem <code>S</code> implementadas no <code>R</code>. Contudo, os seus nomes geram a impressão de que também haviam os sistemas S1 e S2, mas não, os nomes <strong>S3</strong> e <strong>S4</strong> se devem as versões da linguagem <code>S</code>, como evolução da linguagem em si. Nesses momentos, foram o marco para a incorporação da programação orientada a objetos na linguagem, em que antes não existia, por isso, não haver sistemas S1 e S2.</p>
 <p>Para complementar a carcterização dos sistemas citados, os sistemas <strong>RC</strong> e <strong>R6</strong> apresentam o paradigma POO encapsulado. Os demais sistemas implementados nos pacotes disponíveis no CRAN, como <a href="https://github.com/HenrikBengtsson/R.oo">R.oo</a> fornece algum formalismo em cima de S3 e torna possível ter objetos S3 mutáveis (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), e <a href="https://github.com/hadley/proto">proto</a> que implementa outro estilo de OOP baseado na ideia de protótipos , que confundem as distinções entre classes e instâncias de classes (objetos) (<span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>), do qual foi o sistema implementado para o pacote <a href="https://ggplot2.tidyverse.org/">ggplot2</a>.</p>
 <h2 id="sistemaS3">Sistema S3</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/aMTHWwYKiNQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <!-- Depois modificar esse parágrafo inicial, após descrever os demais métodos -->
 <p>Poderíamos descrever todos os sistemas, porém restringiremos ao sistema <strong>S3</strong>, por uma única razão, é o sistema amplamente empregado aos objetos dos pacotes <strong>base</strong> e <strong>stats</strong>, bem como na maioria dos pacotes disponíveis no <em>CRAN</em>. Mais detalhes sobre o sistema, sugerimos leituras em <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, <span class="citation" data-cites="chambers2008"><a href="#ref-chambers2008" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2008" role="doc-biblioref">2008</a>)</span>, <span class="citation" data-cites="chambers1991"><a href="#ref-chambers1991" role="doc-biblioref">Chambers and Hastie</a> (<a href="#ref-chambers1991" role="doc-biblioref">1991</a>)</span>, dentre outros materiais.</p>
 <p>Como falado anteriormente, um objeto POO terá sempre um atributo <code>class</code>, em que podemos utilizar a função <code>atributes</code> para verificar isso. Vejamos,</p>
@@ -2649,6 +2661,8 @@ attr(,&quot;row.names&quot;)
 </div>
 <p>Isso significa, que o objeto <code>data.frame</code> perde seu comportamento especial e retorna ao mesmo comportamento de uma lista. Afinal, falamos no módulo básico que um objeto <code>data.frame</code> é uma lista.</p>
 <h3 id="fgenericas">Funções genéricas</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wQiwTa-s9Bw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong>, que buscam o método específico para determinada classe de um objeto. Esta função representa um intermediário do sistema <strong>S3</strong>, do qual define os argumentos de entrada, e na sequência, encontra o método certo, baseado na classe do objeto associado ao primeiro argumento da função genérica. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>UseMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos, principalmente, a função <code>sloop::ftype()</code> como pesquisa por funções genéricas. Vejamos,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2728,7 +2742,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e63e00&gt;
+&lt;bytecode: 0x0000000008e33e38&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2871,7 +2885,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000018e64a90&gt;
+&lt;bytecode: 0x00000000271febe8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2897,7 +2911,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000018e64a90&gt;
+&lt;bytecode: 0x00000000271febe8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2923,7 +2937,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000018e64a90&gt;
+&lt;bytecode: 0x00000000271febe8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -2980,6 +2994,8 @@ function (object, ...)
 <pre><code>[1] 100</code></pre>
 </div>
 <h3 id="UseMethod">Entendendo melhor a chamada <code>UseMethod</code></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R0Ty5xjYDG4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Na seção anterior, falamos que as funções genéricas do tipo <code>closure</code>, usam no corpo da função a chamada <code>UseMethod</code>. Esta é uma função primitiva, desenvolvida em <code>C</code>, porém usa a correspondência padrão de argumentos, com sintaxe dada por:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3040,6 +3056,8 @@ function (object, ...)
 </div>
 <p>Observemos nesse caso, que a linha de comando no corpo da função genérica <code>quem</code>, antes da chamada <code>UseMethod</code> é avaliada e executada, porém, o que ocorre após não é executado, uma vez, que não é impresso no console o resultado <code>"Isso nao sera impresso!"</code>. Logo, após a chamada de <code>UseMethod</code> e o envio de método para <code>quem.eh</code> e a ocorrência de sua execução, o ambiente de execução de <code>quem</code> é finalizado, do qual, <code>print("Isso nao sera impresso!")</code> não é executado.</p>
 <h3 id="criando_fgenericas">Criando funções genéricas</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FSZhTSo7U-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Como já mostrado em alguns exemplos na seção anterior, a forma de criar uma função genérica é por meio da inserção no corpo da criação de uma função, a chamada <code>UseMethod</code>. A ideia da função genérica, é encontrar o método específico para uma determinada instância de classe (objeto). Desse modo, criamos uma função genérica da seguinte forma:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3052,6 +3070,8 @@ function (object, ...)
 </div>
 <p>Assim, <code>quem</code> é uma função genérica. Esta função tem o objetivo, por meio de <code>UseMethod</code>, identificar a classe do objeto definido em <code>x</code>, e depois o envio de método, isto é, encontrar o método (objeto função) específico para a classe do objeto em <code>x</code>.</p>
 <h3 id="classeS3">Classe e classe implícita</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/du32MYwxbsg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
 <p>Usuário de outras linguagens que estudaram POO , por exemplo em <em>Java</em>, <em>C++</em>, <em>Python</em>, devem estar muito confusos, até esse momento, como o sistema <strong>S3</strong> não tem uma forma usual de definir uma classe. Para isso, basta usar o atributo <code>class</code> em um objeto. Desse modo, este se torna uma instância da classe.</p>
 <p>Já vimos no módulo básico como verificar os atributos em um objeto, por meio da função <code>attributes()</code>. Vamos expandir um pouco mais, antes de passarmos para o atributo <code>class</code>. Vejamos a seguir, como inserir um ou mais de um atributo aos objetos, bem como eliminá-los.</p>
 <div class="layout-chunk" data-layout="l-body">
