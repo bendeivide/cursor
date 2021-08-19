@@ -36,10 +36,6 @@ h1 {
    background-color: rgba(247, 224, 130, 0.3);
 }
 
-div {
-
-}
-
 /* Exemplo div:
 <div class="red2">
 This text is red
@@ -109,4 +105,15 @@ table.rmdtable th {
 table.rmdtable td, table th {
     font-size: 16px;
     padding: 0.5em 0.5em;
+}
+
+.nota {
+  padding: 0.1em;
+  background-color: rgba(247, 224, 130, 0.3);
+  color: white;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+.center {
+  text-align: center;
 }

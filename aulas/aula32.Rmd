@@ -111,12 +111,6 @@ mean
   - `"&"`, `"|"`, `"!"`
   - `"=="`, `"!="`, `"<"`, `"<="`, `">="`, `">"`
 
-- Grupo `Summary`:
-  - `all`, `any`, `sum`, `prod`, `min`, `max`, `range`
-
-- Grupo `Complex`:
-  - Arg, `Conj`, `Im`, `Mod`, `Re`
-  
 ## Grupos genéricos
 
 - Grupos genéricos: Grupo `Math`, Grupo `Ops`, Grupo `Summary` e grupo `Complex`
