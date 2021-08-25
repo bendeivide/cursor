@@ -108,6 +108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
+  <meta name="citation_reference" content="citation_title=Statistical models in S;citation_publication_date=1993;citation_publisher=Chapman &amp; Hall;citation_author=John M. Chambers;citation_author=Trevor J. Hastie"/>
   <meta name="citation_reference" content="citation_title=Advanced R;citation_publication_date=2019;citation_publisher=Chapman; Hall/CRC;citation_author=Hadley Wickham"/>
   <meta name="citation_reference" content="citation_title=Extending R;citation_publication_date=2016;citation_publisher=Chapman; Hall/CRC;citation_author=John M. Chambers"/>
   <meta name="citation_reference" content="citation_title=Software for data analysis: Programming with R;citation_publication_date=2008;citation_publisher=Springer;citation_author=John M. Chambers"/>
@@ -2152,9 +2153,7 @@ Material
 <li><a href="#criando_fgenericas">Criando funções genéricas</a></li>
 <li><a href="#classeS3">Classe e classe implícita</a></li>
 <li><a href="#metodoS3">Método S3</a></li>
-<li><a href="#envio-herança">Envio de método e mecanismo de herança</a></li>
-<li><a href="#estrategiaS3">Estratégias para o sistema S3</a></li>
-<li><a href="#est_obj_poo_s3">Estilos de objetos POO S3</a></li>
+<li><a href="#envio-herança">Envio de método e mecanismo de herança</a> <!-- - [Estratégias para o sistema S3](#estrategiaS3) --> <!-- - [Estilos de objetos POO S3](#est_obj_poo_s3) --></li>
 </ul></li>
 </ul></li>
 <li><a href=""><i class="fas fa-arrow-circle-left"></i> Entendendo um pouco mais sobre objetos no <code>R</code></a>
@@ -2219,9 +2218,8 @@ Material
 <li>Aula 34: <a href="aulas/aula34.html" target="_blank">Sistema S3: Criando funções genéricas (POO no R)</a></li>
 <li>Aula 35: <a href="aulas/aula35.html" target="_blank">Sistema S3: Classes e classes implícitas (POO no R)</a></li>
 <li>Aula 36: <a href="aulas/aula36.html" target="_blank">Sistema S3: Métodos (POO no R)</a></li>
-<li>Aula 37: <a href="aulas/aula37.html" target="_blank">Sistema S3: Envio (despacho) de métodos e hieranças</a></li>
-<li>Aula 38: <a href="aulas/aula38.html" target="_blank">Sistema S3: Estratégias para o sistema S3</a></li>
-<li>Aula 39: <a href="aulas/aula39.html" target="_blank">Sistema S3: Estilos de objetos</a></li>
+<li>Aula 37: <a href="aulas/aula37.html" target="_blank">Revisão sobre as aulas 27 a 36</a></li>
+<li>Aula 38: <a href="aulas/aula37.html" target="_blank">Sistema S3: Envio (despacho) de métodos e hieranças</a> <!-- - Aula 39: [Sistema S3:  Estratégias para o sistema S3](aulas/aula38.html){target="_blank"} --> <!-- - Aula 40: [Sistema S3:  Estilos de objetos](aulas/aula39.html){target="_blank"} --></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2356,12 +2354,12 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -0.1196981  0.9972709  1.5409982</code></pre>
+<pre><code>[1]  1.0337700  0.3647557 -0.2428575</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1]  0.1507114 -0.2426328 -0.5844597</code></pre>
+<pre><code>[1] -1.5657441  0.6763031 -1.4781201</code></pre>
 </div>
 <p>A <strong>imutabilidade</strong> na programação funcional apresenta em uma linguagem na situação em que uma variável ou objeto é criado, e este não pode ser modificado. Esta é outra característica que ocorre no <code>R</code>, mas não para todos os objetos em que exitem nomes associados, é o caso da <strong>modificação no local</strong>. Por exemplo, vamos apresentar um contra-exemplo de que nem todos os objetos no <code>R</code> são imutáveis. Vejamos:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2663,7 +2661,7 @@ attr(,&quot;row.names&quot;)
 <h3 id="fgenericas">Funções genéricas</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wQiwTa-s9Bw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong>, que buscam o método específico para determinada classe de um objeto. Esta função representa um intermediário do sistema <strong>S3</strong>, do qual define os argumentos de entrada, e na sequência, encontra o método certo, baseado na classe do objeto associado ao primeiro argumento da função genérica. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>UseMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos, principalmente, a função <code>sloop::ftype()</code> como pesquisa por funções genéricas. Vejamos,</p>
+<p>A base do sistema <strong>S3</strong> está nas <strong>funções genéricas</strong> ou também podemos chamar de <strong>genéricos</strong>, que buscam o método específico para determinada classe de um objeto. Esta função representa um intermediário do sistema <strong>S3</strong>, do qual define os argumentos de entrada, e na sequência, encontra o método certo, baseado na classe do objeto associado ao primeiro argumento da função genérica. Para sabermos se uma função é genérica, temos algumas funções: <code>utils::isS3stdGeneric()</code> e <code>sloop::ftype()</code>. Verificando esta última função, além de informar se é uma função genérica, informa também o sistema POO, além do que a função <code>utils::isS3stdGeneric()</code> apenas retorna <code>TRUE</code>, as funções genéricas <strong>S3</strong> que apresentam no corpo de sua função, a chamada <code>UseMethod</code>. Vale lembrar, que funções primitivas/internas não apresentam essa chamada de função. Dessa forma, usaremos, principalmente, a função <code>sloop::ftype()</code> como pesquisa por funções genéricas. Vejamos,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcoes do tipo "closure" que nao pertencem ao sistema S3</span>
@@ -2742,7 +2740,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e43580&gt;
+&lt;bytecode: 0x0000000008e54290&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2808,11 +2806,15 @@ UseMethod(&quot;mean&quot;)
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span><span class='st'>"Math"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] Math,nonStructure-method Math,structure-method   
- [3] Math.data.frame          Math.Date               
- [5] Math.difftime            Math.factor             
- [7] Math.POSIXt              Math.quosure*           
- [9] Math.vctrs_sclr*         Math.vctrs_vctr*        
+<pre><code> [1] Math,CsparseMatrix-method  Math,ddenseMatrix-method  
+ [3] Math,denseMatrix-method    Math,dgeMatrix-method     
+ [5] Math,diagonalMatrix-method Math,nonStructure-method  
+ [7] Math,sparseMatrix-method   Math,sparseVector-method  
+ [9] Math,structure-method      Math.data.frame           
+[11] Math.Date                  Math.difftime             
+[13] Math.factor                Math.POSIXt               
+[15] Math.quosure*              Math.vctrs_sclr*          
+[17] Math.vctrs_vctr*          
 see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <ul>
@@ -2823,13 +2825,19 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span><span class='st'>"Summary"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] Summary.data.frame      Summary.Date           
- [3] Summary.difftime        Summary.factor         
- [5] Summary.numeric_version Summary.ordered        
- [7] Summary.POSIXct         Summary.POSIXlt        
- [9] Summary.quosure*        Summary.roman*         
-[11] Summary.unit*           Summary.vctrs_sclr*    
-[13] Summary.vctrs_vctr*    
+<pre><code> [1] Summary,abIndex-method       Summary,ddenseMatrix-method 
+ [3] Summary,ddiMatrix-method     Summary,dsparseMatrix-method
+ [5] Summary,indMatrix-method     Summary,ldenseMatrix-method 
+ [7] Summary,ldiMatrix-method     Summary,lMatrix-method      
+ [9] Summary,Matrix-method        Summary,ndenseMatrix-method 
+[11] Summary,nMatrix-method       Summary,nsparseVector-method
+[13] Summary,sparseVector-method  Summary.data.frame          
+[15] Summary.Date                 Summary.difftime            
+[17] Summary.factor               Summary.numeric_version     
+[19] Summary.ordered              Summary.POSIXct             
+[21] Summary.POSIXlt              Summary.quosure*            
+[23] Summary.roman*               Summary.unit*               
+[25] Summary.vctrs_sclr*          Summary.vctrs_vctr*         
 see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <ul>
@@ -2875,7 +2883,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000009aec838&gt;
+&lt;bytecode: 0x0000000020bef428&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2901,7 +2909,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000009aec838&gt;
+&lt;bytecode: 0x0000000020bef428&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2927,7 +2935,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000009aec838&gt;
+&lt;bytecode: 0x0000000020bef428&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3022,7 +3030,22 @@ function (object, ...)
 </div>
 </div>
 <p>Portanto, o objeto associado ao nome <code>fgenerica</code> é o que chamamos de função genérica. Nesse caso, o código interno de <code>UseMethod</code> examina o atributo <code>class</code> no objeto do primeiro argumento da função genérica, que no caso da função genérica <code>fgenerica</code> anterior, é o argumento <code>x</code>.</p>
-<p>A chamada <code>UseMethod</code> insere objetos especiais no ambiente de avaliação da função genérica, que são <code>.Class</code>, <code>.Generic</code> e <code>.Method</code>. Eles são responsáveis pelo despacho de método e os mecanismos de herança. O objeto <code>.Class</code> representa a classe do objeto (primeiro argumento da função genérica), <code>.Generic</code> é o nome da função genérica, e <code>.Method</code> é o nome do método usado. Poderá surgir também um outro objeto chamado <code>.Group</code>, quando funções genéricas são primitivas que se enquandram dentro das funções genéricas de grupo, visto mais a frente. De todo modo, isso é serviço para o <a href="http://r-project.org/" target="_blank">R</a> internamente e o usuário não precisará se preocupar.</p>
+<p>A chamada <code>UseMethod</code> insere objetos especiais no ambiente de avaliação da função genérica, que são <code>.Class</code>, <code>.Generic</code> e <code>.Method</code>. Eles são responsáveis pelo despacho de método e os mecanismos de herança. O objeto <code>.Class</code> representa a classe do objeto (primeiro argumento da função genérica), <code>.Generic</code> é o nome da função genérica, e <code>.Method</code> é o nome do método usado. Poderá surgir também um outro objeto chamado <code>.Group</code>, quando funções genéricas são primitivas que se enquandram dentro das funções genéricas de grupo, visto mais a frente. De todo modo, isso é serviço para o <a href="http://r-project.org/" target="_blank">R</a> internamente e o usuário não precisará se preocupar. Vejamos o código a seguir, para observamos como podemos obter informações desses objetos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>generico</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"generico"</span><span class='op'>)</span>
+
+<span class='va'>generico.metodo</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Imprima o valor dos objetos .Generic, .Class e .Method, respectivamente:\n"</span>, <span class='va'>.Generic</span>, <span class='st'>"\n"</span>, <span class='va'>.Class</span>, <span class='st'>"\n"</span>, <span class='va'>.Method</span><span class='op'>)</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>; <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"metodo"</span>
+<span class='fu'>generico</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Imprima o valor dos objetos .Generic, .Class e .Method, respectivamente:
+ generico 
+ metodo 
+ generico.metodo</code></pre>
+</div>
 <p>Uma coisa interessante, é que a função <code>UseMethod</code> por ser primitiva, não cria seu próprio ambiente, mas a sua chamada ocorre no ambiente de chamada, isto é, no ambiente de execução da função genérica. Além do mais, como o ambiente de chamada da função <code>UseMethod</code> é o ambiente de execução da função genérica, um código interno em <code>UseMethod</code> faz com que o ambiente de chamada seja finalizado após o método ter sido avaliado. Em outras palavras, o que for escrito no corpo da função genérica após a chamada <code>UseMethod</code>, não será executado nem avaliado. Vejamos um exemplo, para clarear o que estamos falando, que segue,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3413,7 +3436,7 @@ $class
 <p>No segundo caso, temos uma função genérica, e aqui surge algo meio inconsistente, aparentemente com a chamada <code>UseMethod</code> no corpo da função genérica. Mais vez, esta função nos surpreende, porque ela não permite a alteração dos argumentos definidos na função genérica com variáveis definidas no código interno dessa função, para posteriormente, seguir no despacho do método. Observemos na função genérica<code>g()</code>, que apesar de associado valores para os nomes <code>x</code> e <code>y</code>, todos iguais a <code>10</code>, ao chamarmos <code>g()</code>, definimos para os seus argumentos <code>x</code> e <code>y</code> valores iguais a <code>1</code>, e o que ocorre após a chamada dessa função é um vetor de <code>1s</code> (uns). Isto siginifica, que as instâncias internas da função genérica, não alteraram os argumentos da função, e o despacho de método segue para <code>g.default()</code>.</p>
 <p>No terceiro caso, a função genérica apresenta apenas um argumento, <code>x</code>. Observemos nesse caso, que o código interno do método <code>g.default()</code> procura por um objeto associado a <code>y</code>, que é encontrado primeiro no ambiente de execução da função genérica, cujo resultado é <code>10</code>. Porém, mesmo havendo um nome <code>x</code> associado ao valor <code>10</code>, no ambiente de execução da função genérica, a chamada <code>UseMethod</code> preserva o argumento <code>x = 1</code> definido em <code>g()</code>, que despacha para o método. Ao final, o resultado da função genérica é um vetor com valores <code>1</code> e <code>10</code>, respectivamente.</p>
 <p>Por fim, o quarto caso, cuja a chamada de função ocorre diretamente pelo método e não pela função genérica. Nesse caso, o resultado será igual ao que ocorre com a função <code>h()</code>, porque não há o despacho pela chamada <code>UseMethod</code>, e portanto, não se preserva os argumentos da função no código interno da função genérica.</p>
-<p>Retornando a criação de métodos, uma forma de criar um método é por meio de funções primitivas genéricas. No fim da seção <a href="#funcoes_genericas">Funções genéricas</a>, mostramos um código como encontrar as funções primitivas genéricas. O procedimento será o mesmo, isto é, determinado a função genérica, por exemplo, <code>print</code>, e posteriormente, definir uma classe específica para um objeto. Vamos implementar um método para <code>print</code>, a seguir.</p>
+<p>Retornando a criação de métodos, uma forma de criar um método é por meio de <strong>funções primitivas genéricas</strong>. No fim da seção <a href="#funcoes_genericas">Funções genéricas</a>, mostramos um código como encontrar as funções primitivas genéricas. O procedimento será o mesmo, isto é, determinado a função genérica, por exemplo, <code>print</code>, e posteriormente, definir uma classe específica para um objeto. Vamos implementar um método para <code>print</code>, a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto classe 'comp'</span>
@@ -3451,7 +3474,7 @@ $class
 <span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_methods_class.html'>s3_methods_generic</a></span><span class='op'>(</span><span class='st'>"print"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 261 x 4
+<pre><code># A tibble: 306 x 4
    generic class    visible source             
    &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;   &lt;chr&gt;              
  1 print   acf      FALSE   registered S3method
@@ -3464,7 +3487,7 @@ $class
  8 print   ar       FALSE   registered S3method
  9 print   Arima    FALSE   registered S3method
 10 print   arima0   FALSE   registered S3method
-# ... with 251 more rows</code></pre>
+# ... with 296 more rows</code></pre>
 </div>
 <p>Observamos, pelos pacotes instalados no computador do qual escrevemos esse material, apresenta para a função genérica <code>print</code>, 284 métodos. Porém, observamos que a última função <code>sloop::s3_methods_generic()</code> apresenta um maior detalhamento dos métodos, como por exemplo, a visibilidade de suas instruções no <em>console</em>, e ainda de qual pacote o método foi desenvolvido. Nesse caso, quando na coluna <em>visible</em>, um determinado método retorna <code>FALSE</code>, que é equivalente a um asterisco no resultado, por meio da função <code>methods()</code>, que significa que o método não é exportado do <em>namespace</em> do pacote, em que esse método foi desenvolvido. Contudo, mostramos anteriormente, alternativas de como acessar esses métodos.</p>
 <p>De outro modo, poderíamos está interessados em métodos baseados em uma determinada classe. Nesse caso, vejamos um exemplo para a classe <code>factor</code>, a seguir.</p>
@@ -3475,13 +3498,15 @@ $class
 </code></pre>
 </div>
 <pre><code> [1] [             [[            [[&lt;-          [&lt;-          
- [5] all.equal     as.character  as.data.frame as.Date      
- [9] as.list       as.logical    as.POSIXlt    as.vector    
-[13] c             coerce        droplevels    format       
-[17] initialize    is.na&lt;-       length&lt;-      levels&lt;-     
-[21] Math          Ops           plot          print        
-[25] relevel       relist        rep           show         
-[29] slotsFromS3   summary       Summary       xtfrm        
+ [5] all.equal     Arith         as.character  as.data.frame
+ [9] as.Date       as.list       as.logical    as.POSIXlt   
+[13] as.vector     c             cbind2        coerce       
+[17] Compare       droplevels    format        initialize   
+[21] is.na&lt;-       length&lt;-      levels&lt;-      Logic        
+[25] Math          Ops           plot          print        
+[29] rbind2        relevel       relist        rep          
+[33] show          slotsFromS3   summary       Summary      
+[37] xtfrm        
 see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Usando agora a funcao s3_methods_generic</span>
@@ -3503,12 +3528,489 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 10 as.logical    factor TRUE    base  
 # ... with 18 more rows</code></pre>
 </div>
-<p>Uma vez entendido a criação de método, vamos entender na sequência, os detalhes que a chamada <code>UseMethod()</code> realiza para o envio de método e os mecanismos de herança.</p>
+<p>Para o caso dos <strong>genéricos de grupo</strong>, sabemos que os grupos <code>Math</code>, <code>Ops</code>, <code>Summary</code>, e <code>Complex</code> não são objetos <code>R</code>, porém esses nomes podem ser usados para a criação de métodos S3. Uma outra coisa interessante nessa situação é que os objetos <code>.Generic</code>, <code>.Class</code> e <code>.Methods</code>, sofrem uma pequena variação da forma convencional dos nomes da função genérica, da classe e do método, respectivamente. Vamos tomar como exemplo a função <code>sum()</code> que pertence ao grupo <code>Summary</code>, e vamos criar um método para o grupo <code>Summary</code>, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Metodo ben</span>
+<span class='va'>Summary.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>.Generic</span>, <span class='va'>.Class</span>, <span class='va'>.Method</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Vamos aplicar a funcao sum em um obj de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>1</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;sum&quot;         &quot;ben&quot;         &quot;Summary.ben&quot;</code></pre>
+</div>
+<p>Observamos nesse primeiro exemplo que o objeto <code>.Generic</code> acaba recebendo o nome da função genérica do grupo e não o nome do grupo, como poderíamos pensar. Porém, o nome do método acaba sendo relacionado com o nome do grupo e não da função genérica aplicada, nesse caso. No que isso interfere na semântica do sistema S3? Tudo! Vejamos um outro exemplo, com o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Metodo</span>
+<span class='va'>Summary.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='st'>"Eu sou do grupo 'Summary'"</span>
+<span class='op'>}</span>
+<span class='co'># Objeto de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>2</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='co'># Genericos do grupo 'Summary'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/prod.html'>prod</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;&quot;</code></pre>
+</div>
+<p>Como criamos o método a partir do nome do grupo, todas as funções genéricas desse grupo despacharão nesse método, e o resultado para todas as funções será o mesmo. Um outro recurso, seria utilizar a função <code>switch()</code> para diferenciar o despache de método, apesar desse envio ser no próprio <code>Summary.ben()</code>. Vejamos o próximo código para esse elucidar o que acabamos de falar.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Metodo</span>
+<span class='va'>Summary.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/switch.html'>switch</a></span><span class='op'>(</span><span class='va'>.Generic</span>,
+         all <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span>,
+         any <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span>,
+         sum <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span>,
+         prod <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span>,
+         min <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span>,
+         max <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span>,
+         range <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span><span class='op'>)</span>
+  
+<span class='op'>}</span>
+<span class='co'># Objeto de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>2</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='co'># Genericos do grupo 'Summary'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/any.html'>any</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/prod.html'>prod</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> 
+</code></pre>
+</div>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: all&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: any&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: sum&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: prod&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: min&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: max&quot;</code></pre>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: range&quot;</code></pre>
+</div>
+<p>Ou ainda, poderíamos ter criado um método apenas para uma função genérica específica do grupo. Desse modo, não criamos o método a partir do nome do grupo, mas da própria função. Vejamos o próximo código.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Metodo para o generico 'min'</span>
+<span class='va'>min.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span> <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"Eu sou do grupo 'Summary', mas generico: "</span>, <span class='va'>.Generic</span><span class='op'>)</span>
+<span class='co'># Objeto de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>2</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='co'># Generico do grupo 'Summary': min()</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Eu sou do grupo &#39;Summary&#39;, mas generico: min&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ja com um outro generico de 'Summary', o resultado eh diferente</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+</div>
+<p>Uma vez entendido a criação de método, vamos entender na sequência, os detalhes que a chamada <code>UseMethod()</code> realiza para o envio de método e os mecanismos de herança e como esse processo ocorre para as funções genéricas primitivas e os grupos genéricos, que não apresentam a chamada <code>UseMethod()</code> en seu código interno.</p>
 <h3 id="envio-herança">Envio de método e mecanismo de herança</h3>
-<p>Como falado anteriormente, o atributo <code>class</code> em um objeto, pode ser um vetor de <code>strings</code>, e ter diversos nomes.</p>
-<h3 id="estrategiaS3">Estratégias para o sistema S3</h3>
-<p>Constutor, validador e ajudante</p>
-<h3 id="est_obj_poo_s3">Estilos de objetos POO S3</h3>
+<p>Como falado anteriormente, o atributo <code>class</code> em um objeto, pode ser um vetor de <code>strings</code>, e ter diversos nomes. Já comentamos anteriormente sobre o <strong>envio de método</strong> ou também podemos chamar como <strong>despacho de método</strong>.</p>
+<h4 id="envio-ou-despacho-de-método">Envio ou despacho de método</h4>
+<p>A ideia do envio de método e a criação de um vetor de potenciais nomes de métodos, como por exemplo esse:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
+<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='st'>"generic"</span>, <span class='st'>"."</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, <span class='st'>"default"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;generic.integer&quot; &quot;generic.default&quot;</code></pre>
+</div>
+<p>E desse modo a chamada <code>UseMethod</code> se encarregará de verificar quais os métodos que existem. Pode haver mais de uma existência de método, será chamado o primeiro método na sequência de métodos existentes. Para verificar isso, podemos usar a função <code>sloop::s3_dispatch()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto de classe 'data.frame'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='op'>)</span> 
+<span class='co'># Despacho (envio) do generico 'print'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>=&gt; print.data.frame
+ * print.default</code></pre>
+</div>
+<p>O resultado da chamada <code>sloop::s3_dispatch()</code> pode apresentar três símbolos antes dos potenciais nomes de métodos:</p>
+<ul>
+<li><code>=&gt;</code>: este símbolo indica que a função genérica despachou no referido método;</li>
+<li><code>*</code>: este símbolo indica que este método existe, mas a função genérica não despachou nele;</li>
+<li><code>-&gt;</code>: indica o método chamado subjacente, após o método com o símbolo <code>=&gt;</code> ter sido chamado. Isso ocorre, por no método representado por <code>"=&gt;"</code> existe uma função nominada por <code>NextMethod</code> que faz o serviço de chamar o próximo método. Veremos esse ponto mais a frente.</li>
+</ul>
+<p>No código anterior, vimos os dois símbolos <code>=&gt;</code> e <code>*</code>. Interpretamos que a função genérica <code>print(x)</code> despachou em <code>print.data.frame()</code>, mas que o método <code>print.default</code> existia, porém não foi utilizado.</p>
+<p>Vejamos o próximo código para entendermos o que significa o símbolo (<code>-&gt;</code>) na saída da função <code>sloop::s3_dispatch()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao generica</span>
+<span class='va'>quem_sou_eu</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"quem_sou_eu"</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Metodo numero natural</span>
+<span class='va'>quem_sou_eu.numero_natural</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='st'>"Eu sou um numero natural"</span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='st'>"quem_sou_eu"</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Metodo numerico</span>
+<span class='va'>quem_sou_eu.numerico</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/message.html'>message</a></span><span class='op'>(</span><span class='st'>"Eu sou numerico"</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"numero_complexo"</span>,<span class='st'>"numero_natural"</span>,<span class='st'>"numerico"</span><span class='op'>)</span>
+
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'>quem_sou_eu</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   quem_sou_eu.numero_complexo
+=&gt; quem_sou_eu.numero_natural
+-&gt; quem_sou_eu.numerico
+   quem_sou_eu.default</code></pre>
+</div>
+<p>Observemos que a função genérica <code>quem_sou_eu()</code> despachou no método <code>quem_sou_eu.numero_natural</code>, símbolo (<code>=&gt;</code>), mas internamente nesse método, nós temos a chamada <code>NextMethod()</code> que invoca o próximo método. Nesse caso foi <code>quem_sou_eu.numerico</code>, com o símbolo (<code>-&gt;</code>). Os demais métodos não existem, pois não apresentam o asterisco (<code>*</code>). Entenderemos um pouco mais sobre a chamada <code>NextMethod()</code> mais a frente.</p>
+<h4 id="funções-primitivas-genéricas-e-genéricos-de-grupo">Funções primitivas genéricas e genéricos de grupo</h4>
+<p>Anteriormente falamos sobre as funções primitivas genéricas. Dissemos que eram funções escritas em linguagem <code>C</code>, não apresentavam as três composições básicas de uma função: <code>formals()</code>, <code>body()</code>, <code>environment()</code>, e que não apresentavam internamente a chamada <code>UseMethod</code>. Então, se o objeto inserido no primeiro argumento dessas funções não tiverem o atributo <code>class</code> (objeto base), o despacho para métodos não ocorrerá, isto é, as funções primitivas genéricas não usarão as classes implícitas. Isso porque, as funções que se comportam de modo diferente para diferentes tipos de objetos base, apresentam essa característica não porque formam um sistema POO, mas porque estas funções primitivas usam instruções da linguagem <code>C</code> do tipo <code>switch</code>. Nós temos a versão da função <code>switch()</code> em <a href="http://r-project.org/" target="_blank">R</a>, e foi comentada no <a href="nbasico.html">módulo Básico</a>. Vejamos a função primitiva genérica <code>cbind()</code>, como exemplo a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Eh primitiva generica?</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/is_s3_generic.html'>is_s3_generic</a></span><span class='op'>(</span><span class='st'>"cbind"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Onde ocorre o despacho?</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   cbind.integer
+   cbind.numeric
+   cbind.default
+=&gt; cbind (internal)</code></pre>
+</div>
+<!-- Entretanto, quando uso um atributo no argumento em cbind, o processo não ocorre quando faço o mesmo com a funcao length. Estudar depois essa ideia! Mandei essa duvida para o pacote sloop: -->
+<!-- cbind.default <- function(x, ...) "Test!" -->
+<!-- x <- 1:10 -->
+<!-- sloop::s3_dispatch(cbind(structure(x, class = "numeric"))) -->
+<!-- cbind(structure(x, class = "numeric")) -->
+<!-- ##### -->
+<!-- x <- matrix(1:6, nrow = 2) -->
+<!-- sloop::s3_dispatch(print(x)) -->
+<!-- length.default <- function(x) 10 -->
+<!-- sloop::s3_dispatch(length(x)) -->
+<!-- sloop::s3_dispatch(length(structure(x, class = "numeric"))) -->
+<p>Percebemos nesse caso, como o objeto <code>1:10</code> não apresenta o atributo <code>class</code>, a função interna foi a chamada, e nenhuma das classes implícitas são utilizadas. Nesse caso, apenas função primitiva/interna é utilizada.</p>
+<p>No caso dos <strong>genéricos de grupo</strong>, sabemos que o nome dos grupos podem fazer parte da criação do método e o despacho de todos os genéricos serão realizados nesse método. Mas também, podemos criar métodos específicos para um determinado genérico de um grupo, sem influenciar no despacho dos demais genéricos. Nesses casos, os genéricos de grupo procurarão inicialmente pelos métodos relacionados as funções primitivas genéricas (<code>fpgenerica.classe</code>), e não achando, procurará pelos métodos relacioado aos nomes dos grupos (<code>grupo.classe</code>), não achando, despachará na função primitiva. Pode haver também o mecanismo de herança, por meio da chamada <code>NextMethod()</code>. Vejamos o código a seguir para o primeiro caso.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto de classe factor</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span>
+<span class='co'># Verificando o despacho de sqrt() do grupo 'Math'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   sqrt.factor
+   sqrt.default
+=&gt; Math.factor
+   Math.default
+ * sqrt (internal)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando o metodo Math.factor()</span>
+<span class='va'>Math.factor</span>
+</code></pre>
+</div>
+<pre><code>function (x, ...) 
+stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
+&lt;bytecode: 0x000000003f95d150&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+</div>
+<p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
+<p>Para os demais casos, podemos observar o código na sequência, para entermos o que falamos anteriormente.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Primeira situacao:</span>
+<span class='co'># ------------------</span>
+<span class='co'># Metodo de grupo</span>
+<span class='va'>Summary.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='st'>"Eu despacho em todo grupo 'Summary'"</span>
+<span class='op'>}</span>
+<span class='co'># Objeto de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='co'># Despacho para funcao 'all'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   all.ben
+   all.default
+=&gt; Summary.ben
+   Summary.default
+ * all (internal)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>####################</span>
+<span class='co'># Segunda situacao:</span>
+<span class='co'># ------------------</span>
+<span class='co'># Metodo apenas para a funcao 'all'</span>
+<span class='va'>all.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='st'>"Eu despacho apenas para 'all.ben'"</span>
+<span class='op'>}</span>
+<span class='co'># Metodo de grupo</span>
+<span class='va'>Summary.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='va'>.Generic</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Objeto de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='co'># Despacho para funcao 'all'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>=&gt; all.ben
+   all.default
+ * Summary.ben
+   Summary.default
+ * all (internal)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>###################</span>
+<span class='co'># Terceira situacao:</span>
+<span class='co'># ------------------</span>
+<span class='co'># Metodo apenas para a funcao 'all'</span>
+<span class='va'>all.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='va'>.Generic</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Metodo de grupo</span>
+<span class='va'>Summary.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='st'>"Eu passei por 'all.ben', mas terminei em 'Summary.ben'"</span>
+<span class='op'>}</span>
+<span class='co'># Objeto de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='co'># Despacho para funcao 'all'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>=&gt; all.ben
+   all.default
+-&gt; Summary.ben
+   Summary.default
+ * all (internal)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>###################</span>
+<span class='co'># Quarta situacao:</span>
+<span class='co'># ------------------</span>
+<span class='co'># Metodo apenas para a funcao 'all'</span>
+<span class='va'>all.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='va'>.Generic</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Metodo de grupo</span>
+<span class='va'>Summary.ben</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>na.rm</span><span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='va'>.Generic</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Objeto de classe 'ben'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, class <span class='op'>=</span> <span class='st'>"ben"</span><span class='op'>)</span>
+<span class='co'># Despacho para funcao 'all'</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>=&gt; all.ben
+   all.default
+-&gt; Summary.ben
+   Summary.default
+-&gt; all (internal)</code></pre>
+</div>
+<p>A primeira situação o envio de método ocorre para <code>Summary.ben()</code> (<code>=&gt;</code>), se verifica a função primita <code>all()</code> (<code>*</code>), porém não executada. Na segunda situação, observamos a existência do método <code>Summary.ben()</code> (<code>*</code>) e a função primitiva <code>all()</code> (<code>*</code>), porém o descpacho ocorre em <code>all.ben()</code> (<code>=&gt;</code>). Na terceira situação, o despacho ocorre em <code>all.ben()</code> (<code>=&gt;</code>), que intermanente chama <code>NextMethod()</code>, delegando para <code>Summary.ben()</code> (<code>-&gt;</code>). Por fim, na quarta situação o envio de método ocorre em <code>all.ben()</code> (<code>=&gt;</code>) que delega para <code>Summary.ben</code> (<code>-&gt;</code>), que delega para a função primitiva <code>all()</code> (<code>-&gt;</code>).</p>
+<!-- #### Cuidado com as anomalias -->
+<!-- Pela flexibilidade do sistema S3, devemos tomar alguns cuidados na cria.... -->
+<!-- # Metodo para o generico 'min' (genericos de grupo) -->
+<!-- max.ben <- function(x, ..., na.rm = FALSE) { -->
+<!--   print(x) # O problema eh que print despacha em print.default -->
+<!-- } -->
+<!-- # Com isso resolve -->
+<!-- # print.ben <- function(x) { -->
+<!-- #   "Despachou em print.ben" -->
+<!-- # } -->
+<!-- # Objeto de classe 'ben' -->
+<!-- x <- structure(2:5, class = "ben") -->
+<!-- # Despacho -->
+<!-- sloop::s3_dispatch(print(x)) -->
+<!-- # Executando -->
+<!-- max(x) # Problema -->
+<!-- ### -->
+<!-- # Generico -->
+<!-- fgenerica <- function(x) UseMethod("fgenerica") -->
+<!-- # Metodo -->
+<!-- fgenerica.ben <- function(..., na.rm = FALSE) print("Test") -->
+<!-- # Objeto de classe 'ben' -->
+<!-- x <- structure(2:5, class = "ben") -->
+<!-- # Despacho -->
+<!-- sloop::s3_dispatch(fgenerica(x)) -->
+<!-- # Executando -->
+<!-- fgenerica(x) # Sem problemas -->
+<h3 id="chamada-nextmethod">Chamada <code>NextMethod()</code></h3>
+<p>Vimos anteriormente que a chamada <code>UseMethod()</code> é responsável pelo envio de método, isto é, dado um objeto com um atributo <code>class</code> inserido no primeiro argumento do genérico, a chamada <code>UseMethod()</code> procurará pelo método específico dessa classe. Contudo, falamos anteriormente, que o atributo <code>class</code> pode ser um vetor de caracteres. Dessa forma é que entra a chamada <code>NextMethod()</code>. A ideia é aplicar o genérico para o próximo método. Já mostramos anteriormente essa semântica, e vamos reforçar com o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Generico</span>
+<span class='va'>fgenerica</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+<span class='co'># Metodo 1</span>
+<span class='va'>fgenerica.clas1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Despache para o metodo 1"</span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Metodo 2</span>
+<span class='va'>fgenerica.clas2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Despache para o metodo 2"</span><span class='op'>)</span>
+<span class='co'>############</span>
+<span class='co'># Avaliacao:</span>
+<span class='co'># Objeto clas1 e clas2</span>
+<span class='fu'>fgenerica</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>2</span>, class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"clas1"</span>, <span class='st'>"clas2"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Despache para o metodo 1&quot;
+[1] &quot;Despache para o metodo 2&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto clas2</span>
+<span class='fu'>fgenerica</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>2</span>, class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"clas2"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Despache para o metodo 2&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Despacho</span>
+<span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_dispatch.html'>s3_dispatch</a></span><span class='op'>(</span><span class='fu'>fgenerica</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>2</span>, class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"clas1"</span>, <span class='st'>"clas2"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>=&gt; fgenerica.clas1
+-&gt; fgenerica.clas2
+   fgenerica.default</code></pre>
+</div>
+<p>O que caracteriza a chamada <code>NextMethod()</code> é a ocorrência do símbolo (<code>-&gt;</code>) na saída em <code>sloop::s3_dispatch()</code>. O que essa chamada de função faz é executar o próximo método.</p>
+<p>De modo formal, apresentamos a sintaxe como <code>NextMethod(generic, object, ...)</code>. Se nenhum argumento for adionado em <code>NextMethod()</code>, os argumentos serão os mesmos em quantidade, ordem e nome do método corrente, e por consequência também dos argumentos do genérico. Outra coisa interessante é que por meio de <code>'...'</code>, podemos inserir mais argumentos para essa chamada, do qual todos os argumentos são anexados em uma lista como promessas, isto é, os argumentos não são avaliados. Porém se foram avaliados no ambiente atual ou no ambiente anterior, permanecerão avaliados. Vejamos alguns outros aspectos, dos quais alguns foram citados por <span class="citation" data-cites="chambers1993"><a href="#ref-chambers1993" role="doc-biblioref">Chambers and Hastie</a> (<a href="#ref-chambers1993" role="doc-biblioref">1993</a>)</span>:</p>
+<ol type="1">
+<li>Os argumentos são transmitidos do método corrente para o método herdado com seus valores atuais no momento em que <code>NextMethod()</code> é chamado;</li>
+<li>Um objeto com mesmo nome de um dos argumentos (até mesmo o primeiro argumento) do método corrente, definido no ambiente de chamada de <code>NextMethod()</code>, pode ser passado para o método herdado, sendo um valor diferente definido no argumento do método corrente. No caso da chamada <code>UseMethod()</code>, é preservado o valor definido nos argumentos do genérico;</li>
+<li>Alterar o primeiro argumento do genérico em uma chamada <code>NextMethod()</code> afeta os argumentos recebidos no método herdado, mas não na escolha desse método.</li>
+<li>A avaliação preguiçosa dos argumentos continuam. Se um argumento não foi avaliado, continua não avaliado;</li>
+<li>Argumentos ausentes permanecem ausentes no método herdado;</li>
+<li>Alguns objetos definidos no método atual, se informados em <code>NextMethod()</code>, passarão para o método herdado, desde esse objeto seja um argumento do método herdado;</li>
+<li>O ambiente de chamada de <code>NextMethod()</code> não é encerrado após finalizado a chamado do método herdado, como ocorre com <code>UseMethod()</code>;</li>
+<li>A chamada <code>NextMethod()</code> é importante em algumas situações para evitar um <em>loop</em> infinito.</li>
+</ol>
+<p>Apresentaremos a seguir, um código para exemplificar esses pontos. E um código seguinte será específico para o último ponto.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Generico</span>
+<span class='va'>fgenerica</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>UseMethod</a></span><span class='op'>(</span><span class='st'>"fgenerica"</span><span class='op'>)</span>
+<span class='co'># Metodo 1</span>
+<span class='va'>fgenerica.clas1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>z</span> <span class='op'>=</span> <span class='fu'>faux</span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>3</span>
+  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>5</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span>generic <span class='op'>=</span> <span class='va'>.Generic</span>, object <span class='op'>=</span> <span class='va'>x</span>, <span class='va'>y</span>, <span class='va'>z</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Passei pelo metodo 1"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Metodo 2</span>
+<span class='va'>fgenerica.clas2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Chegando no metodo 2, consigo imprimir x:"</span>, <span class='va'>x</span>, <span class='st'>"e y:"</span>, <span class='va'>y</span>, <span class='st'>"\n"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Existe classe em x? "</span>, <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"class"</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>"\n"</span><span class='op'>)</span>
+  
+<span class='op'>}</span>
+<span class='co'>############</span>
+<span class='co'># Avaliacao:</span>
+<span class='co'># Chamada do generico com objeto  de classe: clas1 e clas2</span>
+<span class='fu'>fgenerica</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>2</span>, class <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"clas1"</span>, <span class='st'>"clas2"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Chegando no metodo 2, consigo imprimir x: 3 e y: 5 
+NULL
+Existe classe em x?  
+Passei pelo metodo 1</code></pre>
+</div>
+<p>Observemos no momento da chamada <code>NextMethod()</code> no método <code>fgenerica.clas1()</code> que o objeto do primeiro argumento <code>x</code> do genérico foi alterado [(1), (2) e (3)]. Inicialmente tinha o valor <code>2</code> com atributo <code>class</code>, porém no ambiente de execução do método <code>fgenerica.clas1()</code>, um objeto associado ao mesmo nome <code>x &lt;- 3</code> foi criado e passado para <code>NextMethod()</code>. Nesse caso, esse novo objeto não apresenta mais o atributo <code>class</code> (Observe a saída: <code>Existe classe em x?  NULL</code>), e desse modo é repassado para o método herdado, porém observemos que o fato de não ter o atributo <code>class</code> não prejudicou nas escolhas dos métodos (3).</p>
+<p>Ainda no método <code>fgenerica.clas1()</code> surge um argumento <code>z</code> que apresenta uma função <code>faux()</code> não existente, isso é a característica de avaliação preguiçosa dos argumentos por parte das funções (4), isso significa, que enquanto esse argumento não for chamado internamente, ele não será avaliado. E isso pode ser verificado, pois o genérico retorna o resultado esperado, sem mensagem de erros.</p>
+<p>Um outro ponto importante é o objeto <code>y</code> definido no corpo do método <code>fgenerica.clas1()</code>, que não definido como seu argumento, mas sim como argumento na chamada <code>NextMethod()</code>, do qual pode ser repassada para o método herdado (6). Isso foi possível também porque <code>y</code> também entrou como argumento para o método <code>fgenerica.clas2()</code>.</p>
+<p>Diferentemente de <code>UseMethod()</code>, a chamada <code>NextMethod()</code> não encerra o ambiente de chamada (7). Isso pode ser verificado com o resultado do genérico imprimindo <code>Passei pelo metodo 1</code>, isto é, o genérico despacha em <code>fgenerica.clas1()</code> que herda o método <code>fgenerica.clas2()</code>, por meio de <code>NextMethod()</code>. Após o fechamento de <code>fgenerica.clas2()</code> e posteriormente da chamada <code>NextMethod()</code>, o ambiente de execução de <code>fgenerica.clas1()</code> continua a executar as suas instruções, do qual segue com a execução de <code>cat("Passei pelo metodo 1")</code>, e posteriormente ocorre o seu fechamento.</p>
+<p>Por fim, a justificativa do último ponto, vamos apresentar uma aplicação muito importante que ocorre com a função primitiva genérica <code>[</code>. Por exemplo, se tivermos um vetor associado ao nome <code>x</code> com um atributo <code>class</code> e desejarmos o segundo elemento, isto é, <code>x[2]</code>. Este resultado não preserva a classe de <code>x</code>. Para isto, precisamos criar um método para esse genérico, apresentado a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um objeto de classe 'cpf'</span>
+<span class='va'>new_cpf</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='va'>x</span>, class <span class='op'>=</span> <span class='st'>"cpf"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Metodo print para 'cpf'</span>
+<span class='va'>print.cpf</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>3</span>, <span class='fl'>9</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='st'>"*******"</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Criando e imprimindo x</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>new_cpf</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>12345678912</span>,
+               <span class='fl'>78945612323</span>,
+               <span class='fl'>98765432112</span><span class='op'>)</span><span class='op'>)</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;12*******12&quot; &quot;78*******23&quot; &quot;98*******12&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Selecionando o segundo cpf</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] 78945612323</code></pre>
+</div>
+<p>Observamos nesse exemplo que a função primitiva <code>[</code> é um genérico mas que não tem o método para classe <em>cpf</em>. Nesse caso, precisamos criar um método para tal, apresentado três soluções a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Primeira solucao: Loop infinito</span>
+<span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>new_cpf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>Error: avaliação aninhada demais; recursão infinita / options(expressions=)?</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda solucao (menos eficiente pq cria copia de x)</span>
+<span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='fu'>new_cpf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;78*******23&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira solucao</span>
+<span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+  <span class='fu'>new_cpf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;78*******23&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quarta solucao</span>
+<span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>new_cpf</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;78*******23&quot;</code></pre>
+</div>
+<p>A primeira tentativa gera um <em>loop</em> infinito, porque ao criar o método <code>[.cpf()</code>, percebemos que internamente usamos a função primitiva genérica <code>[</code>, e como o objeto <code>x</code> tem o atributo <code>class</code> igual a <code>cpf</code>, este procurará novamente o método, e assim por diante. Uma segunda tentativa, resolve o problema, porém perdemos eficiência por fazer uma cópia do objeto <code>x</code>. E por fim, a terceira e quarta tentativas, são mais eficientes, sendo que a última usa a chamada <code>NextMethod()</code>. Essa chamada procura pelo próximo método que é a própria função primitiva, que ao ser executada retorna o resultado, e este entra como um argumento da função <code>new_cpf()</code>. Então, o ocorre a chamada <code>new_cpf()</code> que retorna novamente um objeto de classe <em>cpf</em>.</p>
+<h4 id="mecanismo-de-herança">Mecanismo de herança</h4>
+<!-- ### Estratégias para o sistema S3 {#estrategiaS3} -->
+<!-- https://adv-r.hadley.nz/s3.html#s3-constructor -->
+<!-- https://adv-r.hadley.nz/s3.html#validators -->
+<!-- https://adv-r.hadley.nz/s3.html#helpers -->
+<!-- http://adv-r.had.co.nz/S3.html#undefined -->
+<!-- Constutor, validador e ajudante.... -->
+<!-- ### Estilos de objetos POO S3 {#est_obj_poo_s3} -->
+<!-- https://adv-r.hadley.nz/s3.html#object-styles -->
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
 <!--
 Introdução aos objetos:
@@ -3537,6 +4039,10 @@ Introdução aos objetos:
 <h1 id="projetos-no-rstudio">Projetos no RStudio</h1>
 <h1 id="projetos-r-no-github">Projetos R no Github</h1>
 <h2 id="manipulando-vetores-de-modo-character">Manipulando vetores de modo <code>character</code></h2>
+<!-- https://www.gastonsanchez.com/r4strings/ -->
+<!-- https://gomesfellipe.github.io/post/2017-12-17-string/string/ -->
+<!-- http://www.botanicaamazonica.wiki.br/labotam/doku.php?id=bot89:precurso:1textfun:inicio -->
+<!-- https://bookdown.org/davi_moreira/txt4cs/stringR.html -->
 <h3 id="pacote-tidytext">pacote tidytext</h3>
 <!-- https://juliasilge.com/blog/learn-tidytext-learnr/ -->
 <!-- https://juliasilge.shinyapps.io/learntidytext/ -->
@@ -3600,11 +4106,60 @@ Introdução aos objetos:
 <!-- <-  Left assignment, binary -->
 <!-- ->  Right assignment, binary -->
 <!-- $   List subset, binary -->
+<h2 id="vetorização-de-funções">Vetorização de funções</h2>
+<!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
+<!--   # Programacao defensiva -->
+<!--   n <- nchar(x) -->
+<!--   if (!is.numeric(x)) stop("Deve ser numérico!") -->
+<!--   if (n == 11) { -->
+<!--     cpf <- structure(x %/% 10^seq(n - 1,0) %% 10, -->
+<!--                      class = "cpf") -->
+<!--   } -->
+<!--   if (n != 11) { -->
+<!--     if (n == 10 & p_valor_zero == TRUE) { -->
+<!--       cpf <- structure(x %/% 10^seq(n,0) %% 10, -->
+<!--                        class = "cpf") -->
+<!--     } else { -->
+<!--       stop("Seu CPF nao tem 11 digitos") -->
+<!--     }  -->
+<!--   }  -->
+<!--   return(cpf) -->
+<!-- } -->
+<!-- print.cpf <- function(x, ...) { -->
+<!--   cpf <- paste(x, collapse = "") -->
+<!--   substr(cpf, 3, 9) <- "*******" -->
+<!--   print(cpf) -->
+<!-- } -->
+<!-- x <- new_cpf(05098523435, TRUE) -->
 <h2 id="evitando-loops">Evitando loops</h2>
 <h2 id="funções-recursivas">Funções recursivas</h2>
 <h2 id="programação-defensiva">Programação defensiva</h2>
 <h3 id="função-stop">Função <code>stop()</code></h3>
 <h3 id="função-warning">Função <code>Warning</code></h3>
+<!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
+<!--   # Programacao defensiva -->
+<!--   n <- nchar(x) -->
+<!--   if (!is.numeric(x)) stop("Deve ser numérico!") -->
+<!--   if (n == 11) { -->
+<!--     cpf <- structure(x %/% 10^seq(n - 1,0) %% 10, -->
+<!--                      class = "cpf") -->
+<!--   } -->
+<!--   if (n != 11) { -->
+<!--     if (n == 10 & p_valor_zero == TRUE) { -->
+<!--       cpf <- structure(x %/% 10^seq(n,0) %% 10, -->
+<!--                        class = "cpf") -->
+<!--     } else { -->
+<!--       stop("Seu CPF nao tem 11 digitos") -->
+<!--     }  -->
+<!--   }  -->
+<!--   return(cpf) -->
+<!-- } -->
+<!-- print.cpf <- function(x, ...) { -->
+<!--   cpf <- paste(x, collapse = "") -->
+<!--   substr(cpf, 3, 9) <- "*******" -->
+<!--   print(cpf) -->
+<!-- } -->
+<!-- x <- new_cpf(05098523435, TRUE) -->
 <h2 id="escopo-léxico">Escopo léxico</h2>
 <h2 id="execução-preguiçosa">Execução preguiçosa</h2>
 <!-- https://www.r-bloggers.com/2018/07/about-lazy-evaluation/ -->
@@ -3675,7 +4230,7 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb82"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.
@@ -3686,6 +4241,9 @@ Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R
 <div id="ref-chambers1991" class="csl-entry" role="doc-biblioentry">
 Chambers, John M., and Trevor J. Hastie. 1991. <em>Statistical Methods in <span>S</span></em>. London: Chapman &amp; Hall.
 </div>
+<div id="ref-chambers1993" class="csl-entry" role="doc-biblioentry">
+———. 1993. <em>Statistical Models in <span>S</span></em>. London: Chapman &amp; Hall.
+</div>
 <div id="ref-hadley2019" class="csl-entry" role="doc-biblioentry">
 Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://adv-r.hadley.nz/">https://adv-r.hadley.nz/</a>.
 </div>
@@ -3694,6 +4252,7 @@ Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Flo
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p>Funções primitivas chamam as funções em linguagem <code>C</code>, <code>DispatchGroup()</code> ou <code>DispatchOrEval()</code>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Função similar <code>sprintf()</code>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
