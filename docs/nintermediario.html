@@ -2218,8 +2218,9 @@ Material
 <li>Aula 34: <a href="aulas/aula34.html" target="_blank">Sistema S3: Criando funções genéricas (POO no R)</a></li>
 <li>Aula 35: <a href="aulas/aula35.html" target="_blank">Sistema S3: Classes e classes implícitas (POO no R)</a></li>
 <li>Aula 36: <a href="aulas/aula36.html" target="_blank">Sistema S3: Métodos (POO no R)</a></li>
-<li>Aula 37: <a href="aulas/aula37.html" target="_blank">Revisão sobre as aulas 27 a 36</a></li>
-<li>Aula 38: <a href="aulas/aula37.html" target="_blank">Sistema S3: Envio (despacho) de métodos e hieranças</a> <!-- - Aula 39: [Sistema S3:  Estratégias para o sistema S3](aulas/aula38.html){target="_blank"} --> <!-- - Aula 40: [Sistema S3:  Estilos de objetos](aulas/aula39.html){target="_blank"} --></li>
+<li>Aula 37: Revisão sobre as aulas 27 a 36 <a href="aulas/aula37.html" target="_blank">Slide</a> <a href="https://youtu.be/jEDoCWQZkdY" target="_blank">Vídeo-aula</a> <a href="https://bendeivide.github.io/cursor/scripts/aula19/script19.R" target="_blank">Script R</a></li>
+<li>Aula 38: <a href="aulas/aula38.html" target="_blank">Sistema S3: Envio (despacho) de métodos</a></li>
+<li>Aula 39: <a href="aulas/aula39.html" target="_blank">Sistema S3: Mecanismo de herança</a> <!-- - Aula 39: [Sistema S3:  Estratégias para o sistema S3](aulas/aula38.html){target="_blank"} --> <!-- - Aula 40: [Sistema S3:  Estilos de objetos](aulas/aula39.html){target="_blank"} --></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2740,7 +2741,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e54290&gt;
+&lt;bytecode: 0x0000000008e53cb8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2883,7 +2884,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000020bef428&gt;
+&lt;bytecode: 0x00000000061c6eb8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2909,7 +2910,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000020bef428&gt;
+&lt;bytecode: 0x00000000061c6eb8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2935,7 +2936,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000020bef428&gt;
+&lt;bytecode: 0x00000000061c6eb8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3730,11 +3731,11 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x000000003f95d150&gt;
+&lt;bytecode: 0x0000000016678210&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
-<p>Para os demais casos, podemos observar o código na sequência, para entermos o que falamos anteriormente.</p>
+<p>Para os demais casos, podemos observar o código na sequência, para entendermos o que falamos anteriormente.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Primeira situacao:</span>
@@ -3852,7 +3853,7 @@ stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
 <!-- sloop::s3_dispatch(fgenerica(x)) -->
 <!-- # Executando -->
 <!-- fgenerica(x) # Sem problemas -->
-<h3 id="chamada-nextmethod">Chamada <code>NextMethod()</code></h3>
+<h4 id="chamada-nextmethod">Chamada <code>NextMethod()</code></h4>
 <p>Vimos anteriormente que a chamada <code>UseMethod()</code> é responsável pelo envio de método, isto é, dado um objeto com um atributo <code>class</code> inserido no primeiro argumento do genérico, a chamada <code>UseMethod()</code> procurará pelo método específico dessa classe. Contudo, falamos anteriormente, que o atributo <code>class</code> pode ser um vetor de caracteres. Dessa forma é que entra a chamada <code>NextMethod()</code>. A ideia é aplicar o genérico para o próximo método. Já mostramos anteriormente essa semântica, e vamos reforçar com o código a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3960,19 +3961,10 @@ Passei pelo metodo 1</code></pre>
 </div>
 <pre><code>[1] 78945612323</code></pre>
 </div>
-<p>Observamos nesse exemplo que a função primitiva <code>[</code> é um genérico mas que não tem o método para classe <em>cpf</em>. Nesse caso, precisamos criar um método para tal, apresentado três soluções a seguir.</p>
+<p>Observamos nesse exemplo que a função primitiva <code>[</code> é um genérico mas que não tem o método para classe <em>cpf</em>, e por isso retorno o valor do <em>cpf</em> na íntegra, algo que não queríamos como resultado. Nesse caso, precisamos criar um método para tal, sendo apresentado três soluções a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Primeira solucao: Loop infinito</span>
-<span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>new_cpf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
-<span class='op'>}</span>
-<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
-</code></pre>
-</div>
-<pre><code>Error: avaliação aninhada demais; recursão infinita / options(expressions=)?</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda solucao (menos eficiente pq cria copia de x)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Primeira solucao (menos eficiente pq cria copia de x)</span>
 <span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
   <span class='fu'>new_cpf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
@@ -3982,7 +3974,7 @@ Passei pelo metodo 1</code></pre>
 </div>
 <pre><code>[1] &quot;78*******23&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira solucao</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda solucao</span>
 <span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
   <span class='fu'>new_cpf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
@@ -3992,7 +3984,7 @@ Passei pelo metodo 1</code></pre>
 </div>
 <pre><code>[1] &quot;78*******23&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quarta solucao</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira solucao</span>
 <span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
   <span class='fu'>new_cpf</span><span class='op'>(</span><span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
@@ -4000,15 +3992,97 @@ Passei pelo metodo 1</code></pre>
 </code></pre>
 </div>
 <pre><code>[1] &quot;78*******23&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Quarta solucao: Loop infinito</span>
+<span class='va'>`[.cpf`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>new_cpf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
+</code></pre>
 </div>
-<p>A primeira tentativa gera um <em>loop</em> infinito, porque ao criar o método <code>[.cpf()</code>, percebemos que internamente usamos a função primitiva genérica <code>[</code>, e como o objeto <code>x</code> tem o atributo <code>class</code> igual a <code>cpf</code>, este procurará novamente o método, e assim por diante. Uma segunda tentativa, resolve o problema, porém perdemos eficiência por fazer uma cópia do objeto <code>x</code>. E por fim, a terceira e quarta tentativas, são mais eficientes, sendo que a última usa a chamada <code>NextMethod()</code>. Essa chamada procura pelo próximo método que é a própria função primitiva, que ao ser executada retorna o resultado, e este entra como um argumento da função <code>new_cpf()</code>. Então, o ocorre a chamada <code>new_cpf()</code> que retorna novamente um objeto de classe <em>cpf</em>.</p>
+<pre><code>Error: avaliação aninhada demais; recursão infinita / options(expressions=)?</code></pre>
+</div>
+<p>Uma primeira tentativa, resolve o problema, porém perdemos eficiência por fazer uma cópia do objeto <code>x</code>. A segunda e terceira tentativas, são mais eficientes, sendo que a última usa a chamada <code>NextMethod()</code>. Essa chamada procura pelo próximo método que é a própria função primitiva, que ao ser executada retorna o resultado, e este entra como um argumento da função <code>new_cpf()</code>. Então, o ocorre a chamada <code>new_cpf()</code> que retorna novamente um objeto de classe <em>cpf</em>. Por fim, a quarta tentativa gera um <em>loop</em> infinito, porque ao criar o método <code>[.cpf()</code>, percebemos que internamente usamos a função primitiva genérica <code>[</code>, e como o objeto <code>x</code> tem o atributo <code>class</code> igual a <code>cpf</code>, este procurará novamente o método, e assim por diante.</p>
+<p>Na sequência, veremos em detalhes o mecanismo de herança de modo como o <code>UseMethod()</code> despacha para um determinado método, como também a chamada <code>NextMethod()</code> é usada para a busca do método herdado.</p>
 <h4 id="mecanismo-de-herança">Mecanismo de herança</h4>
+<p>O mecanismo de herança ocorre de acordo com os elementos do vetor de atributo <code>class</code> pela função genérica. Esse vetor pode ter qualquer comprimento. Além desses elementos, temos ainda uma pseudoclasse chamada <code>default</code> que não aparece no atributo <code>class</code>. O genérico procurará inicialmente pelo método para o primeiro elemento do vetor do atributo <code>class</code>, se o método para essa classe não existir, procurará pelo método observando pelo segundo elemento, e assim por diante. Caso o genérico percorra por todo o vetor, e não encontre o método para a classe desejada, o despacho ocorre no método <code>default</code>. E por fim, se este método não existir, o genérico retornará uma mensagem de erro erro.</p>
+<p>O mecanismo de herança, ocorre por meio da chamada <code>NextMethod()</code>. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Construtor</span>
+<span class='va'>new_intparord</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span>, <span class='va'>inteiro</span> <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>ordenado</span> <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>is.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>classe</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"par"</span>, <span class='st'>"ordenado"</span>, <span class='st'>"inteiro"</span><span class='op'>)</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>inteiro</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>classe</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"inteiro"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>ordenado</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>classe</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ordenado"</span>, <span class='st'>"inteiro"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='va'>x</span>, class <span class='op'>=</span> <span class='va'>classe</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Método inteiro para o generico print</span>
+<span class='va'>print.par</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='va'>.Generic</span>, x <span class='op'>=</span> <span class='va'>x</span><span class='op'>[</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>trunc</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>%%</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Método ordenado para o generico print</span>
+<span class='va'>print.ordenado</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/UseMethod.html'>NextMethod</a></span><span class='op'>(</span><span class='va'>.Generic</span>, x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='co'># Método inteiro para o generico print</span>
+<span class='va'>print.inteiro</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>new_intparord</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>10</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>)</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1]  2  4  6  8 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$class
+[1] &quot;par&quot;      &quot;ordenado&quot; &quot;inteiro&quot; </code></pre>
+</div>
+<p>Criamos uma função chamada de <code>new_intparord</code>, que é um <em>construtor</em> de instâncias de uma classe. Essa estratégia é importante principalmente quando temos classes com características mais complexas. O objeto criado desse construtor tem um atributo <code>class</code> de comprimento até de três classes: <code>"par"</code>, <code>"ordenado"</code> e <code>"inteiro"</code>. Isto é, a classe mais geral é <code>"inteiro"</code> e a chamamos no contexto de POO de <em>superclasse</em>, uma vez que é uma classe que abrange características mais gerais. Essa classe representa os números inteiros. A próxima classe é <code>"ordenada"</code>, que é uma organização dos números inteiros. Essa classe herda de <code>"inteiro"</code> a característica de que além de ordenado, esses elementos devem ser número inteiros. Essa herança ocorre por meio de <code>NextMethod()</code>. Por fim, a classe <code>"par"</code> que representa apenas os números pares, mas também, herda a sua ordenação da classe <code>"ordenado"</code>, que por sua vez, herda a condição dos número serem inteiros da classe <code>"inteiro"</code>. Nessa situação, fica claro que <code>"par"</code> é uma <em>subclasse</em> de <code>"inteiro"</code>, uma vez que representa um grupo mais restrito da classe mais abrangente. De um modo geral, dizemos que uma <em>subclasse</em> são as classes mais à esqueda no atributo <code>class</code> e a <em>superclasse</em> mais à direita.</p>
+<p>Esse exemplo nos mostra a importância da chamada <code>NextMethod()</code> para o mecanismo de herança. Mais ainda, a rigor o sistema S3 não impõe restrições nenhuma entre subclasses e superclasses. Porém, o desenvolver deve pensar nesse aspecto, uma vez que em termos práticos, a construção das ideias se tornam mais fáceis na criação de suas rotinas. Não estamos falando necessariamente que a implementação de subclasses e superclasses seja algo fácil. Para contextualizar, percebamos que o objeto <code>x</code> do código anterior, desejássemo a impressão do segundo elemento, usaríamos <code>x[2]</code>. Retornaríamos o valor correto, porém a sua classe não seria presevada. Por quê? Porque a função primitiva genérica <code>[</code> não tem esses métodos implementados, isto é, <code>[.par</code>, <code>[.ordenado</code> e <code>[.inteiro</code>. Assim, também vale a aplicação do objeto <code>x</code> para os demais genéricos. Vejamos em código o que acabamos de falar.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>new_intparord</span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>10</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>; <span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;par&quot;      &quot;ordenado&quot; &quot;inteiro&quot; </code></pre>
+<pre><code>[1] 9</code></pre>
+<pre><code>[1] &quot;integer&quot;</code></pre>
+</div>
+<p>Cada subclasse que for inserida no objeto <code>x</code> irá exigir sempre mais trabalho para que o desenvolve, porque necessita garantir teoricamente a herança.</p>
+<p>Um outro contexto para a discussão é a ideia de classes públicas e privadas.</p>
+<ul>
+<li>falar que geralmente se resolve adicionando mais atributos as subclasses</li>
+</ul>
+<p>Voltando ao problema de <code>[.par</code>, <code>[.ordenado</code> e <code>[.inteiro</code> …</p>
+<p>Falar sobre o mecanismo de herança dos genéricos de grupo…</p>
 <!-- ### Estratégias para o sistema S3 {#estrategiaS3} -->
 <!-- https://adv-r.hadley.nz/s3.html#s3-constructor -->
 <!-- https://adv-r.hadley.nz/s3.html#validators -->
 <!-- https://adv-r.hadley.nz/s3.html#helpers -->
 <!-- http://adv-r.had.co.nz/S3.html#undefined -->
 <!-- Constutor, validador e ajudante.... -->
+<!-- ### Subclasses e superclasses -->
+<!-- https://adv-r.hadley.nz/s3.html#s3-subclassing -->
+<!-- ### Métodos públicos e privados -->
+<!-- - Statistical Methodos in S, pag. 466-467 -->
+<!-- ### Métodos para o genérico print -->
+<!-- - Observar algumas peculiaridades: -->
+<!--   - a execução do console quando imprime o valor associado a um nome, usa a funcao print; -->
+<!--   - percebi que se deve ter cautela ao utilizar a função print internamente dos seus métodos; -->
+<!--   - verifiquei um possível bug na função print quando se cria métodos em funções primitivas -->
 <!-- ### Estilos de objetos POO S3 {#est_obj_poo_s3} -->
 <!-- https://adv-r.hadley.nz/s3.html#object-styles -->
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
@@ -4230,7 +4304,7 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb121"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.

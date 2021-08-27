@@ -3,6 +3,7 @@
 t <- 2
 
 x <- function(a) {
+  UseMethod("x")
   u <- 1
   o <- 2
   y <- function(o) {
