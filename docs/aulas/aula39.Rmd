@@ -59,13 +59,23 @@ fgenerica.clas1 <- function(x, z = faux(), ...) {
 # Metodo 2
 fgenerica.clas2 <- function(x, y, ...) {
   cat("Chegando no metodo 2, consigo imprimir x:", x, "e y:", y, "\n")
-  cat("Existe classe em x? ", print(attr(x, "class")), "\n")
 }
 ############
 # Instancia (Objeto)
 x <- structure(2, class = c("clas1", "clas2"))
 # Despacho:
 sloop::s3_dispatch(fgenerica(x))
+```
+
+## Ideia inicial do mecanismo de herança
+
+```{r echo=TRUE, include=TRUE}
+# Instancia (Objeto)
+x <- structure(2, class = c("clas1", "clas2"))
+# Despacho:
+sloop::s3_dispatch(fgenerica(x))
+# Executando a funcao generica
+fgenerica(x)
 ```
 
 ## Exemplo prático do mecanismo de herança
@@ -108,11 +118,30 @@ print.inteiro <- function(x, ...) {
 }
 ```
 
+
 ## Exemplo prático do mecanismo de herança
 
 ```{r echo=TRUE, include=TRUE}
 # Objeto com a classe desejada
 x <- new_intparord(x = 10:1); x
+# Despacho
+sloop::s3_dispatch(print(x))
+```
+
+## Exemplo prático do mecanismo de herança
+
+```{r echo=TRUE, include=TRUE}
+# Objeto com a classe desejada
+x <- new_intparord(x = 10:1, ordenado = TRUE); x
+# Despacho
+sloop::s3_dispatch(print(x))
+```
+
+## Exemplo prático do mecanismo de herança
+
+```{r echo=TRUE, include=TRUE}
+# Objeto com a classe desejada
+x <- new_intparord(x = 10:1, inteiro = TRUE); x
 # Despacho
 sloop::s3_dispatch(print(x))
 ```
