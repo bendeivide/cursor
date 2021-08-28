@@ -116,3 +116,9 @@ x <- new_intparord(x = 10:1); x
 # Despacho
 sloop::s3_dispatch(print(x))
 ```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

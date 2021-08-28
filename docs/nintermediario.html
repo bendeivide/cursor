@@ -2741,7 +2741,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e53cb8&gt;
+&lt;bytecode: 0x0000000008633bc0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2884,7 +2884,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x00000000061c6eb8&gt;
+&lt;bytecode: 0x000000001a068490&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2910,7 +2910,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x00000000061c6eb8&gt;
+&lt;bytecode: 0x000000001a068490&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2936,7 +2936,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x00000000061c6eb8&gt;
+&lt;bytecode: 0x000000001a068490&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3731,7 +3731,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x0000000016678210&gt;
+&lt;bytecode: 0x0000000019d42a38&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
