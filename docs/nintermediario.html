@@ -2160,6 +2160,10 @@ Material
 <ul>
 <li><a href="#atomic-recursive">Estruturas atômicas e recursivas</a></li>
 <li><a href="#vectors">Usando <code>vector()</code>, <code>is.vector()</code> e <code>as.vector()</code></a></li>
+<li><a href="#outros_obj">Conhecendo outros objetos</a>
+<ul>
+<li><a href="#datas">Objeto para datas, horas, tempo, durações e fusos horários</a></li>
+</ul></li>
 <li>Manipulações com objetos</li>
 <li>Subconjuntos</li>
 <li>Cópias de objetos</li>
@@ -2223,7 +2227,7 @@ Material
 <li>Aula 37: Revisão sobre as aulas 27 a 36 <a href="aulas/aula37.html" target="_blank">Slide</a> <a href="https://youtu.be/jEDoCWQZkdY" target="_blank">Vídeo-aula</a> <a href="https://bendeivide.github.io/cursor/scripts/aula19/script19.R" target="_blank">Script R</a></li>
 <li>Aula 38: <a href="aulas/aula38.html" target="_blank">Sistema S3: Envio (despacho) de métodos</a></li>
 <li>Aula 39: <a href="aulas/aula39.html" target="_blank">Sistema S3: Mecanismo de herança</a> <!-- - Aula 39: [Sistema S3:  Estratégias para o sistema S3](aulas/aula38.html){target="_blank"} --> <!-- - Aula 40: [Sistema S3:  Estilos de objetos](aulas/aula39.html){target="_blank"} --></li>
-<li>Aula 40: <a href="aulas/aula39.html" target="_blank">Sistema S3: Mecanismo de herança</a></li>
+<li>Aula 40: <a href="aulas/aula40.html" target="_blank">Entendendo um pouco mais sobre objetos: estruturas atômicas ou recursivos</a></li>
 </ul>
 <h2 id="scripts">Scripts</h2>
 <ul>
@@ -2358,12 +2362,12 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1]  1.0337700  0.3647557 -0.2428575</code></pre>
+<pre><code>[1] -0.5735328 -0.1957449 -0.4455369</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] -1.5657441  0.6763031 -1.4781201</code></pre>
+<pre><code>[1] 0.58022866 0.36775526 0.04210632</code></pre>
 </div>
 <p>A <strong>imutabilidade</strong> na programação funcional apresenta em uma linguagem na situação em que uma variável ou objeto é criado, e este não pode ser modificado. Esta é outra característica que ocorre no <code>R</code>, mas não para todos os objetos em que exitem nomes associados, é o caso da <strong>modificação no local</strong>. Por exemplo, vamos apresentar um contra-exemplo de que nem todos os objetos no <code>R</code> são imutáveis. Vejamos:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2744,7 +2748,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e44290&gt;
+&lt;bytecode: 0x0000000008e33168&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2810,15 +2814,11 @@ UseMethod(&quot;mean&quot;)
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span><span class='st'>"Math"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] Math,CsparseMatrix-method  Math,ddenseMatrix-method  
- [3] Math,denseMatrix-method    Math,dgeMatrix-method     
- [5] Math,diagonalMatrix-method Math,nonStructure-method  
- [7] Math,sparseMatrix-method   Math,sparseVector-method  
- [9] Math,structure-method      Math.data.frame           
-[11] Math.Date                  Math.difftime             
-[13] Math.factor                Math.POSIXt               
-[15] Math.quosure*              Math.vctrs_sclr*          
-[17] Math.vctrs_vctr*          
+<pre><code> [1] Math,nonStructure-method Math,structure-method   
+ [3] Math.data.frame          Math.Date               
+ [5] Math.difftime            Math.factor             
+ [7] Math.POSIXt              Math.quosure*           
+ [9] Math.vctrs_sclr*         Math.vctrs_vctr*        
 see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <ul>
@@ -2829,19 +2829,13 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/methods.html'>methods</a></span><span class='op'>(</span><span class='st'>"Summary"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> [1] Summary,abIndex-method       Summary,ddenseMatrix-method 
- [3] Summary,ddiMatrix-method     Summary,dsparseMatrix-method
- [5] Summary,indMatrix-method     Summary,ldenseMatrix-method 
- [7] Summary,ldiMatrix-method     Summary,lMatrix-method      
- [9] Summary,Matrix-method        Summary,ndenseMatrix-method 
-[11] Summary,nMatrix-method       Summary,nsparseVector-method
-[13] Summary,sparseVector-method  Summary.data.frame          
-[15] Summary.Date                 Summary.difftime            
-[17] Summary.factor               Summary.numeric_version     
-[19] Summary.ordered              Summary.POSIXct             
-[21] Summary.POSIXlt              Summary.quosure*            
-[23] Summary.roman*               Summary.unit*               
-[25] Summary.vctrs_sclr*          Summary.vctrs_vctr*         
+<pre><code> [1] Summary.data.frame      Summary.Date           
+ [3] Summary.difftime        Summary.factor         
+ [5] Summary.numeric_version Summary.ordered        
+ [7] Summary.POSIXct         Summary.POSIXlt        
+ [9] Summary.quosure*        Summary.roman*         
+[11] Summary.unit*           Summary.vctrs_sclr*    
+[13] Summary.vctrs_vctr*    
 see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <ul>
@@ -2887,7 +2881,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000014543e80&gt;
+&lt;bytecode: 0x0000000008b45b08&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2913,7 +2907,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000014543e80&gt;
+&lt;bytecode: 0x0000000008b45b08&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2939,7 +2933,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000014543e80&gt;
+&lt;bytecode: 0x0000000008b45b08&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3478,7 +3472,7 @@ $class
 <span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_methods_class.html'>s3_methods_generic</a></span><span class='op'>(</span><span class='st'>"print"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 310 x 4
+<pre><code># A tibble: 267 x 4
    generic class    visible source             
    &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;   &lt;chr&gt;              
  1 print   acf      FALSE   registered S3method
@@ -3491,7 +3485,7 @@ $class
  8 print   ar       FALSE   registered S3method
  9 print   Arima    FALSE   registered S3method
 10 print   arima0   FALSE   registered S3method
-# ... with 300 more rows</code></pre>
+# ... with 257 more rows</code></pre>
 </div>
 <p>Observamos, pelos pacotes instalados no computador do qual escrevemos esse material, apresenta para a função genérica <code>print</code>, 284 métodos. Porém, observamos que a última função <code>sloop::s3_methods_generic()</code> apresenta um maior detalhamento dos métodos, como por exemplo, a visibilidade de suas instruções no <em>console</em>, e ainda de qual pacote o método foi desenvolvido. Nesse caso, quando na coluna <em>visible</em>, um determinado método retorna <code>FALSE</code>, que é equivalente a um asterisco no resultado, por meio da função <code>methods()</code>, que significa que o método não é exportado do <em>namespace</em> do pacote, em que esse método foi desenvolvido. Contudo, mostramos anteriormente, alternativas de como acessar esses métodos.</p>
 <p>De outro modo, poderíamos está interessados em métodos baseados em uma determinada classe. Nesse caso, vejamos um exemplo para a classe <code>factor</code>, a seguir.</p>
@@ -3502,15 +3496,13 @@ $class
 </code></pre>
 </div>
 <pre><code> [1] [             [[            [[&lt;-          [&lt;-          
- [5] all.equal     Arith         as.character  as.data.frame
- [9] as.Date       as.list       as.logical    as.POSIXlt   
-[13] as.vector     c             cbind2        coerce       
-[17] Compare       droplevels    format        initialize   
-[21] is.na&lt;-       length&lt;-      levels&lt;-      Logic        
-[25] Math          Ops           plot          print        
-[29] rbind2        relevel       relist        rep          
-[33] show          slotsFromS3   summary       Summary      
-[37] xtfrm        
+ [5] all.equal     as.character  as.data.frame as.Date      
+ [9] as.list       as.logical    as.POSIXlt    as.vector    
+[13] c             coerce        droplevels    format       
+[17] initialize    is.na&lt;-       length&lt;-      levels&lt;-     
+[21] Math          Ops           plot          print        
+[25] relevel       relist        rep           show         
+[29] slotsFromS3   summary       Summary       xtfrm        
 see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Usando agora a funcao s3_methods_generic</span>
@@ -3734,7 +3726,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x0000000016869668&gt;
+&lt;bytecode: 0x00000000121dfb40&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
@@ -4289,7 +4281,7 @@ $y$z
 <pre><code>[1] &quot;double&quot;</code></pre>
 </div>
 <p>Por fim, se o argumento <code>mode</code> em <code>is.vector</code> for um tipo desconhecido, então o retorno será <code>FALSE</code>, ao invés de mensagem de erro.</p>
-<h2 id="conhecendo-outros-objetos">Conhecendo outros objetos</h2>
+<h2 id="outros_obj">Conhecendo outros objetos</h2>
 <p>No <a href="nbasico.html">módulo básico</a>, discutimos sobre alguns objetos que não demos detalhes adicionais ou não foram comentados.</p>
 <!-- ### Objetos tipo `"complex"` -->
 <!-- ### Objeto tipo `"raw"` -->
@@ -4303,9 +4295,9 @@ $y$z
 <!-- ### Objeto tipo `"pairlist"` -->
 <!-- ### Objeto tipo `"promise"` -->
 <!-- - Usar o pacote `promises` -->
-<h3 id="objeto-para-datas-horas-tempo-durações-e-fusos-horários">Objeto para datas, horas, tempo, durações e fusos horários</h3>
+<h3 id="datas">Objeto para datas, horas, tempo, durações e fusos horários</h3>
 <p>O tempo intrínseco ao nosso dia a dia, e muitas vezes passamos despercebido em muitos aspectos. Vejamos, devido ao ano bissexto, alguns anos não têm 365 dias, nem 24 horas para um dia, muito menos 60 segundo para um minuto. Devido aos fenômenos de rotação e translação da terra, essas variáveis passam por alguns ajustes. Dessa forma, podemos perceber a complexidade de trabalhar com esses tipos de dados. Vamos aqui apresentar o básico para objetos que armazenam essas informações.</p>
-<h4 id="datas">Datas</h4>
+<h4 id="datas-1">Datas</h4>
 <p>O objeto que armazena esses tipos de dados são vetores tipo <code>"double"</code>, com classe <code>Date</code>, e portanto, um objeto POO do sistema S3. Para sabermos a data de hoje, usamos a função <code>Sys.time()</code>, isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
