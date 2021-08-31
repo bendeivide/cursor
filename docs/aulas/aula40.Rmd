@@ -1,6 +1,6 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 40 - Entendendo um pouco mais sobre objetos: atômicos ou recursivos"
+subtitle: "Aula 40 - Entendendo um pouco mais sobre objetos: estruturas atômicas ou recursivos"
 author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -81,6 +81,9 @@ fun1(2)
 ```{r echo=TRUE, include=TRUE}
 # Objeto NULL
 is.vector(NULL); is.atomic(NULL)
+# Objeto com atributo
+x <- structure(1:10, atrib1 = "teste")
+is.vector(x); is.atomic(x)
 ```
 
 - Uma outra forma de criamos um vetor: `vector(mode, length)`
@@ -90,13 +93,15 @@ is.vector(NULL); is.atomic(NULL)
 
 ```{r echo=TRUE, include=TRUE}
 vector(mode = "logical", length = 5)
+vector(mode = "numeric", length = 5)
+vector(mode = "raw", length = 5)
 ```
 
 ## Identificação e coersão de um vetor
 
 ```{r echo=TRUE, include=TRUE}
 x <- structure(1:10, atrib1 = "atributo 1")
-is.atomic(x); is.vector(x); as.vector(x)
+is.atomic(x); is.vector(x); as.vector(x); attributes(x);  attributes(as.vector(x))
 ```
 
 ## O atributo *name* em um vetor
