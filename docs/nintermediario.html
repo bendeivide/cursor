@@ -2158,6 +2158,8 @@ Material
 </ul></li>
 <li><a href=""><i class="fas fa-arrow-circle-left"></i> Entendendo um pouco mais sobre objetos no <code>R</code></a>
 <ul>
+<li><a href="#atomic-recursive">Estruturas atômicas e recursivas</a></li>
+<li><a href="#vectors">Usando <code>vector()</code>, <code>is.vector()</code> e <code>as.vector()</code></a></li>
 <li>Manipulações com objetos</li>
 <li>Subconjuntos</li>
 <li>Cópias de objetos</li>
@@ -2564,7 +2566,7 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <tr class="even">
 <td style="text-align: left;"><code>externalptr</code></td>
 <td style="text-align: left;"><code>EXTPTRSXP</code></td>
-<td style="text-align: left;">Apontador externo, são vetores exóticos que tem importância para a linguagem <code>C</code></td>
+<td style="text-align: left;">Ponteiro externo, são vetores exóticos que tem importância para a linguagem <code>C</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>weakref</code></td>
@@ -2589,7 +2591,7 @@ Figure 1: Relembrando como o <code>R</code> funciona.
 <tr class="odd">
 <td style="text-align: left;"><code>any</code></td>
 <td style="text-align: left;"><code>ANYSXP</code></td>
-<td style="text-align: left;">Objeto que representa de qualquer tipo. Raramente utilizado em <code>R</code>, mas aparece por exemplo em <code>as.vector(x, mode = "any")</code>, considerando que <code>x</code> é um objeto <code>R</code></td>
+<td style="text-align: left;">Objeto que representa qualquer tipo. Raramente utilizado em <code>R</code>, mas aparece por exemplo em <code>as.vector(x, mode = "any")</code>, considerando que <code>x</code> é um objeto <code>R</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">-</td>
@@ -2741,7 +2743,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008633bc0&gt;
+&lt;bytecode: 0x0000000008e43fd8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2884,7 +2886,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000001a068490&gt;
+&lt;bytecode: 0x0000000036b7a440&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2910,7 +2912,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000001a068490&gt;
+&lt;bytecode: 0x0000000036b7a440&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2936,7 +2938,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000001a068490&gt;
+&lt;bytecode: 0x0000000036b7a440&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3475,7 +3477,7 @@ $class
 <span class='fu'>sloop</span><span class='fu'>::</span><span class='fu'><a href='https://sloop.r-lib.org/reference/s3_methods_class.html'>s3_methods_generic</a></span><span class='op'>(</span><span class='st'>"print"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 306 x 4
+<pre><code># A tibble: 310 x 4
    generic class    visible source             
    &lt;chr&gt;   &lt;chr&gt;    &lt;lgl&gt;   &lt;chr&gt;              
  1 print   acf      FALSE   registered S3method
@@ -3488,7 +3490,7 @@ $class
  8 print   ar       FALSE   registered S3method
  9 print   Arima    FALSE   registered S3method
 10 print   arima0   FALSE   registered S3method
-# ... with 296 more rows</code></pre>
+# ... with 300 more rows</code></pre>
 </div>
 <p>Observamos, pelos pacotes instalados no computador do qual escrevemos esse material, apresenta para a função genérica <code>print</code>, 284 métodos. Porém, observamos que a última função <code>sloop::s3_methods_generic()</code> apresenta um maior detalhamento dos métodos, como por exemplo, a visibilidade de suas instruções no <em>console</em>, e ainda de qual pacote o método foi desenvolvido. Nesse caso, quando na coluna <em>visible</em>, um determinado método retorna <code>FALSE</code>, que é equivalente a um asterisco no resultado, por meio da função <code>methods()</code>, que significa que o método não é exportado do <em>namespace</em> do pacote, em que esse método foi desenvolvido. Contudo, mostramos anteriormente, alternativas de como acessar esses métodos.</p>
 <p>De outro modo, poderíamos está interessados em métodos baseados em uma determinada classe. Nesse caso, vejamos um exemplo para a classe <code>factor</code>, a seguir.</p>
@@ -3731,7 +3733,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x0000000019d42a38&gt;
+&lt;bytecode: 0x0000000038b27fd0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
@@ -4062,12 +4064,10 @@ Passei pelo metodo 1</code></pre>
 <pre><code>[1] &quot;integer&quot;</code></pre>
 </div>
 <p>Cada subclasse que for inserida no objeto <code>x</code> irá exigir sempre mais trabalho para que o desenvolve, porque necessita garantir teoricamente a herança.</p>
-<p>Um outro contexto para a discussão é a ideia de classes públicas e privadas.</p>
-<ul>
-<li>falar que geralmente se resolve adicionando mais atributos as subclasses</li>
-</ul>
-<p>Voltando ao problema de <code>[.par</code>, <code>[.ordenado</code> e <code>[.inteiro</code> …</p>
-<p>Falar sobre o mecanismo de herança dos genéricos de grupo…</p>
+<!-- Um outro contexto para a discussão é a ideia de classes públicas e privadas.  -->
+<!-- - falar que geralmente se resolve adicionando mais atributos as subclasses -->
+<!-- Voltando ao problema de `[.par`, `[.ordenado` e `[.inteiro` ... -->
+<!-- Falar sobre o mecanismo de herança dos genéricos de grupo... -->
 <!-- ### Estratégias para o sistema S3 {#estrategiaS3} -->
 <!-- https://adv-r.hadley.nz/s3.html#s3-constructor -->
 <!-- https://adv-r.hadley.nz/s3.html#validators -->
@@ -4086,21 +4086,296 @@ Passei pelo metodo 1</code></pre>
 <!-- ### Estilos de objetos POO S3 {#est_obj_poo_s3} -->
 <!-- https://adv-r.hadley.nz/s3.html#object-styles -->
 <h1 id="aprof-objetos">Entendendo um pouco mais sobre objetos</h1>
-<!--
-Introdução aos objetos:
-  - Atômicos: objetos que não podem se conter
-  - Recursivos: Objetos que podem conter objetos de mesmo tipo
-  - Ver a função is.atomic() ou is.recursive()
-<!-- require(stats) -->
-<!-- is.a.r <- function(x) c(is.atomic(x), is.recursive(x)) -->
-<!-- is.a.r(c(a = 1, b = 3)) # TRUE FALSE -->
-<!-- is.a.r(list())          # FALSE TRUE - a list is a list -->
-<!-- is.a.r(list(2))         # FALSE TRUE -->
-<!-- is.a.r(lm)              # FALSE TRUE -->
-<!-- is.a.r(y ~ x)           # FALSE TRUE -->
-<!-- is.a.r(expression(x+1)) # FALSE TRUE -->
-<!-- is.a.r(quote(exp))      # FALSE FALSE -->
-<p>–&gt;</p>
+<p>Depois de termos abordado a ideia de objetos no sentido de programação orientada a objetos, retornamos a ideia inicial abordada no <a href="nbasico.html">módulo básico</a>, do tipo do objeto no sentido da forma de como seus valores são organizados. Afirmamos que tínhamos a estrutura mais de objeto é um vetor, conhecidos como estruturas atômicas pois os seus valores são de mesmo modo (<code>character</code>, <code>logical</code>, <code>numeric</code>, <code>complex</code> e <code>raw</code>). Falamos também dos objetos do tipo lista, que armazenam outros objetos que podem ter modos diferentes.</p>
+<h2 id="atomic-recursive">Estruturas atômicas e recursivas</h2>
+<p>A ideia de <em>estrutura atômica</em> ficou bem claro. Temos agora uma outra ideia que é a <em>estrutura recursiva</em>, que representa a condição dos objetos conterem elementos de sua própria estrutura. Por exemplo, uma lista pode ter um objeto que é uma lista, uma função também é uma estrutura recursiva, porque seus argumentos podem ser uma função, e assim por diante.</p>
+<p>Para sabermos se um objeto é atômico ou recursivo, usamos as funções respectivamente, <code>is.atomic()</code> e <code>is.recursive()</code>. Assim, vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao auxiliar</span>
+<span class='va'>eh_atom_ou_recur</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>atomico <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/is.recursive.html'>is.atomic</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, recursivo <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/is.recursive.html'>is.recursive</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># Testando alguns objetos</span>
+<span class='fu'>eh_atom_ou_recur</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span>, d <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># TRUE FALSE</span>
+</code></pre>
+</div>
+<pre><code>  atomico recursivo 
+     TRUE     FALSE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>eh_atom_ou_recur</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>          <span class='co'># FALSE TRUE </span>
+</code></pre>
+</div>
+<pre><code>  atomico recursivo 
+    FALSE      TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>eh_atom_ou_recur</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>         <span class='co'># FALSE TRUE</span>
+</code></pre>
+</div>
+<pre><code>  atomico recursivo 
+    FALSE      TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>eh_atom_ou_recur</span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>              <span class='co'># FALSE TRUE</span>
+</code></pre>
+</div>
+<pre><code>  atomico recursivo 
+    FALSE      TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>eh_atom_ou_recur</span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span>           <span class='co'># FALSE TRUE</span>
+</code></pre>
+</div>
+<pre><code>  atomico recursivo 
+    FALSE      TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>eh_atom_ou_recur</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/expression.html'>expression</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># FALSE TRUE</span>
+</code></pre>
+</div>
+<pre><code>  atomico recursivo 
+    FALSE      TRUE </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>eh_atom_ou_recur</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>quote</a></span><span class='op'>(</span><span class='va'>sqrt</span><span class='op'>)</span><span class='op'>)</span>      <span class='co'># FALSE FALSE</span>
+</code></pre>
+</div>
+<pre><code>  atomico recursivo 
+    FALSE     FALSE </code></pre>
+</div>
+<p>Por que uma lista é uma lista, por exemplo? Podemos escrever uma lista da seguinte forma:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lista</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>2</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>z <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>; <span class='va'>lista</span>
+</code></pre>
+</div>
+<pre><code>$x
+[1] 2
+
+$y
+$y$z
+[1] 3</code></pre>
+</div>
+<p>Um outro caso é o objeto função. Podemos escrever uma função dentro de outra função, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fun1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>fun2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span> <span class='va'>x</span> <span class='op'>+</span> <span class='va'>y</span>
+  <span class='fu'>fun2</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='fu'>fun1</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 4</code></pre>
+</div>
+<p>A maioria dos objetos <a href="http://r-project.org/" target="_blank">R</a> são recursivos, exceções para os atômicos, <code>NULL</code>, objetos tipo <code>"symbols"</code>, objetos <code>"S4"</code>, objetos <code>"externalptr"</code>, objetos <code>"bytecode"</code> e <code>"weakref"</code>. Esses últimos raramente vísiveis ao usuário.</p>
+<h2 id="vectors">Usando <code>vector()</code>, <code>is.vector()</code> e <code>as.vector()</code></h2>
+<p>Apesar de conhecermos vetores como vetores atômicos, observemos que um objeto pode ser atômico mas não um vetor. Observemos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto NULL</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='cn'>NULL</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/is.recursive.html'>is.atomic</a></span><span class='op'>(</span><span class='cn'>NULL</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<p>A criação de vetores pode ser denvolvida pela função <code>vector(mode, length)</code>, cujos argumentos são <code>mode</code> tipagem de acordo com a linguagem <code>S</code> (<code>"logical"</code>, <code>"numeric"</code>, <code>"complex"</code>, <code>"character"</code> e <code>"raw"</code>). O argumento <code>mode</code> permite também <code>"integer"</code> e <code>"double"</code> de acordo com a tipagem da linguagem <code>C</code>. O argumento <code>length</code> representa o comprimento do vetor. Desse modo, criando um vetor de modo <code>"logical"</code> e de comprimento 5, temos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span>mode <span class='op'>=</span> <span class='st'>"logical"</span>, length <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<p>A identificação de um vetor é realizada por <code>is.vector()</code>, resultando em <code>TRUE</code> para um objeto tipo vetor, e <code>FALSE</code>, caso contrário. A afirmação anterior de que um objeto pode ser atômico mas não um vetor, ocorre porque quando usamos atributos aos vetores, exceto <em>nomes</em>, o retorno de <code>is.vector()</code> é <code>FALSE</code>. Vejamos o próximo código para essa confirmação.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, atrib1 <span class='op'>=</span> <span class='st'>"atributo 1"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/is.recursive.html'>is.atomic</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<pre><code>[1] FALSE</code></pre>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<p>Como esperado, <code>is.vector(x)</code> retorna <code>FALSE</code> por causa do atributo <code>atrib1</code>. Porém, quando coagimos <code>x</code> a um vetor, usando <code>as.vector()</code>, esse novo objeto retorna os valores sem seus atributos. A exceção ocorre apenas para o atributo <code>name</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>arg1 <span class='op'>=</span> <span class='fl'>1</span>, arg2 <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>; <span class='va'>x</span>; <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>arg1 arg2 
+   1    2 </code></pre>
+<pre><code>$names
+[1] &quot;arg1&quot; &quot;arg2&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/is.recursive.html'>is.atomic</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<p>Sempre nos confundimos quando desejamos verificar a tipagem do vetor usando <code>typeof()</code> ou <code>mode()</code>, que já mencionamos também que o primeiro se relaciona com a tipagem <code>C</code> e o segundo com a tipagem <code>S</code>. Desse modo, a condição de equivalência ocorre, apesar de nomes diferentes entre algumas tipagens das linguagens, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto tipo 'integer' e 'numeric'</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1L</span>
+<span class='co'># Vericando</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span>, mode <span class='op'>=</span> <span class='st'>"numeric"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span>, mode <span class='op'>=</span> <span class='st'>"integer"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;integer&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+</div>
+<p>Vimos na seção <a href="#objetos-base">objetos base</a> os tipos de objeto baseados na tipagem <code>C</code>. Os objetos tipo <code>"integer"</code> e <code>"double"</code> são equivalentes a <code>"numeric"</code> para a linguagem <code>S</code>, assim como o objeto <code>"symbol"</code> tem seu equivalente <code>"name"</code>. Isso significa, que também poderemos usar <code>is.vector()</code> e <code>as.vector()</code> para saber se os objetos são desses tipos ou coagi-los, respectivamente, sendo monstrado exemplos a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um objeto "symbol" ou "name"</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span><span class='op'>(</span><span class='fl'>1</span>, mode <span class='op'>=</span> <span class='st'>"symbol"</span><span class='op'>)</span>
+<span class='co'># Verificando</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span>, mode <span class='op'>=</span> <span class='st'>"symbol"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span>, mode <span class='op'>=</span> <span class='st'>"name"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um objeto "pairlist"</span>
+<span class='va'>fxy</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
+<span class='va'>argumentos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/formals.html'>formals</a></span><span class='op'>(</span><span class='va'>fxy</span><span class='op'>)</span> 
+<span class='co'># Verificando</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span>, mode <span class='op'>=</span> <span class='st'>"pairlist"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+</div>
+<p>Se <code>mode = any</code> representa um objeto do tipo <code>any</code>, isto é, pode ser qualquer um dos tipos <code>"character"</code>, <code>"integer"</code>, <code>"double"</code>, <code>"numeric"</code>, <code>"complex"</code>, <code>"raw"</code>, <code>"list"</code> ou <code>"expression"</code>. Desse modo, a função <code>is.vector()</code> retornará <code>TRUE</code> para todos esses tipos de objetos, porém quando usado a função <code>mode()</code> ou <code>typeof()</code>, esta retornará os seus tipos de origem e não <code>"any"</code>, vejamos o código seguinte.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um objeto "any"</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>as.vector</a></span><span class='op'>(</span><span class='fl'>1</span>, mode <span class='op'>=</span> <span class='st'>"any"</span><span class='op'>)</span>
+<span class='co'># Verificando o tipo</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span>, mode <span class='op'>=</span> <span class='st'>"any"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>x</span>, mode <span class='op'>=</span> <span class='st'>"numeric"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mode.html'>mode</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;double&quot;</code></pre>
+</div>
+<p>Por fim, se o argumento <code>mode</code> em <code>is.vector</code> for um tipo desconhecido, então o retorno será <code>FALSE</code>, ao invés de mensagem de erro.</p>
+<h2 id="conhecendo-outros-objetos">Conhecendo outros objetos</h2>
+<p>No <a href="nbasico.html">módulo básico</a>, discutimos sobre alguns objetos que não demos detalhes adicionais ou não foram comentados.</p>
+<!-- ### Objetos tipo `"complex"` -->
+<!-- ### Objeto tipo `"raw"` -->
+<!-- - https://stat.ethz.ch/R-manual/R-devel/library/base/html/raw.html -->
+<!-- - https://docs.tibco.com/pub/enterprise-runtime-for-R/4.0.2/doc/html/Language_Reference/base/raw.html -->
+<!-- - https://stackoverflow.com/questions/36119753/convert-raw-vector-to-r-object -->
+<!-- - pacote base64enc -->
+<!-- - funcao serialize -->
+<!-- ### Objeto tipo `"S4"` -->
+<!-- ### Objeto tipo `"language"` -->
+<!-- ### Objeto tipo `"pairlist"` -->
+<!-- ### Objeto tipo `"promise"` -->
+<!-- - Usar o pacote `promises` -->
+<h3 id="objeto-para-datas-horas-tempo-durações-e-fusos-horários">Objeto para datas, horas, tempo, durações e fusos horários</h3>
+<p>O tempo intrínseco ao nosso dia a dia, e muitas vezes passamos despercebido em muitos aspectos. Vejamos, devido ao ano bissexto, alguns anos não têm 365 dias, nem 24 horas para um dia, muito menos 60 segundo para um minuto. Devido aos fenômenos de rotação e translação da terra, essas variáveis passam por alguns ajustes. Dessa forma, podemos perceber a complexidade de trabalhar com esses tipos de dados. Vamos aqui apresentar o básico para objetos que armazenam essas informações.</p>
+<h4 id="datas">Datas</h4>
+<p>O objeto que armazena esses tipos de dados são vetores tipo <code>"double"</code>, com classe <code>Date</code>, e portanto, um objeto POO do sistema S3. Para sabermos a data de hoje, usamos a função <code>Sys.time()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Qual a data de hoje?</span>
+<span class='va'>hoje</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Qual o tipo de objeto?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;double&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Eh um vetor?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Eh 'double'?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='va'>hoje</span>, mode <span class='op'>=</span> <span class='st'>"double"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Qual a sua classe?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Date&quot;</code></pre>
+</div>
+<p>Calma que as execuções para <code>is.vector()</code> retornaram <code>FALSE</code>, devido o atributo <code>class</code>. Se excluirmos verificaremos a sua confirmação, apresentado a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Eh um vetor?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Eh 'double'?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/vector.html'>is.vector</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>, mode <span class='op'>=</span> <span class='st'>"double"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Qual a sua classe?</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Date&quot;</code></pre>
+</div>
+<p>Quando retornamos a classe implícita desse objeto, recebemos o seguinte resultado:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 18869</code></pre>
+</div>
+<p>O resultado 18869 coagido a <code>double</code> se refere ao número de dias desde a data 1970-01-01. Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
+<h3 id="objetos-de-classe-ts">Objetos de classe <code>ts</code></h3>
+<h3 id="objeto-tible">Objeto <em>tible</em></h3>
+<h2 id="mais-manipulações-com-objetos-e-subconjuntos">Mais manipulações com objetos e subconjuntos</h2>
+<h3 id="vetores">Vetores</h3>
+<ul>
+<li>Subconjuntos</li>
+<li>Falar da relação de <code>[</code> com os métodos, e a perda do atributo <code>class</code></li>
+<li>arredondamentos</li>
+</ul>
+<h4 id="strings"><em>Strings</em></h4>
+<h3 id="matrizes-e-arrays">Matrizes e <em>arrays</em></h3>
+<h3 id="quadro-de-dados-e-tible">Quadro de dados e <em>tible</em></h3>
 <!--
 - Aprofundar e detalhar a parte de objetos de modo geral, não restringindo apenas aos vetores
 - Nos vetores de modo caractere, trabalhar bem sua utilização; ver o material da ecologia da USP
@@ -4304,7 +4579,7 @@ Introdução aos objetos:
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb126"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.
