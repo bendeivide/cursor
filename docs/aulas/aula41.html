@@ -20,7 +20,7 @@
       // Slide settings
       settings: {
                 title: 'Curso R: Programação em R (Nível Intermediário)',
-                        subtitle: 'Aula 40 - Entendendo um pouco mais sobre objetos: estruturas atômicas ou recursivos',
+                        subtitle: 'Aula 41 - Conhecendo outros objetos: Datas',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -190,13 +190,13 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">30 agosto, 2021</p>
+            <p style="margin-top: 6px; margin-left: -2px;">31 agosto, 2021</p>
           </hgroup>
   </slide>
 
 <!--
 YAML:
-date: "30 agosto, 2021"
+date: "31 agosto, 2021"
 =====
 APRESENTACAO:
 
@@ -212,192 +212,121 @@ Inserir nas secoes:
 
 </center>
 
-</article></slide><slide class=""><hgroup><h2>Entendendo um pouco mais sobre objetos</h2></hgroup><article  class="smaller " id="entendendo-um-pouco-mais-sobre-objetos">
+</article></slide><slide class=""><hgroup><h2>Informações iniciais sobre datas</h2></hgroup><article  class="smaller " id="informações-iniciais-sobre-datas">
 
 <ul>
-<li>Já estudados no <a href='https://bendeivide.github.io/cursor/nbasico.html' title=''>módulo básico</a></li>
-<li>Objetos atômicos ou recursivos
-
-<ul>
-<li>Perguntamos: <code>is.atomic()</code> ou <code>is.recursive()</code></li>
-</ul></li>
+<li>Você sabia que nem sempre o ano tem 365 dias?</li>
+<li>Você sabia que nem sempre um dia tem 24h?</li>
+<li>Você sabia que nem sempre 1min tem 60seg.?</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Estruturas atômicas e recursivas</h2></hgroup><article  class="smaller " id="estruturas-atômicas-e-recursivas">
-
-<pre class = 'prettyprint lang-r'># Funcao auxiliar
-eh_atom_ou_recur &lt;- function(x) c(atomico = is.atomic(x), recursivo = is.recursive(x))
-# Testando alguns objetos
-eh_atom_ou_recur(c(a = 1, d = 3)) # TRUE FALSE
-##   atomico recursivo 
-##      TRUE     FALSE
-eh_atom_ou_recur(list())          # FALSE TRUE 
-##   atomico recursivo 
-##     FALSE      TRUE
-eh_atom_ou_recur(list(2))         # FALSE TRUE
-##   atomico recursivo 
-##     FALSE      TRUE
-eh_atom_ou_recur(mean)              # FALSE TRUE
-##   atomico recursivo 
-##     FALSE      TRUE
-eh_atom_ou_recur(y ~ x)           # FALSE TRUE
-##   atomico recursivo 
-##     FALSE      TRUE
-eh_atom_ou_recur(expression(x^2 + 2)) # FALSE TRUE
-##   atomico recursivo 
-##     FALSE      TRUE
-eh_atom_ou_recur(quote(sqrt))      # FALSE FALSE
-##   atomico recursivo 
-##     FALSE     FALSE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Entendendo melhor uma estrutura recursiva</h2></hgroup><article  class="smaller " id="entendendo-melhor-uma-estrutura-recursiva">
-
-<pre class = 'prettyprint lang-r'>lista &lt;- list(x = 2, y = list(z = 3)); lista</pre>
-
-<pre >## $x
-## [1] 2
-## 
-## $y
-## $y$z
-## [1] 3</pre>
-
-<pre class = 'prettyprint lang-r'>fun1 &lt;- function(x) {
-  fun2 &lt;- function(y) x + y
-  fun2(x)
-}
-fun1(2)</pre>
-
-<pre >## [1] 4</pre>
-
-</article></slide><slide class=""><hgroup><h2>Usando <em>vector()</em>, <em>is.vector()</em> e <em>as.vector()</em></h2></hgroup><article  class="smaller " id="usando-vector-is.vector-e-as.vector">
+<p>Por quê?</p>
 
 <ul>
-<li>Nem toda estrutura atômica é um vetor:</li>
+<li>Fenômenos de rotação e translação da terra</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'># Objeto NULL
-is.vector(NULL); is.atomic(NULL)</pre>
-
-<pre >## [1] FALSE</pre>
-
-<pre >## [1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'># Objeto com atributo
-x &lt;- structure(1:10, atrib1 = &quot;teste&quot;)
-is.vector(x); is.atomic(x)</pre>
-
-<pre >## [1] FALSE</pre>
-
-<pre >## [1] TRUE</pre>
+<p>Oustros problemas que envolve esse tipo de dado:</p>
 
 <ul>
-<li>Uma outra forma de criamos um vetor: <code>vector(mode, length)</code></li>
+<li>horários de verão</li>
+<li>etc.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Usando <em>vector()</em>, <em>is.vector()</em> e <em>as.vector()</em></h2></hgroup><article  class="smaller " id="usando-vector-is.vector-e-as.vector-1">
-
-<pre class = 'prettyprint lang-r'>vector(mode = &quot;logical&quot;, length = 5)</pre>
-
-<pre >## [1] FALSE FALSE FALSE FALSE FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>vector(mode = &quot;numeric&quot;, length = 5)</pre>
-
-<pre >## [1] 0 0 0 0 0</pre>
-
-<pre class = 'prettyprint lang-r'>vector(mode = &quot;raw&quot;, length = 5)</pre>
-
-<pre >## [1] 00 00 00 00 00</pre>
-
-</article></slide><slide class=""><hgroup><h2>Identificação e coersão de um vetor</h2></hgroup><article  class="smaller " id="identificação-e-coersão-de-um-vetor">
-
-<pre class = 'prettyprint lang-r'>x &lt;- structure(1:10, atrib1 = &quot;atributo 1&quot;)
-is.atomic(x); is.vector(x); as.vector(x); attributes(x);  attributes(as.vector(x))</pre>
-
-<pre >## [1] TRUE</pre>
-
-<pre >## [1] FALSE</pre>
-
-<pre >##  [1]  1  2  3  4  5  6  7  8  9 10</pre>
-
-<pre >## $atrib1
-## [1] &quot;atributo 1&quot;</pre>
-
-<pre >## NULL</pre>
-
-</article></slide><slide class=""><hgroup><h2>O atributo <em>name</em> em um vetor</h2></hgroup><article  class="smaller " id="o-atributo-name-em-um-vetor">
-
-<pre class = 'prettyprint lang-r'>x &lt;- c(arg1 = 1, arg2 = 2); x; attributes(x)</pre>
-
-<pre >## arg1 arg2 
-##    1    2</pre>
-
-<pre >## $names
-## [1] &quot;arg1&quot; &quot;arg2&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>is.atomic(x); is.vector(x)</pre>
-
-<pre >## [1] TRUE</pre>
-
-<pre >## [1] TRUE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Observando a tipagem dos objetos</h2></hgroup><article  class="smaller " id="observando-a-tipagem-dos-objetos">
-
-<pre class = 'prettyprint lang-r'># Objeto tipo &#39;integer&#39; e &#39;numeric&#39;
-x &lt;- 1L
-# Vericando
-is.vector(x, mode = &quot;numeric&quot;)</pre>
-
-<pre >## [1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>is.vector(x, mode = &quot;integer&quot;)</pre>
-
-<pre >## [1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>typeof(x)</pre>
-
-<pre >## [1] &quot;integer&quot;</pre>
-
-<pre class = 'prettyprint lang-r'>mode(x)</pre>
-
-<pre >## [1] &quot;numeric&quot;</pre>
-
-</article></slide><slide class=""><hgroup><h2>Observando a tipagem dos objetos</h2></hgroup><article  class="smaller " id="observando-a-tipagem-dos-objetos-1">
-
-<pre class = 'prettyprint lang-r'># Criando um objeto &quot;symbol&quot; ou &quot;name&quot;
-x &lt;- as.vector(1, mode = &quot;symbol&quot;)
-# Verificando
-is.vector(x, mode = &quot;symbol&quot;)</pre>
-
-<pre >## [1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>is.vector(x, mode = &quot;name&quot;)</pre>
-
-<pre >## [1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'># Criando um objeto &quot;pairlist&quot;
-fxy &lt;- function(x, y) c(x, y)
-argumentos &lt;- formals(fxy) 
-# Verificando
-is.vector(argumentos, mode = &quot;pairlist&quot;)</pre>
-
-<pre >## [1] TRUE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Objeto <em>any</em></h2></hgroup><article  class="smaller " id="objeto-any">
+</article></slide><slide class=""><hgroup><h2>Como manipular esse tipo de dados?</h2></hgroup><article  class="smaller " id="como-manipular-esse-tipo-de-dados">
 
 <ul>
-<li><code>mode = any</code>: <code>&quot;character&quot;</code>, <code>&quot;integer&quot;</code>, <code>&quot;double&quot;</code>, <code>&quot;numeric&quot;</code>, <code>&quot;complex&quot;</code>, <code>&quot;raw&quot;</code>, <code>&quot;list&quot;</code> ou <code>&quot;expression&quot;</code></li>
+<li>Objeto de classe <code>&quot;Date&quot;</code></li>
+<li>Como esse é um objeto da base R, muitos genéricos estão prontos esse tipo de dado;</li>
+<li>Como saber a data de hoje? <code>Sys.Date()</code></li>
+<li>O resultado de <code>Sys.Date()</code> é um objeto de classe <code>&quot;Date&quot;</code></li>
 </ul>
 
-<pre class = 'prettyprint lang-r'># Criando um objeto &quot;any&quot;
-x &lt;- as.vector(1, mode = &quot;any&quot;)
-# Verificando o tipo
-is.vector(x, mode = &quot;any&quot;); is.vector(x, mode = &quot;numeric&quot;)
+</article></slide><slide class=""><hgroup><h2>Vejamos algumas características desse tipo de objeto</h2></hgroup><article  class="smaller " id="vejamos-algumas-características-desse-tipo-de-objeto">
+
+<pre class = 'prettyprint lang-r'># Qual a data de hoje?
+hoje &lt;- Sys.Date(); hoje
+## [1] &quot;2021-08-31&quot;
+# Qual o tipo de objeto?
+typeof(hoje)
+## [1] &quot;double&quot;
+# Eh um vetor?
+is.vector(hoje)
+## [1] FALSE
+# Eh &#39;double&#39;?
+is.vector(hoje, mode = &quot;double&quot;)
+## [1] FALSE
+# Qual a sua classe?
+class(hoje)
+## [1] &quot;Date&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>Vejamos algumas características desse tipo de objeto</h2></hgroup><article  class="smaller " id="vejamos-algumas-características-desse-tipo-de-objeto-1">
+
+<pre class = 'prettyprint lang-r'># Eh um vetor?
+is.vector(unclass(hoje))
 ## [1] TRUE
+# Eh &#39;double&#39;?
+is.vector(unclass(hoje), mode = &quot;double&quot;)
 ## [1] TRUE
-mode(x)
-## [1] &quot;numeric&quot;
-typeof(x)
-## [1] &quot;double&quot;</pre>
+# Qual a sua classe?
+class(hoje)
+## [1] &quot;Date&quot;
+# Imprimindo hoje sem classe
+unclass(hoje)
+## [1] 18870</pre>
+
+</article></slide><slide class=""><hgroup><h2>Como criamos esse objeto?</h2></hgroup><article  class="smaller " id="como-criamos-esse-objeto">
+
+<pre class = 'prettyprint lang-r'># Objeto x tipo &quot;character&quot;
+x &lt;- &quot;2017-08-02&quot;
+(data &lt;- as.Date(x))
+## [1] &quot;2017-08-02&quot;
+class(data)
+## [1] &quot;Date&quot;
+# Objeto x tipo &quot;numeric&quot;
+x &lt;- 10
+# Com o objeto numerico, precisamos informar
+# a data inicial no argumento &#39;origin&#39;. Nesse
+# caso, o retorno sera a data x dias apos 
+# &#39;origin&#39;
+# 
+(data &lt;- as.Date(x, origin = &quot;2017-08-02&quot;)) 
+## [1] &quot;2017-08-12&quot;
+# Objeto de classe &#39;POSIXct&#39;
+x &lt;- as.POSIXct(&quot;2018-08-02 5:30&quot;)
+(data &lt;- as.Date(x))
+## [1] &quot;2018-08-02&quot;
+class(data)
+## [1] &quot;Date&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>Podemos formatar esse objeto?</h2></hgroup><article  class="smaller " id="podemos-formatar-esse-objeto">
+
+<pre class = 'prettyprint lang-r'># Dia de hoje
+Sys.time()
+## [1] &quot;2021-08-31 21:13:57 -03&quot;
+# Formatando
+format(Sys.time(), &quot;%d/%m/%Y&quot;)
+## [1] &quot;31/08/2021&quot;
+format(Sys.time(), &quot;%d de %B de %Y&quot;)
+## [1] &quot;31 de agosto de 2021&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>Algumas manipulações</h2></hgroup><article  class="smaller " id="algumas-manipulações">
+
+<pre class = 'prettyprint lang-r'># Hoje
+Sys.Date()
+## [1] &quot;2021-08-31&quot;
+# Data daqui a 10 dias
+(x &lt;- Sys.Date() + 10)
+## [1] &quot;2021-09-10&quot;
+# Da ha 10 dias
+(y &lt;- Sys.Date() - 20 )
+## [1] &quot;2021-08-11&quot;
+# Diferença
+x - y
+## Time difference of 30 days
+# x eh igual a y?
+x == y
+## [1] FALSE</pre>
 
 </article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  class="smaller " id="bons-estudos">
 

@@ -135,7 +135,7 @@ is.vector(x, mode = "name")
 fxy <- function(x, y) c(x, y)
 argumentos <- formals(fxy) 
 # Verificando
-is.vector(x, mode = "pairlist")
+is.vector(argumentos, mode = "pairlist")
 ```
 
 ## Objeto *any*

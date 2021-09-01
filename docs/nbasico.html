@@ -2138,7 +2138,12 @@ Material
 
 
 <div class="d-article">
-<h1 id="sumário">Sumário</h1>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="panelset">
+<section id="sumário" class="panel">
+<h1>Sumário</h1>
 <ul>
 <li><a href="#materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</a>
 <ul>
@@ -2181,9 +2186,9 @@ Material
 <li><a href="#rinterface"><i class="fas fa-sort-alpha-down"></i> Interfaces com outras linguagens</a></li>
 <li><a href="#consideracoes"><i class="fas fa-calendar-minus"></i> Considerações e preparação para o módulo Programação em R (Nível Intermediário)</a></li>
 </ul>
-<h2 id="section"></h2>
-<h1 id="materiais"><i class="fas fa-folder-open"></i> Materiais para este módulo</h1>
-<h2 id="slidesaulas">Slides de Aulas</h2>
+</section>
+<section id="slidesaulas" class="panel">
+<h2>Slides de Aulas</h2>
 <ul>
 <li>Aula 00: <a href="aulas/aula00.html" target="_blank">Apresentação do Curso</a></li>
 <li>Aula 01: <a href="aulas/aula01.html" target="_blank">Instalação do R e do RStudio</a></li>
@@ -2212,7 +2217,9 @@ Material
 <li>Aula 24: <a href="aulas/aula24.html" target="_blank">Interface com outras linguagens</a></li>
 <li>Aula 25: <a href="aulas/aula25.html" target="_blank">Considerações e Preparação para a Programação em R (Nível Intermediário)</a></li>
 </ul>
-<h2 id="scripts">Scripts</h2>
+</section>
+<section id="scripts" class="panel">
+<h2>Scripts</h2>
 <ul>
 <li>Script 00: ~</li>
 <li>Script 01: ~</li>
@@ -2241,8 +2248,13 @@ Material
 <li>Script 24: <a href="scripts/aula24/r-python.R" target="_blank">r-python.R</a>, <a href="scripts/aula24/r-rcpp.R" target="_blank">r-rcpp.R</a>, <a href="scripts/aula24/r-tcltk.R" target="_blank">r-tcltk.R</a>, <a href="scripts/aula24/add.cpp" target="_blank">add.cpp</a>, <a href="scripts/aula24/add.py" target="_blank">add.py</a></li>
 <li>Script 25: ~</li>
 </ul>
-<h2 id="shiny">Exercícios e Scripts via <a href="https://shiny.rstudio.com/" target="_blank">Shiny</a></h2>
+</section>
+<section id="shiny" class="panel">
+<h2>Exercícios e Scripts via <a href="https://shiny.rstudio.com/" target="_blank">Shiny</a></h2>
 <p><a href="https://bendeivide.shinyapps.io/Curso-R/" target="_blank">Curso R via Shiny</a></p>
+</section>
+</div>
+<hr />
 <h1 id="apresentacao"><i class="fas fa-book"></i> Apresentação do curso</h1>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_JqtU3X101E" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
@@ -2351,7 +2363,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x652f2a8&quot;</code></pre>
+<pre><code>[1] &quot;0x2511ccc8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2378,7 +2390,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x652f2a8&quot;</code></pre>
+<pre><code>[1] &quot;0x2511ccc8&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2390,7 +2402,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x283c7d58&quot;</code></pre>
+<pre><code>[1] &quot;0x2475fde8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2418,7 +2430,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x283c7c78&quot;</code></pre>
+<pre><code>[1] &quot;0x2475fd08&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -4020,7 +4032,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 [[4]]
 function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e44290&gt;
+&lt;bytecode: 0x0000000008e53b38&gt;
 &lt;environment: namespace:base&gt;
 
 [[5]]
@@ -5294,13 +5306,13 @@ nome_funcao &lt;- function(arg1, arg2, ...) corpo</code></pre>
 <span class='fu'>grafico</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
 </code></pre>
 </div>
-<img src="nbasico_files/figure-html5/unnamed-chunk-90-1.png" width="624" />
+<img src="nbasico_files/figure-html5/unnamed-chunk-91-1.png" width="624" />
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamada 2, inserindo argumentos nao definidos</span>
 <span class='fu'>grafico</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span>, main <span class='op'>=</span> <span class='st'>"Título"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="nbasico_files/figure-html5/unnamed-chunk-90-2.png" width="624" /></p>
+<p><img src="nbasico_files/figure-html5/unnamed-chunk-91-2.png" width="624" /></p>
 </div>
 <p>Isso ocorre, porque temos a função <code>plot()</code> no corpo da função <code>grafico()</code> que apresenta muitos argumentos. Dessa forma, criamos a função <code>grafico()</code>, com os argumentos que representam as coordenadas, mas a reticências (<code>...</code>) garantem que os demais argumentos de <code>plots</code>, omitidos, possam ser utilizados.</p>
 <h2 id="esc_lexico">Escopo léxico</h2>
@@ -5821,7 +5833,7 @@ A 100.87     g4</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>midrangeMCP</span><span class='fu'>::</span><span class='fu'><a href='https://bendeivide.github.io/midrangeMCP//reference/MRbarplot.html'>MRbarplot</a></span><span class='op'>(</span><span class='va'>results</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="nbasico_files/figure-html5/unnamed-chunk-104-1.png" width="624" /></p>
+<p><img src="nbasico_files/figure-html5/unnamed-chunk-105-1.png" width="624" /></p>
 </div>
 <h2 id="attachpac">Carregando e anexando um pacote</h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ImIj8iBo6CQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
@@ -5848,7 +5860,7 @@ A 100.87     g4</code></pre>
 <pre><code>Table in latex of results of the MGM test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Mon Aug 30 22:16:34 2021
+% Tue Aug 31 21:15:41 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5868,7 +5880,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the MGR test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Mon Aug 30 22:16:35 2021
+% Tue Aug 31 21:15:41 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5888,7 +5900,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the SNKM test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Mon Aug 30 22:16:35 2021
+% Tue Aug 31 21:15:41 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5908,7 +5920,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the TM test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Mon Aug 30 22:16:35 2021
+% Tue Aug 31 21:15:41 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5928,7 +5940,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of descriptive statistics
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Mon Aug 30 22:16:35 2021
+% Tue Aug 31 21:15:41 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrrrrr}
@@ -6182,7 +6194,7 @@ $weights
 [1] 1
 
 $`Ambiente de execução`
-&lt;environment: 0x0000000007841b80&gt;
+&lt;environment: 0x0000000024c42510&gt;
 
 $`Ambiente Pai`
 &lt;environment: R_GlobalEnv&gt;</code></pre>
@@ -6212,17 +6224,17 @@ $`Ambiente Pai`
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x000000002abd70f0&gt;</code></pre>
+<pre><code>&lt;environment: 0x0000000024925630&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x00000000286dc6e0&gt;</code></pre>
+<pre><code>&lt;environment: 0x0000000009f580c0&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x000000002856f5e0&gt;</code></pre>
+<pre><code>&lt;environment: 0x0000000009bf8b38&gt;</code></pre>
 </div>
 <p>O ambiente pai do ambiente de execução, é o ambiente envolvente de <code>f1</code>, que nesse caso é o ambiente global. Assim, observe que o ocorre quando executamos o comando de superatribuição. O nome <code>x</code> no ambiente global passou a está associado ao valor 2, porque foi alterado por <code>&lt;&lt;-</code>, mas o nome <code>x</code> continuou associado ao valor 1, porque a função <code>f1()</code> retornou o valor 1. Isso mostra que a superatribuição não cria um objeto no ambiente atual, mas em um ambiente pai se não existe ou altera o nome existente. Vejamos o complemento dessa afirmação no próximo exemplo.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -6281,10 +6293,10 @@ $`Ambiente Pai`
 [1] 1
 
 $AmbExec_aux
-&lt;environment: 0x0000000006120e78&gt;
+&lt;environment: 0x00000000098207b8&gt;
 
 $AmbExec_contador
-&lt;environment: 0x0000000006381c20&gt;</code></pre>
+&lt;environment: 0x0000000009a8db28&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
@@ -6293,10 +6305,10 @@ $AmbExec_contador
 [1] 2
 
 $AmbExec_aux
-&lt;environment: 0x0000000005f96450&gt;
+&lt;environment: 0x00000000096fe7b8&gt;
 
 $AmbExec_contador
-&lt;environment: 0x0000000006381c20&gt;</code></pre>
+&lt;environment: 0x0000000009a8db28&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
@@ -6305,10 +6317,10 @@ $AmbExec_contador
 [1] 3
 
 $AmbExec_aux
-&lt;environment: 0x0000000005ea75d8&gt;
+&lt;environment: 0x00000000090fec08&gt;
 
 $AmbExec_contador
-&lt;environment: 0x0000000006381c20&gt;</code></pre>
+&lt;environment: 0x0000000009a8db28&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamada de funcao</span>
 <span class='va'>contador2</span> <span class='op'>&lt;-</span> <span class='fu'>contador</span><span class='op'>(</span><span class='op'>)</span>
@@ -6319,10 +6331,10 @@ $AmbExec_contador
 [1] 1
 
 $AmbExec_aux
-&lt;environment: 0x000000000993c588&gt;
+&lt;environment: 0x000000000732f530&gt;
 
 $AmbExec_contador
-&lt;environment: 0x0000000005df10b0&gt;</code></pre>
+&lt;environment: 0x0000000008e31b48&gt;</code></pre>
 </div>
 <p>Quando uma função <code>function()</code> é criada dentro de outra função <code>function()</code> o ambiente de execução da função superior, <code>contador()</code>, é o ambiente envolvente da função interna, <code>aux()</code>. Dessa forma, o ambiente de execução de <code>contador()</code> não será mais efêmero, isto é, não será apagado após a execução, como pode ser visto em <code>contador1()</code>. Observamos que executamos <code>contador1()</code> três vezes. O nome <code>i</code> foi atualizado, devido a superatribuição, a cada chamada da mesma função. Ao passo que, quando realizamos uma nova chamada de <code>contador()</code>, por meio de <code>contador2()</code>, o resultado de <code>i</code> retora o valor <code>1</code>, porque um novo ambiente de execução para <code>contador()</code> foi criado, como pode ser observado.</p>
 <p>Os demais ambiente funcionais e exemplos, serão descritos no módulo <a href="nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
@@ -6452,7 +6464,7 @@ $AmbExec_contador
 <pre><code>function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x000000002a851ad0&gt;
+&lt;bytecode: 0x00000000250d0510&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 <p>Quando criamos o objeto <code>dados</code>, uma de suas colunas estava nomeada por <code>sd</code>, que também é o nome de uma função do pacote <em>stats</em>, que representa a variância. Porém, quando anexamos o objeto <code>dados</code> no caminho de busca, um novo ambiente é criado, como pai do ambiente global e com mesmo nome do objeto, e os elementos do objeto dados são copiados para esse ambiente. Assim, o nome <code>sd</code> foi procurado e não encontrado, seguindo a busca para o próximo ambiente que foi <code>dados</code>, e daí foi encontrado. Percebemos que também existe esse nome no ambiente do pacote <em>stats</em>, que é do tipo função. Entretanto, como o primeiro objeto encontrado associado a esse nome estava no ambiente dados, ele é retornado. Nesses casos, se usarmos a superatribuição, a alteração ocorrerá apenas na cópia dos elementos no ambiente anexado, e não nos elementos do objeto original. Caso haja a atribuição, o nome será criado no ambiente global.</p>
