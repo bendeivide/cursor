@@ -1,6 +1,6 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 43 - Cópia ao modificar, modificação no local e tamanho de vetores"
+subtitle: "Aula 43 - Cópia ao modificar, modificação no local de vetores"
 author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"
