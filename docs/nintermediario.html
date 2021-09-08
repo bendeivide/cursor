@@ -2169,17 +2169,10 @@ Material
 <li><a href="#vectors">Usando <code>vector()</code>, <code>is.vector()</code> e <code>as.vector()</code></a></li>
 <li><a href="#outros_obj">Conhecendo outros objetos</a>
 <ul>
-<li><a href="#datas_horas">Objeto para datas, horas, tempo, durações e fusos horários</a>
-<ul>
-<li><a href="#datas">Datas</a></li>
+<li><a href="#datas_horas">Objeto para datas, horas, tempo, durações e fusos horários</a> <!-- - [Mais manipulações com objetos e subconjuntos](#manip_obj_adicionais) --></li>
 </ul></li>
-</ul></li>
-<li>Manipulações com objetos</li>
-<li>Subconjuntos</li>
-<li>Cópias de objetos</li>
-<li>Manipulando <em>strings</em> (caracteres)</li>
-<li>Objeto <em>tibble</em></li>
-<li>Objeto <em>raw</em></li>
+<li><a href="#copia_modif_tam_objetos">Cópia ao modificar, modificação no local e tamanho de objetos</a></li>
+<li><a href="#coletor_lixo_desvinc">Coletor de lixo e desvinculação</a></li>
 </ul></li>
 <li><a href=""><i class="far fa-image"></i> Aprofundamento sobre ambientes</a></li>
 <li><a href=""><i class="fab fa-connectdevelop"></i> Programação Funcional</a>
@@ -2238,7 +2231,13 @@ Material
 <li>Aula 38: <a href="aulas/aula38.html" target="_blank">Sistema S3: Envio (despacho) de métodos</a></li>
 <li>Aula 39: <a href="aulas/aula39.html" target="_blank">Sistema S3: Mecanismo de herança</a> <!-- - Aula 39: [Sistema S3:  Estratégias para o sistema S3](aulas/aula38.html){target="_blank"} --> <!-- - Aula 40: [Sistema S3:  Estilos de objetos](aulas/aula39.html){target="_blank"} --></li>
 <li>Aula 40: <a href="aulas/aula40.html" target="_blank">Entendendo um pouco mais sobre objetos: estruturas atômicas ou recursivos</a></li>
-<li>Aula 41: <a href="aulas/aula41.html" target="_blank">Aula 41 - Conhecendo outros objetos: Datas</a></li>
+<li>Aula 41: <a href="aulas/aula41.html" target="_blank">Conhecendo outros objetos: Datas</a></li>
+<li>Aula 42: <a href="aulas/aula42.html" target="_blank">Conhecendo outros objetos: Datas, horas e fusos horários</a></li>
+<li>Aula 43: <a href="aulas/aula43.html" target="_blank">Cópia ao modificar, modificação no local e tamanho de vetores</a></li>
+<li>Aula 44: <a href="aulas/aula44.html" target="_blank">Cópia ao modificar, modificação no local e tamanho em funções</a></li>
+<li>Aula 45: <a href="aulas/aula45.html" target="_blank">Cópia ao modificar, modificação no local e tamanho em listas</a></li>
+<li>Aula 46: <a href="aulas/aula46.html" target="_blank">Cópia ao modificar, modificação no local e tamanho em quadro de dados (<em>Data frames</em>)</a></li>
+<li>Aula 47: <a href="aulas/aula47.html" target="_blank">Tamanho e desempenho de objetos</a></li>
 </ul>
 </section>
 <section id="scripts" class="panel">
@@ -2766,7 +2765,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e53b38&gt;
+&lt;bytecode: 0x0000000008e43ca8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2909,7 +2908,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000002a002dc0&gt;
+&lt;bytecode: 0x000000002762e5b8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2935,7 +2934,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000002a002dc0&gt;
+&lt;bytecode: 0x000000002762e5b8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2961,7 +2960,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000002a002dc0&gt;
+&lt;bytecode: 0x000000002762e5b8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3758,7 +3757,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x00000000407e1880&gt;
+&lt;bytecode: 0x00000000414bf3b0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
@@ -4391,9 +4390,30 @@ $y$z
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 18870</code></pre>
+<pre><code>[1] 18878</code></pre>
 </div>
-<p>O resultado 18870 coagido a <code>double</code> se refere ao número de dias desde a data 1970-01-01. Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
+<p>O resultado 18878 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
+<p>Podemos criar um objeto data com o construtor (gerador de instâncias de classe) chamado <code>.Date()</code>. O argumento de entrada será o número de dias após o marco “1970-01-01,” isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># O marco zero</span>
+<span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.Date</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1970-01-01&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Um dia apos o marco</span>
+<span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.Date</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1970-01-02&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Dez dias apos o marco</span>
+<span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.Date</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1970-01-11&quot;</code></pre>
+</div>
 <p>A função de coerção para um objeto data é uma função genérica para as classes implícitas <code>"character"</code> e <code>"numeric"</code>, e para as classes <code>"POSIXct"</code>, e para mais detalhes da função, use <code>?as.Data()</code>. Vejamos alguns exemplos a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -4433,9 +4453,19 @@ $y$z
 </div>
 <pre><code>[1] &quot;Date&quot;</code></pre>
 </div>
-<p>Explicaremos posteriormente os objetos da classe <code>"POSIXct"</code>. Podemos alterar o formato tanto da data como também da hora, que falaremos mais a frente. Porém, já vamos adiantar algumas siglas importantes na Tabela XX.</p>
+<p>Explicaremos posteriormente os objetos da classe <code>"POSIXct"</code>. Podemos alterar o formato tanto da data como também da hora, que falaremos mais a frente, por meio da função <code>format()</code>, cuja sintaxe geral para essa função é dada por:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(x, format, ...),</span></code></pre></div>
+</div>
+<p>em que <code>x</code> é o argumento que recebe um valor de data, e o argumento <code>format</code> é o argumento para informarmos o formato de apresentar essa data. O <em>default</em> é o formato <code>"%Y-%m-%d</code>. Porém, já vamos adiantar algumas siglas importantes na Tabela <a href="#tab:siglas-datas">1</a>, para a formatação das datas.</p>
 <table>
 <caption><span id="tab:siglas-datas">Table 1: </span> Siglas importantes para o formato de datas e horas.</caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 35%" />
+<col style="width: 18%" />
+<col style="width: 32%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Sigla</th>
@@ -4453,9 +4483,9 @@ $y$z
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>%C</code></td>
-<td style="text-align: center;">Os dois primeiros dígitos do ano</td>
+<td style="text-align: center;">Século (00-99)</td>
 <td style="text-align: center;"><code>%c</code></td>
-<td style="text-align: center;">Data, hora e fuso horário</td>
+<td style="text-align: center;">Data e hora específico do local, formado <code>"%a %b %e %H:%M:%S %Y"</code></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><code>%B</code></td>
@@ -4477,7 +4507,7 @@ $y$z
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>%D</code></td>
-<td style="text-align: center;">Data completa (com o mês iniciando!)</td>
+<td style="text-align: center;">Data completa no formato <code>%m/%d/%y</code>, padrão <em>C99</em></td>
 <td style="text-align: center;"><code>%d</code></td>
 <td style="text-align: center;">Dia do mês</td>
 </tr>
@@ -4493,46 +4523,558 @@ $y$z
 <td style="text-align: center;"><code>%S</code></td>
 <td style="text-align: center;">Segundos</td>
 </tr>
+<tr class="odd">
+<td style="text-align: center;"><code>%p</code></td>
+<td style="text-align: center;">inserção para as horas AM/PM</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>%w</code></td>
+<td style="text-align: center;">Dia da semana (texto)</td>
+<td style="text-align: center;"><code>%W</code></td>
+<td style="text-align: center;">Número da semana no ano ()</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>%x</code></td>
+<td style="text-align: center;">Data específica de acordo com <code>Sys.setlocale()</code></td>
+<td style="text-align: center;"><code>%X</code></td>
+<td style="text-align: center;">Horário especificado de acordo com <code>Sys.setlocale()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>%z</code></td>
+<td style="text-align: center;">Compensação em relação ao horário de Greenwich (<code>GMT</code>)</td>
+<td style="text-align: center;"><code>%Z</code></td>
+<td style="text-align: center;">Fuso horário</td>
+</tr>
 </tbody>
 </table>
-<h3 id="objetos-de-classe-ts">Objetos de classe <code>ts</code></h3>
-<h3 id="objeto-tible">Objeto <em>tible</em></h3>
-<h2 id="mais-manipulações-com-objetos-e-subconjuntos">Mais manipulações com objetos e subconjuntos</h2>
-<h3 id="vetores">Vetores</h3>
-<ul>
-<li>Subconjuntos</li>
-<li>Falar da relação de <code>[</code> com os métodos, e a perda do atributo <code>class</code></li>
-<li>arredondamentos</li>
-</ul>
-<h4 id="strings"><em>Strings</em></h4>
-<h3 id="matrizes-e-arrays">Matrizes e <em>arrays</em></h3>
-<h3 id="quadro-de-dados-e-tible">Quadro de dados e <em>tible</em></h3>
+<p>Mais detalhes dessas siglas, <code>?strptime()</code>. Vejamos alguns exemplos no código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Dia de hoje</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;2021-09-08&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Formatando</span>
+<span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d/%m/%Y"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;08/09/2021&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d de %B de %Y"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;08 de setembro de 2021&quot;</code></pre>
+</div>
+<p>Para os objetos de classe <code>"Date"</code>, as siglas utilizadas para a função <code>format()</code> devem estar relacionadas a data, isto é, dia, mês e ano. Lembrando que o resultado desse genérico, bem como de <code>as.character()</code>, retornam vetores de tipo caractere, sem a classe <code>"Date"</code>.</p>
+<p>Algumas funções genéricas estão prontas para serem utilizados nesses objetos, como <code>+</code>, <code>-</code>, <code>seq()</code>, <code>rep()</code>, etc. Para saber mais quais métodos para essa classe, use <code>methods(class = "Date")</code>.</p>
+<h4 id="datas">Datas, horas e fusos horários</h4>
+<p>Se observarmos os métodos disponíveis para o genérico <code>as.Date()</code>, usando <code>methods(as.Date)</code>, direto ou indiretamente, internamente ao código há uma chamada <code>as.POSIXlt()</code> ou <code>as.POSIXct()</code>. Nesse caso, nas base do R a forma de armazenar a data e hora segue uma família de padrões especificados pela <a href="https://en.wikipedia.org/wiki/IEEE_Computer_Society">IEEE Computer Society</a> chamado <em>POSIX</em> (do inglês, Portable Operating System Interface). O objetivo é manter um padrão para que haja uma compatibilidade entre os sistemas operacionais. Assim, os objetos contrutores para armazernar além das datas também as horas são respectivamente, <code>.POSIXct()</code> e <code>.POSIXlt()</code>. O primeiro se refere a data e hora do calendário (<em>ct</em> - calendar time), e o segundo a data e hora local (<em>lt</em> - <em>local time</em>).</p>
+<p>O construtor <code>.POSIXct()</code> é um vetor tipo <code>double</code>, em que seu primeiro argumento de entrada representa o número de segundos desde “1970-01-01.” Assim, esse construtor gera uma instância para as classes <code>"POSIXct"</code> e <code>"POSIXt"</code>, que podemos observar a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Marco zero</span>
+<span class='op'>(</span><span class='va'>mzero</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.POSIXct</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1969-12-31 21:00:00 -03&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Classe</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>mzero</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;POSIXct&quot; &quot;POSIXt&quot; </code></pre>
+</div>
+<p>Percebemos que o resultado <code>mzero</code> não representa a data “1970-01-01.” Quando investigamos a função <code>.POSIXct()</code>, percebemos que um dos argumentos é <code>tz</code> que representa o fuso horário. Por <em>default</em> <code>tz = NULL</code>, e nesse caso será buscado o fuso horário do calendário do sistema operacional. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Marco zero, baseado no calendario SO</span>
+<span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.POSIXct</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1969-12-31 21:00:00 -03&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Marco zero, fuso Horario de Greenwich (GMT) ou Tempo Universal Coordenado (UTC)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.POSIXct</a></span><span class='op'>(</span><span class='fl'>0</span>, tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1970-01-01 GMT&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.POSIXct</a></span><span class='op'>(</span><span class='fl'>0</span>, tz <span class='op'>=</span> <span class='st'>"UTC"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;1970-01-01 UTC&quot;</code></pre>
+</div>
+<p>Nesse caso, o resultado da chamada <code>.POSIXct(0)</code>, foi executado de um sistema operacional (SO) com fuso horário no Brasil, horário de Brasília, com fuso <em>-3GMT</em> em relação ao fuso horário <em>UTC</em> ou <em>GMT</em> (do inglês, Greenwich Mean Time e Coordinated Universal Time, respectivamente), que representa o fuso horário de Greenwich e o Tempo Universal Coordenado, respectivamente. Para se alterar o fuso horário, o argumento <code>tz</code> deve ser usado. Para saber, acesse a lista de fusos horários chamando <code>OlsonNames()</code>.</p>
+<p>A coersão para um objeto <em>POSIXct</em>, a função usada é <code>as.POSIXct()</code>, que pode coagir a partir de vetores caracteres e numéricos. Seguem as mesmas ideias que comentamos para <code>as.Date()</code>, porém agora acrescentamos as horas. O fuso horário pode ser captado pelo calendário do sistema operacional, ou pode ser inserido.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto caractere</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"2021-09-02 22:46:30"</span>
+<span class='va'>data_hora1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>data_hora1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;POSIXct&quot; &quot;POSIXt&quot; </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto numerico</span>
+<span class='va'>data_hora2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='fl'>100</span>, origin <span class='op'>=</span> <span class='st'>"1955-09-13"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>data_hora2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;POSIXct&quot; &quot;POSIXt&quot; </code></pre>
+</div>
+<p>A saída padrão é <code>"%Y-%m-%d %H:%M:%S"</code>, seguido do fuso horário. Essa configuração é realizada pelo genérico <code>format</code> que despacha para o método apropriado.</p>
+<p>O outro contrutor é algo mais complicado de se trabalhar, porque ao invés de um vetor <code>double</code>, é uma lista com no mínimo 9 componentes que segue:</p>
+<table>
+<caption><span id="tab:comp-POSIXlt">Table 2: </span> Componentes do objeto <em>POSIXlt</em>.</caption>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Componente</th>
+<th style="text-align: center;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>sec</code></td>
+<td style="text-align: center;">Segundos</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>min</code></td>
+<td style="text-align: center;">Minutos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>hour</code></td>
+<td style="text-align: center;">Horas</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>mon</code></td>
+<td style="text-align: center;">Mês</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>zone</code></td>
+<td style="text-align: center;">Fuso horário</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>wday</code></td>
+<td style="text-align: center;">Dias da semana</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>mday</code></td>
+<td style="text-align: center;">Dias do mês</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>year</code></td>
+<td style="text-align: center;">Anos desde “1899-12-31.”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>isdst</code></td>
+<td style="text-align: center;">O fuso horário é utilizado para configurar o <code>isdst</code>, que representa o horário de verão</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>gmtoff</code></td>
+<td style="text-align: center;">Deslocamento em segundos do horário de Greenwich (GMT)</td>
+</tr>
+</tbody>
+</table>
+<p>Os dois últimos componenente basicamente é o fuso horário que configura. O construtor é <code>.POSIXlt()</code>, e de forma mais direta, podemos usar <code>stiptime()</code> para converter vetores caracteres nesse classe. A classe desse objeto é <code>"POSIXlt"</code> e <code>POSIXt</code></p>
+<p>Vejamos alguns exemplos para criação desse objeto, com o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Marco zero</span>
+<span class='va'>xx</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sec <span class='op'>=</span> <span class='fl'>0</span>, min <span class='op'>=</span> <span class='fl'>0</span>, hour <span class='op'>=</span> <span class='fl'>0</span>, mday <span class='op'>=</span> <span class='fl'>0</span>,
+           mon <span class='op'>=</span> <span class='fl'>0</span>, year <span class='op'>=</span> <span class='fl'>0</span>, wday <span class='op'>=</span> <span class='fl'>0</span>, yday <span class='op'>=</span> <span class='fl'>0</span>,
+           isdst <span class='op'>=</span> <span class='fl'>0</span>, zone <span class='op'>=</span> <span class='st'>"America/Sao_Paulo"</span>, gmtoff <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+<span class='va'>tempo1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/base-internal.html'>.POSIXlt</a></span><span class='op'>(</span><span class='va'>xx</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>tempo1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;POSIXlt&quot; &quot;POSIXt&quot; </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto caractere -&gt; POSIXlt</span>
+<span class='va'>tempo2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"2021-09-02 03:21 am UTC"</span>, <span class='st'>"%Y-%m-%d"</span><span class='op'>)</span>; <span class='va'>tempo2</span>; <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>tempo2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;2021-09-02 -03&quot;</code></pre>
+<pre><code>   sec    min   hour   mday    mon   year   wday   yday  isdst   zone 
+   &quot;0&quot;    &quot;0&quot;    &quot;0&quot;    &quot;2&quot;    &quot;8&quot;  &quot;121&quot;    &quot;4&quot;  &quot;244&quot;    &quot;0&quot;  &quot;-03&quot; 
+gmtoff 
+    NA </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>tempo2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;POSIXlt&quot; &quot;POSIXt&quot; </code></pre>
+</div>
+<p>Muitas outras funções podem ser utilizadas para manipulação de datas, mas deixaremos para o leitor em realizar as suas consultas adicionais: <code>striftime()</code>, <code>Sys.setlocale()</code>, <code>Sys.getlocale()</code>, <code>.difftime()</code>, <code>as.difftime()</code>, <code>Sys.timezone()</code>, <code>Sys.time()</code>, etc.</p>
+<!-- # Para aprofundamento sobre data e tempo -->
+<!-- https://www.r-bloggers.com/2020/04/a-comprehensive-introduction-to-handling-date-time-in-r-2/ -->
+<!-- ?strptime -->
+<p><!-- ?locales --> <!-- https://lubridate.tidyverse.org/index.html --></p>
+<!-- Observações interessantes, fazendo testes: -->
+<!-- - `Sys.timezone()`: observa o fuso horário do calendário -->
+<!-- - `Sys.setlocale()` e `Sys.getlocale()` observa para as configurações do seu sistema operacional -->
+<p>Tanto para datas, horas e fusos horários existem pacotes alternativos que podem facilitar a utilização desses tipos de dados, como por exemplo o pacote <a href="https://lubridate.tidyverse.org/">lubridate</a>.</p>
+<!-- ### Objetos de classe `ts` -->
+<!-- ### Objeto *tibble* -->
+<!-- ## Objetos modo `raw` -->
+<!-- ## Objetos modo `complex` -->
+<h2 id="copia_modif_tam_objetos">Cópia ao modificar, modificação no local e tamanho de objetos</h2>
+<!-- https://developer.r-project.org/memory-profiling.html -->
+<!-- - Posteriormente explorar o assunto: bit, byte, etc, similar a aula de aluno para aluno (Youtube), e pincelar sobre ponteiros ... -->
+<!-- Pincelar sobre uso de memória no R: `gc()`, digitando `?mem` aparece uma quantidade de funções sobre memória; `?Memory`; `gc.time()` -->
+<!-- https://msmith.de/2020/05/14/exploring-r-reference-counting.html -->
+<!-- f <- function() { -->
+<!--     x <- y <- integer(length = 10e7) -->
+<!--     for(i in sample(length(x), size = 10)) {  -->
+<!--         x[i] <- as.integer(i) -->
+<!--         y[i] <- as.integer(length(x)-i) -->
+<!--     } -->
+<!-- } -->
+<!-- bench::mark(f(), iterations = 10) -->
+<p>Muitos dos problemas de perda de desempenho do código <a href="http://r-project.org/" target="_blank">R</a> pode estar envolvido a essa seção. Já abordamos no <a href="nbasico.html">módulo básico</a> de modo superficial, e agora iremos aprofundar um pouco mais. Outro assunto importante dentro do <strong>paradigma da programação funcional</strong>, que é a <strong>imutabilidade</strong>. Veremos que em algumas situações os objetos podem ser <strong>mutáveis</strong>, e com isso podemos afirmar a linguagem <a href="http://r-project.org/" target="_blank">R</a> <strong>não é estritamente funcional</strong>. Por fim, iremos perceber um grande equívoco que ocorre entre os programadores <a href="http://r-project.org/" target="_blank">R</a> quando cria um objeto associado ao nome <code>x</code>, afirma que criou um objeto <code>x</code> cujo valor está dentro dele. Perceberemos que na verdade, temos dois objetos envolvidos, e o que faz retornar o valor associado ao nome <code>x</code> é o ambiente onde esses objetos foram criados, de modo que, poderemos associar mais de um nome ao mesmo objeto.</p>
+<p>Sugerimos que quando buscarmos pelo identificador de memória de onde os objetos foram alocados na memória ativa do seu sistema operacional, seja usado o interpretador do <a href="http://r-project.org/" target="_blank">R</a> ao invés do <a href="http://rstudio.org/" target="_blank">RStudio</a>, porque a IDE faz uma referência a cada objeto para exibir informações sobre ele.</p>
+<p>Quando falamos dos tipos de <strong>objeto base</strong>, mencionamos os 24 tipos de objetos que existem no ambiente <a href="http://r-project.org/" target="_blank">R</a>. Vejamos o código a seguir.</p>
+<pre data-recho="TRUE," data-include="TRUE"><code>x &lt;- 10</code></pre>
+<p>Falamos também que o objeto nome é do tipo <code>symbol</code>, como no caso de <code>x</code>, e o objeto <code>10</code> é um vetor numérico tipo <code>integer</code> de comprimento <code>1</code>. Ao criar esse objeto, a forma de recuperá-lo é associar um nome a ele, uma vez que o ambiente <code>R</code> não tem uma forma de recuperar o valor do objeto pelo identificador de memória onde ele foi reservado, pelo menos ainda limitados a compreensão de existência. As ligações desses objetos ficam armazenados como uma lista em um outro objeto, o ambiente. Nesse caso, essa ligação foi armazenada no ambiente global, <code>.GlobalEnv</code>. Na Figura <a href="#fig:ligacoes-obj">2</a>, mostramos em detalhes essas ligações.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:ligacoes-obj"></span>
+<img src="images/ligacoes_obj.png" alt="Ligações entre objetos tipo `'symbol'` e `'integer'`." width="70%" />
+<p class="caption">
+Figure 2: Ligações entre objetos tipo <code>'symbol'</code> e <code>'integer'</code>.
+</p>
+</div>
+</div>
+<p>Diante disso, o que vem a ser a cópia de um objeto, nada mais é do que alocar um outro espaço de memória para armazenar o(s) valor(es) do objeto copiado. Isso significa, mais espaço de memória ativa. Há de se observar que o consumo de memória pelo <code>R</code> é um dos gargalos do ambiente, mas ao longo do tempo vem evoluindo bastante. Porém, muitas vezes é o mau uso na escrita das rotians desenvolvida pelos usuários que gera essas intempéries. Então, vamos lá para uma série de exemplos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Exemplo 1</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='va'>b</span> <span class='op'>&lt;-</span> <span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fl'>6</span>
+<span class='co'># identificador de memoria</span>
+<span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x2bfdce38&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x2bfdce38&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x2bfdce38&quot;</code></pre>
+</div>
+<p>Lembrando no <a href="nbasico.html">módulo básico</a>, que os identificadores de memória sempre se alteram, à medida que reiniciamos. Porém, percebam que ao chamar o objeto associado a esses nomes, todos retornam o valor <code>6</code>. Ainda mais, o identificador de memória é o mesmo. Portanto, aqui fica claro que não está havendo cópia do objeto, e sim, mais nomes se associando ao mesmo objeto, observemos a Figura <a href="#fig:lig-obj">3</a>, é o que chamamos de <strong>vinculação compartilhada</strong>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:lig-obj"></span>
+<img src="images/a=b=d=6.png" alt="Ligações de nomes associados ao objeto numérico." width="70%" />
+<p class="caption">
+Figure 3: Ligações de nomes associados ao objeto numérico.
+</p>
+</div>
+</div>
+<p>Vamos agora apresentar um próximo código, para entendermos a definição de <strong>cópia ao modificar</strong>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetor caractere ligado a dois nomes</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span><span class='op'>)</span>; <span class='va'>y</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Identificador de memoria do obj associado aos nomes</span>
+<span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x245207c8&quot;</code></pre>
+<pre><code>[1] &quot;0x245207c8&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Copia ao modificar</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"f"</span>
+<span class='co'># Ident de mem do obj associado aos nomes apos a modificacao</span>
+<span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x245207c8&quot;</code></pre>
+<pre><code>[1] &quot;0x244ee1a8&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo novamente os objetos</span>
+<span class='va'>y</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<pre><code>[1] &quot;f&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+</div>
+<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x245207c8 para 0x244ee1a8, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:copia-obj"></span>
+<img src="images/copia_obj.png" alt="Cópia de objetos." width="70%" />
+<p class="caption">
+Figure 4: Cópia de objetos.
+</p>
+</div>
+</div>
+<p>A função <code>tracemem()</code> do pocote <em>base</em>, pode auxiliar na verificação de cópias de objetos. Após a vinculação de um nome a um objeto, essa função pode ser acionada, e após as alterações de valores do objeto, se houver cópia, uma mensagem é impressa no console informando a referida cópia. Vejamos no código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetor numerico de comprimento 3</span>
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>; <span class='va'>w</span>
+</code></pre>
+</div>
+<pre><code>[1]  0.8546449  1.1350022 -0.3083730</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Acionando a funcao 'tracemem()' e imprimindo o id de memoria</span>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>tracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, <span class='st'>"\n"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;0000000043122AA8&gt; </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vinculacao de outro nome e copia</span>
+<span class='va'>z</span> <span class='op'>&lt;-</span> <span class='va'>w</span>; <span class='va'>z</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+</code></pre>
+</div>
+<pre><code>tracemem[0x0000000043122aa8 -&gt; 0x00000000433f3068]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Desativando o rastreamento</span>
+<span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>untracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
+<span class='co'># Modificando novamente o obj z</span>
+<span class='va'>z</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>; <span class='va'>z</span>
+</code></pre>
+</div>
+<pre><code>[1] 100.000000  10.000000  -0.308373</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Identificador de memoria</span>
+<span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;0x433f3068&quot;</code></pre>
+</div>
+<p>Após vinculado o nome <code>w</code> ao vetor numerico de comprimento 3, que é um gerador de números aleatórios de uma distribuição normal padrão, acionamos a chamada <code>tracemem()</code>, e após a criação de cópias, a função mostrará a ocorrência dessas cópias. Se desejarmos que essa mensagem não seja mais acionada, devemos usar a chamada <code>untracemem()</code>, que desativará o rastreameto de cópia. Lembrando que o rastreamento só ocorrerá o objeto informado na função <code>tracemem()</code>. Por fim, fizemos mais uma alteração no objeto <code>z</code>, e nesse caso como o objeto se associa apenas a um nome, ocorre a <strong>modificação no local</strong>, um processo de otimização do <a href="http://r-project.org/" target="_blank">R</a>, em que usa a mesma alocação de memória, não havendo portanto, uma cópia de objeto.</p>
+<p>Mas, fazendo alguns estudos e pesquisas, encontramos algumas funções primitivas, acessadas pela chamada <code>.Internals()</code>, denominada <code>inspect()</code>, <code>address()</code> e <code>refcnt()</code>, funções experimentais para imprimir informações de baixo nível dos objetos <a href="http://r-project.org/" target="_blank">R</a>. Essa função não é exposta ao nível superior da linguagem, e segundo a própria documentação, é um recurso para depuração/inpeção. A documentação ainda afirma que nem todas as informações foram implementadas. Para esse momento, o que está implementado é suficiente para identificarmos os procedimentos de cópia dos objetos. Uma segunda informação é que a partir da versão <a href="http://r-project.org/" target="_blank">R</a> 4.0.0, a decisão de cópia de objetos passaram a ser determinados pela contagem de referência, ao invés do mecanismo <code>NAMED</code>. Esse ponto realmente exige um entendimento de baixo nível na linguagem, isto é, a sua implementação em linguagem <code>C</code>. Vamos mostrar os resultados do código anterior, inspecionado por essas funções, a seguir.</p>
+<!-- https://github.com/wch/r-source/blob/cd22e5a0554b7fb73bb508a8ee2053c48a377c8d/src/main/inspect.c -->
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetor numerico de comprimento 3</span>
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>; <span class='va'>w</span>
+<span class='co'>## [1]  0.2733585 -0.6819105 -0.1788905</span>
+<span class='co'># inspecionando em baixo nivel o objeto w</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>refcnt</span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a046838 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 0.273359,-0.68191,-0.17889</span>
+<span class='co'>## &lt;pointer: 0x000000000a046838</span>
+<span class='co'>## [1] 1</span>
+<span class='co'># Vinculacao de outro nome e copia</span>
+<span class='va'>z</span> <span class='op'>&lt;-</span> <span class='va'>w</span>
+<span class='co'># inspecionando em baixo nivel o objeto z</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>refcnt</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a046838 14 REALSXP g0c3 [REF(2)] (len=3, tl=0) 0.273359,-0.68191,-0.17889</span>
+<span class='co'>## &lt;pointer: 0x000000000a046838&gt;</span>
+<span class='co'>## [1] 2</span>
+<span class='co'># Alterando z</span>
+<span class='va'>z</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='co'># inspecionando em baixo nivel o objeto z</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>refcnt</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a046518 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 0.273359,10,-0.17889</span>
+<span class='co'>## &lt;pointer: 0x000000000a046518&gt;</span>
+<span class='co'>## [1] 1</span>
+<span class='co'># Modificando novamente o obj z</span>
+<span class='va'>z</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>; <span class='va'>z</span>
+<span class='co'>## [1] 100.0000000  10.0000000  -0.1788905</span>
+<span class='co'># inspecionando em baixo nivel o objeto z</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>; <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>refcnt</span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a046518 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 100,10,-0.17889</span>
+<span class='co'>## &lt;pointer: 0x000000000a046518&gt;</span>
+<span class='co'>## [1] 1</span>
+</code></pre>
+</div>
+</div>
+<p>A função <code>inspect()</code> será melhor explorada no <a href="navancado.html">módulo avançado</a>. O que vamos precisar de sua saída é a estrutura <code>REF(#)</code>, que representa a contagem de referência, isto é, o símbolo <code>#</code> determina o número de nomes associados ao objeto inspecionado. Se <code># = 1</code>, não ocorrerá cópia de objeto, e sim, uma modificação no local. Se <code># &gt; 1</code>, certamente ocorrerá uma cópia de objeto. Observemos que inicialmente, o objeto associado a <code>z</code> é inspecionado com <code>REF(1)</code>, cujo número pode ser obtido também por <code>.Internal(refcnt(w))</code>. A chamada <code>.Internal(address(w))</code> informa o identificador de memória, o mesmo obtido por <code>lobstr::obj_addr(w)</code> ou <code>tracemem(w)</code>, este último com pequenas alterações. Na sequência, associamos um outro nome <code>z</code> ao objeto. Agora, observamos que a contagem de referência agora é <code>REF(2)</code>. Dessa forma, qualquer alteração nos valores de <code>w</code> ou <code>z</code>, haverá cópia de objeto. E isso acaba ocorrendo quando executamos <code>z[2] &lt;- 10</code>, verificando que o identificador de memória de <code>z</code> se alterou. Um outro fato muito importante surge nesse momento. A alteração do objeto foi realizada por uma função primitiva, e funções primitivas, geralmente, têm um melhor controle da contagem de referência, e nesse caso, percebemos que o novo objeto associado a <code>z</code> só existe esse nome, e portanto, a contagem de referência retorna a 1, isto é, <code>REF(1)</code>. Por fim, alteramos novamente o objeto associado a <code>z</code>, porém a modificação ocorre no local, porque <code>REF(1)</code>.</p>
+<p>Uma outra consequência de cópia de objeto é a coersão. Vejamos o código na sequência para ilustrar.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetor inteiro de comprimento 10</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>integer</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='co'># Inspecionando x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x00000000066297e0 13 INTSXP g0c4 [REF(1)] (len=10, tl=0) 0,0,0,0,0,...</span>
+<span class='co'># Alterando x com um escalar tipo 'double'</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span> <span class='co'># 10 eh 'double', 10L seria 'integer'</span>
+<span class='co'># Inspecionando x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x0000000008dfcf88 14 REALSXP g0c5 [REF(1)] (len=10, tl=0) 10,0,0,0,0,...</span>
+</code></pre>
+</div>
+</div>
+<p>Falamos anteriormente que, geralmente, as funções primitivas têm um controle melhor da contagem de referência para decidir se um objeto será copiado ou não. Mas, nem todas. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># funcao primitiva c() - REF(1)</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span>
+<span class='co'># Inspecao de b</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>@0x0000000041308950 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x0000000006629620 14 REALSXP g0c4 [REF(1)] (len=5, tl=0) 1,2,3,4,5</span>
+<span class='co'># Funcao primitiva `:` - REF(65535)</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
+<span class='co'># inspecao de b</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>@0x00000000249d55d0 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a060680 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
+<span class='co'># Funcao primitiva seq() - REF(65535)</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1L</span>, <span class='fl'>10L</span><span class='op'>)</span>
+<span class='co'># inspecao de b</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>@0x0000000027c71f40 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a05f3e8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
+<span class='co'># Funcao primitiva rep() - REF(1)</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span> 
+<span class='co'># Inspecao de b</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>@0x000000004476b300 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x00000000066295b0 13 INTSXP g0c4 [REF(1)] (len=10, tl=0) 1,2,3,4,5,...</span>
+</code></pre>
+</div>
+</div>
+<p>Observemos que algumas funções são muito úteis para a implementação de nossas rotinas, porém estas geram cópias de objetos com a alteração de seus valores, ao invés de modificação no local. Por exemplo, as funções <code>:</code> e <code>seq()</code> são muito úteis para gerarmos uma sequência de valores espaçados igualmente, porém, observamos que suas contagens de referências são diferentes de 1. Isso significa que qualques alteração nos valores do objeto, criado por essas funções, geram cópias. Dependendo da implementação em um <em>loop</em>, por exemplo, o dispêndio de memória ativa pode ser muito alto, e por consequência, perda de desempenho.</p>
+<p>No caso de funções tipo <code>closure</code>, isto é, criadas por <code>function()</code>, ocorre algo similar com a discussão anterior, porém, com algumas diferenças, vejamos o próximo código.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>x</span>
+<span class='op'>}</span> 
+<span class='co'># Caso 1</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a426578 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 1,2,3</span>
+<span class='va'>k1</span> <span class='op'>&lt;-</span> <span class='fu'>f1</span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a426578 14 REALSXP g0c3 [REF(2)] (len=3, tl=0) 1,2,3</span>
+<span class='co'>## [1] 1 2 3</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>k1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a426578 14 REALSXP g0c3 [REF(2)] (len=3, tl=0) 1,2,3</span>
+<span class='co'># Caso 2</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a426398 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 1,2,3</span>
+<span class='va'>k2</span> <span class='op'>&lt;-</span> <span class='fu'>f2</span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a426398 14 REALSXP g0c3 [REF(2)] (len=3, tl=0) 1,2,3</span>
+<span class='co'>## [1] 1 2 3</span>
+<span class='co'>## @0x000000000a426258 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 10,2,3</span>
+<span class='co'>## [1] 10  2  3</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>k2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000a426258 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 10,2,3</span>
+</code></pre>
+</div>
+</div>
+<p>O objeto quando é vinculado em um argumento de um função, entra como promessa, isto significa que ele não é avaliado, apenas quando for chamado no corpo da função. Se nenhuma alteração for realizada a esse objeto, nenhuma cópia é realizada, porém a contagem de referência terá um nível superior. Observe o objeto <code>a</code>, o seu identificador de memória é o mesmo quando chamamos a primeira vez o argumento <code>x = a</code> na função <code>f1()</code>. Isso significa que como essa função é uma identidade, apenas imprime o próprio argumento, portanto, nada é alterado no argumento <code>x</code>. Porém, <code>REF(1)</code> passa para <code>REF(2)</code>, e o nome <code>k1</code> passa a se associar também com o objeto, ao invés de uma cópia de objeto, que pode ser representado pela Figura <a href="#fig:copy-mod-obj">5</a>. No segundo caso, criamos novamente o objeto <code>a</code>, ao ser chamado inicialmente agora na função <code>f2</code>, a contagem de referência passa para <code>REF(2)</code>, porém sem cópia inicialmente. Quando a chamada <code>[&lt;-</code> é executada ocorre uma cópia, por causa de <code>REF(2)</code>, Figura <a href="#fig:copy-mod-obj">5</a>. Ao ser copiado, essa função primitiva retorna a contagem de referência para 1, e a saída da função ocorre para <code>REF(1)</code>. Nesse sentido, os objetos associados aos nomes <code>k1</code> e <code>k2</code>, posteriormente, se alterados terão comportamentos diferentes. O objeto associado a <code>k1</code> se alterado, será realizado uma cópia, e no caso de <code>k2</code> ocorrerá uma modificação no local, tudo por causa da contagem de referência em cada um dos casos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:copy-mod-obj"></span>
+<img src="images/copy-mod-obj.png" alt="Cópia e modificação no local de objetos." width="70%" />
+<p class="caption">
+Figure 5: Cópia e modificação no local de objetos.
+</p>
+</div>
+</div>
+<p>Os objetos tipo listas, que na realidade vetores mais complexos, apresentam comportamento semelhante na cópia na modificação, e na modificação no local. A ideia seguirá a mesma com a contagem de referência, <code>REF(1)</code> ocorre a modificação no local, e valores superiores a 1, cópia na modificação.</p>
+<p>Como visto no <a href="nbasico.html">módulo básico</a>, os elementos de uma lista são vetores atômicos, e até mesmo listas. Desse modo, diferentemente dos vetores cuja estrutura armazena os próprios valores, as listas armazenam as identificações de memória em que que os objetos foram alocados. Vejamos a estrutura de baixo nível desse tipo de objeto.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto lista</span>
+<span class='va'>l1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>, <span class='fl'>10L</span>, <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='co'># Inspecao do objeto</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>l1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x00000000060b27f8 19 VECSXP g0c3 [REF(1)] (len=3, tl=0)</span>
+<span class='co'>##  @0x00000000060b2848 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 1,2,3</span>
+<span class='co'>##  @0x00000000060af018 13 INTSXP g0c1 [REF(3)] (len=1, tl=0) 10</span>
+<span class='co'>##  @0x00000000060aefa8 10 LGLSXP g0c1 [REF(3)] (len=1, tl=0) 1</span>
+<span class='co'># Associacao de outro nome l2 ao obj lista</span>
+<span class='va'>l2</span> <span class='op'>&lt;-</span> <span class='va'>l1</span>
+<span class='co'># Inspecao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>l2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x00000000060b27f8 19 VECSXP g0c3 [REF(2)] (len=3, tl=0)</span>
+<span class='co'>##  @0x00000000060b2848 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 1,2,3</span>
+<span class='co'>##  @0x00000000060af018 13 INTSXP g0c1 [REF(3)] (len=1, tl=0) 10</span>
+<span class='co'>##  @0x00000000060aefa8 10 LGLSXP g0c1 [REF(3)] (len=1, tl=0) 1</span>
+<span class='co'># Alterando l2</span>
+<span class='va'>l2</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>5</span>
+<span class='co'># Inspecao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>l2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x00000000064fc860 19 VECSXP g0c3 [REF(1)] (len=3, tl=0)</span>
+<span class='co'>##  @0x00000000060b2848 14 REALSXP g0c3 [REF(2)] (len=3, tl=0) 1,2,3</span>
+<span class='co'>##  @0x00000000060af018 13 INTSXP g0c1 [REF(4)] (len=1, tl=0) 10</span>
+<span class='co'>##  @0x0000000007fc77e0 14 REALSXP g0c1 [REF(3)] (len=1, tl=0) 5</span>
+</code></pre>
+</div>
+</div>
+<p>Nesse caso, podemos representar uma lista pela Figura <a href="#fig:lista-vinculacao">6</a>. Observemos quando criamos mais de um nome associado ao objeto lista, e como os seus elementos apontam para os vetores.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:lista-vinculacao"></span>
+<img src="images/lista-vinculacao.png" alt="Vinculação de nomes ao objeto lista." width="70%" />
+<p class="caption">
+Figure 6: Vinculação de nomes ao objeto lista.
+</p>
+</div>
+</div>
+<p>A alteração do terceiro elemento da lista <code>l2</code>, proporciona uma cópia de <code>l1</code>, porém os dois primeiros elementos de <code>l2</code> apontam para os mesmos dois primeiros objetos de <code>l1</code>, não havendo cópia sobre esses vetores, Figura <a href="#fig:lista-copia">7</a>. Para saber se determinado vetor de uma lista será copiado ou modificado no local, seguirá a mesma regra abordada em vetores com relação a contagem de referência dos vetores e não a contagem de referência da lista.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:lista-copia"></span>
+<img src="images/lista-copia.png" alt="Cópias de listas." width="70%" />
+<p class="caption">
+Figure 7: Cópias de listas.
+</p>
+</div>
+</div>
+<h2 id="coletor_lixo_desvinc">Coletor de lixo e desvinculação</h2>
+<!-- ## Mais manipulações com objetos e subconjuntos {#manip_obj_adicionais} -->
+<!-- ### Vetores em geral -->
+<!-- - Subconjuntos -->
+<!-- - Falar da relação de `[` com os métodos, e a perda do atributo `class` -->
+<!-- - arredondamentos -->
+<!-- ### Vetores caracteres ou *Strings* -->
+<!-- https://www.gastonsanchez.com/r4strings/ -->
+<!-- https://gomesfellipe.github.io/post/2017-12-17-string/string/ -->
+<!-- http://www.botanicaamazonica.wiki.br/labotam/doku.php?id=bot89:precurso:1textfun:inicio -->
+<!-- https://bookdown.org/davi_moreira/txt4cs/stringR.html -->
+<!-- ### pacote stringr -->
+<!-- ### pacote tidytext -->
+<!-- https://juliasilge.com/blog/learn-tidytext-learnr/ -->
+<!-- https://juliasilge.shinyapps.io/learntidytext/ -->
+<!-- ### Matrizes e *arrays* -->
+<!-- ### Quadro de dados e *tible* -->
 <!--
 - Aprofundar e detalhar a parte de objetos de modo geral, não restringindo apenas aos vetores
 - Nos vetores de modo caractere, trabalhar bem sua utilização; ver o material da ecologia da USP
 -->
 <!-- Usar o manual https://cran.r-project.org/doc/manuals/r-release/R-lang.html para seguir a todos os tipos de objetos -->
-<!-- # Objetos -->
-<!-- ## Quadro de dados -->
-<!-- - data.frames() -->
-<!-- - tibble::tibble() -->
-<h1 id="projetos-no-rstudio">Projetos no RStudio</h1>
-<h1 id="projetos-r-no-github">Projetos R no Github</h1>
-<h2 id="manipulando-vetores-de-modo-character">Manipulando vetores de modo <code>character</code></h2>
-<!-- https://www.gastonsanchez.com/r4strings/ -->
-<!-- https://gomesfellipe.github.io/post/2017-12-17-string/string/ -->
-<!-- http://www.botanicaamazonica.wiki.br/labotam/doku.php?id=bot89:precurso:1textfun:inicio -->
-<!-- https://bookdown.org/davi_moreira/txt4cs/stringR.html -->
-<h3 id="pacote-tidytext">pacote tidytext</h3>
-<!-- https://juliasilge.com/blog/learn-tidytext-learnr/ -->
-<!-- https://juliasilge.shinyapps.io/learntidytext/ -->
-<h2 id="objetos-modo-raw">Objetos modo <code>raw</code></h2>
-<h2 id="objetos-modo-complex">Objetos modo <code>complex</code></h2>
-<h2 id="outro-tipo-de-estrutura-de-dados-tibble">Outro tipo de estrutura de dados <code>tibble</code></h2>
-<!-- tibble::tibble() -->
-<h2 id="manipulações-com-objetos">Manipulações com objetos</h2>
-<h2 id="cópias-de-objetos">Cópias de objetos</h2>
-<h1 id="programação-funcional">Programação funcional</h1>
+<h2 id="aprofundamento-sobre-ambientes">Aprofundamento sobre ambientes</h2>
+<h2 id="prog_funcional">Programação funcional</h2>
 <h2 id="funções-primitivas">Funções primitivas</h2>
 <!-- Usar a referencia "Software for data analysis - programming with R", 2008 - @chambers2008 -->
 <!-- Algumas funções no `R` (objetos `R`) não apresentam a estrutura básica convencional de uma função no ambiente, como argumento, corpo da função e ambiente. Isto porque, essas funções foram implementadas principalemente em linguagem `C`, não em linguagem `R`, que chamamos de funções primitivas. Essas funções são encontradas apenas no pacote `base`, e sua grande vantagem é o seu desempenho, devido a sua implementação ter sido desenvolvida em linguagem de baixo nível. -->
@@ -4655,6 +5197,8 @@ $y$z
 <!--         - graficos interativos (animate):  -->
 <!--            sites: https://mode.com/blog/r-data-visualization-packages/ -->
 <!--            sites: https://towardsdatascience.com/animating-your-data-visualizations-like-a-boss-using-r-f94ae20843e3 -->
+<h1 id="projetos-no-rstudio">Projetos no RStudio</h1>
+<h1 id="projetos-r-no-github">Projetos R no Github</h1>
 <h1 id="introdução-a-desenvolvimento-de-pacotes">Introdução a desenvolvimento de pacotes</h1>
 <h1 id="ambientes">Ambientes</h1>
 <h1 id="banco-de-dados-e-apis-sql">Banco de dados e APIs, SQL</h1>
@@ -4710,7 +5254,7 @@ $y$z
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb169"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.

@@ -1,0 +1,142 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 42 - Conhecendo outros objetos: Datas, horas e fusos horários"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Informações iniciais sobre datas
+
+- Você sabia que nem sempre o ano tem 365 dias?
+- Você sabia que nem sempre um dia tem 24h?
+- Você sabia que nem sempre 1min tem 60seg.?
+
+Por quê? 
+
+- Fenômenos de rotação e translação da terra
+
+Oustros problemas que envolve esse tipo de dado:
+
+- horários de verão
+- etc.
+
+## Como manipular esse tipo de dados?
+
+- Objeto de classe `"Date"`
+- Como esse é um objeto da base R, muitos genéricos estão prontos esse tipo de dado;
+- Como saber a data de hoje? `Sys.Date()`
+- O resultado de `Sys.Date()` é um objeto de classe `"Date"`
+
+## Vejamos algumas características desse tipo de objeto
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Qual a data de hoje?
+hoje <- Sys.Date(); hoje
+# Qual o tipo de objeto?
+typeof(hoje)
+# Eh um vetor?
+is.vector(hoje)
+# Eh 'double'?
+is.vector(hoje, mode = "double")
+# Qual a sua classe?
+class(hoje)
+```
+
+## Vejamos algumas características desse tipo de objeto
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Eh um vetor?
+is.vector(unclass(hoje))
+# Eh 'double'?
+is.vector(unclass(hoje), mode = "double")
+# Qual a sua classe?
+class(hoje)
+# Imprimindo hoje sem classe
+unclass(hoje)
+```
+
+## Como criamos esse objeto?
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Objeto x tipo "character"
+x <- "2017-08-02"
+(data <- as.Date(x))
+class(data)
+# Objeto x tipo "numeric"
+x <- 10
+# Com o objeto numerico, precisamos informar
+# a data inicial no argumento 'origin'. Nesse
+# caso, o retorno sera a data x dias apos 
+# 'origin'
+# 
+(data <- as.Date(x, origin = "2017-08-02")) 
+# Objeto de classe 'POSIXct'
+x <- as.POSIXct("2018-08-02 5:30")
+(data <- as.Date(x))
+class(data)
+```
+
+## Podemos formatar esse objeto?
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Dia de hoje
+Sys.time()
+# Formatando
+format(Sys.time(), "%d/%m/%Y")
+format(Sys.time(), "%d de %B de %Y")
+```
+
+## Algumas manipulações
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Hoje
+Sys.Date()
+# Data daqui a 10 dias
+(x <- Sys.Date() + 10)
+# Da ha 10 dias
+(y <- Sys.Date() - 20 )
+# Diferença
+x - y
+# x eh igual a y?
+x == y
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>
