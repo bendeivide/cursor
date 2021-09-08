@@ -1,6 +1,6 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 45 - Cópia ao modificar, modificação no local em funções"
+subtitle: "Aula 44 - Cópia ao modificar, modificação no local em funções"
 author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"
