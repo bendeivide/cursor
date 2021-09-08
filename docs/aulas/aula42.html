@@ -212,121 +212,143 @@ Inserir nas secoes:
 
 </center>
 
-</article></slide><slide class=""><hgroup><h2>Informações iniciais sobre datas</h2></hgroup><article  class="smaller " id="informações-iniciais-sobre-datas">
+</article></slide><slide class=""><hgroup><h2>Outras objetos para datas</h2></hgroup><article  class="smaller " id="outras-objetos-para-datas">
 
 <ul>
-<li>Você sabia que nem sempre o ano tem 365 dias?</li>
-<li>Você sabia que nem sempre um dia tem 24h?</li>
-<li>Você sabia que nem sempre 1min tem 60seg.?</li>
+<li>Objeto <em>POSIXct</em>: Classe <code>c(&quot;POSIXct, &quot;POSIXt&quot;)</code></li>
+<li>Objeto <em>POSIXlt</em>: Classe <code>c(&quot;POSIXlt, &quot;POSIXt&quot;)</code></li>
+<li>Siga <em>POSIX</em>: do inglês, Portable Operating System Interface</li>
 </ul>
 
-<p>Por quê?</p>
+</article></slide><slide class=""><hgroup><h2>Construtor 1</h2></hgroup><article  class="smaller " id="construtor-1">
 
 <ul>
-<li>Fenômenos de rotação e translação da terra</li>
-</ul>
-
-<p>Oustros problemas que envolve esse tipo de dado:</p>
+<li><code>.POSIXct()</code>:
 
 <ul>
-<li>horários de verão</li>
-<li>etc.</li>
+<li>vetor tipo <code>double</code>;</li>
+<li>argumento de entrada representa o número de segundos desde &ldquo;1970-01-01&rdquo;;</li>
+<li><code>&quot;POSIXct&quot;</code> e <code>&quot;POSIXt&quot;</code></li>
+<li>Exemplo:</li>
+</ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Como manipular esse tipo de dados?</h2></hgroup><article  class="smaller " id="como-manipular-esse-tipo-de-dados">
+<pre class = 'prettyprint lang-r'># Marco zero
+(mzero &lt;- .POSIXct(0))</pre>
+
+<pre >## [1] &quot;1969-12-31 21:00:00 -03&quot;</pre>
+
+<pre class = 'prettyprint lang-r'># Classe
+class(mzero)</pre>
+
+<pre >## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>Argumento <em>tz</em></h2></hgroup><article  class="smaller " id="argumento-tz">
+
+<pre class = 'prettyprint lang-r'># Marco zero, baseado no calendario SO
+.POSIXct(0)</pre>
+
+<pre >## [1] &quot;1969-12-31 21:00:00 -03&quot;</pre>
+
+<pre class = 'prettyprint lang-r'># Marco zero, fuso Horario de Greenwich (GMT) ou Tempo Universal Coordenado (UTC)
+.POSIXct(0, tz = &quot;GMT&quot;)</pre>
+
+<pre >## [1] &quot;1970-01-01 GMT&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>.POSIXct(0, tz = &quot;UTC&quot;)</pre>
+
+<pre >## [1] &quot;1970-01-01 UTC&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>Coersão</h2></hgroup><article  class="smaller " id="coersão">
+
+<pre class = 'prettyprint lang-r'># Objeto caractere
+x &lt;- &quot;2021-09-02 22:46:30&quot;
+data_hora1 &lt;- as.POSIXct(x)
+class(data_hora1)</pre>
+
+<pre >## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</pre>
+
+<pre class = 'prettyprint lang-r'># Objeto numerico
+data_hora2 &lt;- as.POSIXct(100, origin = &quot;1955-09-13&quot;)
+class(data_hora2)</pre>
+
+<pre >## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>Construtor 2</h2></hgroup><article  class="smaller " id="construtor-2">
 
 <ul>
-<li>Objeto de classe <code>&quot;Date&quot;</code></li>
-<li>Como esse é um objeto da base R, muitos genéricos estão prontos esse tipo de dado;</li>
-<li>Como saber a data de hoje? <code>Sys.Date()</code></li>
-<li>O resultado de <code>Sys.Date()</code> é um objeto de classe <code>&quot;Date&quot;</code></li>
+<li><code>.POSIXlt()</code>:
+
+<ul>
+<li>Argumento de entrada é uma lista com no mínimo 9 componentes</li>
+</ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Vejamos algumas características desse tipo de objeto</h2></hgroup><article  class="smaller " id="vejamos-algumas-características-desse-tipo-de-objeto">
+<table class = 'rmdtable'>
+<col width="47.619048%" />
+<col width="52.380952%" />
+<tr class="header">
+<th align="center">Componente</th>
+<th align="center">Descrição</th>
+</tr>
+<tr class="odd">
+<td align="center"><code>sec</code></td>
+<td align="center">Segundos</td>
+</tr>
+<tr class="even">
+<td align="center"><code>min</code></td>
+<td align="center">Minutos</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>hour</code></td>
+<td align="center">Horas</td>
+</tr>
+<tr class="even">
+<td align="center"><code>mon</code></td>
+<td align="center">Mês</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>zone</code></td>
+<td align="center">Fuso horário</td>
+</tr>
+<tr class="even">
+<td align="center"><code>wday</code></td>
+<td align="center">Dias da semana</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>mday</code></td>
+<td align="center">Dias do mês</td>
+</tr>
+<tr class="even">
+<td align="center"><code>year</code></td>
+<td align="center">Anos desde &ldquo;1899-12-31.&rdquo;</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>isdst</code></td>
+<td align="center">O fuso horário é utilizado para configurar o <code>isdst</code>, que representa o horário de verão</td>
+</tr>
+<tr class="even">
+<td align="center"><code>gmtoff</code></td>
+<td align="center">Deslocamento em segundos do horário de Greenwich (GMT)</td>
+</tr>
+</table>
 
-<pre class = 'prettyprint lang-r'># Qual a data de hoje?
-hoje &lt;- Sys.Date(); hoje
-## [1] &quot;2021-09-08&quot;
-# Qual o tipo de objeto?
-typeof(hoje)
-## [1] &quot;double&quot;
-# Eh um vetor?
-is.vector(hoje)
-## [1] FALSE
-# Eh &#39;double&#39;?
-is.vector(hoje, mode = &quot;double&quot;)
-## [1] FALSE
-# Qual a sua classe?
-class(hoje)
-## [1] &quot;Date&quot;</pre>
+</article></slide><slide class=""><hgroup><h2>Exemplo</h2></hgroup><article  class="smaller " id="exemplo">
 
-</article></slide><slide class=""><hgroup><h2>Vejamos algumas características desse tipo de objeto</h2></hgroup><article  class="smaller " id="vejamos-algumas-características-desse-tipo-de-objeto-1">
-
-<pre class = 'prettyprint lang-r'># Eh um vetor?
-is.vector(unclass(hoje))
-## [1] TRUE
-# Eh &#39;double&#39;?
-is.vector(unclass(hoje), mode = &quot;double&quot;)
-## [1] TRUE
-# Qual a sua classe?
-class(hoje)
-## [1] &quot;Date&quot;
-# Imprimindo hoje sem classe
-unclass(hoje)
-## [1] 18878</pre>
-
-</article></slide><slide class=""><hgroup><h2>Como criamos esse objeto?</h2></hgroup><article  class="smaller " id="como-criamos-esse-objeto">
-
-<pre class = 'prettyprint lang-r'># Objeto x tipo &quot;character&quot;
-x &lt;- &quot;2017-08-02&quot;
-(data &lt;- as.Date(x))
-## [1] &quot;2017-08-02&quot;
-class(data)
-## [1] &quot;Date&quot;
-# Objeto x tipo &quot;numeric&quot;
-x &lt;- 10
-# Com o objeto numerico, precisamos informar
-# a data inicial no argumento &#39;origin&#39;. Nesse
-# caso, o retorno sera a data x dias apos 
-# &#39;origin&#39;
-# 
-(data &lt;- as.Date(x, origin = &quot;2017-08-02&quot;)) 
-## [1] &quot;2017-08-12&quot;
-# Objeto de classe &#39;POSIXct&#39;
-x &lt;- as.POSIXct(&quot;2018-08-02 5:30&quot;)
-(data &lt;- as.Date(x))
-## [1] &quot;2018-08-02&quot;
-class(data)
-## [1] &quot;Date&quot;</pre>
-
-</article></slide><slide class=""><hgroup><h2>Podemos formatar esse objeto?</h2></hgroup><article  class="smaller " id="podemos-formatar-esse-objeto">
-
-<pre class = 'prettyprint lang-r'># Dia de hoje
-Sys.time()
-## [1] &quot;2021-09-08 04:59:05 -03&quot;
-# Formatando
-format(Sys.time(), &quot;%d/%m/%Y&quot;)
-## [1] &quot;08/09/2021&quot;
-format(Sys.time(), &quot;%d de %B de %Y&quot;)
-## [1] &quot;08 de setembro de 2021&quot;</pre>
-
-</article></slide><slide class=""><hgroup><h2>Algumas manipulações</h2></hgroup><article  class="smaller " id="algumas-manipulações">
-
-<pre class = 'prettyprint lang-r'># Hoje
-Sys.Date()
-## [1] &quot;2021-09-08&quot;
-# Data daqui a 10 dias
-(x &lt;- Sys.Date() + 10)
-## [1] &quot;2021-09-18&quot;
-# Da ha 10 dias
-(y &lt;- Sys.Date() - 20 )
-## [1] &quot;2021-08-19&quot;
-# Diferença
-x - y
-## Time difference of 30 days
-# x eh igual a y?
-x == y
-## [1] FALSE</pre>
+<pre class = 'prettyprint lang-r'># Marco zero
+xx &lt;- list(sec = 0, min = 0, hour = 0, mday = 0,
+           mon = 0, year = 0, wday = 0, yday = 0,
+           isdst = 0, zone = &quot;America/Sao_Paulo&quot;, gmtoff = &quot;&quot;)
+tempo1 &lt;- .POSIXlt(xx)
+class(tempo1)
+## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;
+# Objeto caractere -&gt; POSIXlt
+tempo2 &lt;- strptime(&quot;2021-09-02 03:21 am UTC&quot;, &quot;%Y-%m-%d&quot;); tempo2; unlist(tempo2)
+## [1] &quot;2021-09-02 -03&quot;
+##    sec    min   hour   mday    mon   year   wday   yday  isdst   zone gmtoff 
+##    &quot;0&quot;    &quot;0&quot;    &quot;0&quot;    &quot;2&quot;    &quot;8&quot;  &quot;121&quot;    &quot;4&quot;  &quot;244&quot;    &quot;0&quot;  &quot;-03&quot;     NA
+class(tempo2)
+## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  class="smaller " id="bons-estudos">
 

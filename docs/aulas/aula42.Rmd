@@ -39,100 +39,79 @@ Inserir nas secoes:
 [![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
 </center>
 
-## Informações iniciais sobre datas
+## Outras objetos para datas
 
-- Você sabia que nem sempre o ano tem 365 dias?
-- Você sabia que nem sempre um dia tem 24h?
-- Você sabia que nem sempre 1min tem 60seg.?
+- Objeto *POSIXct*: Classe `c("POSIXct, "POSIXt")`
+- Objeto *POSIXlt*: Classe `c("POSIXlt, "POSIXt")`
+- Siga *POSIX*: do inglês, Portable Operating System Interface
 
-Por quê? 
+## Construtor 1
 
-- Fenômenos de rotação e translação da terra
+- `.POSIXct()`:
+  - vetor tipo `double`;
+  - argumento de entrada representa o número de segundos desde "1970-01-01";
+  - `"POSIXct"` e `"POSIXt"`
+  - Exemplo:
 
-Oustros problemas que envolve esse tipo de dado:
-
-- horários de verão
-- etc.
-
-## Como manipular esse tipo de dados?
-
-- Objeto de classe `"Date"`
-- Como esse é um objeto da base R, muitos genéricos estão prontos esse tipo de dado;
-- Como saber a data de hoje? `Sys.Date()`
-- O resultado de `Sys.Date()` é um objeto de classe `"Date"`
-
-## Vejamos algumas características desse tipo de objeto
-
-```{r echo=TRUE, include=TRUE, collapse=TRUE}
-# Qual a data de hoje?
-hoje <- Sys.Date(); hoje
-# Qual o tipo de objeto?
-typeof(hoje)
-# Eh um vetor?
-is.vector(hoje)
-# Eh 'double'?
-is.vector(hoje, mode = "double")
-# Qual a sua classe?
-class(hoje)
+```{r echo=TRUE, include=TRUE}
+# Marco zero
+(mzero <- .POSIXct(0))
+# Classe
+class(mzero)
 ```
 
-## Vejamos algumas características desse tipo de objeto
+## Argumento *tz*
 
-```{r echo=TRUE, include=TRUE, collapse=TRUE}
-# Eh um vetor?
-is.vector(unclass(hoje))
-# Eh 'double'?
-is.vector(unclass(hoje), mode = "double")
-# Qual a sua classe?
-class(hoje)
-# Imprimindo hoje sem classe
-unclass(hoje)
+```{r echo=TRUE, include=TRUE}
+# Marco zero, baseado no calendario SO
+.POSIXct(0)
+# Marco zero, fuso Horario de Greenwich (GMT) ou Tempo Universal Coordenado (UTC)
+.POSIXct(0, tz = "GMT")
+.POSIXct(0, tz = "UTC")
 ```
 
-## Como criamos esse objeto?
+## Coersão
 
-```{r echo=TRUE, include=TRUE, collapse=TRUE}
-# Objeto x tipo "character"
-x <- "2017-08-02"
-(data <- as.Date(x))
-class(data)
-# Objeto x tipo "numeric"
-x <- 10
-# Com o objeto numerico, precisamos informar
-# a data inicial no argumento 'origin'. Nesse
-# caso, o retorno sera a data x dias apos 
-# 'origin'
-# 
-(data <- as.Date(x, origin = "2017-08-02")) 
-# Objeto de classe 'POSIXct'
-x <- as.POSIXct("2018-08-02 5:30")
-(data <- as.Date(x))
-class(data)
+```{r echo=TRUE, include=TRUE}
+# Objeto caractere
+x <- "2021-09-02 22:46:30"
+data_hora1 <- as.POSIXct(x)
+class(data_hora1)
+# Objeto numerico
+data_hora2 <- as.POSIXct(100, origin = "1955-09-13")
+class(data_hora2)
 ```
 
-## Podemos formatar esse objeto?
+## Construtor 2
+
+- `.POSIXlt()`:
+  - Argumento de entrada é uma lista com no mínimo 9 componentes
+
+|Componente| Descrição |
+|:--------:|:---------:|
+|`sec`     | Segundos  |
+| `min`    | Minutos   |
+| `hour`   | Horas     |
+| `mon`    |  Mês       |
+|  `zone`  |   Fuso horário |
+|  `wday`  |  Dias da semana|
+|   `mday` |  Dias do mês |
+|    `year`    |  Anos  desde "1899-12-31".|
+|     `isdst`  | O fuso horário é utilizado para configurar o `isdst`, que representa o horário de verão|
+| `gmtoff` | Deslocamento em segundos do horário de Greenwich (GMT)|
+
+## Exemplo
 
 ```{r echo=TRUE, include=TRUE, collapse=TRUE}
-# Dia de hoje
-Sys.time()
-# Formatando
-format(Sys.time(), "%d/%m/%Y")
-format(Sys.time(), "%d de %B de %Y")
-```
-
-## Algumas manipulações
-
-```{r echo=TRUE, include=TRUE, collapse=TRUE}
-# Hoje
-Sys.Date()
-# Data daqui a 10 dias
-(x <- Sys.Date() + 10)
-# Da ha 10 dias
-(y <- Sys.Date() - 20 )
-# Diferença
-x - y
-# x eh igual a y?
-x == y
+# Marco zero
+xx <- list(sec = 0, min = 0, hour = 0, mday = 0,
+           mon = 0, year = 0, wday = 0, yday = 0,
+           isdst = 0, zone = "America/Sao_Paulo", gmtoff = "")
+tempo1 <- .POSIXlt(xx)
+class(tempo1)
+# Objeto caractere -> POSIXlt
+tempo2 <- strptime("2021-09-02 03:21 am UTC", "%Y-%m-%d"); tempo2; unlist(tempo2)
+class(tempo2)
 ```
 
 ## Bons estudos!
