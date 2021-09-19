@@ -53,13 +53,13 @@ Inserir nas secoes:
 ![](tam_lista.png){width="80%"}
 </center>
 
-## Vetores tipo `character`
+## Vetores tipo *character*
 
 ```{r echo=TRUE, include=TRUE, eval=TRUE}
 x <- "ben"
 lobstr::obj_size(x)
 object.size(x)
-y <- rep(x, 1000); y
+y <- rep(x, 1000); head(y)
 lobstr::obj_size(x)
 object.size(x)
 ```
