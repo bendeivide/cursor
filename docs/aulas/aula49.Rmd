@@ -51,7 +51,7 @@ Inserir nas secoes:
 ![](caminho_busca.png){width="40%"}
 </center>
 
-# Buscando os parentais de um ambiente
+## Buscando os parentais de um ambiente
 
 ```{r echo=TRUE, include=TRUE}
 # Ambiente
