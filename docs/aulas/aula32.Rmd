@@ -1,0 +1,172 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 32 - Sistema S3: Funções genéricas (POO no R)"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Funções genéricas
+
+- Funções genéricas são:
+  - Funções no `r rlink`
+  - Funções primitivas
+  - Funções de tipo (`typeof`) `"closure"`, com chamada `UseMethod`
+  
+## Como identificar funções genéricas
+
+- `utils::isS3stdGeneric()`
+- `sloop::ftype()`
+
+## Exemplos
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Funcoes do tipo "closure" que nao pertencem ao sistema S3
+utils::isS3stdGeneric(data)
+sloop::ftype(data)
+# Funcao generica S3 em funcoes do tipo "closure"
+utils::isS3stdGeneric(mean)
+sloop::ftype(mean)
+```
+
+## Exemplos
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# funcoes primitivas e internas que nao pertencem ao sistema S3
+utils::isS3stdGeneric(inherits)
+sloop::ftype(inherits)
+#-----
+utils::isS3stdGeneric(unclass)
+sloop::ftype(unclass)
+# funcoes genericas do sistema S3 que sao primitivas e internas
+utils::isS3stdGeneric(length)
+sloop::ftype(length)
+#--
+utils::isS3stdGeneric(unlist)
+sloop::ftype(unlist)
+```
+
+## Funções (*"closure"*) genéricas
+
+```{r echo=TRUE, include=TRUE}
+mean
+```
+
+## Funções primitivas/internas genéricas
+
+- Objeto `.S3PrimitiveGenerics`:
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+.S3PrimitiveGenerics
+# Outras funcoes primitivas
+(outros_obj_S3_primitivos <- c("[", "[[", "$", "[<-", "[[<-", "$<-"))
+# Outras funcoes internas nao primitivas
+(outros_obj_S3_primitivos <- c("unlist", "cbind", "rbind", "as.vector"))
+```
+
+## Grupos genéricos
+
+- Grupos genéricos: Grupo `Math`, Grupo `Ops`, Grupo `Summary` e grupo `Complex`
+- Grupo `Math`: 
+  - `abs`, `sign`, `sqrt`, `floor`, `ceiling`, `trunc`, `round`, `signif`
+  - `exp`, `log`, `expm1`, `log1p`, `cos`, `sin`, `tan`, `cospi`, `sinpi`, `tanpi`, `acos`, `asin`, `atan`, `cosh`, `sinh`, `tanh`, `acosh`, `asinh`, `atanh`
+  - `lgamma`, `gamma`, `digamma`, `trigamma`
+  - `cumsum`, `cumprod`, `cummax`, `cummin`
+
+- Grupo `Ops`:
+  - `"+"`, `"-"`, `"*"`, `"/"`, `"^"`, `"%%"`, `"%/%"`
+  - `"&"`, `"|"`, `"!"`
+  - `"=="`, `"!="`, `"<"`, `"<="`, `">="`, `">"`
+
+## Grupos genéricos
+
+- Grupos genéricos: Grupo `Math`, Grupo `Ops`, Grupo `Summary` e grupo `Complex`
+- Grupo `Summary`:
+  - `all`, `any`, `sum`, `prod`, `min`, `max`, `range`
+
+- Grupo `Complex`:
+  - Arg, `Conj`, `Im`, `Mod`, `Re`
+
+
+
+
+## Como saber quais e quantas são as funções primitivas/internas?
+
+```{r echo=TRUE, include=TRUE}
+# Todos os objetos do pacote 'base'
+todosobj <- objects(baseenv(), all.names = TRUE); 
+# Mostre apenas os primeiros (ver todos remova 'head')
+head(todosobj)
+# Quantos objetos no pacote 'base'?
+length(todosobj)
+```
+
+## Como saber quais e quantas são as funções primitivas/internas?
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Quais sao funcoes primitivas?
+objprimitivos <- todosobj[sapply(todosobj,  
+                                 function(x) is.primitive(get(x, envir = baseenv())))]
+# Mostre os primeiros (ver todos remova 'head')
+head(objprimitivos)
+# Quantos primitivos ('buitin' ou 'special')?
+length(objprimitivos)
+# Quais sao primitivos genéricos (Sistema S3)?
+ehPrimitivaGenerica <- function(primitiva) {
+  fprimitiva <- getFunction(primitiva, mustFind = FALSE, where =asNamespace("base"))
+  ehgenerica <- sloop::ftype(fprimitiva)
+  if (any(ehgenerica == "generic")) {
+    TRUE
+  } else FALSE
+}
+```
+
+## Como saber quais e quantas são as funções primitivas/internas?
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Mostre os primeiros (ver todos remova 'head')
+head(sapply(objprimitivos, ehPrimitivaGenerica))
+# Quantas sao primitivas genericas?
+sum(sapply(objprimitivos, ehPrimitivaGenerica))
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>
+
+

@@ -1,0 +1,158 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 40 - Entendendo um pouco mais sobre objetos: estruturas atômicas ou recursivos"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Entendendo um pouco mais sobre objetos
+
+- Já estudados no [módulo básico](https://bendeivide.github.io/cursor/nbasico.html)
+- Objetos atômicos ou recursivos
+  - Perguntamos: `is.atomic()` ou `is.recursive()`
+
+## Estruturas atômicas e recursivas
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Funcao auxiliar
+eh_atom_ou_recur <- function(x) c(atomico = is.atomic(x), recursivo = is.recursive(x))
+# Testando alguns objetos
+eh_atom_ou_recur(c(a = 1, d = 3)) # TRUE FALSE
+eh_atom_ou_recur(list())          # FALSE TRUE 
+eh_atom_ou_recur(list(2))         # FALSE TRUE
+eh_atom_ou_recur(mean)              # FALSE TRUE
+eh_atom_ou_recur(y ~ x)           # FALSE TRUE
+eh_atom_ou_recur(expression(x^2 + 2)) # FALSE TRUE
+eh_atom_ou_recur(quote(sqrt))      # FALSE FALSE
+```
+
+## Entendendo melhor uma estrutura recursiva
+
+```{r echo=TRUE, include=TRUE}
+lista <- list(x = 2, y = list(z = 3)); lista
+```
+
+```{r echo=TRUE, include=TRUE}
+fun1 <- function(x) {
+  fun2 <- function(y) x + y
+  fun2(x)
+}
+fun1(2)
+```
+
+## Usando *vector()*, *is.vector()* e *as.vector()*
+
+- Nem toda estrutura atômica é um vetor:
+
+```{r echo=TRUE, include=TRUE}
+# Objeto NULL
+is.vector(NULL); is.atomic(NULL)
+# Objeto com atributo
+x <- structure(1:10, atrib1 = "teste")
+is.vector(x); is.atomic(x)
+```
+
+- Uma outra forma de criamos um vetor: `vector(mode, length)`
+
+
+## Usando *vector()*, *is.vector()* e *as.vector()*
+
+```{r echo=TRUE, include=TRUE}
+vector(mode = "logical", length = 5)
+vector(mode = "numeric", length = 5)
+vector(mode = "raw", length = 5)
+```
+
+## Identificação e coersão de um vetor
+
+```{r echo=TRUE, include=TRUE}
+x <- structure(1:10, atrib1 = "atributo 1")
+is.atomic(x); is.vector(x); as.vector(x); attributes(x);  attributes(as.vector(x))
+```
+
+## O atributo *name* em um vetor
+
+```{r echo=TRUE, include=TRUE}
+x <- c(arg1 = 1, arg2 = 2); x; attributes(x)
+is.atomic(x); is.vector(x)
+```
+
+## Observando a tipagem dos objetos
+
+```{r echo=TRUE, include=TRUE}
+# Objeto tipo 'integer' e 'numeric'
+x <- 1L
+# Vericando
+is.vector(x, mode = "numeric")
+is.vector(x, mode = "integer")
+typeof(x)
+mode(x)
+```
+
+## Observando a tipagem dos objetos
+
+```{r echo=TRUE, include=TRUE}
+# Criando um objeto "symbol" ou "name"
+x <- as.vector(1, mode = "symbol")
+# Verificando
+is.vector(x, mode = "symbol")
+is.vector(x, mode = "name")
+# Criando um objeto "pairlist"
+fxy <- function(x, y) c(x, y)
+argumentos <- formals(fxy) 
+# Verificando
+is.vector(argumentos, mode = "pairlist")
+```
+
+## Objeto *any*
+
+- `mode = any`: `"character"`, `"integer"`, `"double"`, `"numeric"`, `"complex"`, `"raw"`, `"list"` ou `"expression"`
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Criando um objeto "any"
+x <- as.vector(1, mode = "any")
+# Verificando o tipo
+is.vector(x, mode = "any"); is.vector(x, mode = "numeric")
+mode(x)
+typeof(x)
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

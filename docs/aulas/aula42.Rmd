@@ -1,0 +1,121 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 42 - Conhecendo outros objetos: Datas, horas e fusos horários"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Outras objetos para datas
+
+- Objeto *POSIXct*: Classe `c("POSIXct, "POSIXt")`
+- Objeto *POSIXlt*: Classe `c("POSIXlt, "POSIXt")`
+- Siga *POSIX*: do inglês, Portable Operating System Interface
+
+## Construtor 1
+
+- `.POSIXct()`:
+  - vetor tipo `double`;
+  - argumento de entrada representa o número de segundos desde "1970-01-01";
+  - `"POSIXct"` e `"POSIXt"`
+  - Exemplo:
+
+```{r echo=TRUE, include=TRUE}
+# Marco zero
+(mzero <- .POSIXct(0))
+# Classe
+class(mzero)
+```
+
+## Argumento *tz*
+
+```{r echo=TRUE, include=TRUE}
+# Marco zero, baseado no calendario SO
+.POSIXct(0)
+# Marco zero, fuso Horario de Greenwich (GMT) ou Tempo Universal Coordenado (UTC)
+.POSIXct(0, tz = "GMT")
+.POSIXct(0, tz = "UTC")
+```
+
+## Coersão
+
+```{r echo=TRUE, include=TRUE}
+# Objeto caractere
+x <- "2021-09-02 22:46:30"
+data_hora1 <- as.POSIXct(x)
+class(data_hora1)
+# Objeto numerico
+data_hora2 <- as.POSIXct(100, origin = "1955-09-13")
+class(data_hora2)
+```
+
+## Construtor 2
+
+- `.POSIXlt()`:
+  - Argumento de entrada é uma lista com no mínimo 9 componentes
+
+|Componente| Descrição |
+|:--------:|:---------:|
+|`sec`     | Segundos  |
+| `min`    | Minutos   |
+| `hour`   | Horas     |
+| `mon`    |  Mês       |
+|  `zone`  |   Fuso horário |
+|  `wday`  |  Dias da semana|
+|   `mday` |  Dias do mês |
+|    `year`    |  Anos  desde "1899-12-31".|
+|     `isdst`  | O fuso horário é utilizado para configurar o `isdst`, que representa o horário de verão|
+| `gmtoff` | Deslocamento em segundos do horário de Greenwich (GMT)|
+
+## Exemplo
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Marco zero
+xx <- list(sec = 0, min = 0, hour = 0, mday = 0,
+           mon = 0, year = 0, wday = 0, yday = 0,
+           isdst = 0, zone = "America/Sao_Paulo", gmtoff = "")
+tempo1 <- .POSIXlt(xx)
+class(tempo1)
+# Objeto caractere -> POSIXlt
+tempo2 <- strptime("2021-09-02 03:21 am UTC", "%Y-%m-%d"); tempo2; unlist(tempo2)
+class(tempo2)
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>
