@@ -55,13 +55,13 @@ Inserir nas secoes:
 
 ## Vetores tipo *character*
 
-```{r echo=TRUE, include=TRUE, eval=TRUE}
+```{r echo=TRUE, include=TRUE, eval=TRUE, collapse=TRUE}
 x <- "ben"
 lobstr::obj_size(x)
 object.size(x)
 y <- rep(x, 1000); head(y)
-lobstr::obj_size(x)
-object.size(x)
+lobstr::obj_size(y)
+object.size(y)
 ```
 
 ## Tamanho de objetos equivocados

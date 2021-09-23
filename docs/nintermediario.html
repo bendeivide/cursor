@@ -2174,7 +2174,7 @@ Material
 <li><a href="#copia_modif_tam_objetos">Cópia ao modificar, modificação no local e tamanho de objetos</a></li>
 <li><a href="#coletor_lixo_desvinc">Coletor de lixo e desvinculação</a></li>
 </ul></li>
-<li><a href=""><i class="far fa-image"></i> Aprofundamento sobre ambientes</a></li>
+<li><a href=""><i class="fas fa-align-justify"></i> Aprofundamento sobre ambientes</a></li>
 <li><a href=""><i class="fab fa-connectdevelop"></i> Programação Funcional</a>
 <ul>
 <li>Operadores binários</li>
@@ -2771,7 +2771,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e43f88&gt;
+&lt;bytecode: 0x0000000008633fc0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2914,7 +2914,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x00000000123355e0&gt;
+&lt;bytecode: 0x0000000027b013d8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2940,7 +2940,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x00000000123355e0&gt;
+&lt;bytecode: 0x0000000027b013d8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2966,7 +2966,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x00000000123355e0&gt;
+&lt;bytecode: 0x0000000027b013d8&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3763,7 +3763,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x000000001343be28&gt;
+&lt;bytecode: 0x0000000026c01120&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
@@ -4396,9 +4396,9 @@ $y$z
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 18888</code></pre>
+<pre><code>[1] 18892</code></pre>
 </div>
-<p>O resultado 18888 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
+<p>O resultado 18892 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
 <p>Podemos criar um objeto data com o construtor (gerador de instâncias de classe) chamado <code>.Date()</code>. O argumento de entrada será o número de dias após o marco “1970-01-01,” isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -4562,18 +4562,18 @@ $y$z
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;2021-09-18&quot;</code></pre>
+<pre><code>[1] &quot;2021-09-22&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Formatando</span>
 <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d/%m/%Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;18/09/2021&quot;</code></pre>
+<pre><code>[1] &quot;22/09/2021&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d de %B de %Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;18 de setembro de 2021&quot;</code></pre>
+<pre><code>[1] &quot;22 de setembro de 2021&quot;</code></pre>
 </div>
 <p>Para os objetos de classe <code>"Date"</code>, as siglas utilizadas para a função <code>format()</code> devem estar relacionadas a data, isto é, dia, mês e ano. Lembrando que o resultado desse genérico, bem como de <code>as.character()</code>, retornam vetores de tipo caractere, sem a classe <code>"Date"</code>.</p>
 <p>Algumas funções genéricas estão prontas para serem utilizados nesses objetos, como <code>+</code>, <code>-</code>, <code>seq()</code>, <code>rep()</code>, etc. Para saber mais quais métodos para essa classe, use <code>methods(class = "Date")</code>.</p>
@@ -4767,17 +4767,17 @@ Figure 2: Ligações entre objetos tipo <code>'symbol'</code> e <code>'integer'<
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x1612cf30&quot;</code></pre>
+<pre><code>[1] &quot;0x273d5440&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x1612cf30&quot;</code></pre>
+<pre><code>[1] &quot;0x273d5440&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x1612cf30&quot;</code></pre>
+<pre><code>[1] &quot;0x273d5440&quot;</code></pre>
 </div>
 <p>Lembrando no <a href="nbasico.html">módulo básico</a>, que os identificadores de memória sempre se alteram, à medida que reiniciamos. Porém, percebam que ao chamar o objeto associado a esses nomes, todos retornam o valor <code>6</code>. Ainda mais, o identificador de memória é o mesmo. Portanto, aqui fica claro que não está havendo cópia do objeto, e sim, mais nomes se associando ao mesmo objeto, observemos a Figura <a href="#fig:lig-obj">3</a>, é o que chamamos de <strong>vinculação compartilhada</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -4802,8 +4802,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xfb4a708&quot;</code></pre>
-<pre><code>[1] &quot;0xfb4a708&quot;</code></pre>
+<pre><code>[1] &quot;0x24936bd0&quot;</code></pre>
+<pre><code>[1] &quot;0x24936bd0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Copia ao modificar</span>
 <span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"f"</span>
@@ -4811,8 +4811,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0xfb4a708&quot;</code></pre>
-<pre><code>[1] &quot;0xfaf1e28&quot;</code></pre>
+<pre><code>[1] &quot;0x24936bd0&quot;</code></pre>
+<pre><code>[1] &quot;0x2fa57218&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo novamente os objetos</span>
 <span class='va'>y</span>; <span class='va'>x</span>
@@ -4821,7 +4821,7 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 <pre><code>[1] &quot;f&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 </div>
-<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0xfb4a708 para 0xfaf1e28, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
+<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x24936bd0 para 0x2fa57218, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:copia-obj"></span>
 <img src="images/copia_obj.png" alt="Cópia de objetos." width="70%" />
@@ -4843,13 +4843,13 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>tracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, <span class='st'>"\n"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>&lt;000000003F441A18&gt; </code></pre>
+<pre><code>&lt;000000002A44A4E8&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vinculacao de outro nome e copia</span>
 <span class='va'>z</span> <span class='op'>&lt;-</span> <span class='va'>w</span>; <span class='va'>z</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
 </code></pre>
 </div>
-<pre><code>tracemem[0x000000003f441a18 -&gt; 0x000000003f6d21b8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
+<pre><code>tracemem[0x000000002a44a4e8 -&gt; 0x00000000304e58c8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Desativando o rastreamento</span>
 <span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>untracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
@@ -4863,7 +4863,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x3f6d21b8&quot;</code></pre>
+<pre><code>[1] &quot;0x304e58c8&quot;</code></pre>
 </div>
 <p>Após vinculado o nome <code>w</code> ao vetor numerico de comprimento 3, que é um gerador de números aleatórios de uma distribuição normal padrão, acionamos a chamada <code>tracemem()</code>, e após a criação de cópias, a função mostrará a ocorrência dessas cópias. Se desejarmos que essa mensagem não seja mais acionada, devemos usar a chamada <code>untracemem()</code>, que desativará o rastreameto de cópia. Lembrando que o rastreamento só ocorrerá o objeto informado na função <code>tracemem()</code>. Por fim, fizemos mais uma alteração no objeto <code>z</code>, e nesse caso como o objeto se associa apenas a um nome, ocorre a <strong>modificação no local</strong>, um processo de otimização do <a href="http://r-project.org/" target="_blank">R</a>, em que usa a mesma alocação de memória, não havendo portanto, uma cópia de objeto.</p>
 <p>Mas, fazendo alguns estudos e pesquisas, encontramos algumas funções primitivas, acessadas pela chamada <code>.Internals()</code>, denominada <code>inspect()</code>, <code>address()</code> e <code>refcnt()</code>, funções experimentais para imprimir informações de baixo nível dos objetos <a href="http://r-project.org/" target="_blank">R</a>. Essa função não é exposta ao nível superior da linguagem, e segundo a própria documentação, é um recurso para depuração/inpeção. A documentação ainda afirma que nem todas as informações foram implementadas. Para esse momento, o que está implementado é suficiente para identificarmos os procedimentos de cópia dos objetos. Uma segunda informação é que a partir da versão <a href="http://r-project.org/" target="_blank">R</a> 4.0.0, a decisão de cópia de objetos passaram a ser determinados pela contagem de referência, ao invés do mecanismo <code>NAMED</code>. Esse ponto realmente exige um entendimento de baixo nível na linguagem, isto é, a sua implementação em linguagem <code>C</code>. Vamos mostrar os resultados do código anterior, inspecionado por essas funções, a seguir.</p>
@@ -4929,7 +4929,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000040764bf0 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
+<pre><code>@0x0000000030c3d7e8 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x0000000006629620 14 REALSXP g0c4 [REF(1)] (len=5, tl=0) 1,2,3,4,5</span>
 <span class='co'># Funcao primitiva `:` - REF(65535)</span>
@@ -4938,7 +4938,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x000000001100d3b0 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x000000002ed497b8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a060680 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva seq() - REF(65535)</span>
@@ -4947,7 +4947,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x00000000110b6568 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x000000002edf8da8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a05f3e8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva rep() - REF(1)</span>
@@ -4956,7 +4956,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x000000004081c8a8 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
+<pre><code>@0x0000000030cb8708 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x00000000066295b0 13 INTSXP g0c4 [REF(1)] (len=10, tl=0) 1,2,3,4,5,...</span>
 </code></pre>
@@ -5390,7 +5390,7 @@ Figure 10: Tamanho de memória de listas.
 </div>
 <p>O identificadores de memória quando inspecionamos as funções <code>median</code> e <code>range</code>, são os mesmos identificadores para onde os elementos de <code>l1</code> apontam, confirmando assim, que esses espaços de memória já estavam reservados, e não foram alocados com a criação do objeto.</p>
 <p>Por fim, como já mencionado no <a href="nbasico.html">módulo básico</a>, a <strong>representação alternativa</strong> (<code>ALTREP</code>) de uma sequência de elementos, por meio de “<code>:</code>” pode nos causar expanto, porque independente do comprimento, é armazenado apenas o primeiro e o último elemento da sequência. Isso significa que os vetores criados a partir de <code>:</code>, terão mesmo tamanho. Contudo, quando falos</p>
-<h2 id="coletor_lixo_desvinc">Coletor de lixo e desvinculação</h2>
+<!-- ## Coletor de lixo e desvinculação {#coletor_lixo_desvinc} -->
 <!-- ## Mais manipulações com objetos e subconjuntos {#manip_obj_adicionais} -->
 <!-- ### Vetores em geral -->
 <!-- - Subconjuntos -->
@@ -5412,7 +5412,417 @@ Figure 10: Tamanho de memória de listas.
 - Nos vetores de modo caractere, trabalhar bem sua utilização; ver o material da ecologia da USP
 -->
 <!-- Usar o manual https://cran.r-project.org/doc/manuals/r-release/R-lang.html para seguir a todos os tipos de objetos -->
-<h2 id="aprofundamento-sobre-ambientes">Aprofundamento sobre ambientes</h2>
+<h2 id="aprofundamento-sobre-ambientes"><i class="fas fa-align-justify"></i> Aprofundamento sobre ambientes</h2>
+<!-- Posteriormente pesquisar sobre o mecanismo hash table, que é um mescanismo otimizado para encontrar os objetos. -->
+<p>Antes de iniciarmos um aprofundamento sobre ambientes, sugerimos a revisão introdutório desse assunto, no módulo básico, na seção <a href="https://bendeivide.github.io/cursor/nbasico.html#search_path">Ambientes e Caminho de busca</a>. O que falaremos nessa seção, pressupomos o entendimento que foi estudado no módulo anterior.</p>
+<p>A primeira ideia ilustrada que iremos abordar é a hierarquização de ambientes pelo caminho de busca, usando <code>search()</code>. Sabemos que todo ambiente tem um pai ou ambiente superior, e que a única excessão é o ambiente vazio, <code>emptyenv()</code>. A representação dessa hierarquização pode ser observada na Figura <a href="#fig:caminho-busca">11</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:caminho-busca"></span>
+<img src="images/caminho_busca.png" alt="Caminho por onde os objetos serão procurados." width="40%" />
+<p class="caption">
+Figure 11: Caminho por onde os objetos serão procurados.
+</p>
+</div>
+</div>
+<p>Para sabermos os parentais de um determinado ambiente, podemos recorrer ao pacote <a href="https://rlang.r-lib.org/">rlang</a>. Por exemplo, vamos criar um ambiente, e verificar seus parentais, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente</span>
+<span class='va'>amb1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Verificando os seus parentais</span>
+<span class='fu'>rlang</span><span class='fu'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/env_parent.html'>env_parents</a></span><span class='op'>(</span><span class='va'>amb1</span>, last <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>emptyenv</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [[1]] $ &lt;env: global&gt;
+ [[2]] $ &lt;env: package:midrangeMCP&gt;
+ [[3]] $ &lt;env: package:SMR&gt;
+ [[4]] $ &lt;env: package:magrittr&gt;
+ [[5]] $ &lt;env: package:leaflet&gt;
+ [[6]] $ &lt;env: package:stats&gt;
+ [[7]] $ &lt;env: package:graphics&gt;
+ [[8]] $ &lt;env: package:grDevices&gt;
+ [[9]] $ &lt;env: package:utils&gt;
+[[10]] $ &lt;env: package:datasets&gt;
+[[11]] $ &lt;env: package:methods&gt;
+[[12]] $ &lt;env: Autoloads&gt;
+[[13]] $ &lt;env: package:base&gt;
+[[14]] $ &lt;env: empty&gt;</code></pre>
+</div>
+<p>Observemos que os parentais presentes, apresentou alguns ambientes como <code>tools:rstudio</code>, <code>Autoloads</code>. O primeiro sempre aparece quando usamos a IDE <a href="http://rstudio.org/" target="_blank">RStudio</a>. O ambiente <code>Autoloads</code>, que pode ser acessado por <code>.AutoloadEnv</code>, é um ambiente que armazena promessas de ligações. Por exemplo, podemos estar interessados em usar a função <code>makeCluster</code> do pacote <code>parallel</code>, porém, ao invés de carregar o pacote e alocar memória para armazenar todos o seus objetos, podemos deixar a função <code>makeCluster</code> como promessa no ambiente <code>Autoloads</code>, e caso seja utilizado em alguma linha de comando, uma outra função <code>autoloader()</code> é acionada, carregando o pacote <code>parallel</code> e a função de interesse e reavaliada no ambiente do pacote <code>parallel</code>. Qual a vantagem disso? Enquanto a função não é chamada, é como se o pacote estivesse carregado, porém sem ocupar nenhuma memória. Vejamos o exemplo a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Promessa makeCluster</span>
+<span class='fu'><a href='https://rdrr.io/r/base/autoload.html'>autoload</a></span><span class='op'>(</span><span class='st'>"makeCluster"</span>, <span class='st'>"parallel"</span><span class='op'>)</span>
+<span class='co'># Caminho de busca sem o pacote 'parallel'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;package:midrangeMCP&quot; &quot;package:SMR&quot;        
+ [4] &quot;package:magrittr&quot;    &quot;package:leaflet&quot;     &quot;package:stats&quot;      
+ [7] &quot;package:graphics&quot;    &quot;package:grDevices&quot;   &quot;package:utils&quot;      
+[10] &quot;package:datasets&quot;    &quot;package:methods&quot;     &quot;Autoloads&quot;          
+[13] &quot;package:base&quot;       </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificamos que 'makeCluster' esta como promessa</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='st'>"Autoloads"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;makeCluster&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamando a funcao</span>
+<span class='va'>makeCluster</span>
+</code></pre>
+</div>
+<pre><code>function (spec, type = getClusterOption(&quot;type&quot;), ...) 
+{
+    switch(type, PSOCK = makePSOCKcluster(names = spec, ...), 
+        FORK = makeForkCluster(nnodes = spec, ...), SOCK = snow::makeSOCKcluster(names = spec, 
+            ...), MPI = snow::makeMPIcluster(count = spec, ...), 
+        NWS = snow::makeNWScluster(names = spec, ...), stop(&quot;unknown cluster type&quot;))
+}
+&lt;bytecode: 0x000000002e29df20&gt;
+&lt;environment: namespace:parallel&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando novamente o Caminho de busca,</span>
+<span class='co'># agora com o pacote 'parallel'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;package:parallel&quot;    &quot;package:midrangeMCP&quot;
+ [4] &quot;package:SMR&quot;         &quot;package:magrittr&quot;    &quot;package:leaflet&quot;    
+ [7] &quot;package:stats&quot;       &quot;package:graphics&quot;    &quot;package:grDevices&quot;  
+[10] &quot;package:utils&quot;       &quot;package:datasets&quot;    &quot;package:methods&quot;    
+[13] &quot;Autoloads&quot;           &quot;package:base&quot;       </code></pre>
+</div>
+<p>Quando a função de interesse, que estava como promessa, é chamada, observamos que o pacote que contempla essa função é carregado e passa a ser anexado ao caminho de busca. Uma outra situação interessante é que ao anexar um pacote, o ambiente de pacote (<code>package:nome_pacote</code>), será o pai do ambiente global. Daremos mais detalhes sobre ambiente de pacote mais a frente.</p>
+<p>Sabemos que o ambiente global é o ambiente corrente quando executamos a maioria de nossas linhas de comando, mas podemos também usar a chamada <code>environment()</code> para tal. Pelo <strong>caminho de busca</strong> ou <strong>caminho de pesquisa</strong>, o ambiente <a href="http://r-project.org/" target="_blank">R</a> procura pelos objetos. Assim, digitando alguma linha de comando no console, a primeira busca por um objeto, do qual um nome está associado a ele, se iniciará pelo ambiente global (<code>.GlobalEnv</code>), caso não encontre o nome específico no ambiente global, o ambiente <a href="http://r-project.org/" target="_blank">R</a> procurará pelo nome no ambiente pai, que no caso da Figura <a href="#fig:caminho-busca">11</a>, será o ambiente <code>package:stats</code>, e assim por diante. Não encontrando o nome específico em algum dos ambientes, a execução do comando retornará um erro informando que o objeto não foi encontrado. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2.333333</code></pre>
+</div>
+<p>Observemos que três chamadas de funções foram realizadas, <code>&lt;-</code>, <code>mean()</code> e <code>c()</code>. Essas funções não estão no ambiente global, que poderiam ser inspecionadas por <code>ls()</code>. Desse modo, o ambiente <a href="http://r-project.org/" target="_blank">R</a> procurará por todo o caminho de busca, e os encontrará no ambiente <code>package:base</code>. Uma vez encontrado, as funções são chamadas e a execução das linhas ocorrem com sucesso, Figura <a href="#fig:caminho-busca2">12</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:caminho-busca2"></span>
+<img src="images/caminho_busca2.png" alt="Procurando por funções." width="60%" />
+<p class="caption">
+Figure 12: Procurando por funções.
+</p>
+</div>
+</div>
+<p>O que é interessantes em ambientes é que eles podem se conter, e ainda mais, as modificações ocorridas nos ambientes, modificam no local e não ocorrem cópias, como ocorre na maioria das situações com outros objetos, e algumas vezes isso é chamado de semâtica de referência, porque mesmo alterando o objeto as suas ligações continuam com as mesmas referências. Vejamos a Figura <a href="#fig:ambiente2">13</a>, como um exemplo, e seu respectivo código na sequência para inspeção do que acabamos de falar.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:ambiente2"></span>
+<img src="images/ambiente2.png" alt="Criando ambientes." width="60%" />
+<p class="caption">
+Figure 13: Criando ambientes.
+</p>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente</span>
+<span class='va'>amb1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span>hash <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='co'># Inserindo objetos nesse ambiente</span>
+<span class='va'>amb1</span><span class='op'>$</span><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span>; <span class='va'>amb1</span><span class='op'>$</span><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='st'>"a"</span>; <span class='va'>amb1</span><span class='op'>$</span><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='cn'>TRUE</span>
+<span class='co'># Inspecao do objeto.</span>
+<span class='fu'>Internal</span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000db22758 04 ENVSXP g0c0 [REF(1)] &lt;0x000000000db22758&gt;</span>
+<span class='co'>## FRAME:</span>
+<span class='co'>##  @0x000000000db213a8 02 LISTSXP g0c0 [REF(1)] </span>
+<span class='co'>##    TAG: @0x00000000078ebb28 01 SYMSXP g0c0 [MARK,REF(128)] "d"</span>
+<span class='co'>##    @0x000000000db1fa38 10 LGLSXP g0c1 [REF(3)] (len=1, tl=0) 1</span>
+<span class='co'>##    TAG: @0x000000000db1c4b8 01 SYMSXP g0c0 [REF(10)] "b"</span>
+<span class='co'>##    @0x000000000db1fae0 16 STRSXP g0c1 [REF(3)] (len=1, tl=0)</span>
+<span class='co'>##      @0x0000000006369e78 09 CHARSXP g0c1 [MARK,REF(14),gp=0x61] [ASCII] [cached] "a"</span>
+<span class='co'>##    TAG: @0x0000000006483320 01 SYMSXP g0c0 [MARK,REF(60)] "a"</span>
+<span class='co'>##    @0x000000000db186f8 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 1,2,4</span>
+<span class='va'>ENCLOS</span><span class='op'>:</span>
+<span class='co'>##  @0x0000000005fda628 04 ENVSXP g0c0 [MARK,REF(65535),GL,gp=0x8000] &lt;R_GlobalEnv&gt;</span>
+<span class='va'>amb1</span><span class='op'>$</span><span class='va'>a</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000000db22758 04 ENVSXP g0c0 [REF(1)] &lt;0x000000000db22758&gt;</span>
+<span class='co'>## FRAME:</span>
+<span class='co'>##  @0x000000000db213a8 02 LISTSXP g0c0 [REF(1)] </span>
+<span class='co'>##    TAG: @0x00000000078ebb28 01 SYMSXP g0c0 [MARK,REF(128)] "d"</span>
+<span class='co'>##    @0x000000000db1fa38 10 LGLSXP g0c1 [REF(3)] (len=1, tl=0) 1</span>
+<span class='co'>##    TAG: @0x000000000db1c4b8 01 SYMSXP g0c0 [REF(10)] "b"</span>
+<span class='co'>##    @0x000000000db1fae0 16 STRSXP g0c1 [REF(3)] (len=1, tl=0)</span>
+<span class='co'>##      @0x0000000006369e78 09 CHARSXP g0c1 [MARK,REF(16),gp=0x61] [ASCII] [cached] "a"</span>
+<span class='co'>##    TAG: @0x0000000006483320 01 SYMSXP g0c0 [MARK,REF(62)] "a"</span>
+<span class='co'>##    @0x000000000db186f8 14 REALSXP g0c3 [REF(1)] (len=3, tl=0) 1,10,4</span>
+<span class='co'>## ENCLOS:</span>
+<span class='co'>##  @0x0000000005fda628 04 ENVSXP g0c0 [MARK,REF(65535),GL,gp=0x8000] &lt;R_GlobalEnv&gt;</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>parent.env</a></span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>)</span>
+<span class='co'>## &lt;environment: R_GlobalEnv&gt;</span>
+</code></pre>
+</div>
+</div>
+<p>De um modo geral, apresentamos a Tabela <a href="#tab:func-amb">3</a> para mostrar as principais funções para manipulações com ambientes</p>
+<table>
+<caption><span id="tab:func-amb">Table 3: </span> Funções para ambientes.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Função</th>
+<th style="text-align: center;">Objetivo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>globalenv()</code> ou <code>.GlobalEnv</code></td>
+<td style="text-align: center;">Ambiente global</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>baseenv()</code></td>
+<td style="text-align: center;">Ambiente do pacote <em>base</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>emptyenv()</code></td>
+<td style="text-align: center;">Ambiente vazio</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>environment()</code></td>
+<td style="text-align: center;">Ambiente corrente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>search()</code></td>
+<td style="text-align: center;">Lista o caminho de busca</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>new.env()</code></td>
+<td style="text-align: center;">Criando um ambiente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>parent.env()</code></td>
+<td style="text-align: center;">Identificando o ambiente pai</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>parent.frame()</code></td>
+<td style="text-align: center;">Ambiente funcional de chamada</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>ls()</code> ou <code>ls.str()</code></td>
+<td style="text-align: center;">Descreve os objetos do ambiente</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>get()</code></td>
+<td style="text-align: center;">Acessa o(s) valor(es) dos objetos de um ambiente</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>exists()</code></td>
+<td style="text-align: center;">Verificando a existência de um objeto em um ambiente</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>identical()</code></td>
+<td style="text-align: center;">Verificando a equivalência de ambientes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ambientes-especiais">Ambientes especiais</h3>
+<p>Precisamos apresentar alguns ambientes especiais, importantes para o entendimento do ambiente <a href="http://r-project.org/" target="_blank">R</a>.</p>
+<h4 id="ambientes-funcionais">Ambientes funcionais</h4>
+<p>Distinguimos quatro tipos de ambientes funcionais, que são:</p>
+<ul>
+<li>Ambiente envolvente ou ambiente de função;</li>
+<li>Ambiente de ligação;</li>
+<li>Ambiente de execução;</li>
+<li>ambiente de chamada;</li>
+</ul>
+<p>Esses ambientes são extremamente importantes, para o entendimento do escopo léxico do ambiente <a href="http://r-project.org/" target="_blank">R</a>, uma vez que tudo no <a href="http://r-project.org/" target="_blank">R</a> é uma chamada de função (Segundo princípio), de modo que, o ambiente envolvente, de execução e de chamada estarão relacionados a forma de como a função procurará pelos objetos, ao passo que o ambiente de ligação estará relacionado a forma de como os usuários procurarão pelas funções.</p>
+<p>Na Figura <a href="#fig:amb-lig-env">14</a>, apresentamos o ambiente envolvente e o ambiente de ligação, para o seguinte código:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando o ambiente 'amb1'</span>
+<span class='va'>amb1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>new.env</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Objeto x em 'amb1'</span>
+<span class='va'>amb1</span><span class='op'>$</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+<span class='co'># Objeto x no ambiente global</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>
+<span class='co'># Criando a funcao 'h' em 'amb1'</span>
+<span class='va'>amb1</span><span class='op'>$</span><span class='va'>h</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='va'>x</span>
+<span class='co'># chamando a funcao h()</span>
+<span class='va'>amb1</span><span class='op'>$</span><span class='fu'>h</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># vericando o id de memoria de amb1</span>
+<span class='va'>amb1</span> <span class='co'># ou .Internal(address(amb1))</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: 0x000000002fed0d50&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente envolvente de 'h'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>$</span><span class='va'>h</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+</div>
+<p>Nesse caso, observemos que para acessarmos a função <code>h</code>, precisamos saber qual o seu ambiente de ligação, por isso acessamos essa função por <code>amb1$h</code>. Ao chamarmos <code>amb1$h()</code>, foi retornado o valor <code>2</code>, Por quê? Esse resultado ocorre, porque ao ser criação o ambiente de execução para armazenar as ligações que ocorrerão no corpo da função, foi observado que não existia um nome <code>x</code> associado a algum objeto, nesse caso, a função passa a procurar no ambiente pai, que é o ambiente envolvente, e lá é encontrado o nome <code>x</code> associado ao valor <code>2</code>. Desse modo, conseguimos compreender que o ambiente de ligação serve apenas para nós usuários encontrarmos a função <code>h()</code>, mas em nada serve para que <code>h()</code> encontre os objetos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:amb-lig-env"></span>
+<img src="images/amb-lig-env.png" alt="Ambiente envolvente e ambiente de ligação." width="60%" />
+<p class="caption">
+Figure 14: Ambiente envolvente e ambiente de ligação.
+</p>
+</div>
+</div>
+<p>A função vincula o ambiente corrente no momento de sua criação, e pode ser verificado por <code>environment()</code>. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando a funcao f1</span>
+<span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='fl'>1</span>
+<span class='co'># Verificando o ambiente envolvente de f1</span>
+<span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>f1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;environment: R_GlobalEnv&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando uma funcao f</span>
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># ambiente de execucao</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Ambiente de execucao de f: \n"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='co'># Criando uma funcao f2</span>
+  <span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='fl'>2</span>
+  <span class='co'># Verificando o ambiente envolvente de f2</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Ambiente envolvente de f2:\n"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>f2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='fu'>f</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Ambiente de execucao de f: 
+&lt;environment: 0x00000000160cc6c8&gt;
+Ambiente envolvente de f2:
+&lt;environment: 0x00000000160cc6c8&gt;</code></pre>
+</div>
+<p>Observamos que a função <code>f1</code> foi criada no ambiente global, e que a função <code>f2</code> foi criada no ambiente de execução da função <code>f</code>, por isso a distinção dos ambientes envolventes dessas duas funções. Cada função terá apenas um ambiente envolvente.</p>
+<p>No módulo básico, falamos sobre o ambiente de execução. Este ambiente é criado quando fazemos uma chamada de função. Após finalizado a chamada da referida função e retornado o valor desejado, este ambiente desaparece. O ambiente de execução tem como o pai o ambiente envolvente, e podemos representá-lo pela Figura <a href="#fig:amb-env-exec">15</a>, para o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:amb-env-exec"></span>
+<img src="images/amb-env-exec.png" alt="Ambiente envolvente e ambiente de execução." width="60%" />
+<p class="caption">
+Figure 15: Ambiente envolvente e ambiente de execução.
+</p>
+</div>
+</div>
+<p>Esse ambiente, apresenta muitas características como a máscara de nome e o novo começo, apresentados na seção <a href="https://bendeivide.github.io/cursor/nbasico.html#esc_lexico">Escopo léxico</a>, no módulo básico.</p>
+<p>Por fim, surge o último ambiente que é o ambiente de chamada, e está relacionado ao escopo dinâmico das funções em <a href="http://r-project.org/" target="_blank">R</a>, assunto também abordado na seção <a href="https://bendeivide.github.io/cursor/nbasico.html#esc_lexico">Escopo léxico</a>, no módulo básico. Na realidade, diremos que os pais do ambiente de execução são o ambiente envolvente e o ambiente de chamada. Daí surge o escopo dinâmico, do qual a busca por objetos não sendo encontrado no ambiente de execução, será procurado no ambiente de chamada ao invés do ambiente envolvente. Apesar, de termos apresentado um exemplo no módulo básico sobre essa característica, vamos reforçar com um outro exemplo, no código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Fabrica de funcoes</span>
+<span class='va'>h</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span>
+  <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>amb_envolvente</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='va'>amb_chamada</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span><span class='op'>(</span><span class='st'>"x"</span>, <span class='fu'><a href='https://rdrr.io/r/base/sys.parent.html'>parent.frame</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>envolvente <span class='op'>=</span> <span class='va'>amb_envolvente</span>, chamada <span class='op'>=</span> <span class='va'>amb_chamada</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+<span class='co'># Funcao g</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>h</span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># Definindo 'x' no ambiente global</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>20</span>
+<span class='co'># Chamada de g(), e verificando 'x' no ambiente de envolvente e de chamada</span>
+<span class='fu'>g</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$envolvente
+[1] 1
+
+$chamada
+[1] 20</code></pre>
+</div>
+<h3 id="ambientes-em-pacotes">Ambientes em pacotes</h3>
+<p>Um detalhamento sobre ambientes em pacotes, bem como o desenvolvimento de pacotes, sugerimos acessar o projeto <a href="https://bendeivide.github.io/meupacoter/index.html">meupacoter</a>, como também o livro <a href="https://bendeivide.github.io/books/dpr/">Desenvolvimento de pacotes R</a>.</p>
+<p>Existem dois ambientes em pacotes, quais sejam:</p>
+<ul>
+<li>Ambientes de pacotes,</li>
+<li>Ambientes <em>namespace</em>.</li>
+</ul>
+<p>Dizemos que o ambiente de pacote é o local em que os usuários procuram pelos objetos. O ambiente de pacote estará disponível no ambiente de busca, e quando um pacote é anexado anexado, o ambiente de pacote do referido pacote, será o pai do ambiente global, e o pai do ambiente de pacote segue a hierarquia do caminho de busca. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;package:parallel&quot;    &quot;package:midrangeMCP&quot;
+ [4] &quot;package:SMR&quot;         &quot;package:magrittr&quot;    &quot;package:leaflet&quot;    
+ [7] &quot;package:stats&quot;       &quot;package:graphics&quot;    &quot;package:grDevices&quot;  
+[10] &quot;package:utils&quot;       &quot;package:datasets&quot;    &quot;package:methods&quot;    
+[13] &quot;Autoloads&quot;           &quot;package:base&quot;       </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Anexando o pacote 'parallel'</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>parallel</span><span class='op'>)</span>
+<span class='co'># Verificando novamente o caminho de busca</span>
+<span class='fu'><a href='https://rdrr.io/r/base/search.html'>search</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;.GlobalEnv&quot;          &quot;package:parallel&quot;    &quot;package:midrangeMCP&quot;
+ [4] &quot;package:SMR&quot;         &quot;package:magrittr&quot;    &quot;package:leaflet&quot;    
+ [7] &quot;package:stats&quot;       &quot;package:graphics&quot;    &quot;package:grDevices&quot;  
+[10] &quot;package:utils&quot;       &quot;package:datasets&quot;    &quot;package:methods&quot;    
+[13] &quot;Autoloads&quot;           &quot;package:base&quot;       </code></pre>
+</div>
+<p>Verifiquemos que o ambiente de pacote <code>parallel</code> passa a ser o pai do ambiente global, após a anexação ao caminho de busca. Uma outra forma de acessar uma função de um pacote sem anexá-lo, é por meio da chamada “<code>::</code>” Contudo, vale salientar que nessa última situação houve apenas o carregamento de uma determinada função, sem anexo ao caminho de busca, e isto significa a disponibilidade do pacote na memória ativa. No caso, da anexação de um pacote ao caminho de busca, além do carregamento ocorre a anexação do referido pacote. Após isso, podemos acessar as suas funções, digitando os nomes das referidas funções sem precisar mencionar o pacote em que estas estão disponíveis.</p>
+<p>O outro ambiente é fundamental para a procura interna dos objetos, e esse é o ambiente <em>namespace</em>. Por exemplo, vejamos o próximo código.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Veja como uma funcao capta a informacao do ambiente global</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>
+<span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='fu'>aux</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#&gt; [1] 2</span>
+  
+<span class='co'># Testando a funcao sd(x)</span>
+<span class='co'>#------------------------</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span> <span class='co'># o resultado de sd(x) de ser 1!</span>
+<span class='co'># Criar uma variavel no ambiente global, 'var = "Nada"'. Isso,</span>
+<span class='co'># implica que se 'sd' usar essa informacao, devera retornar um</span>
+<span class='co'># erro, pq sd se baseia em um vetor numerico</span>
+<span class='va'>var</span> <span class='op'>&lt;-</span> <span class='st'>"Nada"</span>
+
+<span class='co'># Testando sd(x)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#&gt; [1] 1</span>
+
+<span class='co'># Agora veja uma outa situacao:</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>
+
+<span class='co'># Funcao 'var' que criamos, que nao calcula variancia de dados</span>
+<span class='va'>var</span> <span class='op'>&lt;-</span> <span class='kw'>function</span> <span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='st'>"Nada"</span><span class='op'>)</span>
+
+<span class='co'># Funcao que depende de 'var' do pacote stats, e calcula a variancia </span>
+<span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>vari</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>vari</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># O resultado mostra, que a funcao aux como esta no ambiente global, ela não tem um namespace porque nao esta em pacote algum.</span>
+<span class='co'># No caminho de busca, o ambiente do pacote 'stats' estara na posicao 3, isso significa que a funcao aux ao buscar por 'var', encontrar primeiro no ambiente global, que nao seria o objeto desejado.</span>
+<span class='va'>aux</span>
+</code></pre>
+</div>
+<pre><code>function(x) {
+  vari &lt;- var(x)
+  return(vari)
+}</code></pre>
+</div>
+<p>Antes de detalharmos a ideia do ambiente de <em>namespace</em>, precisamos entender uma estrutura do pacote que é um arquivo chamado <em>NAMESPACE</em>. Esse arquivo é responsável para definir quais os objetos de outros pacotes iremos importar, e quais os objetos do pacote em desenvolvimento desejamos disponibilizar. Alguns outros objetos, principalmente funções, estão disponíveis apenas internamente, por decisão do desenvolvedor, muitas vezes por questão de futuras atualizações, ou outros objetivos. Desse modo, é o ambiente <em>namespace</em> que armazena todas as ligações dos objetos exportados, objetos importados ou objetos interno ao referido pacote. Assim, mostraremos que é por causa desse ambiente, que alguns outros objetos que não pertencem ao pacote e que podem estar no ambiente global, como o mesmo nome, não entram em conflito. No código anterior, temos um exemplo típico para justificar essa situação. A função <code>var()</code> calcula a variância de um conjunto de dados, do qual a função <code>sd()</code>, que calcula o desvio padrão, depende da função <code>var()</code></p>
 <h2 id="prog_funcional">Programação funcional</h2>
 <h2 id="funções-primitivas">Funções primitivas</h2>
 <!-- Usar a referencia "Software for data analysis - programming with R", 2008 - @chambers2008 -->
@@ -5598,7 +6008,7 @@ Figure 10: Tamanho de memória de listas.
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb214"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.
