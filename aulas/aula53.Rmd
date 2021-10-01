@@ -1,0 +1,86 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 53 - Programação funcional: Composição de funções"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Revisando
+
+- No [Módulo Básico](https://bendeivide.github.io/cursor/nbasico.html), [Aula 17](https://bendeivide.github.io/cursor/aulas/aula17.html), vimos:
+  - Funções construídas em blocos
+  - Funções aninhadas
+  - Resultados intermediários como objetos
+  - Operador *pipe*: Nativo (pacote *base*) e o pacote [magrittr](https://magrittr.tidyverse.org/)
+  
+## Operador *pipe*
+
+- Operador binário
+- Sintaxe:
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+lhs %>% rhs # Pipe do pacote 'magrittr'
+lhs |> rhs  # Pipe nativo do pacote 'base'
+```
+- Tabela de sintaxe:
+
+|Sintaxe| Equivalência|
+|:----:|:-------:|
+|`x %>% f` ou `x |> f` | `f(x)`|
+|`x %>% f(y)` ou `x |> f(y)` | `f(x, y)`|
+|`x %>% f %>% g %>% h` ou `x |> f |> g |> h` | `h(g(f(x)))`|
+
+## Aplicação
+
+```{r echo=TRUE, include=TRUE}
+mtcars |> head()  
+mtcars |> subset(cyl == 4) |> nrow()
+```
+
+## Aplicação
+
+```{r echo=TRUE, include=TRUE}
+mtcars |> subset(cyl == 4) |> (function(d) lm(mpg ~ disp, data = d))()
+```
+
+
+
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

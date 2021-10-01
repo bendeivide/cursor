@@ -1,0 +1,313 @@
+```{r setup2, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+## <i class="fab fa-connectdevelop"></i> Programação funcional {#prog_funcional}
+
+Enfim, chegamos propriamente dito ao segundo princípio do `r rlink`, tudo nesse ambiente é uma chamada de função. Mas lembrando que uma função é também um objeto, com suas características (atribuições) assim como os vetores também apresentam. 
+
+Parece não ser evidente, mas já pensaram quantas chamadas de função ocorrem na linha de comando a seguir?
+
+```{r echo=TRUE, include=TRUE}
+x <- mean(1:10)
+```
+Apesar de intuitivo, mas o símbolo de atribuição (`<-`) é uma função, `mean` é outra função, `:` também, bem como `(`. Por fim, quando digitamos o nome `x` para verificar o resultado no console, por trás existe a função `print` trabalhando para isso. Por isso, dizemos que tudo no `r rlink` é uma chamada de função.
+
+Tanto no [módulo básico](nbasico.html) quanto nesse módulo, já discutimos algumas propriedades importantes das funções, como o seu escopo léxico e dinâmico, a característica do ambiente `r rlink` ter funções de primeira classe, os ambientes envolvidos em uma função, função anônima, dentre outros assuntos.
+
+Discutimos também que uma função do tipo `closure`, apresenta três estruturas: os argumentos (`formals()`), o corpo (`body()`) e o ambiente (`environment()`). Porém, as funções primitivas, do tipo `special` ou `buitin`, fogem a essa regra porque foram implementadas em linguagem de baixo nível, isto é, em linguagem `C`. Já mostramos também como identificar essas funções nas seções anteriores, e todas elas se encontram no pacote `base`.
+
+Compreendemos também que uma função é chamada quando ditamos o seu nome e entre parênteses inserimos os seus argumentos. Podemos também por meio, da função `do.call()`, repassar os argumentos por meio de uma lista, que segue:
+
+```{r echo=TRUE, include=TRUE}
+argumentos <- list(x = 1:10, main = "Gráfico", 
+                   xlab = "Eixo X", ylab = "Eixo Y")
+do.call(plot, argumentos)
+```
+
+## Composição de funções
+
+No [módulo básico](nbasico.html), também vimos a composição de funções, construídas em blocos, aninhadas, resultados intermediários como objetos. Mas, surge uma quarta via, implementada pelo pacote [magrittr](https://magrittr.tidyverse.org/), que é o operador *pipe*. Essa ideia, segundo @hadley2019, foi inspirada nas linguagens `Haskell`, `F#`, `Julia`, `JavScript`, um estilo baseado em pilhas como *forth* e *Fator*. Esse estilo apresenta uma estrutura mais fácil de sequências de operações da esquerda para direitra, evita funções aninhadas ou definição de funções. Para a análise de dados esse operador no ambiente `r rlink` ganhou tanto respaldo, que foi implementado uma forma nativa na versão R 4.1. O operador *pipe* é binário, em que o primeiro operando (`lhs`) representa o valor do primeiro argumento do segundo operando (`rhs`), que representa uma função, isto é,
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+lhs %>% rhs # Pipe do pacote 'magrittr'
+lhs |> rhs  # Pipe nativo do pacote 'base'
+```
+
+Uma tabulação básica para compreensão pode ser apresentada na Tabela
+
+Table: (\#tab:pipe) Tabulação básica para o operador *pipe*.
+
+|Sintaxe| Equivalência|
+|:----:|:-------:|
+|`x %>% f` ou `x |> f` | `f(x)`|
+|`x %>% f(y)` ou `x |> f(y)` | `f(x, y)`|
+|`x %>% f %>% g %>% h` ou `x |> f |> g |> h` | `h(g(f(x)))`|
+
+Desse modo, podemos pensar em uma sequencia de comandos mais simples, até algo mais complexo. Vejamos o código a seguir.
+
+```{r echo=TRUE, include=TRUE}
+mtcars |> head()  
+mtcars |> subset(cyl == 4) |> nrow()
+mtcars |> subset(cyl == 4) |> (function(d) lm(mpg ~ disp, data = d))()
+```
+
+
+<!-- ## Funções primitivas -->
+
+<!-- Usar a referencia "Software for data analysis - programming with R", 2008 - @chambers2008 -->
+
+<!-- Algumas funções no `R` (objetos `R`) não apresentam a estrutura básica convencional de uma função no ambiente, como argumento, corpo da função e ambiente. Isto porque, essas funções foram implementadas principalemente em linguagem `C`, não em linguagem `R`, que chamamos de funções primitivas. Essas funções são encontradas apenas no pacote `base`, e sua grande vantagem é o seu desempenho, devido a sua implementação ter sido desenvolvida em linguagem de baixo nível. -->
+
+<!-- Caso imprima uma dessas funções para visualizar a estrutura interna do código, será recebido no console, apenas a chamada de função `.Primitive`. Vejamos um exemplo, -->
+
+<!-- ```{r echo=TRUE, include=TRUE} -->
+<!-- # Operador unário "soma" (Funcao primitiva: tipo "builtin") -->
+<!-- `+` -->
+<!-- ``` -->
+
+<!-- Desse modo, por meio da implementação realizada por Chambers(p.463-465; p.477-479(PDF)), vamos criar uma rotina para ser possível verificar quais as funções primitivas do pacote `base`, -->
+
+
+<!-- As diferenças entre as funções `buitin` e `special` são ... p.465 (PDF, p.479) -->
+
+<!-- Funções -->
+
+<!-- Os objetos de modo `function`, isto é, uma função, são objetos de primeira classe porque se comportam como qualquer outra estrutura de dados na linguagem `r rlink`, como atribuir nomes associados a esses objetos, passá-los como argumentos para outras funções, inserir dentro de funções, e até mesmo retorná-lo como resultado de funções. Vejamos, -->
+
+<!-- apresentar formas de se criar operadores binários especiais -->
+
+
+<!-- - Olhar escopo de variaveis seção 3.5: -->
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Global-environment -->
+
+<!-- https://cran.r-project.org/doc/manuals/R-lang.html#Function-objects -->
+
+<!-- Falar sobre controle de fluxos usando paralelização -->
+<!-- - iterators -->
+<!-- - foreach -->
+<!-- - MonteCarlo -->
+
+<!-- Ref: R in a nutshel, -->
+
+<!-- ### Evitando loops -->
+
+<!-- ### Funções recursivas -->
+
+## Operadores binários ou unários
+
+Na seção [Manipulando vetores](nbasico.html#manipulando-vetores) (Módulo básico), falamos sobre alguns operadores: matemáticos, lógicos, booleanos. Todos estes são operadores binários ou unários, que na mais são do que funções. Dizemos que um operador é unário quando há apenas a exigência de um operando na operação. Quando há a existência de dois operandos, dizemos que o operador é binário. Por exemplo, o operador soma `+` pode ser unário ou binário, pois sintaticamente, podemos escrever a operação soma com um operando ou com dois operandos. Vejamos o código a seguir.
+
+```{r echo=TRUE, include=TRUE}
+# Como operador unario
++2 # operador operando1
+# Como operador binario
+2 + 5 # operando1 operador operando2
+```
+
+Isso significa dizer que o operador *pipe* é binário, em que o primeiro operando é um valor e o segundo operando é uma função. Alguns exemplos de operadores que também podem ser encontrados por `?Sintax`, `::`, `:::`, `$`, `@`, `[`, `[[`, `^`, `+`, `-`, `:`, `|>`, `%%`, `%/%`, `%*%`, `%x%`, `%o%`, `%in%`, `<`, `>`, `<=`, `=>`, `==`, `!=`, `!`, `&`, `&&`, `|`, `||`, `~`, `->`, `<-`, `<<-`, `=`, `?`, detre outros. Algumas dessas operações tem prevalência sobre outras, como por exemplo, no caso dos operadores matemáticos.
+
+Para sabermos o código interno de um operador, além do nome, escrevemos aspas invertidas envolta desse nome, isto é,
+
+```{r}
+# Saber se um numero esta em um vetor
+1 %in% 1:3
+# Como eh o codigo interno de '%in%'
+`%in%`
+```
+
+Uma outra forma de identificarmos se um operador é binário ou unário, é verificando os seus argumentos. Por exemplo, o operador `%in%` apresenta os argumentos `x` e `table`, então no mínimo esse operador é binário. Isso ocorre porque quando verificamos os argumentos do operador soma,
+
+```{r echo=TRUE, include=TRUE}
+`+`
+```
+percebemos que há dois argumentos, `e1` e `e2`, mas este operador pode se comportar como operador unário, é como se `e1` fosse `NULL` por padrão. Uma outra forma sintática de chamarmos um operador pode ser apresentado a seguir.
+
+```{r echo=TRUE, include=TRUE}
+`+`(e1 = 2, e2 = 5)
+```
+Isso é o mesmo de termos realizado a operação `2 + 5`. Operadores criados pelos usuários sempre terão o símbolo de porcentagem (`%`) envolta dos nomes. Os demais operadores que não apresentam essa forma sintática são criados apenas pelo *R Core Team*.
+
+Para ilustrar a criação de um operador, vamos fazer o nosso próprio operador *pipe*.
+
+```{r echo=TRUE, include=TRUE}
+# Nosso operador pipe '%>>%'
+`%>>%` <- function(a, b) {
+  aux <- as.character(substitute(b))
+  exec <- call(aux, a)
+  eval(exec)
+}
+
+1:10 %>>% mean()
+```
+
+## Avaliação preguiçosa dos argumentos de uma função
+
+<!-- https://www.r-bloggers.com/2018/07/about-lazy-evaluation/ -->
+
+<!-- https://colinfay.me/tidyeval-1/ -->
+
+<!-- http://colinfay.me/r-language-definition/objects.html#promise-objects -->
+
+Os argumentos em uma função são um tipo de objeto chamado `pairlist`, isto é,
+
+```{r echo=TRUE, include=TRUE}
+# Funcao f
+f <- function(x) 1
+# Tipo de objeto do argumento x
+typeof(formals(f))
+```
+
+esse tipo de objeto é avaliado de forma "preguiçosa", isto é, lentamente. Isso significa dizer computacionalmente, que enquanto esse argumento não for utilizado internamente na função, ele é tipo como uma promessa e não é avaliado. Vejamos um exemplo para entendermos melhor essa afirmação.
+
+```{r echo=TRUE, include=TRUE}
+f2 <- function(x = aux()) 10; f2()
+```
+
+A chamada `f2()` retorna o valor `10` sem erros, porque mesmo no argumento `x` recebendo uma função `aux()` que não existe, como internamente esse argumento não foi usado, `x` é apenas uma promessa. No ambiente `r rlink`, não podemos manipular esse tipo de objeto, pois se assim fosse possível, o objeto deixaria de ser uma promessa.
+
+Por causa desse tipo de estrutura, que podemos ter outros argumentos padrão como função de outros argumentos ou até como função de outros objetos criados internamente a função. Vejamos,
+
+```{r echo=TRUE, include=TRUE}
+f3 <- function(a = 4, b = a + 2, c = x * y) {
+  x <- 10
+  y <- 100
+  list(a = a, # 4
+       b = b, # a + 2
+       c = c) # x * y
+}
+f3()
+```
+
+Nesse momento cabe enfatizarmos a diferença entre `<-` e `=`. Primeiro, devemos entender que qualquer um dos dois associam nomes a objetos, porém a primeira diferença existente entre os dois, é que o primeiro tem precedência superior. Vejamos o seguinte código:
+
+```{r echo=TRUE, include=TRUE, error=TRUE}
+y <- x = 4
+```
+Por que esse exemplo gera um erro? Porque primeiro é executado `y <- x` (precedência superior de `<-` sobre `=`), em que `x` não é encontrado, e retorna um erro.
+
+Um outro ponto é que sintaticamente usamos o operador `=` para atribuir valores a argumentos de uma função, e `<-` para atribuir nomes a objetos, e este último deve ser a sintaxe recomendada para a atribuição de nomes a objetos.
+
+Parece que semanticamente a atribuição de argumentos a valores são iguais, mas podemos ver que a seguir, apesar de sintaticamente as linhas de comando aparentemente idêntica, apresentam comportamentos e resultados diferentes
+
+```{r}
+rm(list = ls(all.names = TRUE))
+```
+
+```{r echo=TRUE, include=TRUE}
+# Funcao teste
+teste <- function(x = ls()) {
+  obj_ae <- "Objeto_interno"
+  x
+}
+# ls() avaliado dentro de teste():
+teste()
+# ls() avaliado no ambiente de chamada:
+teste(ls())
+teste2 <- function(){
+  obj_teste2_1 <- "primeiro"
+  obj_teste2_2 <- "segundo"
+  obj_teste2_3 <- "terceiro"
+  teste(ls())
+}
+teste2()
+# Objeto x avaliado no ambiente global
+teste((x <- ls()))
+teste((x <- ls()))
+```
+Na primeira situação temos a criação da função `teste` com um argumento padrão `x = ls()`. Nesse caso, `ls()` será avaliado no ambiente de execução da função, do qual pode ser confirmado com a chamada `teste()`. O segundo caso, a chamada `teste(ls())` apresenta um resultado diferente, porque `ls()`, nesse caso, foi avaliado no ambiente de chamada, que pode também ser verificado na chamada `teste2()`. Por fim, a chamada `teste((x <- ls()))` apresenta um resultado diferente com relação ao caso anterior, pois `x <- ls()` é avaliado no ambiente global, nesse caso, e não como um promessa tal como `x = ls()` foi, sendo avaliado apenas internamente no ato de sua chamada.
+
+Por fim, podemos verificar se um argumento teve como entrada padrão, ou inserida pelo usuário, usando `missing()`. Vejamos o código, a seguir.
+
+```{r echo=TRUE, include=TRUE}
+teste <- function(arg = 5) {
+  list("argumento padrão?" = missing(arg), valor = arg)
+}
+# Teste 1
+teste()
+# Teste 2
+teste(4)
+```
+
+## Saídas implícitas, explícitas, invisíveis, e manipuladores de saídas de funções
+
+
+## Vetorização de funções
+
+<!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
+<!--   # Programacao defensiva -->
+<!--   n <- nchar(x) -->
+<!--   if (!is.numeric(x)) stop("Deve ser numérico!") -->
+<!--   if (n == 11) { -->
+<!--     cpf <- structure(x %/% 10^seq(n - 1,0) %% 10, -->
+<!--                      class = "cpf") -->
+<!--   } -->
+<!--   if (n != 11) { -->
+<!--     if (n == 10 & p_valor_zero == TRUE) { -->
+<!--       cpf <- structure(x %/% 10^seq(n,0) %% 10, -->
+<!--                        class = "cpf") -->
+<!--     } else { -->
+<!--       stop("Seu CPF nao tem 11 digitos") -->
+<!--     }  -->
+<!--   }  -->
+<!--   return(cpf) -->
+<!-- } -->
+
+<!-- print.cpf <- function(x, ...) { -->
+<!--   cpf <- paste(x, collapse = "") -->
+<!--   substr(cpf, 3, 9) <- "*******" -->
+<!--   print(cpf) -->
+<!-- } -->
+
+<!-- x <- new_cpf(05098523435, TRUE) -->
+
+## Evitando loops
+
+## Funções recursivas
+
+## Programação defensiva
+
+<!-- https://adv-r.hadley.nz/conditions.html -->
+<!-- http://homepage.stat.uiowa.edu/~luke/R/exceptions/simpcond.html -->
+<!-- http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html -->
+<!-- http://adv-r.had.co.nz/beyond-exception-handling.html -->
+<!-- https://gist.github.com/hadley/4278d0a6d3a10e42533d59905fbed0ac -->
+
+### Função `stop()`
+### Função `Warning`
+
+<!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
+<!--   # Programacao defensiva -->
+<!--   n <- nchar(x) -->
+<!--   if (!is.numeric(x)) stop("Deve ser numérico!") -->
+<!--   if (n == 11) { -->
+<!--     cpf <- structure(x %/% 10^seq(n - 1,0) %% 10, -->
+<!--                      class = "cpf") -->
+<!--   } -->
+<!--   if (n != 11) { -->
+<!--     if (n == 10 & p_valor_zero == TRUE) { -->
+<!--       cpf <- structure(x %/% 10^seq(n,0) %% 10, -->
+<!--                        class = "cpf") -->
+<!--     } else { -->
+<!--       stop("Seu CPF nao tem 11 digitos") -->
+<!--     }  -->
+<!--   }  -->
+<!--   return(cpf) -->
+<!-- } -->
+
+<!-- print.cpf <- function(x, ...) { -->
+<!--   cpf <- paste(x, collapse = "") -->
+<!--   substr(cpf, 3, 9) <- "*******" -->
+<!--   print(cpf) -->
+<!-- } -->
+
+<!-- x <- new_cpf(05098523435, TRUE) -->
+
+## Controle de fluxos usando paralelização
+<!-- - iterators -->
+<!-- - foreach -->

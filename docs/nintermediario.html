@@ -2175,7 +2175,7 @@ Material
 <li><a href="#coletor_lixo_desvinc">Coletor de lixo e desvinculação</a></li>
 </ul></li>
 <li><a href="#aprof-ambientes"><i class="fas fa-align-justify"></i> Aprofundamento sobre ambientes</a></li>
-<li><a href=""><i class="fab fa-connectdevelop"></i> Programação Funcional</a>
+<li><a href="#prog_funcional"><i class="fab fa-connectdevelop"></i> Programação Funcional</a>
 <ul>
 <li>Operadores binários</li>
 <li>Sintaxe da família de Pacotes <em>Tidyverse</em></li>
@@ -2242,8 +2242,15 @@ Material
 <li>Aula 49: <a href="aulas/aula49.html" target="_blank">Ambientes: Introdução aprofundada</a></li>
 <li>Aula 50: <a href="aulas/aula50.html" target="_blank">Ambientes funcionais</a></li>
 <li>Aula 51: <a href="aulas/aula51.html" target="_blank">Ambientes em pacotes</a></li>
-<li>Aula 52: <a href="aulas/aula52.html" target="_blank">Ambientes especiais: Funções</a></li>
-<li>Aula 53: <a href="aulas/aula53.html" target="_blank">Programação funcional: Introdução</a></li>
+<li>Aula 52: <a href="aulas/aula52.html" target="_blank">Programação funcional: Introdução</a></li>
+<li>Aula 53: <a href="aulas/aula53.html" target="_blank">Programação funcional: Composição de funções</a></li>
+<li>Aula 54: <a href="aulas/aula54.html" target="_blank">Programação funcional: Operadores unários e binários</a></li>
+<li>Aula 55: <a href="aulas/aula55.html" target="_blank"></a></li>
+<li>Aula 56: <a href="aulas/aula56.html" target="_blank"></a></li>
+<li>Aula 57: <a href="aulas/aula57.html" target="_blank"></a></li>
+<li>Aula 58: <a href="aulas/aula58.html" target="_blank"></a></li>
+<li>Aula 59: <a href="aulas/aula59.html" target="_blank"></a></li>
+<li>Aula 60: <a href="aulas/aula60.html" target="_blank"></a></li>
 </ul>
 </section>
 <section id="scripts" class="panel">
@@ -2771,7 +2778,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008633e10&gt;
+&lt;bytecode: 0x0000000008e54070&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2914,7 +2921,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000041b83b58&gt;
+&lt;bytecode: 0x0000000027943828&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2940,7 +2947,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000041b83b58&gt;
+&lt;bytecode: 0x0000000027943828&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2966,7 +2973,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000041b83b58&gt;
+&lt;bytecode: 0x0000000027943828&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3763,7 +3770,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x000000002ccd1e00&gt;
+&lt;bytecode: 0x0000000026a9d6e0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
@@ -4396,9 +4403,9 @@ $y$z
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 18895</code></pre>
+<pre><code>[1] 18901</code></pre>
 </div>
-<p>O resultado 18895 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
+<p>O resultado 18901 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
 <p>Podemos criar um objeto data com o construtor (gerador de instâncias de classe) chamado <code>.Date()</code>. O argumento de entrada será o número de dias após o marco “1970-01-01,” isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -4562,18 +4569,18 @@ $y$z
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;2021-09-25&quot;</code></pre>
+<pre><code>[1] &quot;2021-10-01&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Formatando</span>
 <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d/%m/%Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;25/09/2021&quot;</code></pre>
+<pre><code>[1] &quot;01/10/2021&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d de %B de %Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;25 de setembro de 2021&quot;</code></pre>
+<pre><code>[1] &quot;01 de outubro de 2021&quot;</code></pre>
 </div>
 <p>Para os objetos de classe <code>"Date"</code>, as siglas utilizadas para a função <code>format()</code> devem estar relacionadas a data, isto é, dia, mês e ano. Lembrando que o resultado desse genérico, bem como de <code>as.character()</code>, retornam vetores de tipo caractere, sem a classe <code>"Date"</code>.</p>
 <p>Algumas funções genéricas estão prontas para serem utilizados nesses objetos, como <code>+</code>, <code>-</code>, <code>seq()</code>, <code>rep()</code>, etc. Para saber mais quais métodos para essa classe, use <code>methods(class = "Date")</code>.</p>
@@ -4767,17 +4774,17 @@ Figure 2: Ligações entre objetos tipo <code>'symbol'</code> e <code>'integer'<
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x274a8d78&quot;</code></pre>
+<pre><code>[1] &quot;0x2cddcab0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x274a8d78&quot;</code></pre>
+<pre><code>[1] &quot;0x2cddcab0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x274a8d78&quot;</code></pre>
+<pre><code>[1] &quot;0x2cddcab0&quot;</code></pre>
 </div>
 <p>Lembrando no <a href="nbasico.html">módulo básico</a>, que os identificadores de memória sempre se alteram, à medida que reiniciamos. Porém, percebam que ao chamar o objeto associado a esses nomes, todos retornam o valor <code>6</code>. Ainda mais, o identificador de memória é o mesmo. Portanto, aqui fica claro que não está havendo cópia do objeto, e sim, mais nomes se associando ao mesmo objeto, observemos a Figura <a href="#fig:lig-obj">3</a>, é o que chamamos de <strong>vinculação compartilhada</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -4802,8 +4809,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x4109eb50&quot;</code></pre>
-<pre><code>[1] &quot;0x4109eb50&quot;</code></pre>
+<pre><code>[1] &quot;0x2cd11448&quot;</code></pre>
+<pre><code>[1] &quot;0x2cd11448&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Copia ao modificar</span>
 <span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"f"</span>
@@ -4811,8 +4818,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x4109eb50&quot;</code></pre>
-<pre><code>[1] &quot;0x28701580&quot;</code></pre>
+<pre><code>[1] &quot;0x2cd11448&quot;</code></pre>
+<pre><code>[1] &quot;0x2cfbc270&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo novamente os objetos</span>
 <span class='va'>y</span>; <span class='va'>x</span>
@@ -4821,7 +4828,7 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 <pre><code>[1] &quot;f&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 </div>
-<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x4109eb50 para 0x28701580, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
+<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x2cd11448 para 0x2cfbc270, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:copia-obj"></span>
 <img src="images/copia_obj.png" alt="Cópia de objetos." width="70%" />
@@ -4843,13 +4850,13 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>tracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, <span class='st'>"\n"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>&lt;0000000026DA83B0&gt; </code></pre>
+<pre><code>&lt;000000004417B058&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vinculacao de outro nome e copia</span>
 <span class='va'>z</span> <span class='op'>&lt;-</span> <span class='va'>w</span>; <span class='va'>z</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
 </code></pre>
 </div>
-<pre><code>tracemem[0x0000000026da83b0 -&gt; 0x0000000027a00e88]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
+<pre><code>tracemem[0x000000004417b058 -&gt; 0x00000000442f3810]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Desativando o rastreamento</span>
 <span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>untracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
@@ -4863,7 +4870,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x27a00e88&quot;</code></pre>
+<pre><code>[1] &quot;0x442f3810&quot;</code></pre>
 </div>
 <p>Após vinculado o nome <code>w</code> ao vetor numerico de comprimento 3, que é um gerador de números aleatórios de uma distribuição normal padrão, acionamos a chamada <code>tracemem()</code>, e após a criação de cópias, a função mostrará a ocorrência dessas cópias. Se desejarmos que essa mensagem não seja mais acionada, devemos usar a chamada <code>untracemem()</code>, que desativará o rastreameto de cópia. Lembrando que o rastreamento só ocorrerá o objeto informado na função <code>tracemem()</code>. Por fim, fizemos mais uma alteração no objeto <code>z</code>, e nesse caso como o objeto se associa apenas a um nome, ocorre a <strong>modificação no local</strong>, um processo de otimização do <a href="http://r-project.org/" target="_blank">R</a>, em que usa a mesma alocação de memória, não havendo portanto, uma cópia de objeto.</p>
 <p>Mas, fazendo alguns estudos e pesquisas, encontramos algumas funções primitivas, acessadas pela chamada <code>.Internals()</code>, denominada <code>inspect()</code>, <code>address()</code> e <code>refcnt()</code>, funções experimentais para imprimir informações de baixo nível dos objetos <a href="http://r-project.org/" target="_blank">R</a>. Essa função não é exposta ao nível superior da linguagem, e segundo a própria documentação, é um recurso para depuração/inpeção. A documentação ainda afirma que nem todas as informações foram implementadas. Para esse momento, o que está implementado é suficiente para identificarmos os procedimentos de cópia dos objetos. Uma segunda informação é que a partir da versão <a href="http://r-project.org/" target="_blank">R</a> 4.0.0, a decisão de cópia de objetos passaram a ser determinados pela contagem de referência, ao invés do mecanismo <code>NAMED</code>. Esse ponto realmente exige um entendimento de baixo nível na linguagem, isto é, a sua implementação em linguagem <code>C</code>. Vamos mostrar os resultados do código anterior, inspecionado por essas funções, a seguir.</p>
@@ -4929,7 +4936,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x000000004488bac0 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
+<pre><code>@0x0000000045066328 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x0000000006629620 14 REALSXP g0c4 [REF(1)] (len=5, tl=0) 1,2,3,4,5</span>
 <span class='co'># Funcao primitiva `:` - REF(65535)</span>
@@ -4938,7 +4945,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000042e4f918 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x0000000027b270c0 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a060680 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva seq() - REF(65535)</span>
@@ -4947,7 +4954,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000042efef68 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x0000000027bd3ad0 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a05f3e8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva rep() - REF(1)</span>
@@ -4956,7 +4963,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x00000000421aa620 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
+<pre><code>@0x000000004506f440 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x00000000066295b0 13 INTSXP g0c4 [REF(1)] (len=10, tl=0) 1,2,3,4,5,...</span>
 </code></pre>
@@ -5480,7 +5487,7 @@ Figure 11: Caminho por onde os objetos serão procurados.
             ...), MPI = snow::makeMPIcluster(count = spec, ...), 
         NWS = snow::makeNWScluster(names = spec, ...), stop(&quot;unknown cluster type&quot;))
 }
-&lt;bytecode: 0x00000000423a7e78&gt;
+&lt;bytecode: 0x0000000041d180e8&gt;
 &lt;environment: namespace:parallel&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando novamente o Caminho de busca,</span>
@@ -5653,7 +5660,7 @@ Figure 13: Criando ambientes.
 <span class='va'>amb1</span> <span class='co'># ou .Internal(address(amb1))</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x0000000043fc8340&gt;</code></pre>
+<pre><code>&lt;environment: 0x00000000429350e0&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente envolvente de 'h'</span>
 <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>$</span><span class='va'>h</span><span class='op'>)</span>
@@ -5696,9 +5703,9 @@ Figure 14: Ambiente envolvente e ambiente de ligação.
 </code></pre>
 </div>
 <pre><code>Ambiente de execucao de f: 
-&lt;environment: 0x0000000015dfffb8&gt;
+&lt;environment: 0x00000000438eb710&gt;
 Ambiente envolvente de f2:
-&lt;environment: 0x0000000015dfffb8&gt;</code></pre>
+&lt;environment: 0x00000000438eb710&gt;</code></pre>
 </div>
 <p>Observamos que a função <code>f1</code> foi criada no ambiente global, e que a função <code>f2</code> foi criada no ambiente de execução da função <code>f</code>, por isso a distinção dos ambientes envolventes dessas duas funções. Cada função terá apenas um ambiente envolvente.</p>
 <p>No módulo básico, falamos sobre o ambiente de execução. Este ambiente é criado quando fazemos uma chamada de função. Após finalizado a chamada da referida função e retornado o valor desejado, este ambiente desaparece. O ambiente de execução tem como o pai o ambiente envolvente, e podemos representá-lo pela Figura <a href="#fig:amb-env-exec">15</a>, para o código a seguir.</p>
@@ -5797,7 +5804,7 @@ $chamada
 <pre><code>function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x000000002ad2ba48&gt;
+&lt;bytecode: 0x000000002b526dd0&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Testando sd(x)</span>
@@ -5844,8 +5851,89 @@ Figure 16: Mecanismo do ambiente <em>namespace</em> de um determinado pacote.
 </div>
 </div>
 <p>Observemos que quando a função <code>sd()</code> é chamada, esta função não foi criada no ambiente global, mas no ambiente <code>namespace:stats</code>, cujas ligações também estão no ambiente <code>package:stats</code>. Assim, após o ambiente de execução dessa função ser criada temporariamente, todos os seus objetos se não encontrados nesse ambiente, partirão à procura no ambiente <em>namespace</em> do pacote. Desse modo, até chegar a busca pelo objeto no ambiente global, a função ainda procurará pelo ambiente <code>imports:stats</code>, se não encontrar segue para o ambiente <code>namespace:base</code>, e por fim entra no caminho de busca. Portanto, a função <code>var()</code> criada no ambiente global, para ter sido usada, em todos os ambientes anteriores não poderia ter existido esse objeto. Porém, como o desenvolvedor do pacote planeja todas as suas funções, certamente, isso nunca ocorrerá. Desse modo, o ambiente <a href="http://r-project.org/" target="_blank">R</a> evita que as funções desenvolvidas em um pacote tenham conflito com funções de outros pacotes.</p>
-<h2 id="prog_funcional">Programação funcional</h2>
-<h2 id="funções-primitivas">Funções primitivas</h2>
+<h2 id="prog_funcional"><i class="fab fa-connectdevelop"></i> Programação funcional</h2>
+<p>Enfim, chegamos propriamente dito ao segundo princípio do <a href="http://r-project.org/" target="_blank">R</a>, tudo nesse ambiente é uma chamada de função. Mas lembrando que uma função é também um objeto, com suas características (atribuições) assim como os vetores também apresentam.</p>
+<p>Parece não ser evidente, mas já pensaram quantas chamadas de função ocorrem na linha de comando a seguir?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Apesar de intuitivo, mas o símbolo de atribuição (<code>&lt;-</code>) é uma função, <code>mean</code> é outra função, <code>:</code> também, bem como <code>(</code>. Por fim, quando digitamos o nome <code>x</code> para verificar o resultado no console, por trás existe a função <code>print</code> trabalhando para isso. Por isso, dizemos que tudo no <a href="http://r-project.org/" target="_blank">R</a> é uma chamada de função.</p>
+<p>Tanto no <a href="nbasico.html">módulo básico</a> quanto nesse módulo, já discutimos algumas propriedades importantes das funções, como o seu escopo léxico e dinâmico, a característica do ambiente <a href="http://r-project.org/" target="_blank">R</a> ter funções de primeira classe, os ambientes envolvidos em uma função, função anônima, dentre outros assuntos.</p>
+<p>Discutimos também que uma função do tipo <code>closure</code>, apresenta três estruturas: os argumentos (<code>formals()</code>), o corpo (<code>body()</code>) e o ambiente (<code>environment()</code>). Porém, as funções primitivas, do tipo <code>special</code> ou <code>buitin</code>, fogem a essa regra porque foram implementadas em linguagem de baixo nível, isto é, em linguagem <code>C</code>. Já mostramos também como identificar essas funções nas seções anteriores, e todas elas se encontram no pacote <code>base</code>.</p>
+<p>Compreendemos também que uma função é chamada quando ditamos o seu nome e entre parênteses inserimos os seus argumentos. Podemos também por meio, da função <code>do.call()</code>, repassar os argumentos por meio de uma lista, que segue:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>argumentos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, main <span class='op'>=</span> <span class='st'>"Gráfico"</span>, 
+                   xlab <span class='op'>=</span> <span class='st'>"Eixo X"</span>, ylab <span class='op'>=</span> <span class='st'>"Eixo Y"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/do.call.html'>do.call</a></span><span class='op'>(</span><span class='va'>plot</span>, <span class='va'>argumentos</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="nintermediario_files/figure-html5/unnamed-chunk-109-1.png" width="624" /></p>
+</div>
+<h2 id="composição-de-funções">Composição de funções</h2>
+<p>No <a href="nbasico.html">módulo básico</a>, também vimos a composição de funções, construídas em blocos, aninhadas, resultados intermediários como objetos. Mas, surge uma quarta via, implementada pelo pacote <a href="https://magrittr.tidyverse.org/">magrittr</a>, que é o operador <em>pipe</em>. Essa ideia, segundo <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, foi inspirada nas linguagens <code>Haskell</code>, <code>F#</code>, <code>Julia</code>, <code>JavScript</code>, um estilo baseado em pilhas como <em>forth</em> e <em>Fator</em>. Esse estilo apresenta uma estrutura mais fácil de sequências de operações da esquerda para direitra, evita funções aninhadas ou definição de funções. Para a análise de dados esse operador no ambiente <a href="http://r-project.org/" target="_blank">R</a> ganhou tanto respaldo, que foi implementado uma forma nativa na versão R 4.1. O operador <em>pipe</em> é binário, em que o primeiro operando (<code>lhs</code>) representa o valor do primeiro argumento do segundo operando (<code>rhs</code>), que representa uma função, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a>lhs <span class="sc">%&gt;%</span> rhs <span class="co"># Pipe do pacote &#39;magrittr&#39;</span></span>
+<span id="cb232-2"><a href="#cb232-2" aria-hidden="true" tabindex="-1"></a>lhs <span class="sc">|</span><span class="er">&gt;</span> rhs  <span class="co"># Pipe nativo do pacote &#39;base&#39;</span></span></code></pre></div>
+</div>
+<p>Uma tabulação básica para compreensão pode ser apresentada na Tabela</p>
+<table>
+<caption><span id="tab:pipe">Table 4: </span> Tabulação básica para o operador <em>pipe</em>.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Sintaxe</th>
+<th style="text-align: center;">Equivalência</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>x %&gt;% f</code> ou <code>x |&gt; f</code></td>
+<td style="text-align: center;"><code>f(x)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>x %&gt;% f(y)</code> ou <code>x |&gt; f(y)</code></td>
+<td style="text-align: center;"><code>f(x, y)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>x %&gt;% f %&gt;% g %&gt;% h</code> ou <code>x |&gt; f |&gt; g |&gt; h</code></td>
+<td style="text-align: center;"><code>h(g(f(x)))</code></td>
+</tr>
+</tbody>
+</table>
+<p>Desse modo, podemos pensar em uma sequencia de comandos mais simples, até algo mais complexo. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>  
+</code></pre>
+</div>
+<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>cyl</span> <span class='op'>==</span> <span class='fl'>4</span><span class='op'>)</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 11</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mtcars</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>cyl</span> <span class='op'>==</span> <span class='fl'>4</span><span class='op'>)</span> |&gt; <span class='op'>(</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>mpg</span> <span class='op'>~</span> <span class='va'>disp</span>, data <span class='op'>=</span> <span class='va'>d</span><span class='op'>)</span><span class='op'>)</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = mpg ~ disp, data = d)
+
+Coefficients:
+(Intercept)         disp  
+    40.8720      -0.1351  </code></pre>
+</div>
+<!-- ## Funções primitivas -->
 <!-- Usar a referencia "Software for data analysis - programming with R", 2008 - @chambers2008 -->
 <!-- Algumas funções no `R` (objetos `R`) não apresentam a estrutura básica convencional de uma função no ambiente, como argumento, corpo da função e ambiente. Isto porque, essas funções foram implementadas principalemente em linguagem `C`, não em linguagem `R`, que chamamos de funções primitivas. Essas funções são encontradas apenas no pacote `base`, e sua grande vantagem é o seu desempenho, devido a sua implementação ter sido desenvolvida em linguagem de baixo nível. -->
 <!-- Caso imprima uma dessas funções para visualizar a estrutura interna do código, será recebido no console, apenas a chamada de função `.Primitive`. Vejamos um exemplo, -->
@@ -5868,36 +5956,192 @@ Figure 16: Mecanismo do ambiente <em>namespace</em> de um determinado pacote.
 <!-- Ref: R in a nutshel, -->
 <!-- ### Evitando loops -->
 <!-- ### Funções recursivas -->
-<h2 id="função-operadores-binários-ou-unirios">Função operadores binários ou unirios</h2>
-<h3 id="pacote-magritt---pipe---lê-se-paipe">pacote magritt -&gt; %&gt;% (pipe - lê-se paipe)</h3>
-<!-- -   Minus, can be unary or binary -->
-<!-- +   Plus, can be unary or binary -->
-<!-- !   Unary not -->
-<!-- ~   Tilde, used for model formulae, can be either unary or binary -->
-<!-- ?   Help -->
-<!-- :   Sequence, binary (in model formulae: interaction) -->
-<!-- *   Multiplication, binary -->
-<!-- /   Division, binary -->
-<!-- ^   Exponentiation, binary -->
-<!-- %x% Special binary operators, x can be replaced by any valid name -->
-<!-- %%  Modulus, binary -->
-<!-- %/% Integer divide, binary -->
-<!-- %*% Matrix product, binary -->
-<!-- %o% Outer product, binary -->
-<!-- %x% Kronecker product, binary -->
-<!-- %in%    Matching operator, binary (in model formulae: nesting) -->
-<!-- <   Less than, binary -->
-<!-- >   Greater than, binary -->
-<!-- ==  Equal to, binary -->
-<!-- >=  Greater than or equal to, binary -->
-<!-- <=  Less than or equal to, binary -->
-<!-- &   And, binary, vectorized -->
-<!-- &&  And, binary, not vectorized -->
-<!-- |   Or, binary, vectorized -->
-<!-- ||  Or, binary, not vectorized -->
-<!-- <-  Left assignment, binary -->
-<!-- ->  Right assignment, binary -->
-<!-- $   List subset, binary -->
+<h2 id="operadores-binários-ou-unários">Operadores binários ou unários</h2>
+<p>Na seção <a href="nbasico.html#manipulando-vetores">Manipulando vetores</a> (Módulo básico), falamos sobre alguns operadores: matemáticos, lógicos, booleanos. Todos estes são operadores binários ou unários, que na mais são do que funções. Dizemos que um operador é unário quando há apenas a exigência de um operando na operação. Quando há a existência de dois operandos, dizemos que o operador é binário. Por exemplo, o operador soma <code>+</code> pode ser unário ou binário, pois sintaticamente, podemos escrever a operação soma com um operando ou com dois operandos. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Como operador unario</span>
+<span class='op'>+</span><span class='fl'>2</span> <span class='co'># operador operando1</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Como operador binario</span>
+<span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>5</span> <span class='co'># operando1 operador operando2</span>
+</code></pre>
+</div>
+<pre><code>[1] 7</code></pre>
+</div>
+<p>Isso significa dizer que o operador <em>pipe</em> é binário, em que o primeiro operando é um valor e o segundo operando é uma função. Alguns exemplos de operadores que também podem ser encontrados por <code>?Sintax</code>, <code>::</code>, <code>:::</code>, <code>$</code>, <code>@</code>, <code>[</code>, <code>[[</code>, <code>^</code>, <code>+</code>, <code>-</code>, <code>:</code>, <code>|&gt;</code>, <code>%%</code>, <code>%/%</code>, <code>%*%</code>, <code>%x%</code>, <code>%o%</code>, <code>%in%</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>=&gt;</code>, <code>==</code>, <code>!=</code>, <code>!</code>, <code>&amp;</code>, <code>&amp;&amp;</code>, <code>|</code>, <code>||</code>, <code>~</code>, <code>-&gt;</code>, <code>&lt;-</code>, <code>&lt;&lt;-</code>, <code>=</code>, <code>?</code>, detre outros. Algumas dessas operações tem prevalência sobre outras, como por exemplo, no caso dos operadores matemáticos.</p>
+<p>Para sabermos o código interno de um operador, além do nome, escrevemos aspas invertidas envolta desse nome, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>[1] TRUE</code></pre>
+<pre><code>function (x, table) 
+match(x, table, nomatch = 0L) &gt; 0L
+&lt;bytecode: 0x0000000006b1f340&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+</div>
+<p>Uma outra forma de identificarmos se um operador é binário ou unário, é verificando os seus argumentos. Por exemplo, o operador <code>%in%</code> apresenta os argumentos <code>x</code> e <code>table</code>, então no mínimo esse operador é binário. Isso ocorre porque quando verificamos os argumentos do operador soma,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>`+`</span>
+</code></pre>
+</div>
+<pre><code>function (e1, e2)  .Primitive(&quot;+&quot;)</code></pre>
+</div>
+<p>percebemos que há dois argumentos, <code>e1</code> e <code>e2</code>, mas este operador pode se comportar como operador unário, é como se <code>e1</code> fosse <code>NULL</code> por padrão. Uma outra forma sintática de chamarmos um operador pode ser apresentado a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>`+`</span><span class='op'>(</span>e1 <span class='op'>=</span> <span class='fl'>2</span>, e2 <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 7</code></pre>
+</div>
+<p>Isso é o mesmo de termos realizado a operação <code>2 + 5</code>. Operadores criados pelos usuários sempre terão o símbolo de porcentagem (<code>%</code>) envolta dos nomes. Os demais operadores que não apresentam essa forma sintática são criados apenas pelo <em>R Core Team</em>.</p>
+<p>Para ilustrar a criação de um operador, vamos fazer o nosso próprio operador <em>pipe</em>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Nosso operador pipe '%&gt;&gt;%'</span>
+<span class='va'>`%&gt;&gt;%`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>exec</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/call.html'>call</a></span><span class='op'>(</span><span class='va'>aux</span>, <span class='va'>a</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/eval.html'>eval</a></span><span class='op'>(</span><span class='va'>exec</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> <span class='op'>%&gt;&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 5.5</code></pre>
+</div>
+<h2 id="avaliação-preguiçosa-dos-argumentos-de-uma-função">Avaliação preguiçosa dos argumentos de uma função</h2>
+<!-- https://www.r-bloggers.com/2018/07/about-lazy-evaluation/ -->
+<!-- https://colinfay.me/tidyeval-1/ -->
+<!-- http://colinfay.me/r-language-definition/objects.html#promise-objects -->
+<p>Os argumentos em uma função são um tipo de objeto chamado <code>pairlist</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao f</span>
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fl'>1</span>
+<span class='co'># Tipo de objeto do argumento x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/typeof.html'>typeof</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/formals.html'>formals</a></span><span class='op'>(</span><span class='va'>f</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;pairlist&quot;</code></pre>
+</div>
+<p>esse tipo de objeto é avaliado de forma “preguiçosa,” isto é, lentamente. Isso significa dizer computacionalmente, que enquanto esse argumento não for utilizado internamente na função, ele é tipo como uma promessa e não é avaliado. Vejamos um exemplo para entendermos melhor essa afirmação.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>f2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>=</span> <span class='fu'>aux</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='fl'>10</span>; <span class='fu'>f2</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+</div>
+<p>A chamada <code>f2()</code> retorna o valor <code>10</code> sem erros, porque mesmo no argumento <code>x</code> recebendo uma função <code>aux()</code> que não existe, como internamente esse argumento não foi usado, <code>x</code> é apenas uma promessa. No ambiente <a href="http://r-project.org/" target="_blank">R</a>, não podemos manipular esse tipo de objeto, pois se assim fosse possível, o objeto deixaria de ser uma promessa.</p>
+<p>Por causa desse tipo de estrutura, que podemos ter outros argumentos padrão como função de outros argumentos ou até como função de outros objetos criados internamente a função. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>f3</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span> <span class='op'>=</span> <span class='fl'>4</span>, <span class='va'>b</span> <span class='op'>=</span> <span class='va'>a</span> <span class='op'>+</span> <span class='fl'>2</span>, <span class='va'>c</span> <span class='op'>=</span> <span class='va'>x</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='va'>a</span>, <span class='co'># 4</span>
+       b <span class='op'>=</span> <span class='va'>b</span>, <span class='co'># a + 2</span>
+       c <span class='op'>=</span> <span class='va'>c</span><span class='op'>)</span> <span class='co'># x * y</span>
+<span class='op'>}</span>
+<span class='fu'>f3</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$a
+[1] 4
+
+$b
+[1] 6
+
+$c
+[1] 1000</code></pre>
+</div>
+<p>Nesse momento cabe enfatizarmos a diferença entre <code>&lt;-</code> e <code>=</code>. Primeiro, devemos entender que qualquer um dos dois associam nomes a objetos, porém a primeira diferença existente entre os dois, é que o primeiro tem precedência superior. Vejamos o seguinte código:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>x</span> <span class='op'>=</span> <span class='fl'>4</span>
+</code></pre>
+</div>
+<pre><code>Error in y &lt;- x = 4: não foi possível encontrar a função &quot;&lt;-&lt;-&quot;</code></pre>
+</div>
+<p>Por que esse exemplo gera um erro? Porque primeiro é executado <code>y &lt;- x</code> (precedência superior de <code>&lt;-</code> sobre <code>=</code>), em que <code>x</code> não é encontrado, e retorna um erro.</p>
+<p>Um outro ponto é que sintaticamente usamos o operador <code>=</code> para atribuir valores a argumentos de uma função, e <code>&lt;-</code> para atribuir nomes a objetos, e este último deve ser a sintaxe recomendada para a atribuição de nomes a objetos.</p>
+<p>Parece que semanticamente a atribuição de argumentos a valores são iguais, mas podemos ver que a seguir, apesar de sintaticamente as linhas de comando aparentemente idêntica, apresentam comportamentos e resultados diferentes</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao teste</span>
+<span class='va'>teste</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>obj_ae</span> <span class='op'>&lt;-</span> <span class='st'>"Objeto_interno"</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='co'># ls() avaliado dentro de teste():</span>
+<span class='fu'>teste</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;obj_ae&quot; &quot;x&quot;     </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># ls() avaliado no ambiente de chamada:</span>
+<span class='fu'>teste</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;teste&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>teste2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>obj_teste2_1</span> <span class='op'>&lt;-</span> <span class='st'>"primeiro"</span>
+  <span class='va'>obj_teste2_2</span> <span class='op'>&lt;-</span> <span class='st'>"segundo"</span>
+  <span class='va'>obj_teste2_3</span> <span class='op'>&lt;-</span> <span class='st'>"terceiro"</span>
+  <span class='fu'>teste</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='fu'>teste2</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;obj_teste2_1&quot; &quot;obj_teste2_2&quot; &quot;obj_teste2_3&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto x avaliado no ambiente global</span>
+<span class='fu'>teste</span><span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;teste&quot;  &quot;teste2&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>teste</span><span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;teste&quot;  &quot;teste2&quot; &quot;x&quot;     </code></pre>
+</div>
+<p>Na primeira situação temos a criação da função <code>teste</code> com um argumento padrão <code>x = ls()</code>. Nesse caso, <code>ls()</code> será avaliado no ambiente de execução da função, do qual pode ser confirmado com a chamada <code>teste()</code>. O segundo caso, a chamada <code>teste(ls())</code> apresenta um resultado diferente, porque <code>ls()</code>, nesse caso, foi avaliado no ambiente de chamada, que pode também ser verificado na chamada <code>teste2()</code>. Por fim, a chamada <code>teste((x &lt;- ls()))</code> apresenta um resultado diferente com relação ao caso anterior, pois <code>x &lt;- ls()</code> é avaliado no ambiente global, nesse caso, e não como um promessa tal como <code>x = ls()</code> foi, sendo avaliado apenas internamente no ato de sua chamada.</p>
+<p>Por fim, podemos verificar se um argumento teve como entrada padrão, ou inserida pelo usuário, usando <code>missing()</code>. Vejamos o código, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>teste</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>arg</span> <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"argumento padrão?"</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/missing.html'>missing</a></span><span class='op'>(</span><span class='va'>arg</span><span class='op'>)</span>, valor <span class='op'>=</span> <span class='va'>arg</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Teste 1</span>
+<span class='fu'>teste</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$`argumento padrão?`
+[1] TRUE
+
+$valor
+[1] 5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Teste 2</span>
+<span class='fu'>teste</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$`argumento padrão?`
+[1] FALSE
+
+$valor
+[1] 4</code></pre>
+</div>
+<h2 id="saídas-implícitas-explícitas-invisíveis-e-manipuladores-de-saídas-de-funções">Saídas implícitas, explícitas, invisíveis, e manipuladores de saídas de funções</h2>
 <h2 id="vetorização-de-funções">Vetorização de funções</h2>
 <!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
 <!--   # Programacao defensiva -->
@@ -5957,15 +6201,12 @@ Figure 16: Mecanismo do ambiente <em>namespace</em> de um determinado pacote.
 <!--   print(cpf) -->
 <!-- } -->
 <!-- x <- new_cpf(05098523435, TRUE) -->
-<h2 id="escopo-léxico">Escopo léxico</h2>
-<h2 id="execução-preguiçosa">Execução preguiçosa</h2>
-<!-- https://www.r-bloggers.com/2018/07/about-lazy-evaluation/ -->
-<!-- https://colinfay.me/tidyeval-1/ -->
-<!-- http://colinfay.me/r-language-definition/objects.html#promise-objects -->
 <h2 id="controle-de-fluxos-usando-paralelização">Controle de fluxos usando paralelização</h2>
 <!-- - iterators -->
 <!-- - foreach -->
-<h2 id="gráficos">Gráficos</h2>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!-- ## Metaprogramação -->
+<!-- ## Gráficos -->
 <!--  - Dispositivo gráfico: -->
 <!--         - ggplot -->
 <!--         - tmap -->
@@ -6028,7 +6269,7 @@ Figure 16: Mecanismo do ambiente <em>namespace</em> de um determinado pacote.
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb232"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.

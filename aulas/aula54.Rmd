@@ -1,0 +1,109 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 54 - Programação funcional: Operadores unários e binários"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Introdução
+
+- Já vimos diversos operadores:
+  - Matemáticos
+  - Lógicos
+  - Booleanos
+
+## O que é um operador?
+
+- Um operador é uma função
+- Diferença entre unário e binário:
+  - unário: 1 operando
+  - binário: 2 operandos
+
+## Exemplos: *pipe*
+
+- Sintaxe:
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+lhs %>% rhs # Pipe do pacote 'magrittr'
+lhs |> rhs  # Pipe nativo do pacote 'base'
+```
+
+## Um operador pode ser unário e binário?
+
+```{r echo=TRUE, include=TRUE}
+# Como operador unario
++2 # operador operando1
+# Como operador binario
+2 + 5 # operando1 operador operando2
+```
+
+## Como acessar o código interno de um operador?
+
+```{r}
+# Saber se um numero esta em um vetor
+1 %in% 1:3
+# Como eh o codigo interno de '%in%'
+`%in%`
+```
+
+## Formas sintáticas da chamada de um operador
+
+```{r echo=TRUE, include=TRUE}
+# Primeira forma
+2 + 5
+# Segunda forma
+`+`(e1 = 2, e2 = 5)
+```
+  
+## Como criar um operador?
+
+```{r echo=TRUE, include=TRUE}
+# Nosso operador pipe '%>>%'
+`%>>%` <- function(a, b) {
+  aux <- as.character(substitute(b))
+  exec <- call(aux, a)
+  eval(exec)
+}
+
+1:10 %>>% mean()
+```
+
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>
