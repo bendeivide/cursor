@@ -190,13 +190,13 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">30 setembro, 2021</p>
+            <p style="margin-top: 6px; margin-left: -2px;">04 outubro, 2021</p>
           </hgroup>
   </slide>
 
 <!--
 YAML:
-date: "30 setembro, 2021"
+date: "04 outubro, 2021"
 =====
 APRESENTACAO:
 
@@ -204,7 +204,7 @@ Inserir nas secoes:
 {data-background=boards.jpg data-background-size=cover}
 -->
 
-<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  class="smaller " id="selo-dc">
+<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  id="selo-dc" class="smaller ">
 
 <center>
 
@@ -212,7 +212,7 @@ Inserir nas secoes:
 
 </center>
 
-</article></slide><slide class=""><hgroup><h2>Introdução</h2></hgroup><article  class="smaller " id="introdução">
+</article></slide><slide class=""><hgroup><h2>Introdução</h2></hgroup><article  id="introdução" class="smaller ">
 
 <ul>
 <li>Já vimos diversos operadores:
@@ -224,7 +224,7 @@ Inserir nas secoes:
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>O que é um operador?</h2></hgroup><article  class="smaller " id="o-que-é-um-operador">
+</article></slide><slide class=""><hgroup><h2>O que é um operador?</h2></hgroup><article  id="o-que-é-um-operador" class="smaller ">
 
 <ul>
 <li>Um operador é uma função</li>
@@ -236,7 +236,7 @@ Inserir nas secoes:
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Exemplos: <em>pipe</em></h2></hgroup><article  class="smaller " id="exemplos-pipe">
+</article></slide><slide class=""><hgroup><h2>Exemplos: <em>pipe</em></h2></hgroup><article  id="exemplos-pipe" class="smaller ">
 
 <ul>
 <li>Sintaxe:</li>
@@ -245,7 +245,7 @@ Inserir nas secoes:
 <pre class = 'prettyprint lang-r'>lhs %&gt;% rhs # Pipe do pacote &#39;magrittr&#39;
 lhs |&gt; rhs  # Pipe nativo do pacote &#39;base&#39;</pre>
 
-</article></slide><slide class=""><hgroup><h2>Um operador pode ser unário e binário?</h2></hgroup><article  class="smaller " id="um-operador-pode-ser-unário-e-binário">
+</article></slide><slide class=""><hgroup><h2>Um operador pode ser unário e binário?</h2></hgroup><article  id="um-operador-pode-ser-unário-e-binário" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Como operador unario
 +2 # operador operando1</pre>
@@ -257,16 +257,22 @@ lhs |&gt; rhs  # Pipe nativo do pacote &#39;base&#39;</pre>
 
 <pre >## [1] 7</pre>
 
-</article></slide><slide class=""><hgroup><h2>Como acessar o código interno de um operador?</h2></hgroup><article  class="smaller " id="como-acessar-o-código-interno-de-um-operador">
+</article></slide><slide class=""><hgroup><h2>Como acessar o código interno de um operador?</h2></hgroup><article  id="como-acessar-o-código-interno-de-um-operador" class="smaller ">
+
+<pre class = 'prettyprint lang-r'># Saber se um numero esta em um vetor
+1 %in% 1:3</pre>
 
 <pre >## [1] TRUE</pre>
 
+<pre class = 'prettyprint lang-r'># Como eh o codigo interno de &#39;%in%&#39;
+`%in%`</pre>
+
 <pre >## function (x, table) 
 ## match(x, table, nomatch = 0L) &gt; 0L
-## &lt;bytecode: 0x0000000006b0f268&gt;
+## &lt;bytecode: 0x0000000006aff170&gt;
 ## &lt;environment: namespace:base&gt;</pre>
 
-</article></slide><slide class=""><hgroup><h2>Formas sintáticas da chamada de um operador</h2></hgroup><article  class="smaller " id="formas-sintáticas-da-chamada-de-um-operador">
+</article></slide><slide class=""><hgroup><h2>Formas sintáticas da chamada de um operador</h2></hgroup><article  id="formas-sintáticas-da-chamada-de-um-operador" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Primeira forma
 2 + 5</pre>
@@ -278,7 +284,7 @@ lhs |&gt; rhs  # Pipe nativo do pacote &#39;base&#39;</pre>
 
 <pre >## [1] 7</pre>
 
-</article></slide><slide class=""><hgroup><h2>Como criar um operador?</h2></hgroup><article  class="smaller " id="como-criar-um-operador">
+</article></slide><slide class=""><hgroup><h2>Como criar um operador?</h2></hgroup><article  id="como-criar-um-operador" class="smaller ">
 
 <pre class = 'prettyprint lang-r'># Nosso operador pipe &#39;%&gt;&gt;%&#39;
 `%&gt;&gt;%` &lt;- function(a, b) {
@@ -291,7 +297,7 @@ lhs |&gt; rhs  # Pipe nativo do pacote &#39;base&#39;</pre>
 
 <pre >## [1] 5.5</pre>
 
-</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  class="smaller " id="bons-estudos">
+</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  id="bons-estudos" class="smaller ">
 
 <center>
 

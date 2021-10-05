@@ -2245,7 +2245,7 @@ Material
 <li>Aula 52: <a href="aulas/aula52.html" target="_blank">Programação funcional: Introdução</a></li>
 <li>Aula 53: <a href="aulas/aula53.html" target="_blank">Programação funcional: Composição de funções</a></li>
 <li>Aula 54: <a href="aulas/aula54.html" target="_blank">Programação funcional: Operadores unários e binários</a></li>
-<li>Aula 55: <a href="aulas/aula55.html" target="_blank"></a></li>
+<li>Aula 55: <a href="aulas/aula55.html" target="_blank">Programação funcional: Avaliação preguiçosa dos argumentos de uma função</a></li>
 <li>Aula 56: <a href="aulas/aula56.html" target="_blank"></a></li>
 <li>Aula 57: <a href="aulas/aula57.html" target="_blank"></a></li>
 <li>Aula 58: <a href="aulas/aula58.html" target="_blank"></a></li>
@@ -2778,7 +2778,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008e54070&gt;
+&lt;bytecode: 0x0000000008633cc8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2921,7 +2921,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000027943828&gt;
+&lt;bytecode: 0x000000003ac3fb08&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2947,7 +2947,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000027943828&gt;
+&lt;bytecode: 0x000000003ac3fb08&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2973,7 +2973,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x0000000027943828&gt;
+&lt;bytecode: 0x000000003ac3fb08&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3770,7 +3770,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x0000000026a9d6e0&gt;
+&lt;bytecode: 0x00000000395fcdd8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
@@ -4403,9 +4403,9 @@ $y$z
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 18901</code></pre>
+<pre><code>[1] 18905</code></pre>
 </div>
-<p>O resultado 18901 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
+<p>O resultado 18905 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
 <p>Podemos criar um objeto data com o construtor (gerador de instâncias de classe) chamado <code>.Date()</code>. O argumento de entrada será o número de dias após o marco “1970-01-01,” isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -4569,18 +4569,18 @@ $y$z
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;2021-10-01&quot;</code></pre>
+<pre><code>[1] &quot;2021-10-05&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Formatando</span>
 <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d/%m/%Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;01/10/2021&quot;</code></pre>
+<pre><code>[1] &quot;05/10/2021&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d de %B de %Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;01 de outubro de 2021&quot;</code></pre>
+<pre><code>[1] &quot;05 de outubro de 2021&quot;</code></pre>
 </div>
 <p>Para os objetos de classe <code>"Date"</code>, as siglas utilizadas para a função <code>format()</code> devem estar relacionadas a data, isto é, dia, mês e ano. Lembrando que o resultado desse genérico, bem como de <code>as.character()</code>, retornam vetores de tipo caractere, sem a classe <code>"Date"</code>.</p>
 <p>Algumas funções genéricas estão prontas para serem utilizados nesses objetos, como <code>+</code>, <code>-</code>, <code>seq()</code>, <code>rep()</code>, etc. Para saber mais quais métodos para essa classe, use <code>methods(class = "Date")</code>.</p>
@@ -4774,17 +4774,17 @@ Figure 2: Ligações entre objetos tipo <code>'symbol'</code> e <code>'integer'<
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2cddcab0&quot;</code></pre>
+<pre><code>[1] &quot;0x22d0e068&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2cddcab0&quot;</code></pre>
+<pre><code>[1] &quot;0x22d0e068&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2cddcab0&quot;</code></pre>
+<pre><code>[1] &quot;0x22d0e068&quot;</code></pre>
 </div>
 <p>Lembrando no <a href="nbasico.html">módulo básico</a>, que os identificadores de memória sempre se alteram, à medida que reiniciamos. Porém, percebam que ao chamar o objeto associado a esses nomes, todos retornam o valor <code>6</code>. Ainda mais, o identificador de memória é o mesmo. Portanto, aqui fica claro que não está havendo cópia do objeto, e sim, mais nomes se associando ao mesmo objeto, observemos a Figura <a href="#fig:lig-obj">3</a>, é o que chamamos de <strong>vinculação compartilhada</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -4809,8 +4809,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2cd11448&quot;</code></pre>
-<pre><code>[1] &quot;0x2cd11448&quot;</code></pre>
+<pre><code>[1] &quot;0x39f9d5a8&quot;</code></pre>
+<pre><code>[1] &quot;0x39f9d5a8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Copia ao modificar</span>
 <span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"f"</span>
@@ -4818,8 +4818,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x2cd11448&quot;</code></pre>
-<pre><code>[1] &quot;0x2cfbc270&quot;</code></pre>
+<pre><code>[1] &quot;0x39f9d5a8&quot;</code></pre>
+<pre><code>[1] &quot;0x20398a40&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo novamente os objetos</span>
 <span class='va'>y</span>; <span class='va'>x</span>
@@ -4828,7 +4828,7 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 <pre><code>[1] &quot;f&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 </div>
-<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x2cd11448 para 0x2cfbc270, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
+<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x39f9d5a8 para 0x20398a40, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:copia-obj"></span>
 <img src="images/copia_obj.png" alt="Cópia de objetos." width="70%" />
@@ -4850,13 +4850,13 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>tracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, <span class='st'>"\n"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>&lt;000000004417B058&gt; </code></pre>
+<pre><code>&lt;0000000042814D38&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vinculacao de outro nome e copia</span>
 <span class='va'>z</span> <span class='op'>&lt;-</span> <span class='va'>w</span>; <span class='va'>z</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
 </code></pre>
 </div>
-<pre><code>tracemem[0x000000004417b058 -&gt; 0x00000000442f3810]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
+<pre><code>tracemem[0x0000000042814d38 -&gt; 0x0000000042d8c588]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Desativando o rastreamento</span>
 <span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>untracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
@@ -4870,7 +4870,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x442f3810&quot;</code></pre>
+<pre><code>[1] &quot;0x42d8c588&quot;</code></pre>
 </div>
 <p>Após vinculado o nome <code>w</code> ao vetor numerico de comprimento 3, que é um gerador de números aleatórios de uma distribuição normal padrão, acionamos a chamada <code>tracemem()</code>, e após a criação de cópias, a função mostrará a ocorrência dessas cópias. Se desejarmos que essa mensagem não seja mais acionada, devemos usar a chamada <code>untracemem()</code>, que desativará o rastreameto de cópia. Lembrando que o rastreamento só ocorrerá o objeto informado na função <code>tracemem()</code>. Por fim, fizemos mais uma alteração no objeto <code>z</code>, e nesse caso como o objeto se associa apenas a um nome, ocorre a <strong>modificação no local</strong>, um processo de otimização do <a href="http://r-project.org/" target="_blank">R</a>, em que usa a mesma alocação de memória, não havendo portanto, uma cópia de objeto.</p>
 <p>Mas, fazendo alguns estudos e pesquisas, encontramos algumas funções primitivas, acessadas pela chamada <code>.Internals()</code>, denominada <code>inspect()</code>, <code>address()</code> e <code>refcnt()</code>, funções experimentais para imprimir informações de baixo nível dos objetos <a href="http://r-project.org/" target="_blank">R</a>. Essa função não é exposta ao nível superior da linguagem, e segundo a própria documentação, é um recurso para depuração/inpeção. A documentação ainda afirma que nem todas as informações foram implementadas. Para esse momento, o que está implementado é suficiente para identificarmos os procedimentos de cópia dos objetos. Uma segunda informação é que a partir da versão <a href="http://r-project.org/" target="_blank">R</a> 4.0.0, a decisão de cópia de objetos passaram a ser determinados pela contagem de referência, ao invés do mecanismo <code>NAMED</code>. Esse ponto realmente exige um entendimento de baixo nível na linguagem, isto é, a sua implementação em linguagem <code>C</code>. Vamos mostrar os resultados do código anterior, inspecionado por essas funções, a seguir.</p>
@@ -4936,7 +4936,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000045066328 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
+<pre><code>@0x000000003a9c9090 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x0000000006629620 14 REALSXP g0c4 [REF(1)] (len=5, tl=0) 1,2,3,4,5</span>
 <span class='co'># Funcao primitiva `:` - REF(65535)</span>
@@ -4945,7 +4945,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000027b270c0 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x0000000021d3cde8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a060680 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva seq() - REF(65535)</span>
@@ -4954,7 +4954,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000027bd3ad0 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x0000000021de0270 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a05f3e8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva rep() - REF(1)</span>
@@ -4963,7 +4963,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x000000004506f440 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
+<pre><code>@0x000000003b213e30 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x00000000066295b0 13 INTSXP g0c4 [REF(1)] (len=10, tl=0) 1,2,3,4,5,...</span>
 </code></pre>
@@ -5487,7 +5487,7 @@ Figure 11: Caminho por onde os objetos serão procurados.
             ...), MPI = snow::makeMPIcluster(count = spec, ...), 
         NWS = snow::makeNWScluster(names = spec, ...), stop(&quot;unknown cluster type&quot;))
 }
-&lt;bytecode: 0x0000000041d180e8&gt;
+&lt;bytecode: 0x00000000233898e0&gt;
 &lt;environment: namespace:parallel&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando novamente o Caminho de busca,</span>
@@ -5660,7 +5660,7 @@ Figure 13: Criando ambientes.
 <span class='va'>amb1</span> <span class='co'># ou .Internal(address(amb1))</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x00000000429350e0&gt;</code></pre>
+<pre><code>&lt;environment: 0x000000003a483720&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente envolvente de 'h'</span>
 <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>$</span><span class='va'>h</span><span class='op'>)</span>
@@ -5703,9 +5703,9 @@ Figure 14: Ambiente envolvente e ambiente de ligação.
 </code></pre>
 </div>
 <pre><code>Ambiente de execucao de f: 
-&lt;environment: 0x00000000438eb710&gt;
+&lt;environment: 0x00000000396e3c78&gt;
 Ambiente envolvente de f2:
-&lt;environment: 0x00000000438eb710&gt;</code></pre>
+&lt;environment: 0x00000000396e3c78&gt;</code></pre>
 </div>
 <p>Observamos que a função <code>f1</code> foi criada no ambiente global, e que a função <code>f2</code> foi criada no ambiente de execução da função <code>f</code>, por isso a distinção dos ambientes envolventes dessas duas funções. Cada função terá apenas um ambiente envolvente.</p>
 <p>No módulo básico, falamos sobre o ambiente de execução. Este ambiente é criado quando fazemos uma chamada de função. Após finalizado a chamada da referida função e retornado o valor desejado, este ambiente desaparece. O ambiente de execução tem como o pai o ambiente envolvente, e podemos representá-lo pela Figura <a href="#fig:amb-env-exec">15</a>, para o código a seguir.</p>
@@ -5804,7 +5804,7 @@ $chamada
 <pre><code>function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x000000002b526dd0&gt;
+&lt;bytecode: 0x0000000026cf10c8&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Testando sd(x)</span>
@@ -5978,7 +5978,7 @@ Coefficients:
 <pre><code>[1] TRUE</code></pre>
 <pre><code>function (x, table) 
 match(x, table, nomatch = 0L) &gt; 0L
-&lt;bytecode: 0x0000000006b1f340&gt;
+&lt;bytecode: 0x0000000006b0f2c8&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Uma outra forma de identificarmos se um operador é binário ou unário, é verificando os seus argumentos. Por exemplo, o operador <code>%in%</code> apresenta os argumentos <code>x</code> e <code>table</code>, então no mínimo esse operador é binário. Isso ocorre porque quando verificamos os argumentos do operador soma,</p>
@@ -6143,6 +6143,9 @@ $valor
 </div>
 <h2 id="saídas-implícitas-explícitas-invisíveis-e-manipuladores-de-saídas-de-funções">Saídas implícitas, explícitas, invisíveis, e manipuladores de saídas de funções</h2>
 <h2 id="vetorização-de-funções">Vetorização de funções</h2>
+<h2 id="evitando-loops">Evitando loops</h2>
+<h2 id="funções-recursivas">Funções recursivas</h2>
+<h2 id="programação-defensiva">Programação defensiva</h2>
 <!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
 <!--   # Programacao defensiva -->
 <!--   n <- nchar(x) -->
@@ -6167,9 +6170,6 @@ $valor
 <!--   print(cpf) -->
 <!-- } -->
 <!-- x <- new_cpf(05098523435, TRUE) -->
-<h2 id="evitando-loops">Evitando loops</h2>
-<h2 id="funções-recursivas">Funções recursivas</h2>
-<h2 id="programação-defensiva">Programação defensiva</h2>
 <!-- https://adv-r.hadley.nz/conditions.html -->
 <!-- http://homepage.stat.uiowa.edu/~luke/R/exceptions/simpcond.html -->
 <!-- http://www.gigamonkeys.com/book/beyond-exception-handling-conditions-and-restarts.html -->
@@ -6207,6 +6207,16 @@ $valor
 <div class="sourceCode" id="cb254"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!-- ## Metaprogramação -->
 <!-- ## Gráficos -->
+<!-- ## Configurações padrões do ambiente R -->
+<!-- oldOp<-options() # armazena as configurações originais -->
+<!-- oldOp # Algumas configurações presentes no sistema -->
+<!-- ls(oldOp) # Lista todas as configurações -->
+<!-- options(digits=4) -->
+<!-- # [1] 3.142 valor pi com 4 dígitos -->
+<!-- options(oldOp) # Configuração original -->
+<!-- - como acessar alterações de idiomas -->
+<!-- - casas decimais -->
+<!-- - etcs -->
 <!--  - Dispositivo gráfico: -->
 <!--         - ggplot -->
 <!--         - tmap -->

@@ -239,6 +239,12 @@ teste(4)
 
 ## Vetorização de funções
 
+## Evitando loops
+
+## Funções recursivas
+
+## Programação defensiva
+
 <!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
 <!--   # Programacao defensiva -->
 <!--   n <- nchar(x) -->
@@ -265,12 +271,6 @@ teste(4)
 <!-- } -->
 
 <!-- x <- new_cpf(05098523435, TRUE) -->
-
-## Evitando loops
-
-## Funções recursivas
-
-## Programação defensiva
 
 <!-- https://adv-r.hadley.nz/conditions.html -->
 <!-- http://homepage.stat.uiowa.edu/~luke/R/exceptions/simpcond.html -->

@@ -72,7 +72,7 @@ lhs |> rhs  # Pipe nativo do pacote 'base'
 
 ## Como acessar o código interno de um operador?
 
-```{r}
+```{r echo=TRUE, include=TRUE}
 # Saber se um numero esta em um vetor
 1 %in% 1:3
 # Como eh o codigo interno de '%in%'
