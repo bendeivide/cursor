@@ -2177,10 +2177,11 @@ Material
 <li><a href="#aprof-ambientes"><i class="fas fa-align-justify"></i> Aprofundamento sobre ambientes</a></li>
 <li><a href="#prog_funcional"><i class="fab fa-connectdevelop"></i> Programação Funcional</a>
 <ul>
-<li>Operadores binários</li>
-<li>Sintaxe da família de Pacotes <em>Tidyverse</em></li>
-<li>Evitando <em>loops</em></li>
-<li>Funções recursivas <!-- Capítulo 8 - Conditions (Advanced R) --></li>
+<li><a href="#comp_funcoes">Composição de funções</a></li>
+<li><a href="#op_un-binarios">Operadores binários</a></li>
+<li><a href="#promessas">Avaliação preguiçosa dos argumentos de uma função</a></li>
+<li><a href="#saida_funcoes">Saídas implícitas, explícitas, invisíveis de funções</a></li>
+<li><a href="#funcoes_substituicao">Funções de substituição</a> <!-- - Sintaxe da família de Pacotes *Tidyverse* --> <!-- - Evitando *loops* --> <!-- - Funções recursivas --> <!-- Capítulo 8 - Conditions (Advanced R) --></li>
 <li>Programação defensiva</li>
 <li>Controle de fluxos usando paralelização</li>
 </ul></li>
@@ -2246,10 +2247,10 @@ Material
 <li>Aula 53: <a href="aulas/aula53.html" target="_blank">Programação funcional: Composição de funções</a></li>
 <li>Aula 54: <a href="aulas/aula54.html" target="_blank">Programação funcional: Operadores unários e binários</a></li>
 <li>Aula 55: <a href="aulas/aula55.html" target="_blank">Programação funcional: Avaliação preguiçosa dos argumentos de uma função</a></li>
-<li>Aula 56: <a href="aulas/aula56.html" target="_blank"></a></li>
-<li>Aula 57: <a href="aulas/aula57.html" target="_blank"></a></li>
-<li>Aula 58: <a href="aulas/aula58.html" target="_blank"></a></li>
-<li>Aula 59: <a href="aulas/aula59.html" target="_blank"></a></li>
+<li>Aula 56: <a href="aulas/aula56.html" target="_blank">Programação funcional: Saídas implícitas, explícitas, invisíveis de funções</a></li>
+<li>Aula 57: <a href="aulas/aula57.html" target="_blank">Programação funcional: funções de substituição</a></li>
+<li>Aula 58: <a href="aulas/aula58.html" target="_blank">Programação funcional: Vetorização de funções</a></li>
+<li>Aula 59: <a href="aulas/aula59.html" target="_blank">Programação funcional: Evitando <em>loops</em></a></li>
 <li>Aula 60: <a href="aulas/aula60.html" target="_blank"></a></li>
 </ul>
 </section>
@@ -2778,7 +2779,7 @@ TRUE </code></pre>
 </div>
 <pre><code>function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008633cc8&gt;
+&lt;bytecode: 0x0000000008e54368&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Entretanto, funções primitivas e internas são escritas em linguagem <code>C</code>, mas também podem ser funções genéricas. Não há função no <a href="http://r-project.org/" target="_blank">R</a> para acesso direto do código interno interno dessas funções, bem como de seus argumentos. O que na realidade deve ser feito é acessar código fonte. Para isso, podemos pesquisar sobre alguma função primitiva, por exemplo <code>'[['</code>, por <code>pryr::show_c_source(.Primitive("[["))</code>.</p>
@@ -2921,7 +2922,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000003ac3fb08&gt;
+&lt;bytecode: 0x0000000041b6bb40&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Segunda forma (Sistema S3 apenas):</span>
@@ -2947,7 +2948,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000003ac3fb08&gt;
+&lt;bytecode: 0x0000000041b6bb40&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Terceira forma</span>
@@ -2973,7 +2974,7 @@ function (object, ...)
     else invisible(NextMethod(&quot;str&quot;, give.length = structure(FALSE, 
         from = &quot;data.frame&quot;), ...))
 }
-&lt;bytecode: 0x000000003ac3fb08&gt;
+&lt;bytecode: 0x0000000041b6bb40&gt;
 &lt;environment: namespace:utils&gt;</code></pre>
 </div>
 <p>Os métodos desenvolvidos no pacote <code>base</code> com asterisco dos métodos genéricos de grupo não são acessados pelas funções anteriores. Por fim, vamos criar uma pequena rotina, adaptado de <span class="citation" data-cites="chambers2016"><a href="#ref-chambers2016" role="doc-biblioref">Chambers</a> (<a href="#ref-chambers2016" role="doc-biblioref">2016</a>)</span>, para vermos quais e quantas funções genéricas primitivas existem no pacote <code>base</code>, a seguir.</p>
@@ -3770,7 +3771,7 @@ see &#39;?methods&#39; for accessing help and source code</code></pre>
 </div>
 <pre><code>function (x, ...) 
 stop(gettextf(&quot;%s not meaningful for factors&quot;, sQuote(.Generic)))
-&lt;bytecode: 0x00000000395fcdd8&gt;
+&lt;bytecode: 0x000000003f0abe90&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Observamos nessa situação que o objeto do tipo <em>factor</em>, apesar de ser um resultado numérico, não se comporta como numérico. Nesse caso, calcular a raiz quadrado de cada elemento não será possível, ou qualquer outra operação do grupo <code>'Math'</code>, e assim, uma proteção para esse caso é assegurado logo no método <code>Math.factor()</code> (<code>=&gt;</code>) com a chamada <code>stop()</code>. A ideia da função <code>gettextf()</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> no ambiente <a href="http://r-project.org/" target="_blank">R</a>é similar a <code>printf()</code> para a linguagem <code>C</code>. No despacho, percebemos que existe a função primitiva (*) <code>sqrt()</code>, porém nesse caso, não foi utilizada.</p>
@@ -4403,9 +4404,9 @@ $y$z
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>hoje</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 18905</code></pre>
+<pre><code>[1] 18913</code></pre>
 </div>
-<p>O resultado 18905 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
+<p>O resultado 18913 coagido a <code>double</code> se refere ao número de dias desde a data “1970-01-01.” Essa data é em homenagem ao marco zero do sistema de calendário utilizado pelo sistema UNIX.</p>
 <p>Podemos criar um objeto data com o construtor (gerador de instâncias de classe) chamado <code>.Date()</code>. O argumento de entrada será o número de dias após o marco “1970-01-01,” isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -4569,18 +4570,18 @@ $y$z
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.Date</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;2021-10-05&quot;</code></pre>
+<pre><code>[1] &quot;2021-10-13&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Formatando</span>
 <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d/%m/%Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;05/10/2021&quot;</code></pre>
+<pre><code>[1] &quot;13/10/2021&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"%d de %B de %Y"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;05 de outubro de 2021&quot;</code></pre>
+<pre><code>[1] &quot;13 de outubro de 2021&quot;</code></pre>
 </div>
 <p>Para os objetos de classe <code>"Date"</code>, as siglas utilizadas para a função <code>format()</code> devem estar relacionadas a data, isto é, dia, mês e ano. Lembrando que o resultado desse genérico, bem como de <code>as.character()</code>, retornam vetores de tipo caractere, sem a classe <code>"Date"</code>.</p>
 <p>Algumas funções genéricas estão prontas para serem utilizados nesses objetos, como <code>+</code>, <code>-</code>, <code>seq()</code>, <code>rep()</code>, etc. Para saber mais quais métodos para essa classe, use <code>methods(class = "Date")</code>.</p>
@@ -4774,17 +4775,17 @@ Figure 2: Ligações entre objetos tipo <code>'symbol'</code> e <code>'integer'<
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x22d0e068&quot;</code></pre>
+<pre><code>[1] &quot;0x40fc10c8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x22d0e068&quot;</code></pre>
+<pre><code>[1] &quot;0x40fc10c8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x22d0e068&quot;</code></pre>
+<pre><code>[1] &quot;0x40fc10c8&quot;</code></pre>
 </div>
 <p>Lembrando no <a href="nbasico.html">módulo básico</a>, que os identificadores de memória sempre se alteram, à medida que reiniciamos. Porém, percebam que ao chamar o objeto associado a esses nomes, todos retornam o valor <code>6</code>. Ainda mais, o identificador de memória é o mesmo. Portanto, aqui fica claro que não está havendo cópia do objeto, e sim, mais nomes se associando ao mesmo objeto, observemos a Figura <a href="#fig:lig-obj">3</a>, é o que chamamos de <strong>vinculação compartilhada</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -4809,8 +4810,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x39f9d5a8&quot;</code></pre>
-<pre><code>[1] &quot;0x39f9d5a8&quot;</code></pre>
+<pre><code>[1] &quot;0x42afe1f8&quot;</code></pre>
+<pre><code>[1] &quot;0x42afe1f8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Copia ao modificar</span>
 <span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='st'>"f"</span>
@@ -4818,8 +4819,8 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>; <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x39f9d5a8&quot;</code></pre>
-<pre><code>[1] &quot;0x20398a40&quot;</code></pre>
+<pre><code>[1] &quot;0x42afe1f8&quot;</code></pre>
+<pre><code>[1] &quot;0x42d84fc8&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Imprimindo novamente os objetos</span>
 <span class='va'>y</span>; <span class='va'>x</span>
@@ -4828,7 +4829,7 @@ Figure 3: Ligações de nomes associados ao objeto numérico.
 <pre><code>[1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 <pre><code>[1] &quot;f&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 </div>
-<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x39f9d5a8 para 0x20398a40, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
+<p>Percebam que criamos um vetor caractere de comprimento 3, e vinculamos a dois nomes, <code>x</code> e <code>y</code>. Posteriormente, alteramos o primeiro elemento do vetor <code>x</code>, mas isso não modificou o vetor <code>y</code>. O que aconteceu? O ambiente <code>R</code> preservou o objeto <code>y</code>, e fez uma cópia de 0x42afe1f8 para 0x42d84fc8, com o valor alterado, e religou o nome <code>x</code> a esse objeto, Figura <a href="#fig:copia-obj">4</a>. Portanto, fazer uma cópia representa realocar um outro espaço de memória para armazenar os valores desse objeto, e assim, um outro identificador de memória será apresentado, diferente do objeto copiado.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:copia-obj"></span>
 <img src="images/copia_obj.png" alt="Cópia de objetos." width="70%" />
@@ -4850,13 +4851,13 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>tracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>, <span class='st'>"\n"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>&lt;0000000042814D38&gt; </code></pre>
+<pre><code>&lt;0000000025FC09B8&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vinculacao de outro nome e copia</span>
 <span class='va'>z</span> <span class='op'>&lt;-</span> <span class='va'>w</span>; <span class='va'>z</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
 </code></pre>
 </div>
-<pre><code>tracemem[0x0000000042814d38 -&gt; 0x0000000042d8c588]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
+<pre><code>tracemem[0x0000000025fc09b8 -&gt; 0x000000003fc31210]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; withCallingHandlers suppressMessages render_one FUN lapply sapply &lt;Anonymous&gt; &lt;Anonymous&gt; &lt;Anonymous&gt; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Desativando o rastreamento</span>
 <span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>untracemem</a></span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span>
@@ -4870,7 +4871,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x42d8c588&quot;</code></pre>
+<pre><code>[1] &quot;0x3fc31210&quot;</code></pre>
 </div>
 <p>Após vinculado o nome <code>w</code> ao vetor numerico de comprimento 3, que é um gerador de números aleatórios de uma distribuição normal padrão, acionamos a chamada <code>tracemem()</code>, e após a criação de cópias, a função mostrará a ocorrência dessas cópias. Se desejarmos que essa mensagem não seja mais acionada, devemos usar a chamada <code>untracemem()</code>, que desativará o rastreameto de cópia. Lembrando que o rastreamento só ocorrerá o objeto informado na função <code>tracemem()</code>. Por fim, fizemos mais uma alteração no objeto <code>z</code>, e nesse caso como o objeto se associa apenas a um nome, ocorre a <strong>modificação no local</strong>, um processo de otimização do <a href="http://r-project.org/" target="_blank">R</a>, em que usa a mesma alocação de memória, não havendo portanto, uma cópia de objeto.</p>
 <p>Mas, fazendo alguns estudos e pesquisas, encontramos algumas funções primitivas, acessadas pela chamada <code>.Internals()</code>, denominada <code>inspect()</code>, <code>address()</code> e <code>refcnt()</code>, funções experimentais para imprimir informações de baixo nível dos objetos <a href="http://r-project.org/" target="_blank">R</a>. Essa função não é exposta ao nível superior da linguagem, e segundo a própria documentação, é um recurso para depuração/inpeção. A documentação ainda afirma que nem todas as informações foram implementadas. Para esse momento, o que está implementado é suficiente para identificarmos os procedimentos de cópia dos objetos. Uma segunda informação é que a partir da versão <a href="http://r-project.org/" target="_blank">R</a> 4.0.0, a decisão de cópia de objetos passaram a ser determinados pela contagem de referência, ao invés do mecanismo <code>NAMED</code>. Esse ponto realmente exige um entendimento de baixo nível na linguagem, isto é, a sua implementação em linguagem <code>C</code>. Vamos mostrar os resultados do código anterior, inspecionado por essas funções, a seguir.</p>
@@ -4936,7 +4937,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x000000003a9c9090 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
+<pre><code>@0x0000000044edfee0 14 REALSXP g0c4 [REF(2)] (len=5, tl=0) 1,2,3,4,5</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x0000000006629620 14 REALSXP g0c4 [REF(1)] (len=5, tl=0) 1,2,3,4,5</span>
 <span class='co'># Funcao primitiva `:` - REF(65535)</span>
@@ -4945,7 +4946,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000021d3cde8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x0000000042e455d8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a060680 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva seq() - REF(65535)</span>
@@ -4954,7 +4955,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x0000000021de0270 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
+<pre><code>@0x0000000042efa9e8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x000000000a05f3e8 13 INTSXP g0c0 [REF(65535)]  1 : 10 (compact)</span>
 <span class='co'># Funcao primitiva rep() - REF(1)</span>
@@ -4963,7 +4964,7 @@ Figure 4: Cópia de objetos.
 <span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>@0x000000003b213e30 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
+<pre><code>@0x0000000044dff8c8 13 INTSXP g0c4 [REF(2)] (len=10, tl=0) 1,2,3,4,5,...</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>## @0x00000000066295b0 13 INTSXP g0c4 [REF(1)] (len=10, tl=0) 1,2,3,4,5,...</span>
 </code></pre>
@@ -5487,7 +5488,7 @@ Figure 11: Caminho por onde os objetos serão procurados.
             ...), MPI = snow::makeMPIcluster(count = spec, ...), 
         NWS = snow::makeNWScluster(names = spec, ...), stop(&quot;unknown cluster type&quot;))
 }
-&lt;bytecode: 0x00000000233898e0&gt;
+&lt;bytecode: 0x000000004239f250&gt;
 &lt;environment: namespace:parallel&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando novamente o Caminho de busca,</span>
@@ -5660,7 +5661,7 @@ Figure 13: Criando ambientes.
 <span class='va'>amb1</span> <span class='co'># ou .Internal(address(amb1))</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x000000003a483720&gt;</code></pre>
+<pre><code>&lt;environment: 0x0000000043fa0f90&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ambiente envolvente de 'h'</span>
 <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>amb1</span><span class='op'>$</span><span class='va'>h</span><span class='op'>)</span>
@@ -5703,9 +5704,9 @@ Figure 14: Ambiente envolvente e ambiente de ligação.
 </code></pre>
 </div>
 <pre><code>Ambiente de execucao de f: 
-&lt;environment: 0x00000000396e3c78&gt;
+&lt;environment: 0x0000000037866f18&gt;
 Ambiente envolvente de f2:
-&lt;environment: 0x00000000396e3c78&gt;</code></pre>
+&lt;environment: 0x0000000037866f18&gt;</code></pre>
 </div>
 <p>Observamos que a função <code>f1</code> foi criada no ambiente global, e que a função <code>f2</code> foi criada no ambiente de execução da função <code>f</code>, por isso a distinção dos ambientes envolventes dessas duas funções. Cada função terá apenas um ambiente envolvente.</p>
 <p>No módulo básico, falamos sobre o ambiente de execução. Este ambiente é criado quando fazemos uma chamada de função. Após finalizado a chamada da referida função e retornado o valor desejado, este ambiente desaparece. O ambiente de execução tem como o pai o ambiente envolvente, e podemos representá-lo pela Figura <a href="#fig:amb-env-exec">15</a>, para o código a seguir.</p>
@@ -5804,7 +5805,7 @@ $chamada
 <pre><code>function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x0000000026cf10c8&gt;
+&lt;bytecode: 0x0000000027517e70&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Testando sd(x)</span>
@@ -5873,7 +5874,7 @@ Figure 16: Mecanismo do ambiente <em>namespace</em> de um determinado pacote.
 </div>
 <p><img src="nintermediario_files/figure-html5/unnamed-chunk-109-1.png" width="624" /></p>
 </div>
-<h2 id="composição-de-funções">Composição de funções</h2>
+<h2 id="comp_funcoes">Composição de funções</h2>
 <p>No <a href="nbasico.html">módulo básico</a>, também vimos a composição de funções, construídas em blocos, aninhadas, resultados intermediários como objetos. Mas, surge uma quarta via, implementada pelo pacote <a href="https://magrittr.tidyverse.org/">magrittr</a>, que é o operador <em>pipe</em>. Essa ideia, segundo <span class="citation" data-cites="hadley2019"><a href="#ref-hadley2019" role="doc-biblioref">Wickham</a> (<a href="#ref-hadley2019" role="doc-biblioref">2019</a>)</span>, foi inspirada nas linguagens <code>Haskell</code>, <code>F#</code>, <code>Julia</code>, <code>JavScript</code>, um estilo baseado em pilhas como <em>forth</em> e <em>Fator</em>. Esse estilo apresenta uma estrutura mais fácil de sequências de operações da esquerda para direitra, evita funções aninhadas ou definição de funções. Para a análise de dados esse operador no ambiente <a href="http://r-project.org/" target="_blank">R</a> ganhou tanto respaldo, que foi implementado uma forma nativa na versão R 4.1. O operador <em>pipe</em> é binário, em que o primeiro operando (<code>lhs</code>) representa o valor do primeiro argumento do segundo operando (<code>rhs</code>), que representa uma função, isto é,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a>lhs <span class="sc">%&gt;%</span> rhs <span class="co"># Pipe do pacote &#39;magrittr&#39;</span></span>
@@ -5956,7 +5957,7 @@ Coefficients:
 <!-- Ref: R in a nutshel, -->
 <!-- ### Evitando loops -->
 <!-- ### Funções recursivas -->
-<h2 id="operadores-binários-ou-unários">Operadores binários ou unários</h2>
+<h2 id="op_un-binarios">Operadores binários ou unários</h2>
 <p>Na seção <a href="nbasico.html#manipulando-vetores">Manipulando vetores</a> (Módulo básico), falamos sobre alguns operadores: matemáticos, lógicos, booleanos. Todos estes são operadores binários ou unários, que na mais são do que funções. Dizemos que um operador é unário quando há apenas a exigência de um operando na operação. Quando há a existência de dois operandos, dizemos que o operador é binário. Por exemplo, o operador soma <code>+</code> pode ser unário ou binário, pois sintaticamente, podemos escrever a operação soma com um operando ou com dois operandos. Vejamos o código a seguir.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -5978,7 +5979,7 @@ Coefficients:
 <pre><code>[1] TRUE</code></pre>
 <pre><code>function (x, table) 
 match(x, table, nomatch = 0L) &gt; 0L
-&lt;bytecode: 0x0000000006b0f2c8&gt;
+&lt;bytecode: 0x0000000006aff300&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <p>Uma outra forma de identificarmos se um operador é binário ou unário, é verificando os seus argumentos. Por exemplo, o operador <code>%in%</code> apresenta os argumentos <code>x</code> e <code>table</code>, então no mínimo esse operador é binário. Isso ocorre porque quando verificamos os argumentos do operador soma,</p>
@@ -6013,7 +6014,7 @@ match(x, table, nomatch = 0L) &gt; 0L
 </div>
 <pre><code>[1] 5.5</code></pre>
 </div>
-<h2 id="avaliação-preguiçosa-dos-argumentos-de-uma-função">Avaliação preguiçosa dos argumentos de uma função</h2>
+<h2 id="promessas">Avaliação preguiçosa dos argumentos de uma função</h2>
 <!-- https://www.r-bloggers.com/2018/07/about-lazy-evaluation/ -->
 <!-- https://colinfay.me/tidyeval-1/ -->
 <!-- http://colinfay.me/r-language-definition/objects.html#promise-objects -->
@@ -6090,7 +6091,7 @@ $c
 <span class='fu'>teste</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;teste&quot;</code></pre>
+<pre><code>[1] &quot;cran&quot;    &quot;github&quot;  &quot;rlink&quot;   &quot;rstudio&quot; &quot;teste&quot;  </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>teste2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span><span class='op'>{</span>
   <span class='va'>obj_teste2_1</span> <span class='op'>&lt;-</span> <span class='st'>"primeiro"</span>
@@ -6107,12 +6108,13 @@ $c
 <span class='fu'>teste</span><span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;teste&quot;  &quot;teste2&quot;</code></pre>
+<pre><code>[1] &quot;cran&quot;    &quot;github&quot;  &quot;rlink&quot;   &quot;rstudio&quot; &quot;teste&quot;   &quot;teste2&quot; </code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>teste</span><span class='op'>(</span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;teste&quot;  &quot;teste2&quot; &quot;x&quot;     </code></pre>
+<pre><code>[1] &quot;cran&quot;    &quot;github&quot;  &quot;rlink&quot;   &quot;rstudio&quot; &quot;teste&quot;   &quot;teste2&quot; 
+[7] &quot;x&quot;      </code></pre>
 </div>
 <p>Na primeira situação temos a criação da função <code>teste</code> com um argumento padrão <code>x = ls()</code>. Nesse caso, <code>ls()</code> será avaliado no ambiente de execução da função, do qual pode ser confirmado com a chamada <code>teste()</code>. O segundo caso, a chamada <code>teste(ls())</code> apresenta um resultado diferente, porque <code>ls()</code>, nesse caso, foi avaliado no ambiente de chamada, que pode também ser verificado na chamada <code>teste2()</code>. Por fim, a chamada <code>teste((x &lt;- ls()))</code> apresenta um resultado diferente com relação ao caso anterior, pois <code>x &lt;- ls()</code> é avaliado no ambiente global, nesse caso, e não como um promessa tal como <code>x = ls()</code> foi, sendo avaliado apenas internamente no ato de sua chamada.</p>
 <p>Por fim, podemos verificar se um argumento teve como entrada padrão, ou inserida pelo usuário, usando <code>missing()</code>. Vejamos o código, a seguir.</p>
@@ -6141,9 +6143,802 @@ $valor
 $valor
 [1] 4</code></pre>
 </div>
-<h2 id="saídas-implícitas-explícitas-invisíveis-e-manipuladores-de-saídas-de-funções">Saídas implícitas, explícitas, invisíveis, e manipuladores de saídas de funções</h2>
+<h2 id="saida_funcoes">Saídas implícitas, explícitas, invisíveis de funções</h2>
+<p>No <a href="nbasico.html#criar-funcoes">módulo Básico</a>, mostramos a estrutura básica de como criar uma função, cujo corpo é delimitado por chaves, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>nova_funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Corpo da funcao</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Nesse caso, como a última linha de comando no corpo da função <code>nova_funcao()</code> a ser avaliada é <code>x</code>, então será esta o resultado da saída da função. Observamos que nesse caso, a última linha de comando imprime o valor de <code>x</code>. Dizemos nesse caso, que a função teve uma <strong>saída implícita</strong>. Se ao invés, a última linha de comando fosse a associação de um nome ao objeto, nada seria retornado após a chamada de função. Vejamos o próximo exemplo para o entendimento.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao com saida implicita</span>
+<span class='va'>nova_funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Corpo da funcao</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='fu'>nova_funcao</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao com saida implicita sem resultado</span>
+<span class='va'>nova_funcao2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='co'># Corpo da funcao</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='fu'>nova_funcao2</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Essa última chamada, acaba não aparecendo nada porque a avaliação <code>x &lt;- x</code>, associa o nome <code>x</code> ao valor do argumento <code>x</code>, e isto não implica em imprimir esse valor. Contudo, podemos não necessariamente, apresentar como resultado de uma função, a sua última linha de comando. Nesse caso, usamos a função <code>return()</code>, para identificar qual objeto desejamos como saída para uma determinada função. Nesse caso, temos uma saída explícita.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>num_par_ou_impar</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>is.numeric</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='kw'><a href='https://rdrr.io/r/base/stop.html'>stop</a></span><span class='op'>(</span><span class='st'>"o argumento x deve ser numerico"</span>, call. <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+  <span class='va'>num</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/integer.html'>as.integer</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>num</span> <span class='op'>%%</span> <span class='fl'>2</span> <span class='op'>==</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='st'>"Número par!"</span><span class='op'>)</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='st'>"Número ímpar!"</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Numero real eh coagido a inteiro sem arredondamento</span>
+<span class='fu'>num_par_ou_impar</span><span class='op'>(</span><span class='fl'>1.6</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Número ímpar!&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Programacao defensiva (x deve ser numerico)</span>
+<span class='fu'>num_par_ou_impar</span><span class='op'>(</span><span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Error: o argumento x deve ser numerico</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Verificando se um numero eh par ou impar</span>
+<span class='fu'>num_par_ou_impar</span><span class='op'>(</span><span class='fl'>6</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;Número par!&quot;</code></pre>
+</div>
+<p>Percebemos que todas essas saídas implícita e explícita são <strong>saídas visíveis</strong> após a chamada da função. Porém, podemos ter saídas invisíveis, usando a função <code>invisible()</code>. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao com saida invisivel</span>
+<span class='va'>estdes</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='va'>resumo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='va'>resumo</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='co'># Conjunto de dados</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span><span class='fl'>30</span><span class='op'>)</span>
+<span class='co'># Chamando estdes</span>
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>estdes</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+<span class='co'># Imprimindo o resultado invisivel</span>
+<span class='va'>res</span>
+</code></pre>
+</div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02103 0.33272 0.65368 0.83888 1.09898 2.86139 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Formas alternativas</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'>estdes</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="nintermediario_files/figure-html5/unnamed-chunk-127-1.png" width="624" /></p>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02103 0.33272 0.65368 0.83888 1.09898 2.86139 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>(</span><span class='fu'>estdes</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02103 0.33272 0.65368 0.83888 1.09898 2.86139 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Sinalizador de visibilidade</span>
+<span class='fu'><a href='https://rdrr.io/r/base/withVisible.html'>withVisible</a></span><span class='op'>(</span><span class='fu'>estdes</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$value
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+0.02103 0.33272 0.65368 0.83888 1.09898 2.86139 
+
+$visible
+[1] FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/withVisible.html'>withVisible</a></span><span class='op'>(</span><span class='fu'>estdes</span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>List of 2
+ $ value  : &#39;summaryDefault&#39; Named num [1:6] 0.021 0.333 0.654 0.839 1.099 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;Min.&quot; &quot;1st Qu.&quot; &quot;Median&quot; &quot;Mean&quot; ...
+ $ visible: logi FALSE</code></pre>
+</div>
+<p>Um caso específico de função com resultado invisível é a atribuição (<code>&lt;-</code>). Quando associamos um nome a um objeto, a saída dessa função é invisível, a menos que redigite o nome no console ou use entre parênteses essa linha de comando, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao `&lt;-`() com saida invisivel</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='co'># Acessando o valor do obj associado com o nome 'x'</span>
+<span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Outra forma de acesso</span>
+<span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+</div>
+<h2 id="funcoes_substituicao">Funções de substituição</h2>
+<!-- https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Subset-assignment -->
+<p>Muito provavelmente, ao importar um banco de dados, armazenados em um objeto de classe <em>data.frame</em>, tivemos algum problema de erro em algum valor em nossas variáveis em estudo. Por exemplo, consideremos um banco de dados com informações de um grupo de pessoas, tais como o nome, altura (cm), peso (kg), idade (anos), que segue:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dados</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+  nome <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Paulo"</span>, <span class='st'>"Maria"</span>, <span class='st'>"Caio"</span><span class='op'>)</span>,
+  altura <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>175</span>, <span class='fl'>167</span>, <span class='fl'>172</span><span class='op'>)</span>,
+  peso <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>70</span>, <span class='fl'>65</span>, <span class='fl'>7500</span><span class='op'>)</span>,
+  idade <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>32</span>, <span class='fl'>26</span>, <span class='fl'>19</span><span class='op'>)</span>
+<span class='op'>)</span>; <span class='va'>dados</span>
+</code></pre>
+</div>
+<pre><code>   nome altura peso idade
+1 Paulo    175   70    32
+2 Maria    167   65    26
+3  Caio    172 7500    19</code></pre>
+</div>
+<p>Se esse banco foi importado, podemos alterar no próprio banco. Caso contrário, pode ser realizado uma substituição do valor no próprio ambiente <a href="http://r-project.org/" target="_blank">R</a> para o objeto específico, usando <code>[</code>, ou similares, dependendo do tipo de objeto. Para esse caso, percebemos que o peso de Caio (7500kg), muito provavelmente foi um erro de digitação, e e que na realidade seria 75kg como correção. Para fazermos essa alteração em <code>dados</code>, uma das possibilidades seria usar a função de substituição <code>dados[3, 3] &lt;- 75</code>, em que a mudança ocorre na terceira linha e 3 coluna do <em>data.frame</em>. Como poderíamos criar uma função de substituição? Usando as mesmas ideias usadas nesse caso. A função de substituição para um caso geral, é dado da seguinte forma sintática:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>`[&lt;-`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span>, <span class='va'>value</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='co'># Corpo da funcao</span>
+<span class='op'>}</span>
+<span class='co'># Chamada de funcao</span>
+<span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
+<span class='co'># Chamada de forma equivalente</span>
+<span class='fu'>`[&lt;-`</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span>, <span class='va'>value</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Claro que isso não é um padrão, mas uma ideia geral para a chamada <code>[&lt;-</code>, que basicamente deve ter dois argumentos, <code>x</code> e <code>value</code>. O primeiro é o objeto em que há a necessidade de substituição de um de seus valores, e o segundo representa o valor para a substituição. Argumentos adicionais a estes, devem ser colocados entre esses argumentos, e à esquerda do argumento <code>value</code>, que foi o caso do argumento <code>i</code>, que representa a posição do elemento a ser substituído no objeto <code>x</code>. Por outro lado, devemos evitar a substituição de funções internas, como no caso da função <code>(&lt;-</code>, por exemplo, uma vez que funções como essas usadas a todo momento em um código, pode trazer conflitos entre essas funções.</p>
+<p>Vamos aprofundar um pouco mais essa questão, usando um exemplo mais simples para a compreensão, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vamos criar um vetor de comprimento 10</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Usando a funcao de substituicao, para alterar</span>
+<span class='co'># dois valores na posicao 6 e 10</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>200</span><span class='op'>)</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code> [1]   1   2   3   4   5 100   7   8   9 200</code></pre>
+</div>
+<p>O que ocorre por trás, cuja referência pode ser confirmada no manual <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Subset-assignment">R Language Definition, seção 3.4.4</a>, é que surge a criação de um nome temporário <code>`*tmp*`</code> que também se associa ao mesmo objeto associado ao nome <code>x</code>, cujas alterações são realizadas em <code>`*tmp*`</code>, e um novo objeto é criado e um novo nome se associa a ele, e para deixar a impressão de que a alteração é ocorrida no próprio objeto, esse novo nome é exatamente <code>x</code>, igual ao nome antigo.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Objeto x criado</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>
+<span class='co'># `*tmp*` temporariamente criado</span>
+<span class='va'>`*tmp*`</span> <span class='op'>&lt;-</span> <span class='va'>x</span>
+<span class='co'># Alteracoes realizadas</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>`[&lt;-`</span><span class='op'>(</span><span class='va'>`*tmp*`</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>10</span><span class='op'>)</span>, valor <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>200</span><span class='op'>)</span><span class='op'>)</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code> [1]   1   2   3   4   5 100   7   8   9 200</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ao final se remove `*tmp*`</span>
+<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>`*tmp*`</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Por fim, <code>`*tmp*`</code> é removido, e nesse caso, ocorre a cópia do objeto, como pode ser verificado por meio chamada <code>tracemen()</code>, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vamos criar um vetor de comprimento 10</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>; <span class='va'>x</span>
+<span class='co'>## [1]  1  2  3  4  5  6  7  8  9 10</span>
+
+<span class='co'># Inspecionando o objeto</span>
+<span class='fu'><a href='https://rdrr.io/r/base/tracemem.html'>tracemem</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='co'>## [1] "&lt;000000965C8A97D8"</span>
+
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000965c8a97d8 13 INTSXP g0c0 [REF(65535),TR]  1 : 10 (compact)</span>
+
+<span class='co'># Usando a funcao de substituicao, para alterar</span>
+<span class='co'># dois valores na posicao 6 e 10</span>
+<span class='va'>x</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>200</span><span class='op'>)</span>; <span class='va'>x</span>
+<span class='co'>## tracemem[0x000000965c8a97d8 - 0x000000965bdf6bc0]: </span>
+<span class='co'>## tracemem[0x000000965bdf6bc0 - 0x000000965f177418]: </span>
+<span class='co'>## [1]   1   2   3   4   5 100   7   8   9 200</span>
+
+<span class='co'># Inspecionando novamente o objeto</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>inspect</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'>## @0x000000965f177418 14 REALSXP g0c5 [REF(5),TR] (len=10, tl=0) 1,2,3,4,5,...</span>
+</code></pre>
+</div>
+</div>
+<p>Observamos inicialmente <code>x</code> (id <code>0x000000965c8a97d8</code>), cujo nome <code>`*tmp*`</code> inicialmente se liga ao mesmo objeto, e após as substituições <code>`*tmp*`</code> passa a está alocado a um novo espaço de memória (id <code>0x000000965f177418</code>), isto é ocorre uma cópia. A cópia intermediária (id <code>0x000000965bdf6bc0</code>) que ocorre no processo é devido a chamada <code>`<code>:</code>`()</code>. Mas a pergunta que fica, como fica o entendimento da otimização de desempenho especial a <strong>modificação no local</strong>? Bem, o nosso entendimento para o caso de vetores, como já mostrado anteriormente, a ideia estará sempre na contagem de referência. Já vimos, que para a chamada <code>`:`()</code>, a primeira modificação realizada no objeto será modificação em cópia, pois <code>REF(# &gt; 1)</code>. Nesse caso, que foi o exemplo mostrado anteriormente, existe a presença de <code>`*tmp*`</code> por trás dos bastidores. Entretanto, quando o vetor é desenvolvido pela chamada <code>c()</code>, sabemos que a alteração do objeto ocorre em modificação no local, quando não alteraramos a dimensão do vetor, mas apenas os valores. Bem, o que indagamos é a existência ou não do nome temporário <code>`*tmp*`</code> no processo. Como falamos na seção em sobre <a href="nintermediario.html#copia_modif_tam_objetos">cópia de objetos</a>, afirmamos que um dos pré-requisitos para a modificação no local, é que o objeto só pode ter uma ligação, isto é, um nome associado ao objeto. E quando mostramos a forma sintática da função de substituição <code>`[&lt;- `()</code>, percebemos que <code>x</code> e <code>`*tmp*`</code> se ligam ao mesmo objeto inicialmente, e assim, teoricamente deveria sempre haver cópia com a alteração de algum dos valores desse objeto. Desse modo, pressupomos que para esses casos de modificação no local, o processo seja um pouco diferente desse processo. Contudo, isso só ocorrerá para o caso da função de substituição primitiva (<code>[&lt;-</code>), implementada em linguagem <code>C</code>. Quando desenvolvemos nossas próprias funções de substituição, aí sempre ocorrerá cópia na modificação.</p>
+<!-- Duvida: -->
+<!-- o resultado: -->
+<!--   - x <- 1:10 -->
+<!--   - x <- c(1, 2, 3, ..., 10) -->
+<!-- com relação a variavel temporaria `*tmp*` ainda me gerou duvidas. Enviado essa duvida ao R-help recebi a seguinte resposta de murdoch.duncan@gmail.com: -->
+<!-- On 07/10/2021 6:46 p.m., Ben Deivide de Oliveira Batista wrote: -->
+<!-- > Dear R users, -->
+<!-- >  -->
+<!-- > When modify-in-place of objects occurs, is there a local variable called -->
+<!-- > `*tmp*`, behind the scenes R? Let's look at two examples to understand the -->
+<!-- > question. -->
+<!-- >  -->
+<!-- > Example 1 (R Language Definition) -->
+<!-- > -------------------------------------------------- -->
+<!-- >  -->
+<!-- >> x <- 1:10 -->
+<!-- >> tracemem(x) -->
+<!-- > [1] "<000000000798F758>" -->
+<!-- >> x[3:5] <- 13:15 -->
+<!-- > tracemem[0x000000000798f758 -> 0x0000000008207030]: -->
+<!-- >  -->
+<!-- > The result of this command is as if the following had been executed -->
+<!-- > `*tmp*` <- x -->
+<!-- > x <- "[<-"(`*tmp*`, 3:5, value=13:15) -->
+<!-- > rm(`*tmp*`) -->
+<!-- >  -->
+<!-- > Conclusion: Here copy-on-modify occurs! -->
+<!-- >  -->
+<!-- >  -->
+<!-- > Example 2 : Modify-in-place -->
+<!-- > ----------------------- -->
+<!-- >  -->
+<!-- >> x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) -->
+<!-- >> tracemem(x) -->
+<!-- > [1] "<0000000008BFB818>" -->
+<!-- >> x[3:5] <- 13:15Conclusion: Here modify-in-place occurs! -->
+<!-- > For example 2, is there a local variable `*tmp*` for this case? If so, -->
+<!-- > what would the syntactic representation look like, similar to example 1? -->
+<!-- I think there is, and it would be the same as in 1.  The memory -->
+<!-- operations are different because x is different:  in 1, it is stored in -->
+<!-- a compact representation of 1:10, which needs to be expanded to a full -->
+<!-- array of doubles before the entries can be changed.  In 2, it is already -->
+<!-- stored as an array of doubles so this isn't needed. -->
+<!-- Essa resposta ainda nao ficou claro para mim! -->
+<p>Para desenvolvermos as nossas próprias funções de substituição apresentamos um exemplo, criando a função <code>`substextr&lt;-`()</code>, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao de substituicao de alterar os extremos</span>
+<span class='va'>`substextr&lt;-`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>value</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>x</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='co'># Criando o vetor</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='co'># Inspecao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;pointer: 0x00000000446c3ed8&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Alterando o vetor</span>
+<span class='fu'>substextr</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
+<span class='co'># Inspecao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;pointer: 0x00000000446c3698&gt;</code></pre>
+</div>
+<p>Nesse caso, obrigatoriamente os dois argumentos básicos e com esses nomes são <code>x</code> e <code>value</code>, sendo que <code>value</code> deve ser sempre o último argumento. Caso, seja necessário adicionar mais argumentos, estes devem ser inseridos entre esses dois argumentos, como apresentado no código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>`subst&lt;-`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>i</span>, <span class='va'>value</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
+  <span class='va'>x</span>
+<span class='op'>}</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='op'>(</span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 1 2 3</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Inspecao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;pointer: 0x0000000044d35f98&gt;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># subst(x, i) &lt;- value</span>
+<span class='fu'>subst</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>2</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>; <span class='va'>x</span>
+</code></pre>
+</div>
+<pre><code>[1]   1 100   3</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Inspecao</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Internal.html'>.Internal</a></span><span class='op'>(</span><span class='fu'>address</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&lt;pointer: 0x000000003d7d43c0&gt;</code></pre>
+</div>
 <h2 id="vetorização-de-funções">Vetorização de funções</h2>
+<p>A vetorização de funções surge quando inserimos argumentos vetorizados, cuja saída dessas funções também são vetorizadas, de modo que não precisamos de <em>loop</em> para que a função retorne um valor de cada elemento do vetor de algum dos argumentos. Pensemos no operador soma (<code>+</code>), no seguinte código:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetorização da soma de vetores</span>
+<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span> <span class='op'>+</span> <span class='fl'>10</span><span class='op'>:</span><span class='fl'>13</span>
+</code></pre>
+</div>
+<pre><code>[1] 11 13 15 17</code></pre>
+</div>
+<p>Essa função é vetorizada porque ela realizou, porque ela realizou a soma entre dois elementos de mesma posição nos vetores, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">3</span>  <span class="dv">4</span></span>
+<span id="cb276-2"><a href="#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="sc">+</span>  <span class="sc">+</span>  <span class="sc">+</span></span>
+<span id="cb276-3"><a href="#cb276-3" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="dv">11</span> <span class="dv">12</span> <span class="dv">13</span></span>
+<span id="cb276-4"><a href="#cb276-4" aria-hidden="true" tabindex="-1"></a><span class="sc">------------</span></span>
+<span id="cb276-5"><a href="#cb276-5" aria-hidden="true" tabindex="-1"></a><span class="dv">11</span> <span class="dv">13</span> <span class="dv">15</span> <span class="dv">17</span></span></code></pre></div>
+</div>
+<p>Isso é como se tivéssemos realizado um <em>loop</em> para essa operação, da seguinte forma:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>10</span><span class='op'>:</span><span class='fl'>13</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span> <span class='op'>+</span> <span class='va'>y</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+<pre><code>[1] 11
+[1] 13
+[1] 15
+[1] 17</code></pre>
+</div>
+<p>Grande maioria das funções nativas do <a href="http://r-project.org/" target="_blank">R</a>, isto é, das funções desenvolvidas nos pacotes nativos são vetorizados. Vejamos alguns exemplos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Funcao logaritmica</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.0000000 0.6931472 1.0986123 1.3862944</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Multiplicacao</span>
+<span class='fl'>10</span><span class='op'>:</span><span class='fl'>20</span> <span class='op'>*</span> <span class='fl'>5</span>
+</code></pre>
+</div>
+<pre><code> [1]  50  55  60  65  70  75  80  85  90  95 100</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Operadores logicos</span>
+<span class='fl'>1</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>
+</code></pre>
+</div>
+<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Gerador de numeros aleatorios [0, 1]</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1] 0.50747820 0.30676851 0.42690767 0.69310208 0.08513597 0.22543662
+ [7] 0.27453052 0.27230507 0.61582931 0.42967153</code></pre>
+</div>
+<p>Existem diversos caminhos para se desenvolver uma função vetorizada. Caso as funções internas da função desenvolvida seja vetorizada, esta também será. Vejamos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>`%soma%`</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>e1</span>, <span class='va'>e2</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>e1</span> <span class='op'>+</span> <span class='va'>e2</span>
+<span class='op'>}</span>
+<span class='co'># Exemplo 1</span>
+<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span> <span class='op'>%soma%</span> <span class='fl'>10</span><span class='op'>:</span><span class='fl'>13</span>
+</code></pre>
+</div>
+<pre><code>[1] 11 13 15 17</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Exemplo 2</span>
+<span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span> <span class='op'>%soma%</span> <span class='fl'>5</span>
+</code></pre>
+</div>
+<pre><code>[1] 6 7 8 9</code></pre>
+</div>
+<p>Quando temos funções escalares, podemos em uma das possibilidades, utilizar a função <code>Vectorize()</code> para vetorizar a função desejada. Essa função tem três argumentos importantes, <code>FUN</code> que representa a função a ser vetorizada <code>vectorize.args</code> que representa os argumentos da função vetorizado, que devem entrar como vetores caracteres nesse argumento, e <code>SIMPLIFY</code> que é um argumento lógico, cujo valor <code>TRUE</code> representa uma saída em forma de matriz, dependendo da situação, e <code>FALSE</code> representa a saída em forma de lista. Argumentos padrão não são vetorizados.</p>
+<p>Vamos usar como exemplo, a função que gera números aleatórios de uma distribuição normal, <code>rnorm(n, mean, sd, log)</code>. Vamos trabalhar apenas com os três primeiros argumentos, em que <code>n</code> representa o tamanho da amostra, <code>mean</code> o parâmetro média e <code>sd</code> o parâmetro desvio padrão. Vamos fixar <code>n = 10</code> e <code>sd = 1</code>, e variar <code>mean = 1:3</code>. Isto significa que iremos ter valores baseados em uma distribuição normal, tal que os valores <span class="math inline">\(X_i\)</span>, para <span class="math inline">\(i = 1, 2, \ldots, 10\)</span>, serão gerados de distribuições, tal que <span class="math inline">\(X_i \sim N(\mu_j)\)</span>, sequencialmente para <span class="math inline">\(\mu_1 = 1\)</span>, <span class="math inline">\(\mu_2 = 2\)</span> e <span class="math inline">\(\mu_3\)</span>, respectivamente. Assim, teremos uma amostra de tamanho 10, da seguinte forma: <span class="math inline">\(X_1\sim N(1,1)\)</span>, <span class="math inline">\(X_2\sim N(2,1)\)</span>, <span class="math inline">\(X_3\sim N(3,1)\)</span>, <span class="math inline">\(X_4\sim N(1,1)\)</span>, <span class="math inline">\(X_5\sim N(2,1)\)</span>, <span class="math inline">\(X_6\sim N(3,1)\)</span>, <span class="math inline">\(X_7\sim N(1,1)\)</span>, <span class="math inline">\(X_8\sim N(2,1)\)</span>, <span class="math inline">\(X_9\sim N(3,1)\)</span>, <span class="math inline">\(X_{10}\sim N(1,1)\)</span>. Vejamos o código a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Semente</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='co'># Gerando a amostra</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, <span class='fl'>1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> [1]  1.0187462  1.8157475  1.6286695  0.4008323  2.2945451  3.3897943
+ [7] -0.2080762  1.6363240  1.3733273  0.7435216</code></pre>
+</div>
+<p>Vamos supor agora, que a ideia de vetorização para essa função, seja que quando assumimos <code>mean = 1:3</code>, ao invés de termos uma amostra como a anterior, teremos três amostras baseadas no comprimento do vetor em <code>mean</code>. Fixado os demais argumentos, teremos uma amostra de uma normal para <span class="math inline">\(\mu_1 = 1\)</span>, <span class="math inline">\(\mu_2 = 2\)</span> e <span class="math inline">\(\mu_3 = 3\)</span>, isto é,</p>
+<p><span class="math display">\[
+\left\{\begin{array}{ll}
+X_1, X_2, \ldots, X_{10}, &amp; X_i \sim N(1,1), \\
+Y_1, Y_2, \ldots, Y_{10}, &amp; Y_i \sim N(2,1), \\
+Z_1, Z_2, \ldots, Z_{10}, &amp; Z_i \sim N(3,1).
+\end{array}\right.
+\]</span> Para isso, iremos usar <code>Vectorize()</code> para <code>rnorm()</code>, vetorizando o argumento <code>mean</code>. Vejamos o código a seguir, para essa implementação.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Apos a vetorizacao, observe a diferenca entre</span>
+<span class='co'># 'rnorm_vet1' e 'rnorm_vet2', devido ao argumento </span>
+<span class='co'># 'SIMPLIFY'</span>
+<span class='va'>rnorm_vet1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Vectorize.html'>Vectorize</a></span><span class='op'>(</span><span class='va'>rnorm</span>, <span class='st'>"mean"</span>, SIMPLIFY <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>rnorm_vet2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Vectorize.html'>Vectorize</a></span><span class='op'>(</span><span class='va'>rnorm</span>, <span class='st'>"mean"</span>, SIMPLIFY <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='co'># Vetorizando</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='co'># semente para fixar os mesmos valores</span>
+<span class='fu'>rnorm_vet1</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10</span>, mean <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+ [1]  1.0187462  0.8157475 -0.3713305  0.4008323  1.2945451  1.3897943
+ [7] -0.2080762  0.6363240 -0.6266727  0.7435216
+
+[[2]]
+ [1] 3.101780 2.755782 1.761766 2.987445 2.741390 2.089347 1.045056
+ [8] 1.804850 2.925521 2.482979
+
+[[3]]
+ [1] 2.4036894 0.8147132 2.3251341 0.8809388 1.7348020 2.6263384
+ [7] 2.3124446 2.1278412 2.8982390 2.7462195</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='co'># semente para fixar os mesmos valores</span>
+<span class='fu'>rnorm_vet2</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10</span>, mean <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>            [,1]     [,2]      [,3]
+ [1,]  1.0187462 3.101780 2.4036894
+ [2,]  0.8157475 2.755782 0.8147132
+ [3,] -0.3713305 1.761766 2.3251341
+ [4,]  0.4008323 2.987445 0.8809388
+ [5,]  1.2945451 2.741390 1.7348020
+ [6,]  1.3897943 2.089347 2.6263384
+ [7,] -0.2080762 1.045056 2.3124446
+ [8,]  0.6363240 1.804850 2.1278412
+ [9,] -0.6266727 2.925521 2.8982390
+[10,]  0.7435216 2.482979 2.7462195</code></pre>
+</div>
+<p>As únicas funções que não podem ser vetorizadas por <code>Vectorize()</code> são as funções primitivas que não tem um valor para <code>formals()</code>.</p>
+<p>Uma outra forma de vetorizar funções, por exemplo, bem como evitar <em>loops</em> no desenvolvimento de algoritmos, é utilizar um conjunto de funções da família <em>apply</em> implentadas no pacote <code>base</code>, que será vista a seguir.</p>
 <h2 id="evitando-loops">Evitando loops</h2>
+<p>Apesar de uma das construções mais interessantes na programação, seja o <em>loop</em>, é bom observar que essas construções implementadas em diversas linguagens apresenta grandes diferenças, em termos de desempenho. Já vimos que as funções para <em>loops</em> no <a href="http://r-project.org/" target="_blank">R</a> pode demandar um gasto computacional dependendo de sua implementação, cópias na modificação, por ser uma linguagem interpretada, dentre outras características. Alternativamente, podemos usar uma série de funções implementadas no ambiente <a href="http://r-project.org/" target="_blank">R</a>, funções estas vetorizadas. Vamos nos concentrar nas funções disponíveis na Base <a href="http://r-project.org/" target="_blank">R</a>.</p>
+<p>Iniciamos com a família de funções <em>apply</em>, pertencente ao pacote <code>base</code>, de modo que permite manipularmos estruturas de dados como vetores, matrizes, <em>arrays</em>, listas e quadro de dados (<em>data frames</em>) de maneira repetitiva sem a utilização de <em>loop</em>. Estas funções são: <code>apply()</code>, <code>lapply()</code>, <code>sapply()</code>, <code>tapply()</code>, <code>mapply()</code>, <code>rapply()</code> e <code>eapply()</code></p>
+<p>A primeira função a ser discutida é <code>apply()</code>, que retorna um <em>array</em> ou uma lista obtida pela aplicação de uma função nas linhas ou colunas da entrada de um objeto seja matriz ou <em>array</em>. Vejamos a sintaxe dessa função:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(X, MARGIN, FUN, ..., <span class="at">simplify =</span> <span class="cn">TRUE</span>),</span></code></pre></div>
+</div>
+<p>em que: - <code>X</code> argumento que recebe o objeto matriz ou <em>array</em>, - <code>MARGIN</code> argumento que recebe <code>1</code>, se a função em <code>FUN</code> deve ser aplicado na linha, ou recebe <code>2</code> se <code>FUN</code> deve ser aplicado nas colunas, - <code>FUN</code> argumento que recebe a função desejada, - <code>...</code> argumento que recebe argumentos adicionais para <code>FUN</code>, e - <code>simplify</code> argumento lógico para retorno de resultados simplificados (<code>TRUE</code>) ou não (<code>FALSE</code>).</p>
+<p>Por exemplo, supomos que temos 5 amostras de tamanho 10, com reposição, em um conjunto de valores de 1 a 1000, e desejamos computar a média aritmética dessas amostras, que serão inseridas em colunas num objeto matriz, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code> [1]  42 334  13 417 361 729 712 656 373  26</code></pre>
+<pre><code> [1] 857 209  48 663 527 958 878 536 482 317</code></pre>
+<pre><code> [1] 132 739 270 929  35 266  74 570 679 912</code></pre>
+<pre><code> [1] 271 543 906 101 435 437 959 613 621 943</code></pre>
+<pre><code>      [,1] [,2] [,3] [,4] [,5]
+ [1,]   42  857  132  271   39
+ [2,]  334  209  739  543  947
+ [3,]   13   48  270  906  630
+ [4,]  417  663  929  101   89
+ [5,]  361  527   35  435  530
+ [6,]  729  958  266  437  899
+ [7,]  712  878   74  959  982
+ [8,]  656  536  570  613  554
+ [9,]  373  482  679  621  394
+[10,]   26  317  912  943  254</code></pre>
+<pre><code>[1] 366.3 547.5 460.6 582.9 531.8</code></pre>
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+[1,]   42  334   13  417  361  729  712  656  373    26
+[2,]  857  209   48  663  527  958  878  536  482   317
+[3,]  132  739  270  929   35  266   74  570  679   912
+[4,]  271  543  906  101  435  437  959  613  621   943
+[5,]   39  947  630   89  530  899  982  554  394   254</code></pre>
+<pre><code>[1] 366.3 547.5 460.6 582.9 531.8</code></pre>
+<pre><code>[1] 365.125 558.625 455.250 596.125 537.125</code></pre>
+<pre><code>[[1]]
+[1] 366.3
+
+[[2]]
+[1] 547.5
+
+[[3]]
+[1] 460.6
+
+[[4]]
+[1] 582.9
+
+[[5]]
+[1] 531.8</code></pre>
+</div>
+<p>A próxima função é <code>lapply()</code>, com sintaxe:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(X, FUN, ...),</span></code></pre></div>
+</div>
+<p>em que: - <code>X</code> argumento que recebe uma lista; - <code>FUN</code> argumento que recebe a função desejada, e - <code>...</code> argumento que recebe argumentos adicionais para <code>FUN</code>.</p>
+<p>Vejamos que a sintaxe desta função é muito parecido com <code>apply()</code>. Vejamos alguns exemplos, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Vetor (nao faz muito sentido)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 2
+
+[[3]]
+[1] 3
+
+[[4]]
+[1] 4
+
+[[5]]
+[1] 5
+
+[[6]]
+[1] 6
+
+[[7]]
+[1] 7
+
+[[8]]
+[1] 8
+
+[[9]]
+[1] 9
+
+[[10]]
+[1] 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Lista</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y <span class='op'>=</span> <span class='fl'>11</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>, <span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$x
+[1] 5.5
+
+$y
+[1] 15.5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y <span class='op'>=</span> <span class='fl'>11</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>, <span class='st'>"[["</span>, <span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$x
+[1] 2
+
+$y
+[1] 12</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mat1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, <span class='fl'>4</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span>, <span class='st'>"["</span>, , <span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$mat1
+[1] 5 6 7 8</code></pre>
+</div>
+<p>A função seguinte é <code>sapply()</code>, que é um invólucro (<em>wrapper</em>) da função <code>lapply()</code>, e o acréscimo sintátivo do argumento padrão <code>simplify = TRUE</code>. Assim, a forma sintática dessa função, segue:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(X, FUN, ..., <span class="at">simplify =</span> <span class="cn">TRUE</span>, <span class="at">USE.NAMES =</span> <span class="cn">TRUE</span>),</span></code></pre></div>
+</div>
+<p>em que: - <code>X</code> argumento que recebe uma lista; - <code>FUN</code> argumento que recebe a função desejada; - <code>...</code> argumento que recebe argumentos adicionais para <code>FUN</code>; e - <code>simplify</code>, argumento lógico, se <code>TRUE</code> retorna o resultado de forma simplificada, sendo um vetor atoômico, matriz ou <em>array</em>; se <code>FALSE</code> o retorno é uma lista; - <code>USE.NAMES</code>, argumento lógico; se <code>TRUE</code> é retornado o nome inserido nos objetos da lista; se <code>FALSE</code>, caso contrário.</p>
+<p>Na realidade, o que essa função faz é melhorar a saída de <code>lapply()</code>, retornando um vetor, matriz ou <em>array</em>. Vejamos,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>11</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>, <span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[1] 5.5
+
+[[2]]
+[1] 15.5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>11</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>, <span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1]  5.5 15.5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># 'simplify = FALSE' em 'sapply()' eh equivalente a 'lapply()'</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>11</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>, <span class='va'>mean</span>, simplify <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[1] 5.5
+
+[[2]]
+[1] 15.5</code></pre>
+</div>
+<p>Uma forma multivariada da função <code>apply</code>, é a função <code>mapply()</code>, com sintaxe:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span><span class='va'>FUN</span>, <span class='va'>...</span>, MoreArgs <span class='op'>=</span> <span class='cn'>NULL</span>, SIMPLIFY <span class='op'>=</span> <span class='cn'>TRUE</span>,
+       USE.NAMES <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>em que: - <code>FUN</code> argumentos que recebe a função desejada; - <code>...</code> argumentos para vetorização; - <code>MoreArgs</code> uma lista com argumentos adicionais a <code>FUN</code>; - <code>SIMPLIFY</code>, argumento lógico, se <code>TRUE</code> retorna o resultado de forma simplificada, sendo um vetor atoômico, matriz ou <em>array</em>; se <code>FALSE</code> o retorno é uma lista; - <code>USE.NAMES</code>, argumento lógico; se <code>TRUE</code> é retornado o nome inserido nos objetos da lista; se <code>FALSE</code>, caso contrário.</p>
+<p>Vejamos alguns exemplos de aplicação, a seguir.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span>FUN <span class='op'>=</span> <span class='va'>mean</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y <span class='op'>=</span> <span class='fl'>11</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>, USE.NAMES <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>   x    y 
+ 5.5 15.5 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span>FUN <span class='op'>=</span> <span class='va'>mean</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y <span class='op'>=</span> <span class='fl'>11</span><span class='op'>:</span><span class='fl'>20</span><span class='op'>)</span>, USE.NAMES <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1]  5.5 15.5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span>FUN <span class='op'>=</span> <span class='va'>rep</span>, x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,  times <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] 2 2
+
+[[3]]
+[1] 3 3 3
+
+[[4]]
+[1] 4 4 4 4</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span>FUN <span class='op'>=</span> <span class='va'>rep</span>, x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,  times <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>     [,1] [,2] [,3] [,4]
+[1,]    1    2    3    4
+[2,]    1    2    3    4
+[3,]    1    2    3    4
+[4,]    1    2    3    4</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span><span class='va'>rep</span>, times <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, MoreArgs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[1] 4
+
+[[2]]
+[1] 4 4
+
+[[3]]
+[1] 4 4 4
+
+[[4]]
+[1] 4 4 4 4</code></pre>
+</div>
+<p>Um outro exemplo interessante usando <code>mapplay()</code>, suponha que temos um conjunto de dados <code>1:38</code> e desejamos reamostrar com reposição 10 amostras de mesmo comprimento desses dados. Nesse caso, temos:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span><span class='va'>sample</span>, size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>38</span>, <span class='fl'>10</span><span class='op'>)</span>, MoreArgs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>38</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+ [1,]   15   13   14   31   23   29   18    1   32    25
+ [2,]   13    6   30   17    1   24   31   37   36    35
+ [3,]   26   37   27   37   37    5   37   21    7     7
+ [4,]   14   12   10   24   19   25   33   22   25    10
+ [5,]   28   32    8    7   25   32   20   26    3    23
+ [6,]    4   31    6   27    6   14   35    4   31    15
+ [7,]   31    4    5   14   33   13   19   35   37    28
+ [8,]   20   24    9   10   14   11   27   18    9    14
+ [9,]   29   21   18    6   30   22   25   12   11    24
+[10,]    3   18   15   34   15    1   17   24   18     6
+[11,]   23   38   16    4    7   28   21   36   15    37
+[12,]   17   23   17    1   10   19   10   30   16    18
+[13,]   16   17   23   20   31    7   13   27   21     5
+[14,]   32   11   38   13    2    4   34   38   29    32
+[15,]   22    1   32   21   17   20    5    2   35    11
+[16,]   30   34   33    8    4   33    6    6   38    12
+[17,]    9   14   13   35   22    2    4   20   30    21
+[18,]   36   15   21   32   35   16   23   33   20     4
+[19,]   21   28    3    2   28   15    9    8   23    19
+[20,]   24   36   25   38   11   21   29   17   28    29
+[21,]   38    7   12   30   34   23   36   29    2    33
+[22,]   27    2   34   18   29   27   28    7   17    36
+[23,]    6   20   29   15    5   31   14   28   13    27
+[24,]   10   33   36   22   24   35   22   13    5    26
+[25,]    7   35   26   12    9   17    8   32   34    13
+[26,]   19   22   22   28   36   10    2   15   26    17
+[27,]    8   30   37   16   38    9   24    9   24    38
+[28,]   37   25    2   36   26   12   12   16   10    30
+[29,]   33   29   24    9   12    8    3   31    8     3
+[30,]   34    8   31   11   18   38    7   34   14    31
+[31,]   11   27   35    3   16   30    1    3    1     9
+[32,]   25   19   19   23   27   36   26   14   19     1
+[33,]   12   10    7   25   13    3   11   25   12    34
+[34,]   35    3   28   29   21   37   32   10   27    20
+[35,]   18   16   20   33    3   34   30   23    6     8
+[36,]    2    5    4   26   32    6   38    5    4     2
+[37,]    5    9   11   19   20   18   15   11   22    22
+[38,]    1   26    1    5    8   26   16   19   33    16</code></pre>
+</div>
+<p>Poderíamos estar interessados também em gerar 10 amostras de tamanho <span class="math inline">\(n = 30\)</span>, de uma distribuição normal padrão, isto é,</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span><span class='va'>rnorm</span>, n <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>30</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>             [,1]        [,2]         [,3]       [,4]        [,5]
+ [1,]  0.97693997  1.02159557  0.128783463 -1.8656023 -1.70899030
+ [2,]  0.79023781  0.35895923  1.972929865 -0.3264478  0.58183916
+ [3,]  0.98468618  1.25387555 -0.071548470  0.4604034  0.36406946
+ [4,]  1.72802155  0.70613372  0.662564612 -0.3511606  1.51223372
+ [5,] -0.12590361 -1.94721263 -0.021996069  0.7167607  0.19003523
+ [6,]  2.53435299 -0.11707933 -0.316477912 -0.2088030  0.57913457
+ [7,] -0.43306272  0.17854140  0.002216812  1.2765002  0.05312193
+ [8,]  0.05448099 -0.88326729  0.518168763 -1.1883914  0.92380619
+ [9,]  0.21240835 -0.80757517  1.052712115 -1.7137380  0.14522949
+[10,] -0.89938361  0.10100343  1.860744440 -1.9561878 -0.88649435
+[11,] -1.37565361  1.46412309 -0.572562971 -1.3176539  0.37985772
+[12,] -0.72000035 -0.10547712 -1.116260285  0.4809290 -0.94199625
+[13,]  0.57103300 -1.79153520 -0.943473638  0.1418312 -0.48406717
+[14,] -2.22797642  0.54351301 -2.224035530 -0.2452919 -0.23334446
+[15,] -0.46067194  0.31409270  1.451927428 -1.0040025  0.51127182
+[16,]  0.28035150  0.50664013 -1.956099422  0.1515346  0.68847089
+[17,]  1.21989163 -0.86584165 -1.014548722 -0.5758454 -0.05936718
+[18,]  0.49560734  2.70818206  0.039335338 -0.9516940 -0.69619877
+[19,] -0.74053951 -0.88611149  0.806803554  0.6059419  1.95999846
+[20,]  0.10386793  0.52069801 -0.524917117 -0.5905524  0.15963178
+[21,]  0.77818514 -1.23173443  0.034003567  0.3728825 -0.65101808
+[22,] -0.35034355  0.80405233  0.529471098 -1.6821377 -0.16582689
+[23,] -1.18489995  1.17219691  1.580699421 -0.3354433  0.78029604
+[24,] -0.54906948  0.80655250 -0.097312740 -0.7440138  0.68289313
+[25,] -0.35041622 -1.72356712 -0.883009480  0.5024655 -0.93243155
+[26,] -0.03310228 -0.14579650  0.920582123 -0.3672830 -1.44286488
+[27,] -0.38794160 -1.80357911  0.023514388 -1.0183745 -0.15500192
+[28,] -0.48037026 -0.23600588 -0.909644168  0.7085347 -0.51796180
+[29,] -0.31829568 -1.18294347  0.423339689  1.4669889 -0.18665527
+[30,] -0.89372404 -0.07234726 -0.504172213  1.2324449  1.14898546
+             [,6]        [,7]        [,8]        [,9]       [,10]
+ [1,] -0.76589869 -1.24022859  0.10728058 -0.39812103 -0.57176892
+ [2,]  0.68909301 -0.43904601 -0.27361986  0.71432097 -2.16851673
+ [3,] -0.47754641  0.92465389 -1.15852151 -0.80001178  0.17681026
+ [4,]  1.74790082  0.48999988 -2.30646600  0.20796708  1.79055424
+ [5,]  1.61613864 -0.12520464  2.05624855  1.30804130  0.59392193
+ [6,] -0.67747280  1.90371182 -0.04554368 -0.46294655 -0.76027132
+ [7,] -1.06211418  0.55390832  0.48959405 -0.56138541 -0.55642984
+ [8,]  0.88842467  0.02452472  2.08249472 -0.74300563 -0.64327472
+ [9,] -1.19553994 -0.43558701  2.15266415  0.56601182 -0.72255975
+[10,]  1.42369200 -0.84270375 -0.88377944  0.05779672  0.01210588
+[11,] -0.20078225  0.78824154 -0.29569873  0.26355651  0.96129385
+[12,]  1.32816470  0.30441382 -1.48067015 -0.42854656 -0.95542144
+[13,]  2.23539357 -0.73057805  0.71599300 -1.35961592  0.90466367
+[14,]  0.34765519  0.07554207 -0.32544876 -0.06506061  0.34902954
+[15,]  2.00349064  0.18755286 -0.48025235 -0.32217859  1.99607943
+[16,] -1.20741971  1.54888307 -0.40743851  0.65078507  0.22416550
+[17,] -0.11984656  0.73348814 -0.33567896  0.97817838 -0.05739319
+[18,]  1.23060416 -0.98774829  1.02588074  2.56431606  0.04200018
+[19,] -0.44432912 -1.34502211 -0.62750548 -0.69717728  0.59820545
+[20,]  0.06629581  1.12057047  0.14214881  0.84131378 -1.21963884
+[21,] -1.82850943  2.08816534  1.29126052  0.65903314  0.54559975
+[22,]  0.34204225 -0.76044637  0.31021144  0.64665078 -0.73589761
+[23,]  1.03675412 -0.21056316  0.33648561 -0.93036920 -2.43940646
+[24,]  0.24952543 -0.95743964 -0.86197071 -0.84909779 -1.04992151
+[25,]  0.19481959 -1.39402542 -0.36652510 -0.12281368  0.79303164
+[26,]  0.06435280  0.26600553 -0.40975408 -0.30369010 -0.72705396
+[27,] -0.59126036  0.58662393 -1.71986196 -0.91213787 -0.90122029
+[28,]  1.23259700  0.07286590  0.92255632 -0.44223852  0.25348310
+[29,]  0.50179363 -0.04643838  0.98709908 -1.78985673 -0.83447270
+[30,] -0.68551424 -0.14572402 -1.07541152  1.60283488 -0.74985132</code></pre>
+</div>
+<ul>
+<li>Outras funções: <code>by()</code>, <code>aggregate()</code>, <code>simplify2array()</code>, <code>ave()</code>, <code>replicate()</code>, <code>outer()</code></li>
+</ul>
 <h2 id="funções-recursivas">Funções recursivas</h2>
 <h2 id="programação-defensiva">Programação defensiva</h2>
 <!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
@@ -6176,7 +6971,7 @@ $valor
 <!-- http://adv-r.had.co.nz/beyond-exception-handling.html -->
 <!-- https://gist.github.com/hadley/4278d0a6d3a10e42533d59905fbed0ac -->
 <h3 id="função-stop">Função <code>stop()</code></h3>
-<h3 id="função-warning">Função <code>Warning</code></h3>
+<h3 id="função-warning">Função <code>Warning()</code></h3>
 <!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
 <!--   # Programacao defensiva -->
 <!--   n <- nchar(x) -->
@@ -6201,12 +6996,8 @@ $valor
 <!--   print(cpf) -->
 <!-- } -->
 <!-- x <- new_cpf(05098523435, TRUE) -->
-<h2 id="controle-de-fluxos-usando-paralelização">Controle de fluxos usando paralelização</h2>
-<!-- - iterators -->
-<!-- - foreach -->
-<div class="sourceCode" id="cb254"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<!-- ## Metaprogramação -->
-<!-- ## Gráficos -->
+<h3 id="função-on.exit">Função <code>on.exit()</code></h3>
+<!-- https://adv-r.hadley.nz/functions.html#on-exit -->
 <!-- ## Configurações padrões do ambiente R -->
 <!-- oldOp<-options() # armazena as configurações originais -->
 <!-- oldOp # Algumas configurações presentes no sistema -->
@@ -6217,12 +7008,24 @@ $valor
 <!-- - como acessar alterações de idiomas -->
 <!-- - casas decimais -->
 <!-- - etcs -->
+<h2 id="controle-de-fluxos-usando-paralelização">Controle de fluxos usando paralelização</h2>
+<!-- - iterators -->
+<!-- - foreach -->
+<!-- ## Sintaxe da família de Pacotes Tidyverse -->
+<div class="sourceCode" id="cb314"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!-- ## Metaprogramação -->
+<!-- ## Depurando o Código R -->
+<!-- https://rstats.wtf/debugging-r-code.html -->
+<!-- https://adv-r.hadley.nz/debugging.html -->
+<!-- ## Gráficos -->
 <!--  - Dispositivo gráfico: -->
 <!--         - ggplot -->
 <!--         - tmap -->
 <!--         - graficos interativos (animate):  -->
 <!--            sites: https://mode.com/blog/r-data-visualization-packages/ -->
 <!--            sites: https://towardsdatascience.com/animating-your-data-visualizations-like-a-boss-using-r-f94ae20843e3 -->
+<!-- ## Traduzindo o Código R para outras linguagens -->
+<!-- https://adv-r.hadley.nz/translation.html#translation -->
 <h1 id="projetos-no-rstudio">Projetos no RStudio</h1>
 <h1 id="projetos-r-no-github">Projetos R no Github</h1>
 <h1 id="introdução-a-desenvolvimento-de-pacotes">Introdução a desenvolvimento de pacotes</h1>
@@ -6279,7 +7082,7 @@ $valor
 <!--     11.5.1. Relatórios animados -->
 <!--     11.5.2. Relatórios dinâmicos -->
 <!--   11.6. Demais documentos (PDF, WORD, EPUB) -->
-<div class="sourceCode" id="cb255"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-chambers2008" class="csl-entry" role="doc-biblioentry">
 Chambers, John M. 2008. <em>Software for Data Analysis: Programming with <span>R</span></em>. Statistics and <span>C</span>omputing. New York: Springer.
@@ -6311,6 +7114,15 @@ Wickham, Hadley. 2019. <em>Advanced <span>R</span></em>. 2nd ed. Boca Raton, Flo
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

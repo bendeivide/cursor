@@ -1,0 +1,161 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 57 - Programação funcional: funções de substituição"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Motivação
+
+Consideremos um banco de dados com informações de um grupo de pessoas, tais como o nome, altura (cm), peso (kg), idade (anos), que segue:
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+dados <- data.frame(
+  nome = c("Paulo", "Maria", "Caio"),
+  altura = c(175, 167, 172),
+  peso = c(70, 65, 7500),
+  idade = c(32, 26, 19)
+); dados
+# Substituicao
+dados[3, 3] <- 75; dados
+```
+
+## Função de substituição primitiva (Ideia)
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+`[<-` <- function(x, i, value){
+  # Corpo da funcao
+}
+# Chamada de funcao
+x[i] <- value
+# Chamada de forma equivalente
+`[<-`(x, i, value)
+```
+
+## Aprofundando
+
+```{r echo=TRUE, include=TRUE}
+# Vamos criar um vetor de comprimento 10
+x <- 1:10; x
+# Usando a funcao de substituicao, para alterar
+# dois valores na posicao 6 e 10
+x[c(6, 10)] <- c(100, 200); x
+```
+
+## Por trás do código
+
+```{r echo=TRUE, include=TRUE}
+# Objeto x criado
+x <- 1:10
+# `*tmp*` temporariamente criado
+`*tmp*` <- x
+# Alteracoes realizadas
+x <- `[<-`(`*tmp*`, c(6, 10), valor = c(100, 200)); x
+# Ao final se remove `*tmp*`
+rm(`*tmp*`)
+```
+
+## Discutindo o código para função ":"
+
+```{r, echo=TRUE, include=TRUE, eval=FALSE}
+# Vamos criar um vetor de comprimento 10
+x <- 1:10; x
+## [1]  1  2  3  4  5  6  7  8  9 10
+
+# Inspecionando o objeto
+tracemem(x)
+## [1] "<000000965C8A97D8"
+
+.Internal(inspect(x))
+## @0x000000965c8a97d8 13 INTSXP g0c0 [REF(65535),TR]  1 : 10 (compact)
+
+# Usando a funcao de substituicao, para alterar
+# dois valores na posicao 6 e 10
+x[c(6, 10)] <- c(100, 200); x
+## tracemem[0x000000965c8a97d8 - 0x000000965bdf6bc0]: 
+## tracemem[0x000000965bdf6bc0 - 0x000000965f177418]: 
+## [1]   1   2   3   4   5 100   7   8   9 200
+
+# Inspecionando novamente o objeto
+.Internal(inspect(x))
+## @0x000000965f177418 14 REALSXP g0c5 [REF(5),TR] (len=10, tl=0) 1,2,3,4,5,...
+```
+
+## Criando a nossa função de substituição
+
+```{r echo=TRUE, include=TRUE}
+# Funcao de substituicao de alterar os extremos
+`substextr<-` <- function(x, value) {
+  x <- sort(x)
+  x[1] <- x[length(x)] <- value
+  x
+}
+# Criando o vetor
+set.seed(10)
+x <- rnorm(10)
+# Inspecao
+.Internal(address(x))
+# Alterando o vetor
+substextr(x) <- 100
+# Inspecao
+.Internal(address(x))
+```
+
+## Inserindo mais argumentos
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+`subst<-` <- function(x, i, value) {
+  x[i] <- value
+  x
+}
+set.seed(10)
+(x <- c(1, 2, 3))
+# Inspecao
+.Internal(address(x))
+# subst(x, i) <- value
+subst(x, 2) <- 100; x
+# Inspecao
+.Internal(address(x))
+```
+
+
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

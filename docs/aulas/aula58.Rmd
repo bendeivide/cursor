@@ -1,0 +1,132 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 58 - Programação funcional: Vetorização de funções"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Introdução
+
+- A vetorização de funções:
+  - argumentos vetorizados;
+  - saída vetorizada
+- Isso elimina a condição de *loop*
+
+## Exemplo: operador soma
+
+```{r echo=TRUE, include=TRUE}
+# Vetorização da soma de vetores
+1:4 + 10:13
+```
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+# Similarmente a representação
+1  2  3  4
++  +  +  +
+10 11 12 13
+------------
+11 13 15 17
+```
+
+```{r echo=TRUE, include=TRUE}
+# Se usássemos o loop
+x <- 1:4
+y <- 10:13
+for (i in 1:4) {
+  print(x[i] + y[i])
+}
+```
+
+## Funções da Base `r rlink`
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Funcao logaritmica
+log(1:4)
+# Multiplicacao
+10:20 * 5
+# Operadores logicos
+1 == 1:4
+# Gerador de numeros aleatorios [0, 1]
+runif(1:10)
+```
+
+## Criando funções vetorizadas
+
+```{r echo=TRUE, include=TRUE}
+`%soma%` <- function(e1, e2) {
+  e1 + e2
+}
+# Exemplo 1
+1:4 %soma% 10:13
+# Exemplo 2
+1:4 %soma% 5
+```
+
+## Criando funções vetorizadas
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Semente
+set.seed(10)
+# Gerando a amostra
+rnorm(10, 1:3, 1)
+```
+
+## Criando funções vetorizadas
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Apos a vetorizacao, observe a diferenca entre
+# 'rnorm_vet1' e 'rnorm_vet2', devido ao argumento 
+# 'SIMPLIFY'
+rnorm_vet1 <- Vectorize(rnorm, "mean", SIMPLIFY = FALSE)
+rnorm_vet2 <- Vectorize(rnorm, "mean", SIMPLIFY = TRUE)
+# Vetorizando
+set.seed(10) # semente para fixar os mesmos valores
+rnorm_vet1(n = 10, mean = 1:3)
+```
+
+## Criando funções vetorizadas
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+set.seed(10) # semente para fixar os mesmos valores
+rnorm_vet2(n = 10, mean = 1:3)
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

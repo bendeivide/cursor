@@ -30,7 +30,7 @@ argumentos <- list(x = 1:10, main = "Gráfico",
 do.call(plot, argumentos)
 ```
 
-## Composição de funções
+## Composição de funções {#comp_funcoes}
 
 No [módulo básico](nbasico.html), também vimos a composição de funções, construídas em blocos, aninhadas, resultados intermediários como objetos. Mas, surge uma quarta via, implementada pelo pacote [magrittr](https://magrittr.tidyverse.org/), que é o operador *pipe*. Essa ideia, segundo @hadley2019, foi inspirada nas linguagens `Haskell`, `F#`, `Julia`, `JavScript`, um estilo baseado em pilhas como *forth* e *Fator*. Esse estilo apresenta uma estrutura mais fácil de sequências de operações da esquerda para direitra, evita funções aninhadas ou definição de funções. Para a análise de dados esse operador no ambiente `r rlink` ganhou tanto respaldo, que foi implementado uma forma nativa na versão R 4.1. O operador *pipe* é binário, em que o primeiro operando (`lhs`) representa o valor do primeiro argumento do segundo operando (`rhs`), que representa uma função, isto é,
 
@@ -99,7 +99,7 @@ mtcars |> subset(cyl == 4) |> (function(d) lm(mpg ~ disp, data = d))()
 
 <!-- ### Funções recursivas -->
 
-## Operadores binários ou unários
+## Operadores binários ou unários {#op_un-binarios}
 
 Na seção [Manipulando vetores](nbasico.html#manipulando-vetores) (Módulo básico), falamos sobre alguns operadores: matemáticos, lógicos, booleanos. Todos estes são operadores binários ou unários, que na mais são do que funções. Dizemos que um operador é unário quando há apenas a exigência de um operando na operação. Quando há a existência de dois operandos, dizemos que o operador é binário. Por exemplo, o operador soma `+` pode ser unário ou binário, pois sintaticamente, podemos escrever a operação soma com um operando ou com dois operandos. Vejamos o código a seguir.
 
@@ -146,7 +146,7 @@ Para ilustrar a criação de um operador, vamos fazer o nosso próprio operador 
 1:10 %>>% mean()
 ```
 
-## Avaliação preguiçosa dos argumentos de uma função
+## Avaliação preguiçosa dos argumentos de uma função {#promessas}
 
 <!-- https://www.r-bloggers.com/2018/07/about-lazy-evaluation/ -->
 
@@ -197,6 +197,12 @@ Parece que semanticamente a atribuição de argumentos a valores são iguais, ma
 
 ```{r}
 rm(list = ls(all.names = TRUE))
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
 ```
 
 ```{r echo=TRUE, include=TRUE}
@@ -234,12 +240,472 @@ teste()
 teste(4)
 ```
 
-## Saídas implícitas, explícitas, invisíveis, e manipuladores de saídas de funções
+## Saídas implícitas, explícitas, invisíveis de funções {#saida_funcoes}
 
+No [módulo Básico](nbasico.html#criar-funcoes), mostramos a estrutura básica de como criar uma função, cujo corpo é delimitado por chaves, isto é,
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+nova_funcao <- function(x) {
+  # Corpo da funcao
+  x
+}
+```
+
+Nesse caso, como a última linha de comando no corpo da função `nova_funcao()` a ser avaliada é `x`, então será esta o resultado da saída da função. Observamos que nesse caso, a última linha de comando imprime o valor de `x`. Dizemos nesse caso, que a função teve uma **saída implícita**. Se ao invés, a última linha de comando fosse a associação de um nome ao objeto, nada seria retornado após a chamada de função. Vejamos o próximo exemplo para o entendimento.
+
+```{r echo=TRUE, include=TRUE}
+# Funcao com saida implicita
+nova_funcao <- function(x) {
+  # Corpo da funcao
+  x
+}
+nova_funcao(2)
+# Funcao com saida implicita sem resultado
+nova_funcao2 <- function(x) {
+  # Corpo da funcao
+  x <- x
+}
+nova_funcao2(4)
+```
+
+Essa última chamada, acaba não aparecendo nada porque a avaliação `x <- x`, associa o nome `x` ao valor do argumento `x`, e isto não implica em imprimir esse valor. Contudo, podemos não necessariamente, apresentar como resultado de uma função, a sua última linha de comando. Nesse caso, usamos a função `return()`, para identificar qual objeto desejamos como saída para uma determinada função. Nesse caso, temos uma saída explícita.
+
+```{r echo=TRUE, include=TRUE, error=TRUE}
+num_par_ou_impar <- function(x) {
+  if (!is.numeric(x)) stop("o argumento x deve ser numerico", call. = FALSE)
+  num <- as.integer(x)
+  if (num %% 2 == 0) {
+    return("Número par!")
+  } else return("Número ímpar!")
+}
+# Numero real eh coagido a inteiro sem arredondamento
+num_par_ou_impar(1.6)
+# Programacao defensiva (x deve ser numerico)
+num_par_ou_impar(TRUE)
+# Verificando se um numero eh par ou impar
+num_par_ou_impar(6)
+```
+Percebemos que todas essas saídas implícita e explícita são **saídas visíveis** após a chamada da função. Porém, podemos ter saídas invisíveis, usando a função `invisible()`. Vejamos o código a seguir.
+
+```{r echo=TRUE, include=TRUE}
+# Funcao com saida invisivel
+estdes <- function(x) {
+  plot(x)
+  resumo <- summary(x)
+  invisible(resumo)
+}
+# Conjunto de dados
+y <- rexp(30)
+# Chamando estdes
+res <- estdes(y)
+# Imprimindo o resultado invisivel
+res
+# Formas alternativas
+print(estdes(y))
+(estdes(y))
+# Sinalizador de visibilidade
+withVisible(estdes(y))
+str(withVisible(estdes(y)))
+```
+
+Um caso específico de função com resultado invisível é a atribuição (`<-`). Quando associamos um nome a um objeto, a saída dessa função é invisível, a menos que redigite o nome no console ou use entre parênteses essa linha de comando, isto é,
+
+```{r echo=TRUE, include=TRUE}
+# Funcao `<-`() com saida invisivel
+x <- 10
+# Acessando o valor do obj associado com o nome 'x'
+x
+# Outra forma de acesso
+(x <- 10)
+```
+
+
+## Funções de substituição {#funcoes_substituicao}
+
+<!-- https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Subset-assignment -->
+
+Muito provavelmente, ao importar um banco de dados, armazenados em um objeto de classe *data.frame*, tivemos algum problema de erro em algum valor em nossas variáveis em estudo. Por exemplo, consideremos um banco de dados com informações de um grupo de pessoas, tais como o nome, altura (cm), peso (kg), idade (anos), que segue:
+
+```{r echo=TRUE, include=TRUE}
+dados <- data.frame(
+  nome = c("Paulo", "Maria", "Caio"),
+  altura = c(175, 167, 172),
+  peso = c(70, 65, 7500),
+  idade = c(32, 26, 19)
+); dados
+```
+
+Se esse banco foi importado, podemos alterar no próprio banco. Caso contrário, pode ser realizado uma substituição do valor no próprio ambiente `r rlink` para o objeto específico, usando `[`, ou similares, dependendo do tipo de objeto. Para esse caso, percebemos que o peso de Caio (7500kg), muito provavelmente foi um erro de digitação, e e que na realidade seria 75kg como correção. Para fazermos essa alteração em `dados`, uma das possibilidades seria usar a função de substituição `dados[3, 3] <- 75`, em que a mudança ocorre na terceira linha e 3 coluna do *data.frame*. Como poderíamos criar uma função de substituição? Usando as mesmas ideias usadas nesse caso. A função de substituição para um caso geral, é dado da seguinte forma sintática:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+`[<-` <- function(x, i, value){
+  # Corpo da funcao
+}
+# Chamada de funcao
+x[i] <- value
+# Chamada de forma equivalente
+`[<-`(x, i, value)
+```
+Claro que isso não é um padrão, mas uma ideia geral para a chamada `[<-`, que basicamente deve ter dois argumentos, `x` e `value`. O primeiro é o objeto em que há a necessidade de substituição de um de seus valores, e o segundo representa o valor para a substituição. Argumentos adicionais a estes, devem ser colocados entre esses argumentos, e à esquerda do argumento `value`, que foi o caso do argumento `i`, que representa a posição do elemento a ser substituído no objeto `x`. Por outro lado, devemos evitar a substituição de funções internas, como no caso da função `(<-`, por exemplo, uma vez que funções como essas usadas a todo momento em um código, pode trazer conflitos entre essas funções.
+
+Vamos aprofundar um pouco mais essa questão, usando um exemplo mais simples para a compreensão, a seguir.
+
+```{r echo=TRUE, include=TRUE}
+# Vamos criar um vetor de comprimento 10
+x <- 1:10; x
+# Usando a funcao de substituicao, para alterar
+# dois valores na posicao 6 e 10
+x[c(6, 10)] <- c(100, 200); x
+```
+
+O que ocorre por trás, cuja referência pode ser confirmada no manual [R Language Definition, seção 3.4.4](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Subset-assignment), é que surge a criação de um nome temporário <code>&grave;\*tmp\*&grave;</code> que também se associa ao mesmo objeto associado ao nome `x`, cujas alterações são realizadas em <code>&grave;\*tmp\*&grave;</code>, e um novo objeto é criado e um novo nome se associa a ele, e para deixar a impressão de que a alteração é ocorrida no próprio objeto, esse novo nome é exatamente `x`, igual ao nome antigo.
+
+```{r echo=TRUE, include=TRUE}
+# Objeto x criado
+x <- 1:10
+# `*tmp*` temporariamente criado
+`*tmp*` <- x
+# Alteracoes realizadas
+x <- `[<-`(`*tmp*`, c(6, 10), valor = c(100, 200)); x
+# Ao final se remove `*tmp*`
+rm(`*tmp*`)
+```
+
+Por fim, <code>&grave;\*tmp\*&grave;</code> é removido, e nesse caso, ocorre a cópia do objeto, como pode ser verificado por meio chamada `tracemen()`, isto é,
+
+```{r, echo=TRUE, include=TRUE, eval=FALSE}
+# Vamos criar um vetor de comprimento 10
+x <- 1:10; x
+## [1]  1  2  3  4  5  6  7  8  9 10
+
+# Inspecionando o objeto
+tracemem(x)
+## [1] "<000000965C8A97D8"
+
+.Internal(inspect(x))
+## @0x000000965c8a97d8 13 INTSXP g0c0 [REF(65535),TR]  1 : 10 (compact)
+
+# Usando a funcao de substituicao, para alterar
+# dois valores na posicao 6 e 10
+x[c(6, 10)] <- c(100, 200); x
+## tracemem[0x000000965c8a97d8 - 0x000000965bdf6bc0]: 
+## tracemem[0x000000965bdf6bc0 - 0x000000965f177418]: 
+## [1]   1   2   3   4   5 100   7   8   9 200
+
+# Inspecionando novamente o objeto
+.Internal(inspect(x))
+## @0x000000965f177418 14 REALSXP g0c5 [REF(5),TR] (len=10, tl=0) 1,2,3,4,5,...
+```
+
+Observamos inicialmente `x` (id `0x000000965c8a97d8`), cujo nome <code>&grave;\*tmp\*&grave;</code> inicialmente se liga ao mesmo objeto, e após as substituições <code>&grave;\*tmp\*&grave;</code> passa a está alocado a um novo espaço de memória (id `0x000000965f177418`), isto é ocorre uma cópia. A cópia intermediária (id `0x000000965bdf6bc0`) que ocorre no processo é devido a chamada <code>&grave;`:`&grave;()</code>. Mas a pergunta que fica, como fica o entendimento da otimização de desempenho especial a **modificação no local**? Bem, o nosso entendimento para o caso de vetores, como já mostrado anteriormente, a ideia estará sempre na contagem de referência. Já vimos, que para a chamada <code>&grave;:&grave;()</code>, a primeira modificação realizada no objeto será modificação em cópia, pois `REF(# > 1)`. Nesse caso, que foi o exemplo mostrado anteriormente, existe a presença de <code>&grave;\*tmp\*&grave;</code> por trás dos bastidores. Entretanto, quando o vetor é desenvolvido pela chamada `c()`, sabemos que a alteração do objeto ocorre em modificação no local, quando não alteraramos a dimensão do vetor, mas apenas os valores. Bem, o que indagamos é a existência ou não do nome temporário <code>&grave;\*tmp\*&grave;</code> no processo. Como falamos na seção em sobre 
+[cópia de objetos](nintermediario.html#copia_modif_tam_objetos), afirmamos que um dos pré-requisitos para a modificação no local, é que o objeto só pode ter uma ligação, isto é, um nome associado ao objeto. E quando mostramos a forma sintática da função de substituição <code>&grave;[<- &grave;()</code>, percebemos que `x` e <code>&grave;\*tmp\*&grave;</code> se ligam ao mesmo objeto inicialmente, e assim, teoricamente deveria sempre haver cópia com a alteração de algum dos valores desse objeto. Desse modo, pressupomos que para esses casos de modificação no local, o processo seja um pouco diferente desse processo. Contudo, isso só ocorrerá para o caso da função de substituição primitiva (`[<-`), implementada em linguagem `C`. Quando desenvolvemos nossas próprias funções de substituição, aí sempre ocorrerá cópia na modificação.
+
+<!-- Duvida: -->
+
+<!-- o resultado: -->
+<!--   - x <- 1:10 -->
+<!--   - x <- c(1, 2, 3, ..., 10) -->
+<!-- com relação a variavel temporaria `*tmp*` ainda me gerou duvidas. Enviado essa duvida ao R-help recebi a seguinte resposta de murdoch.duncan@gmail.com: -->
+
+<!-- On 07/10/2021 6:46 p.m., Ben Deivide de Oliveira Batista wrote: -->
+<!-- > Dear R users, -->
+<!-- >  -->
+<!-- > When modify-in-place of objects occurs, is there a local variable called -->
+<!-- > `*tmp*`, behind the scenes R? Let's look at two examples to understand the -->
+<!-- > question. -->
+<!-- >  -->
+<!-- > Example 1 (R Language Definition) -->
+<!-- > -------------------------------------------------- -->
+<!-- >  -->
+<!-- >> x <- 1:10 -->
+<!-- >> tracemem(x) -->
+<!-- > [1] "<000000000798F758>" -->
+<!-- >> x[3:5] <- 13:15 -->
+<!-- > tracemem[0x000000000798f758 -> 0x0000000008207030]: -->
+<!-- >  -->
+<!-- > The result of this command is as if the following had been executed -->
+<!-- > `*tmp*` <- x -->
+<!-- > x <- "[<-"(`*tmp*`, 3:5, value=13:15) -->
+<!-- > rm(`*tmp*`) -->
+<!-- >  -->
+<!-- > Conclusion: Here copy-on-modify occurs! -->
+<!-- >  -->
+<!-- >  -->
+<!-- > Example 2 : Modify-in-place -->
+<!-- > ----------------------- -->
+<!-- >  -->
+<!-- >> x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) -->
+<!-- >> tracemem(x) -->
+<!-- > [1] "<0000000008BFB818>" -->
+<!-- >> x[3:5] <- 13:15Conclusion: Here modify-in-place occurs! -->
+<!-- > For example 2, is there a local variable `*tmp*` for this case? If so, -->
+<!-- > what would the syntactic representation look like, similar to example 1? -->
+
+<!-- I think there is, and it would be the same as in 1.  The memory -->
+<!-- operations are different because x is different:  in 1, it is stored in -->
+<!-- a compact representation of 1:10, which needs to be expanded to a full -->
+<!-- array of doubles before the entries can be changed.  In 2, it is already -->
+<!-- stored as an array of doubles so this isn't needed. -->
+
+<!-- Essa resposta ainda nao ficou claro para mim! -->
+
+
+Para desenvolvermos as nossas próprias funções de substituição apresentamos um exemplo, criando a função <code>&grave;substextr<-&grave;()</code>, a seguir.
+
+```{r echo=TRUE, include=TRUE}
+# Funcao de substituicao de alterar os extremos
+`substextr<-` <- function(x, value) {
+  x <- sort(x)
+  x[1] <- x[length(x)] <- value
+  x
+}
+# Criando o vetor
+set.seed(10)
+x <- rnorm(10)
+# Inspecao
+.Internal(address(x))
+# Alterando o vetor
+substextr(x) <- 100
+# Inspecao
+.Internal(address(x))
+```
+
+Nesse caso, obrigatoriamente os dois argumentos básicos e com esses nomes são `x` e `value`, sendo que `value` deve ser sempre o último argumento. Caso, seja necessário adicionar mais argumentos, estes devem ser inseridos entre esses dois argumentos, como apresentado no código a seguir.
+
+```{r echo=TRUE, include=TRUE}
+`subst<-` <- function(x, i, value) {
+  x[i] <- value
+  x
+}
+set.seed(10)
+(x <- c(1, 2, 3))
+# Inspecao
+.Internal(address(x))
+# subst(x, i) <- value
+subst(x, 2) <- 100; x
+# Inspecao
+.Internal(address(x))
+```
 
 ## Vetorização de funções
 
+A vetorização de funções surge quando inserimos argumentos vetorizados, cuja saída dessas funções também são vetorizadas, de modo que não precisamos de *loop* para que a função retorne um valor de cada elemento do vetor de algum dos argumentos. Pensemos no operador soma (`+`), no seguinte código:
+
+```{r echo=TRUE, include=TRUE}
+# Vetorização da soma de vetores
+1:4 + 10:13
+```
+Essa função é vetorizada porque ela realizou, porque ela realizou a soma entre dois elementos de mesma posição nos vetores, isto é,
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+1  2  3  4
++  +  +  +
+10 11 12 13
+------------
+11 13 15 17
+```
+
+Isso é como se tivéssemos realizado um *loop* para essa operação, da seguinte forma:
+
+```{r echo=TRUE, include=TRUE}
+x <- 1:4
+y <- 10:13
+for (i in 1:4) {
+  print(x[i] + y[i])
+}
+```
+
+Grande maioria das funções nativas do `r rlink`, isto é, das funções desenvolvidas nos pacotes nativos são vetorizados. Vejamos alguns exemplos:
+
+```{r echo=TRUE, include=TRUE}
+# Funcao logaritmica
+log(1:4)
+# Multiplicacao
+10:20 * 5
+# Operadores logicos
+1 == 1:4
+# Gerador de numeros aleatorios [0, 1]
+runif(1:10)
+```
+
+Existem diversos caminhos para se desenvolver uma função vetorizada. Caso as funções internas da função desenvolvida seja vetorizada, esta também será. Vejamos:
+
+```{r echo=TRUE, include=TRUE}
+`%soma%` <- function(e1, e2) {
+  e1 + e2
+}
+# Exemplo 1
+1:4 %soma% 10:13
+# Exemplo 2
+1:4 %soma% 5
+```
+
+Quando temos funções escalares, podemos em uma das possibilidades, utilizar a função `Vectorize()` para vetorizar a função desejada. Essa função tem três argumentos importantes, `FUN` que representa a função a ser vetorizada `vectorize.args` que representa os argumentos da função vetorizado, que devem entrar como vetores caracteres nesse argumento, e `SIMPLIFY` que é um argumento lógico, cujo valor `TRUE` representa uma saída em forma de matriz, dependendo da situação, e `FALSE` representa a saída em forma de lista. Argumentos padrão não são vetorizados. 
+
+Vamos usar como exemplo, a função que gera números aleatórios de uma distribuição normal, `rnorm(n, mean, sd, log)`. Vamos trabalhar apenas com os três primeiros argumentos, em que `n` representa o tamanho da amostra, `mean` o parâmetro média e `sd` o parâmetro desvio padrão. Vamos fixar `n = 10` e `sd = 1`, e variar `mean = 1:3`. Isto significa que iremos ter valores baseados em uma distribuição normal, tal que os valores $X_i$, para $i = 1, 2, \ldots, 10$, serão gerados de distribuições, tal que $X_i \sim N(\mu_j)$, sequencialmente para $\mu_1 = 1$, $\mu_2 = 2$ e $\mu_3$, respectivamente. Assim, teremos uma amostra de tamanho 10, da seguinte forma: $X_1\sim N(1,1)$, $X_2\sim N(2,1)$, $X_3\sim N(3,1)$, $X_4\sim N(1,1)$, $X_5\sim N(2,1)$, $X_6\sim N(3,1)$, $X_7\sim N(1,1)$, $X_8\sim N(2,1)$, $X_9\sim N(3,1)$, $X_{10}\sim N(1,1)$. Vejamos o código a seguir.
+
+```{r echo=TRUE, include=TRUE}
+# Semente
+set.seed(10)
+# Gerando a amostra
+rnorm(10, 1:3, 1)
+```
+
+Vamos supor agora, que a ideia de vetorização para essa função, seja que quando assumimos `mean = 1:3`, ao invés de termos uma amostra como a anterior, teremos três amostras baseadas no comprimento do vetor em `mean`. Fixado os demais argumentos, teremos uma amostra de uma normal para $\mu_1 = 1$, $\mu_2 = 2$ e $\mu_3 = 3$, isto é,
+
+$$
+\left\{\begin{array}{ll}
+X_1, X_2, \ldots, X_{10}, & X_i \sim N(1,1), \\
+Y_1, Y_2, \ldots, Y_{10}, & Y_i \sim N(2,1), \\
+Z_1, Z_2, \ldots, Z_{10}, & Z_i \sim N(3,1).
+\end{array}\right.
+$$
+Para isso, iremos usar `Vectorize()` para `rnorm()`, vetorizando o argumento `mean`. Vejamos o código a seguir, para essa implementação.
+
+```{r echo=TRUE, include=TRUE}
+# Apos a vetorizacao, observe a diferenca entre
+# 'rnorm_vet1' e 'rnorm_vet2', devido ao argumento 
+# 'SIMPLIFY'
+rnorm_vet1 <- Vectorize(rnorm, "mean", SIMPLIFY = FALSE)
+rnorm_vet2 <- Vectorize(rnorm, "mean", SIMPLIFY = TRUE)
+# Vetorizando
+set.seed(10) # semente para fixar os mesmos valores
+rnorm_vet1(n = 10, mean = 1:3)
+set.seed(10) # semente para fixar os mesmos valores
+rnorm_vet2(n = 10, mean = 1:3)
+```
+
+
+As únicas funções que não podem ser vetorizadas por `Vectorize()` são as funções primitivas que não tem um valor para `formals()`.
+
+Uma outra forma de vetorizar funções, por exemplo, bem como evitar *loops* no desenvolvimento de algoritmos, é utilizar um conjunto de funções da família *apply* implentadas no pacote `base`, que será vista a seguir.
+
 ## Evitando loops
+
+Apesar de uma das construções mais interessantes na programação, seja o *loop*, é bom observar que essas construções implementadas em diversas linguagens apresenta grandes diferenças, em termos de desempenho. Já vimos que as funções para *loops* no `r rlink` pode demandar um gasto computacional dependendo de sua implementação, cópias na modificação, por ser uma linguagem interpretada, dentre outras características. Alternativamente, podemos usar uma série de funções implementadas no ambiente `r rlink`, funções estas vetorizadas. Vamos nos concentrar nas funções disponíveis na Base `r rlink`.
+
+Iniciamos com a família de funções *apply*, pertencente ao pacote `base`, de modo que permite manipularmos estruturas de dados como vetores, matrizes, *arrays*, listas e quadro de dados (*data frames*) de maneira repetitiva sem a utilização de *loop*. Estas funções são: `apply()`, `lapply()`, `sapply()`, `tapply()`, `mapply()`, `rapply()` e `eapply()`
+
+A primeira função a ser discutida é `apply()`, que retorna um *array* ou uma lista obtida pela aplicação de uma função nas linhas ou colunas da entrada de um objeto seja matriz ou *array*. Vejamos a sintaxe dessa função:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+apply(X, MARGIN, FUN, ..., simplify = TRUE),
+```
+em que:
+  - `X` argumento que recebe o objeto matriz ou *array*,
+  - `MARGIN` argumento que recebe `1`, se a função em `FUN` deve ser aplicado na linha, ou recebe `2` se `FUN` deve ser aplicado nas colunas,
+  - `FUN` argumento que recebe a função desejada,
+  - `...` argumento que recebe argumentos adicionais para `FUN`, e
+  - `simplify` argumento lógico para retorno de resultados simplificados (`TRUE`) ou não (`FALSE`).
+  
+Por exemplo, supomos que temos 5 amostras de tamanho 10, com reposição, em um conjunto de valores de 1 a 1000, e desejamos computar a média aritmética dessas amostras, que serão inseridas em colunas num objeto matriz, isto é,
+
+```{r echo}
+# 5 amostras
+(am1 <- sample(x = 1:1000, size = 10, replace = TRUE))
+(am2 <- sample(x = 1:1000, size = 10, replace = TRUE))
+(am3 <- sample(x = 1:1000, size = 10, replace = TRUE))
+(am4 <- sample(x = 1:1000, size = 10, replace = TRUE))
+am5 <- sample(x = 1:1000, size = 10, replace = TRUE)
+# Amostras em colunas
+amost_col <- matrix(c(am1, am2, am3, am4, am5), 10, 5); amost_col
+# Calculando a media por coluna
+apply(X = amost_col, MARGIN = 2, FUN = mean)
+# Amostras em linhas
+amost_lin <- matrix(c(am1, am2, am3, am4, am5), 5, 10, byrow = TRUE); amost_lin
+# Calculando a media por linhas
+apply(X = amost_lin, MARGIN = 1, FUN = mean)
+# Podemos tambem adicionar argumentos adicionais
+# em FUN (Media truncada em 10%)
+apply(X = amost_lin, MARGIN = 1, FUN = mean, trim = 0.1)
+# Usando o argumento simplify, o default: simplify = TRUE
+apply(X = amost_lin, MARGIN = 1, FUN = mean, simplify = FALSE)
+```
+
+A próxima função é `lapply()`, com sintaxe:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+lapply(X, FUN, ...),
+```
+em que:
+  - `X` argumento que recebe uma lista;
+  - `FUN` argumento que recebe a função desejada, e
+  - `...` argumento que recebe argumentos adicionais para `FUN`.
+  
+Vejamos que a sintaxe desta função é muito parecido com `apply()`. Vejamos alguns exemplos, a seguir.
+
+```{r echo=TRUE, include=TRUE}
+# Vetor (nao faz muito sentido)
+lapply(1:10, mean)
+# Lista
+lapply(list(x = 1:10, y = 11:20), mean)
+lapply(list(x = 1:10, y = 11:20), "[[", 2)
+lapply(list(mat1 = matrix(1:12, 4, 3)), "[", , 2)
+```
+
+A função seguinte é `sapply()`, que é um invólucro (*wrapper*) da função `lapply()`, e o acréscimo sintátivo do argumento padrão `simplify = TRUE`. Assim, a forma sintática dessa função, segue:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE),
+```
+em que:
+  - `X` argumento que recebe uma lista;
+  - `FUN` argumento que recebe a função desejada;
+  - `...` argumento que recebe argumentos adicionais para `FUN`; e
+  - `simplify`, argumento lógico, se `TRUE` retorna o resultado de forma simplificada, sendo um vetor atoômico, matriz ou *array*; se `FALSE` o retorno é uma lista;
+  - `USE.NAMES`, argumento lógico; se `TRUE` é retornado o nome inserido nos objetos da lista; se `FALSE`, caso contrário.
+
+
+Na realidade, o que essa função faz é melhorar a saída de `lapply()`, retornando um vetor, matriz ou *array*. Vejamos,
+
+```{r echo=TRUE, include=TRUE}
+lapply(list(1:10, 11:20), mean)
+sapply(list(1:10, 11:20), mean)
+# 'simplify = FALSE' em 'sapply()' eh equivalente a 'lapply()'
+sapply(list(1:10, 11:20), mean, simplify = FALSE)
+```
+
+Uma forma multivariada da função `apply`, é a função `mapply()`, com sintaxe:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+mapply(FUN, ..., MoreArgs = NULL, SIMPLIFY = TRUE,
+       USE.NAMES = TRUE)
+```
+em que:
+  - `FUN` argumentos que recebe a função desejada;
+  - `...` argumentos para vetorização;
+  - `MoreArgs` uma lista com argumentos adicionais a `FUN`;
+  - `SIMPLIFY`, argumento lógico, se `TRUE` retorna o resultado de forma simplificada, sendo um vetor atoômico, matriz ou *array*; se `FALSE` o retorno é uma lista;
+  - `USE.NAMES`, argumento lógico; se `TRUE` é retornado o nome inserido nos objetos da lista; se `FALSE`, caso contrário.
+
+Vejamos alguns exemplos de aplicação, a seguir.
+
+```{r echo=TRUE, include=TRUE}
+mapply(FUN = mean, list(x = 1:10, y = 11:20), USE.NAMES = TRUE)
+mapply(FUN = mean, list(x = 1:10, y = 11:20), USE.NAMES = FALSE)
+mapply(FUN = rep, x = 1:4,  times = 1:4)
+mapply(FUN = rep, x = 1:4,  times = 4)
+mapply(rep, times = 1:4, MoreArgs = list(x = 4))
+```
+
+Um outro exemplo interessante usando `mapplay()`, suponha que temos um conjunto de dados `1:38` e desejamos reamostrar com reposição 10 amostras de mesmo comprimento desses dados. Nesse caso, temos:
+
+```{r echo=TRUE, include=TRUE}
+mapply(sample, size = rep(38, 10), MoreArgs = list(x = 1:38))
+```
+
+Poderíamos estar interessados também em gerar 10 amostras de tamanho $n = 30$, de uma distribuição normal padrão, isto é,
+
+```{r echo=TRUE, include=TRUE}
+mapply(rnorm, n = rep(30, 10))
+```
+
+
+
+- Outras funções: `by()`, `aggregate()`, `simplify2array()`, `ave()`, `replicate()`, `outer()`
+
+
+
 
 ## Funções recursivas
 
@@ -279,7 +745,7 @@ teste(4)
 <!-- https://gist.github.com/hadley/4278d0a6d3a10e42533d59905fbed0ac -->
 
 ### Função `stop()`
-### Função `Warning`
+### Função `Warning()`
 
 <!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
 <!--   # Programacao defensiva -->
@@ -308,6 +774,25 @@ teste(4)
 
 <!-- x <- new_cpf(05098523435, TRUE) -->
 
+### Função `on.exit()`
+
+<!-- https://adv-r.hadley.nz/functions.html#on-exit -->
+
+<!-- ## Configurações padrões do ambiente R -->
+
+<!-- oldOp<-options() # armazena as configurações originais -->
+<!-- oldOp # Algumas configurações presentes no sistema -->
+<!-- ls(oldOp) # Lista todas as configurações -->
+<!-- options(digits=4) -->
+<!-- # [1] 3.142 valor pi com 4 dígitos -->
+<!-- options(oldOp) # Configuração original -->
+
+<!-- - como acessar alterações de idiomas -->
+<!-- - casas decimais -->
+<!-- - etcs -->
+
 ## Controle de fluxos usando paralelização
 <!-- - iterators -->
 <!-- - foreach -->
+
+<!-- ## Sintaxe da família de Pacotes Tidyverse -->
