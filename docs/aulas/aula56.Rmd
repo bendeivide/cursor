@@ -87,7 +87,7 @@ num_par_ou_impar(6)
 
 ## Saída invisível
 
-```{r echo=TRUE, include=TRUE, collapse=TRUE}
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
 # Funcao com saida invisivel
 estdes <- function(x) {
   plot(x)
@@ -98,15 +98,31 @@ estdes <- function(x) {
 y <- rexp(30)
 # Chamando estdes
 res <- estdes(y)
+```
+
+## Saída invisível
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
 # Imprimindo o resultado invisivel
 res
 # Formas alternativas
 print(estdes(y))
+```
+
+## Saída invisível
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
+# Formas alternativas
 (estdes(y))
+```
+
+## Saída invisível
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
 # Sinalizador de visibilidade
 withVisible(estdes(y))
-str(withVisible(estdes(y)))
 ```
+
 
 ## Exemplo de função com saída invisível
 
