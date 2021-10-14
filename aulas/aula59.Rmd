@@ -1,0 +1,189 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 59 - Programação funcional: funções da família *apply*"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Introdução
+
+- A família de funções da família *apply*, recebem o prefixo `apply`;
+- São funções do pacote `base`;
+- Objetivo: substituir o *loop* e vetorização
+- Algumas funções: `apply()`, `lapply()`, `sapply()`, `tapply()` e `mapply()`
+
+## Função *apply()*
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+apply(X, MARGIN, FUN, ..., simplify = TRUE),
+```
+em que:
+
+  - `X` argumento que recebe o objeto matriz ou *array*,
+  - `MARGIN` argumento que recebe `1`, se a função em `FUN` deve ser aplicado na linha, ou recebe `2` se `FUN` deve ser aplicado nas colunas,
+  - `FUN` argumento que recebe a função desejada,
+  - `...` argumento que recebe argumentos adicionais para `FUN`, e
+  - `simplify` argumento lógico para retorno de resultados simplificados (`TRUE`) ou não (`FALSE`).
+  
+## Exemplo
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# 5 amostras
+(am1 <- sample(x = 1:1000, size = 10, replace = TRUE))
+(am2 <- sample(x = 1:1000, size = 10, replace = TRUE))
+(am3 <- sample(x = 1:1000, size = 10, replace = TRUE))
+(am4 <- sample(x = 1:1000, size = 10, replace = TRUE))
+(am5 <- sample(x = 1:1000, size = 10, replace = TRUE))
+```
+
+## Exemplo
+
+```{r echo=TRUE, include=TRUE}
+# Amostras em colunas
+amost_col <- matrix(c(am1, am2, am3, am4, am5), 10, 5); amost_col
+# Calculando a media por coluna
+apply(X = amost_col, MARGIN = 2, FUN = mean)
+```
+
+## Exemplo
+
+```{r echo=TRUE, include=TRUE}
+# Amostras em linhas
+amost_lin <- matrix(c(am1, am2, am3, am4, am5), 5, 10, byrow = TRUE); amost_lin
+# Calculando a media por linhas
+apply(X = amost_lin, MARGIN = 1, FUN = mean)
+```
+
+## Exemplo
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Podemos tambem adicionar argumentos adicionais
+# em FUN (Media truncada em 10%)
+apply(X = amost_lin, MARGIN = 1, FUN = mean, trim = 0.1)
+# Usando o argumento simplify, o default: simplify = TRUE
+apply(X = amost_lin, MARGIN = 1, FUN = mean, simplify = FALSE)
+```
+
+## Função *lapply()*
+
+A próxima função é `lapply()`, com sintaxe:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+lapply(X, FUN, ...),
+```
+em que:
+
+  - `X` argumento que recebe uma lista;
+  - `FUN` argumento que recebe a função desejada, e
+  - `...` argumento que recebe argumentos adicionais para `FUN`.
+  
+## Exemplo
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+# Lista
+lapply(list(x = 1:10, y = 11:20), mean)
+lapply(list(x = 1:10, y = 11:20), "[[", 2)
+lapply(list(mat1 = matrix(1:12, 4, 3)), "[", , 2)
+matrix(1:12, 4, 3)
+```
+
+## Função *sapply*
+
+A função seguinte é `sapply()`, que é um invólucro (*wrapper*) da função `lapply()`, e o acréscimo sintátivo do argumento padrão `simplify = TRUE`. Assim, a forma sintática dessa função, segue:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE),
+```
+em que:
+
+  - `X` argumento que recebe uma lista;
+  - `FUN` argumento que recebe a função desejada;
+  - `...` argumento que recebe argumentos adicionais para `FUN`; e
+  - `simplify`, argumento lógico, se `TRUE` retorna o resultado de forma simplificada, sendo um vetor atoômico, matriz ou *array*; se `FALSE` o retorno é uma lista;
+  - `USE.NAMES`, argumento lógico; se `TRUE` é retornado o nome inserido nos objetos da lista; se `FALSE`, caso contrário.
+  
+## Exemplo
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+lapply(list(1:10, 11:20), mean)
+sapply(list(1:10, 11:20), mean)
+# 'simplify = FALSE' em 'sapply()' eh equivalente a 'lapply()'
+sapply(list(1:10, 11:20), mean, simplify = FALSE)
+```
+
+## Função *mapply*
+
+Uma forma multivariada da função `apply`, é a função `mapply()`, com sintaxe:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+mapply(FUN, ..., MoreArgs = NULL, SIMPLIFY = TRUE,
+       USE.NAMES = TRUE)
+```
+em que:
+
+  - `FUN` argumentos que recebe a função desejada;
+  - `...` argumentos para vetorização;
+  - `MoreArgs` uma lista com argumentos adicionais a `FUN`;
+  - `SIMPLIFY`, argumento lógico, se `TRUE` retorna o resultado de forma simplificada, sendo um vetor atoômico, matriz ou *array*; se `FALSE` o retorno é uma lista;
+  - `USE.NAMES`, argumento lógico; se `TRUE` é retornado o nome inserido nos objetos da lista; se `FALSE`, caso contrário.
+
+## Exemplo
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+mapply(FUN = mean, list(x = 1:10, y = 11:20), USE.NAMES = TRUE)
+mapply(FUN = mean, list(x = 1:10, y = 11:20), USE.NAMES = FALSE)
+mapply(FUN = rep, x = 1:4,  times = 1:4)
+```
+
+## Exemplo
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE}
+mapply(FUN = rep, x = 1:4,  times = 4)
+mapply(rep, times = 1:4, MoreArgs = list(x = 4))
+```
+
+## Exemplo: *mapply()* ao invés de *Vectorize()*
+
+```{r echo=TRUE, include=TRUE}
+mapply(rnorm, n = 10, mean = 1:5)
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

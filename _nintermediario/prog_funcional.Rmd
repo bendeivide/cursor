@@ -580,7 +580,7 @@ As únicas funções que não podem ser vetorizadas por `Vectorize()` são as fu
 
 Uma outra forma de vetorizar funções, por exemplo, bem como evitar *loops* no desenvolvimento de algoritmos, é utilizar um conjunto de funções da família *apply* implentadas no pacote `base`, que será vista a seguir.
 
-## Evitando loops
+## Funções da família *apply*
 
 Apesar de uma das construções mais interessantes na programação, seja o *loop*, é bom observar que essas construções implementadas em diversas linguagens apresenta grandes diferenças, em termos de desempenho. Já vimos que as funções para *loops* no `r rlink` pode demandar um gasto computacional dependendo de sua implementação, cópias na modificação, por ser uma linguagem interpretada, dentre outras características. Alternativamente, podemos usar uma série de funções implementadas no ambiente `r rlink`, funções estas vetorizadas. Vamos nos concentrar nas funções disponíveis na Base `r rlink`.
 
@@ -600,7 +600,7 @@ em que:
   
 Por exemplo, supomos que temos 5 amostras de tamanho 10, com reposição, em um conjunto de valores de 1 a 1000, e desejamos computar a média aritmética dessas amostras, que serão inseridas em colunas num objeto matriz, isto é,
 
-```{r echo}
+```{r echo=TRUE, include=TRUE}
 # 5 amostras
 (am1 <- sample(x = 1:1000, size = 10, replace = TRUE))
 (am2 <- sample(x = 1:1000, size = 10, replace = TRUE))
@@ -708,6 +708,26 @@ mapply(rnorm, n = rep(30, 10))
 
 
 ## Funções recursivas
+
+
+- `Recall()`
+- `local()`
+
+<!-- # https://stackoverflow.com/questions/21698641/how-can-i-write-a-recursive-function-in-r -->
+<!-- https://adv-r.hadley.nz/function-operators.html#existing-fos -->
+<!-- Usar o cache de memória para otimizar a funcao: -->
+<!-- nCr <- function(n, r) { -->
+<!--   if (r == 0 | r == n) return (1) -->
+<!--   else return (nCr(n-1, r-1) + nCr(n-1, r))  -->
+<!-- } -->
+<!-- system.time(for(i in 1:10) nCr(20, 6)) -->
+<!-- ##    user  system elapsed  -->
+<!-- ##    8.74    0.00    8.90  -->
+
+<!-- system.time(for(i in 1:10) choose(20, 6)) -->
+<!-- ##    user  system elapsed  -->
+<!-- ##       0       0       0  -->
+
 
 ## Programação defensiva
 
