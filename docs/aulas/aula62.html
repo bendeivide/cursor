@@ -20,7 +20,7 @@
       // Slide settings
       settings: {
                 title: 'Curso R: Programação em R (Nível Intermediário)',
-                        subtitle: 'Aula 61 - Programação defensiva em funções',
+                        subtitle: 'Aula 62 - Projetos no RStudio',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -94,70 +94,7 @@ slide:not(.current) .plotly.html-widget{
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
-            pre > code.sourceCode { white-space: pre; position: relative; }
-            pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-            pre > code.sourceCode > span:empty { height: 1.2em; }
-            .sourceCode { overflow: visible; }
-            code.sourceCode > span { color: inherit; text-decoration: inherit; }
-            div.sourceCode { margin: 1em 0; }
-            pre.sourceCode { margin: 0; }
-            @media screen {
-            div.sourceCode { overflow: auto; }
-            }
-            @media print {
-            pre > code.sourceCode { white-space: pre-wrap; }
-            pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-            }
-            pre.numberSource code
-              { counter-reset: source-line 0; }
-            pre.numberSource code > span
-              { position: relative; left: -4em; counter-increment: source-line; }
-            pre.numberSource code > span > a:first-child::before
-              { content: counter(source-line);
-                position: relative; left: -1em; text-align: right; vertical-align: baseline;
-                border: none; display: inline-block;
-                -webkit-touch-callout: none; -webkit-user-select: none;
-                -khtml-user-select: none; -moz-user-select: none;
-                -ms-user-select: none; user-select: none;
-                padding: 0 4px; width: 4em;
-                color: #aaaaaa;
-              }
-            pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-            div.sourceCode
-              {   }
-            @media screen {
-            pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-            }
-            code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-            code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-            code span.at { color: #7d9029; } /* Attribute */
-            code span.bn { color: #40a070; } /* BaseN */
-            code span.bu { } /* BuiltIn */
-            code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-            code span.ch { color: #4070a0; } /* Char */
-            code span.cn { color: #880000; } /* Constant */
-            code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-            code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-            code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-            code span.dt { color: #902000; } /* DataType */
-            code span.dv { color: #40a070; } /* DecVal */
-            code span.er { color: #ff0000; font-weight: bold; } /* Error */
-            code span.ex { } /* Extension */
-            code span.fl { color: #40a070; } /* Float */
-            code span.fu { color: #06287e; } /* Function */
-            code span.im { } /* Import */
-            code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-            code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-            code span.op { color: #666666; } /* Operator */
-            code span.ot { color: #007020; } /* Other */
-            code span.pp { color: #bc7a00; } /* Preprocessor */
-            code span.sc { color: #4070a0; } /* SpecialChar */
-            code span.ss { color: #bb6688; } /* SpecialString */
-            code span.st { color: #4070a0; } /* String */
-            code span.va { color: #19177c; } /* Variable */
-            code span.vs { color: #4070a0; } /* VerbatimString */
-            code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-        
+            
     slides > slide:not(.nobackground):before {
       font-size: 12pt;
       content: "";
@@ -204,7 +141,7 @@ Inserir nas secoes:
 {data-background=boards.jpg data-background-size=cover}
 -->
 
-<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  class="smaller " id="selo-dc">
+<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  id="selo-dc" class="smaller ">
 
 <center>
 
@@ -212,170 +149,7 @@ Inserir nas secoes:
 
 </center>
 
-</article></slide><slide class=""><hgroup><h2>Introdução</h2></hgroup><article  class="smaller " id="introdução">
-
-<p>A ideia básica da programação defensiva é:</p>
-
-<ul>
-<li>Evitar erros previsíveis, seja de ações incorretas dos usuários, ou condições adversas</li>
-<li>Existem diversas técnicas para proteger as suas funções desses possíveis erros, mas vamos focar principalmente em duas funções: <code>stop()</code> e <code>warning()</code>.</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>stop()</em></h2></hgroup><article  class="smaller " id="a-sintaxe-e-semântica-da-função-stop">
-
-<pre class = 'prettyprint lang-r'>stop(..., call. = TRUE, domain = NULL),</pre>
-
-<p>em que:</p>
-
-<ul>
-<li><code>...</code> objeto a ser coagido a caractere;</li>
-<li><code>call.</code> argumento lógico. Se <code>TRUE</code> chamará parte da mensagem de erro;</li>
-<li><code>domain</code> argumento que representa o domínio, geralmente o nome do pacote em desenvolvimento. Esse argumento é utilizado juntamente com a função <code>gettext()</code> para a internacionalização do pacote.</li>
-</ul>
-
-<p><strong>Semântica</strong>: Chamado <code>stop()</code> no corpo de uma função, esta é encerrada e retornado a mensagem de erro, especificada na própria função.</p>
-
-</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>warning()</em></h2></hgroup><article  class="smaller " id="a-sintaxe-e-semântica-da-função-warning">
-
-<pre class = 'prettyprint lang-r'>warning(..., call. = TRUE, immediate. = FALSE, noBreaks. = FALSE,
-        domain = NULL),</pre>
-
-<p>em que:</p>
-
-<ul>
-<li><code>...</code> objeto a ser coagido a caractere;</li>
-<li><code>call.</code> argumento lógico. Se <code>TRUE</code> chamará parte da mensagem de erro;</li>
-<li><code>immediate.</code> argumento lógico indicando se a mensagem deve ser imediata (<code>TRUE</code>), ou apenas no final de toda a execução (<code>FALSE</code>);</li>
-<li><code>noBreaks.</code> argumento lógico, apresentando o número de linhas para apresentar a mensagem de alerta (isso ocorre quando <code>options(warn = 1)</code>). Sem quebras <code>TRUE</code>, com quebras <code>FALSE</code>;</li>
-<li><code>domain</code> argumento que representa o domínio, geralmente o nome do pacote em desenvolvimento. Esse argumento é utilizado juntamente com a função <code>gettext()</code> para a internacionalização do pacote.</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  class="smaller " id="aplicações">
-
-<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
-  # Suponha que no corpo da funcao, as operacoes devem ser
-  # realizadas apenas com um objeto sendo apenas caracter.
-  cat(&quot;Ufa, cheguei até o final, com o objeto teste igual a&quot;, teste, &quot;\n&quot;)
-}
-prog_def(teste = 1)
-## Ufa, cheguei até o final, com o objeto teste igual a 1 
-prog_def(teste = &quot;nada&quot;)
-## Ufa, cheguei até o final, com o objeto teste igual a nada 
-prog_def(expression(x ~y))
-## Ufa, cheguei até o final, com o objeto teste igual a 
-## Error in cat(&quot;Ufa, cheguei até o final, com o objeto 
-## teste igual a&quot;,  : argumento 2 (tipo &#39;expression&#39;) não 
-## suportado por &#39;cat&#39;</pre>
-
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  class="smaller " id="aplicações-stop">
-
-<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
-  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;)
-  # Suponha que no corpo da funcao, as operacoes devem ser
-  # realizadas apenas com um objeto sendo apenas caracter.
-  cat(&quot;Ufa, cheguei até o final, com o objeto teste igual a&quot;, teste, &quot;\n&quot;)
-}
-prog_def(teste = 1)
-## Error in prog_def(teste = 1) : O argumento &#39;teste&#39; deve ser caractere! 
-prog_def(teste = &quot;nada&quot;)
-## Ufa, cheguei até o final, com o objeto teste igual a nada 
-prog_def(expression(x ~ y))
-## Error in prog_def(expression(x ~ y)) : 
-##  O argumento &#39;teste&#39; deve ser caractere! </pre>
-
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  class="smaller " id="aplicações-stop-1">
-
-<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
-  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
-                                 call. = FALSE)
-  # Suponha que no corpo da funcao, as operacoes devem ser
-  # realizadas apenas com um objeto sendo apenas caracter.
-  cat(&quot;Ufa, cheguei até o final, com o objeto teste igual a&quot;, teste, &quot;\n&quot;)
-}
-prog_def(teste = 1)
-## Error: O argumento &#39;teste&#39; deve ser caractere! 
-prog_def(teste = &quot;nada&quot;)
-## Ufa, cheguei até o final, com o objeto teste igual a nada 
-prog_def(expression(x ~ y))
-## Error: O argumento &#39;teste&#39; deve ser caractere! </pre>
-
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  class="smaller " id="aplicações-warning">
-
-<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
-  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
-                                 call. = FALSE)
-  cat(&quot;Executada linha de comando 1 \n&quot;)
-  if (teste == &quot;warning&quot;) {
-    warning(&quot;Mensagem de alerta, sem quebra! \n&quot;)
-    cat(&quot;Executada linha de comando após o \&quot;warning()\&quot;! \n&quot;)
-  }
-  if (teste == &quot;stop&quot;) stop(&quot;Após o \&quot;stop()\&quot;, nada será execudado! \n&quot;, 
-                            call. = FALSE)
-  if (!any(teste == c(&quot;warning&quot;, &quot;stop&quot;))) cat(&quot;Ufa, cheguei até o final! \n&quot;)
-}
-prog_def(teste = &quot;warning&quot;)
-## Executada linha de comando 1 
-## Executada linha de comando após o &quot;warning()&quot;! 
-## Warning message:
-## In prog_def(teste = &quot;warning&quot;) : Mensagem de alerta, sem quebra! </pre>
-
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  class="smaller " id="aplicações-warning-1">
-
-<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
-  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
-                                 call. = FALSE)
-  cat(&quot;Executada linha de comando 1 \n&quot;)
-  if (teste == &quot;warning&quot;) {
-    warning(&quot;Mensagem de alerta, sem quebra! \n&quot;, immediate. = TRUE)
-    cat(&quot;Executada linha de comando após o \&quot;warning()\&quot;! \n&quot;)
-  }
-  if (teste == &quot;stop&quot;) stop(&quot;Após o \&quot;stop()\&quot;, nada será execudado! \n&quot;, 
-                            call. = FALSE)
-  if (!any(teste == c(&quot;warning&quot;, &quot;stop&quot;))) cat(&quot;Ufa, cheguei até o final! \n&quot;)
-}
-prog_def(teste = &quot;warning&quot;)
-## Executada linha de comando 1 
-## Warning in prog_def(teste = &quot;warning&quot;) :
-##  Mensagem de alerta, sem quebra! 
-## Executada linha de comando após o &quot;warning()&quot;! </pre>
-
-</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  class="smaller " id="aplicações-1">
-
-<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
-  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
-                                 call. = FALSE)
-  cat(&quot;Executada linha de comando 1 \n&quot;)
-  if (teste == &quot;warning&quot;) {
-    warning(&quot;Mensagem de alerta, sem quebra! \n&quot;, immediate. = TRUE, 
-            call. = FALSE)
-    cat(&quot;Executada linha de comando após o \&quot;warning()\&quot;! \n&quot;)
-  }
-  if (teste == &quot;stop&quot;) stop(&quot;Após o \&quot;stop()\&quot;, nada será execudado! \n&quot;, 
-                            call. = FALSE)
-  if (!any(teste == c(&quot;warning&quot;, &quot;stop&quot;))) cat(&quot;Ufa, cheguei até o final! \n&quot;)
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  class="smaller " id="aplicações-2">
-
-<pre class = 'prettyprint lang-r'>prog_def()
-## Executada linha de comando 1 
-## Ufa, cheguei até o final! 
-prog_def(teste = &quot;warning&quot;)
-## Executada linha de comando 1 
-## Warning: Mensagem de alerta, sem quebra! 
-## Executada linha de comando após o &quot;warning()&quot;! 
-prog_def(teste = &quot;stop&quot;)
-## Executada linha de comando 1 
-## Error: Após o &quot;stop()&quot;, nada será execudado! 
-prog_def(teste = 1)
-## Error: O argumento &#39;teste&#39; deve ser caractere! 
-prog_def(teste = &quot;nada&quot;)
-## Executada linha de comando 1 
-## Ufa, cheguei até o final! 
-prog_def(expression(x ~ y))
-## Error: O argumento &#39;teste&#39; deve ser caractere! </pre>
-
-</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  class="smaller " id="bons-estudos">
+</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  id="bons-estudos" class="smaller ">
 
 <center>
 

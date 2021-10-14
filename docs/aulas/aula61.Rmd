@@ -1,6 +1,6 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 61 - Programação funcional: programação defensiva"
+subtitle: "Aula 61 - Programação defensiva em funções"
 author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"

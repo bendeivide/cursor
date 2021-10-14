@@ -1,0 +1,47 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 70 - Preparação para o módulo avançado"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>
