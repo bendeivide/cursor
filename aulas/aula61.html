@@ -20,7 +20,7 @@
       // Slide settings
       settings: {
                 title: 'Curso R: Programação em R (Nível Intermediário)',
-                        subtitle: 'Aula 60 - Programação funcional: funções recursivas',
+                        subtitle: 'Aula 61 - Programação funcional: programação defensiva',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -204,7 +204,7 @@ Inserir nas secoes:
 {data-background=boards.jpg data-background-size=cover}
 -->
 
-<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  id="selo-dc" class="smaller ">
+<slide class=""><hgroup><h2>Selo DC</h2></hgroup><article  class="smaller " id="selo-dc">
 
 <center>
 
@@ -212,7 +212,7 @@ Inserir nas secoes:
 
 </center>
 
-</article></slide><slide class=""><hgroup><h2>Introdução</h2></hgroup><article  id="introdução" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Introdução</h2></hgroup><article  class="smaller " id="introdução">
 
 <p>A ideia básica da programação defensiva é:</p>
 
@@ -221,7 +221,7 @@ Inserir nas secoes:
 <li>Existem diversas técnicas para proteger as suas funções desses possíveis erros, mas vamos focar principalmente em duas funções: <code>stop()</code> e <code>warning()</code>.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>stop()</em></h2></hgroup><article  id="a-sintaxe-e-semântica-da-função-stop" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>stop()</em></h2></hgroup><article  class="smaller " id="a-sintaxe-e-semântica-da-função-stop">
 
 <pre class = 'prettyprint lang-r'>stop(..., call. = TRUE, domain = NULL),</pre>
 
@@ -235,7 +235,7 @@ Inserir nas secoes:
 
 <p><strong>Semântica</strong>: Chamado <code>stop()</code> no corpo de uma função, esta é encerrada e retornado a mensagem de erro, especificada na própria função.</p>
 
-</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>warning()</em></h2></hgroup><article  id="a-sintaxe-e-semântica-da-função-warning" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>warning()</em></h2></hgroup><article  class="smaller " id="a-sintaxe-e-semântica-da-função-warning">
 
 <pre class = 'prettyprint lang-r'>warning(..., call. = TRUE, immediate. = FALSE, noBreaks. = FALSE,
         domain = NULL),</pre>
@@ -250,7 +250,7 @@ Inserir nas secoes:
 <li><code>domain</code> argumento que representa o domínio, geralmente o nome do pacote em desenvolvimento. Esse argumento é utilizado juntamente com a função <code>gettext()</code> para a internacionalização do pacote.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  id="aplicações" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  class="smaller " id="aplicações">
 
 <pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
   # Suponha que no corpo da funcao, as operacoes devem ser
@@ -267,7 +267,7 @@ prog_def(expression(x ~y))
 ## teste igual a&quot;,  : argumento 2 (tipo &#39;expression&#39;) não 
 ## suportado por &#39;cat&#39;</pre>
 
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  id="aplicações-stop" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  class="smaller " id="aplicações-stop">
 
 <pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
   if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;)
@@ -283,7 +283,7 @@ prog_def(expression(x ~ y))
 ## Error in prog_def(expression(x ~ y)) : 
 ##  O argumento &#39;teste&#39; deve ser caractere! </pre>
 
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  id="aplicações-stop-1" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  class="smaller " id="aplicações-stop-1">
 
 <pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
   if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
@@ -299,7 +299,7 @@ prog_def(teste = &quot;nada&quot;)
 prog_def(expression(x ~ y))
 ## Error: O argumento &#39;teste&#39; deve ser caractere! </pre>
 
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  id="aplicações-warning" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  class="smaller " id="aplicações-warning">
 
 <pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
   if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
@@ -319,7 +319,7 @@ prog_def(teste = &quot;warning&quot;)
 ## Warning message:
 ## In prog_def(teste = &quot;warning&quot;) : Mensagem de alerta, sem quebra! </pre>
 
-</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  id="aplicações-warning-1" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  class="smaller " id="aplicações-warning-1">
 
 <pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
   if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
@@ -339,7 +339,7 @@ prog_def(teste = &quot;warning&quot;)
 ##  Mensagem de alerta, sem quebra! 
 ## Executada linha de comando após o &quot;warning()&quot;! </pre>
 
-</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  id="aplicações-1" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  class="smaller " id="aplicações-1">
 
 <pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
   if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
@@ -355,7 +355,7 @@ prog_def(teste = &quot;warning&quot;)
   if (!any(teste == c(&quot;warning&quot;, &quot;stop&quot;))) cat(&quot;Ufa, cheguei até o final! \n&quot;)
 }</pre>
 
-</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  id="aplicações-2" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  class="smaller " id="aplicações-2">
 
 <pre class = 'prettyprint lang-r'>prog_def()
 ## Executada linha de comando 1 
@@ -375,7 +375,7 @@ prog_def(teste = &quot;nada&quot;)
 prog_def(expression(x ~ y))
 ## Error: O argumento &#39;teste&#39; deve ser caractere! </pre>
 
-</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  id="bons-estudos" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  class="smaller " id="bons-estudos">
 
 <center>
 
