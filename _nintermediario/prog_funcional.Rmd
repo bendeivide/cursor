@@ -731,6 +731,30 @@ mapply(rnorm, n = rep(30, 10))
 
 ## Programação defensiva
 
+<!-- Iniciar por aqui -->
+<!-- https://www.r-bloggers.com/2018/07/the-ten-rules-of-defensive-programming-in-r/ -->
+
+<!-- - `stop()` -->
+<!-- - `stopofnot()` -->
+<!-- - `if()`, `else()`, `ifelse()` -->
+<!-- - `gettext()`, `gettextf()` -->
+<!-- - `tryCatch()`, `withCallingHandlers()` -->
+<!-- - `geterrmessage()` -->
+<!-- - `traceback()` -->
+<!-- - `options(error=)` -->
+<!-- - `warning()` -->
+<!-- - `options("warn")` -->
+<!-- - `warnings()` -->
+<!-- - `getOption("warn")` -->
+<!-- - `suppressWarnings()` -->
+<!-- - `options(nwarnings = 10000)` -->
+<!-- - `last.warning()` -->
+<!-- - `errorCondition(message, ..., class = NULL, call = NULL)` -->
+<!-- - `warningCondition(message, ..., class = NULL, call = NULL)` -->
+<!-- - `?conditions` -->
+
+## Exemplo
+
 <!-- new_cpf <- function(x, p_valor_zero = FALSE) { -->
 <!--   # Programacao defensiva -->
 <!--   n <- nchar(x) -->
@@ -794,7 +818,7 @@ mapply(rnorm, n = rep(30, 10))
 
 <!-- x <- new_cpf(05098523435, TRUE) -->
 
-### Função `on.exit()`
+<!-- ### Função `on.exit()` -->
 
 <!-- https://adv-r.hadley.nz/functions.html#on-exit -->
 
@@ -811,8 +835,10 @@ mapply(rnorm, n = rep(30, 10))
 <!-- - casas decimais -->
 <!-- - etcs -->
 
-## Controle de fluxos usando paralelização
+<!-- ## Controle de fluxos usando paralelização -->
 <!-- - iterators -->
 <!-- - foreach -->
 
 <!-- ## Sintaxe da família de Pacotes Tidyverse -->
+
+<!-- Após isso, seguir as ideias do livro de Hadley -->

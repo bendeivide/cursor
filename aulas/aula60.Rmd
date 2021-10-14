@@ -119,11 +119,11 @@ fatorial3(5)
    |
    --> 5 * fatorial3(4)
               |
-              --> 4 * fatorial(3)
+              --> 4 * fatorial3(3)
                          |
-                         --> 3 * fatorial(2)
+                         --> 3 * fatorial3(2)
                                     |
-                                    --> 2 * fatorial(1)
+                                    --> 2 * fatorial3(1)
                                                |
                                                --> 1 * return(1) # Importantíssimo!
                                                          |

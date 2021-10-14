@@ -214,97 +214,166 @@ Inserir nas secoes:
 
 </article></slide><slide class=""><hgroup><h2>Introdução</h2></hgroup><article  id="introdução" class="smaller ">
 
-<ul>
-<li>Recursão: refere-se a capacidade que uma função tem de chamar a si própria, no corpo de sua própria função</li>
-<li>Evita <em>loops</em></li>
-<li>Torna o código mais curto e limpo;</li>
-<li>Solução simples para alguns problemas;</li>
-<li>Entretanto, pode ser mais complexo o entendimento!</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Exemplo do fatorial</h2></hgroup><article  id="exemplo-do-fatorial" class="smaller ">
-
-<p>\[
-5! = 5 \times 4 \times 3 \times 2 \times 1  = 120
-\] \[
-1! = 0! = 1
-\] Na prática: \(f(n) = n \times (n - 1) \times (n - 2) ...\)</p>
-
-</article></slide><slide class=""><hgroup><h2>Implementando essa função em R</h2></hgroup><article  id="implementando-essa-função-em-r" class="smaller ">
+<p>A ideia básica da programação defensiva é:</p>
 
 <ul>
-<li>No <a href='http://r-project.org/' title=''>R</a> já existe <code>factorial()</code>!</li>
-<li>De forma didática temos duas implementações:</li>
+<li>Evitar erros previsíveis, seja de ações incorretas dos usuários, ou condições adversas</li>
+<li>Existem diversas técnicas para proteger as suas funções desses possíveis erros, mas vamos focar principalmente em duas funções: <code>stop()</code> e <code>warning()</code>.</li>
 </ul>
 
-<pre class = 'prettyprint lang-r'>fatorial1 &lt;- function(n) {
-  if (!is.numeric(n)) stop(&quot;n deve ser numérico!&quot;, call. = FALSE)
-  if (n == 0 || n == 1) return(1)
-  prod(1:n)
+</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>stop()</em></h2></hgroup><article  id="a-sintaxe-e-semântica-da-função-stop" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>stop(..., call. = TRUE, domain = NULL),</pre>
+
+<p>em que:</p>
+
+<ul>
+<li><code>...</code> objeto a ser coagido a caractere;</li>
+<li><code>call.</code> argumento lógico. Se <code>TRUE</code> chamará parte da mensagem de erro;</li>
+<li><code>domain</code> argumento que representa o domínio, geralmente o nome do pacote em desenvolvimento. Esse argumento é utilizado juntamente com a função <code>gettext()</code> para a internacionalização do pacote.</li>
+</ul>
+
+<p><strong>Semântica</strong>: Chamado <code>stop()</code> no corpo de uma função, esta é encerrada e retornado a mensagem de erro, especificada na própria função.</p>
+
+</article></slide><slide class=""><hgroup><h2>A sintaxe e semântica da função <em>warning()</em></h2></hgroup><article  id="a-sintaxe-e-semântica-da-função-warning" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>warning(..., call. = TRUE, immediate. = FALSE, noBreaks. = FALSE,
+        domain = NULL),</pre>
+
+<p>em que:</p>
+
+<ul>
+<li><code>...</code> objeto a ser coagido a caractere;</li>
+<li><code>call.</code> argumento lógico. Se <code>TRUE</code> chamará parte da mensagem de erro;</li>
+<li><code>immediate.</code> argumento lógico indicando se a mensagem deve ser imediata (<code>TRUE</code>), ou apenas no final de toda a execução (<code>FALSE</code>);</li>
+<li><code>noBreaks.</code> argumento lógico, apresentando o número de linhas para apresentar a mensagem de alerta (isso ocorre quando <code>options(warn = 1)</code>). Sem quebras <code>TRUE</code>, com quebras <code>FALSE</code>;</li>
+<li><code>domain</code> argumento que representa o domínio, geralmente o nome do pacote em desenvolvimento. Esse argumento é utilizado juntamente com a função <code>gettext()</code> para a internacionalização do pacote.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  id="aplicações" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
+  # Suponha que no corpo da funcao, as operacoes devem ser
+  # realizadas apenas com um objeto sendo apenas caracter.
+  cat(&quot;Ufa, cheguei até o final, com o objeto teste igual a&quot;, teste, &quot;\n&quot;)
 }
+prog_def(teste = 1)
+## Ufa, cheguei até o final, com o objeto teste igual a 1 
+prog_def(teste = &quot;nada&quot;)
+## Ufa, cheguei até o final, com o objeto teste igual a nada 
+prog_def(expression(x ~y))
+## Ufa, cheguei até o final, com o objeto teste igual a 
+## Error in cat(&quot;Ufa, cheguei até o final, com o objeto 
+## teste igual a&quot;,  : argumento 2 (tipo &#39;expression&#39;) não 
+## suportado por &#39;cat&#39;</pre>
 
-fatorial2 &lt;- function(n) {
-  if (!is.numeric(n)) stop(&quot;n deve ser numérico!&quot;, call. = FALSE)
-  if (n == 0 || n == 1) return(1)
-  # Usando o loop
-  aux &lt;- 1
-  for(i in 2:n) {
-    aux &lt;- i * aux
-  } 
-  return(aux)
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  id="aplicações-stop" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
+  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;)
+  # Suponha que no corpo da funcao, as operacoes devem ser
+  # realizadas apenas com um objeto sendo apenas caracter.
+  cat(&quot;Ufa, cheguei até o final, com o objeto teste igual a&quot;, teste, &quot;\n&quot;)
+}
+prog_def(teste = 1)
+## Error in prog_def(teste = 1) : O argumento &#39;teste&#39; deve ser caractere! 
+prog_def(teste = &quot;nada&quot;)
+## Ufa, cheguei até o final, com o objeto teste igual a nada 
+prog_def(expression(x ~ y))
+## Error in prog_def(expression(x ~ y)) : 
+##  O argumento &#39;teste&#39; deve ser caractere! </pre>
+
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>stop()</em></h2></hgroup><article  id="aplicações-stop-1" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
+  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
+                                 call. = FALSE)
+  # Suponha que no corpo da funcao, as operacoes devem ser
+  # realizadas apenas com um objeto sendo apenas caracter.
+  cat(&quot;Ufa, cheguei até o final, com o objeto teste igual a&quot;, teste, &quot;\n&quot;)
+}
+prog_def(teste = 1)
+## Error: O argumento &#39;teste&#39; deve ser caractere! 
+prog_def(teste = &quot;nada&quot;)
+## Ufa, cheguei até o final, com o objeto teste igual a nada 
+prog_def(expression(x ~ y))
+## Error: O argumento &#39;teste&#39; deve ser caractere! </pre>
+
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  id="aplicações-warning" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
+  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
+                                 call. = FALSE)
+  cat(&quot;Executada linha de comando 1 \n&quot;)
+  if (teste == &quot;warning&quot;) {
+    warning(&quot;Mensagem de alerta, sem quebra! \n&quot;)
+    cat(&quot;Executada linha de comando após o \&quot;warning()\&quot;! \n&quot;)
+  }
+  if (teste == &quot;stop&quot;) stop(&quot;Após o \&quot;stop()\&quot;, nada será execudado! \n&quot;, 
+                            call. = FALSE)
+  if (!any(teste == c(&quot;warning&quot;, &quot;stop&quot;))) cat(&quot;Ufa, cheguei até o final! \n&quot;)
+}
+prog_def(teste = &quot;warning&quot;)
+## Executada linha de comando 1 
+## Executada linha de comando após o &quot;warning()&quot;! 
+## Warning message:
+## In prog_def(teste = &quot;warning&quot;) : Mensagem de alerta, sem quebra! </pre>
+
+</article></slide><slide class=""><hgroup><h2>Aplicações: <em>warning()</em></h2></hgroup><article  id="aplicações-warning-1" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
+  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
+                                 call. = FALSE)
+  cat(&quot;Executada linha de comando 1 \n&quot;)
+  if (teste == &quot;warning&quot;) {
+    warning(&quot;Mensagem de alerta, sem quebra! \n&quot;, immediate. = TRUE)
+    cat(&quot;Executada linha de comando após o \&quot;warning()\&quot;! \n&quot;)
+  }
+  if (teste == &quot;stop&quot;) stop(&quot;Após o \&quot;stop()\&quot;, nada será execudado! \n&quot;, 
+                            call. = FALSE)
+  if (!any(teste == c(&quot;warning&quot;, &quot;stop&quot;))) cat(&quot;Ufa, cheguei até o final! \n&quot;)
+}
+prog_def(teste = &quot;warning&quot;)
+## Executada linha de comando 1 
+## Warning in prog_def(teste = &quot;warning&quot;) :
+##  Mensagem de alerta, sem quebra! 
+## Executada linha de comando após o &quot;warning()&quot;! </pre>
+
+</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  id="aplicações-1" class="smaller ">
+
+<pre class = 'prettyprint lang-r'>prog_def &lt;- function(teste = &quot;tudo&quot;) {
+  if (!is.character(teste)) stop(&quot;O argumento &#39;teste&#39; deve ser caractere! \n&quot;, 
+                                 call. = FALSE)
+  cat(&quot;Executada linha de comando 1 \n&quot;)
+  if (teste == &quot;warning&quot;) {
+    warning(&quot;Mensagem de alerta, sem quebra! \n&quot;, immediate. = TRUE, 
+            call. = FALSE)
+    cat(&quot;Executada linha de comando após o \&quot;warning()\&quot;! \n&quot;)
+  }
+  if (teste == &quot;stop&quot;) stop(&quot;Após o \&quot;stop()\&quot;, nada será execudado! \n&quot;, 
+                            call. = FALSE)
+  if (!any(teste == c(&quot;warning&quot;, &quot;stop&quot;))) cat(&quot;Ufa, cheguei até o final! \n&quot;)
 }</pre>
 
-</article></slide><slide class=""><hgroup><h2>Executando as funções criadas</h2></hgroup><article  id="executando-as-funções-criadas" class="smaller ">
+</article></slide><slide class=""><hgroup><h2>Aplicações</h2></hgroup><article  id="aplicações-2" class="smaller ">
 
-<pre class = 'prettyprint lang-r'>factorial(5)</pre>
-
-<pre >## [1] 120</pre>
-
-<pre class = 'prettyprint lang-r'>fatorial1(5)</pre>
-
-<pre >## [1] 120</pre>
-
-<pre class = 'prettyprint lang-r'>fatorial2(5)</pre>
-
-<pre >## [1] 120</pre>
-
-</article></slide><slide class=""><hgroup><h2>Implementando agora de forma recursiva</h2></hgroup><article  id="implementando-agora-de-forma-recursiva" class="smaller ">
-
-<p>Exemplo anterior: \[
-\begin{align*}
-5! &amp; = 5 &amp; \times &amp; 4 &amp; \times &amp; 3 &amp; \times &amp; 2 &amp; \times &amp; 1\\
-f(n) &amp; = n &amp; \times &amp;  n - 1 &amp; \times &amp; (n - 1) - 1 &amp; \times &amp; (n - 2) - 1 &amp; \times &amp; (n - 3) - 1\\
-\end{align*}
-\] Em <a href='http://r-project.org/' title=''>R</a>:</p>
-
-<pre class = 'prettyprint lang-r'>fatorial3 &lt;- function(n) {
-  if (!is.numeric(n)) stop(&quot;n deve ser numérico!&quot;, call. = FALSE)
-  if (n == 0 || n == 1) return(1)
-  return(n * fatorial3(n - 1))
-}</pre>
-
-</article></slide><slide class=""><hgroup><h2>Entendo o código para \(5!\)</h2></hgroup><article  id="entendo-o-código-para-5" class="smaller ">
-
-<pre class = 'prettyprint lang-r'># Chamando fatorial3(5)
-fatorial3(5)
-# O que ocorre nos bastidores do R
-fatorial3(5)
-   |
-   --&gt; 5 * fatorial3(4)
-              |
-              --&gt; 4 * fatorial3(3)
-                         |
-                         --&gt; 3 * fatorial3(2)
-                                    |
-                                    --&gt; 2 * fatorial3(1)
-                                               |
-                                               --&gt; 1 * return(1) # Importantíssimo!
-                                                         |
-                                                         --&gt; fechamento de fatorial3()</pre>
-
-<pre class = 'prettyprint lang-r'>fatorial3(5)</pre>
-
-<pre >## [1] 120</pre>
+<pre class = 'prettyprint lang-r'>prog_def()
+## Executada linha de comando 1 
+## Ufa, cheguei até o final! 
+prog_def(teste = &quot;warning&quot;)
+## Executada linha de comando 1 
+## Warning: Mensagem de alerta, sem quebra! 
+## Executada linha de comando após o &quot;warning()&quot;! 
+prog_def(teste = &quot;stop&quot;)
+## Executada linha de comando 1 
+## Error: Após o &quot;stop()&quot;, nada será execudado! 
+prog_def(teste = 1)
+## Error: O argumento &#39;teste&#39; deve ser caractere! 
+prog_def(teste = &quot;nada&quot;)
+## Executada linha de comando 1 
+## Ufa, cheguei até o final! 
+prog_def(expression(x ~ y))
+## Error: O argumento &#39;teste&#39; deve ser caractere! </pre>
 
 </article></slide><slide class=""><hgroup><h2>Bons estudos!</h2></hgroup><article  id="bons-estudos" class="smaller ">
 
