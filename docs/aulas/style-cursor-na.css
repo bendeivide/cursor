@@ -1,0 +1,24 @@
+body {
+  background-image: url("open-book.jpg");
+  background-repeat: no-repeat;
+  background-size:100%;
+  font-size: 20px;
+}
+
+h1 {
+  /* Título  */
+  background-color: rgba(8, 66, 236, 0.3) /* tranparent */;
+  /* opacity: 0.3; */
+}
+
+div {
+  background-color: rgba(8, 66, 236, 0.3) /* tranparent */;
+  /* opacity: 0.3; */
+  /* opacity: 0.3; */
+  padding: 0em;
+  margin: 0;
+}
+
+p {
+
+}

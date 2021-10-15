@@ -1,0 +1,30 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 02 - Passos iniciais para a utilização do R e do RStudio"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation:
+    incremental: true
+    widescreen: true
+    smaller: false
+    transition: slower
+    logo: Rlogo.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Relembrando a aula anterior
+
+<center>
+![](promptr.png){width="80%"}
+</center>
+
+## Relembrando a aula anterior
+
+<center>
+![](ide_rstudio.png){width="80%"}
+</center>

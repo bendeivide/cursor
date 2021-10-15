@@ -1,0 +1,121 @@
+body {
+  background-image: url("open-book.jpg");
+  background-repeat: no-repeat;
+  background-size:100%;
+  font-size: 20px;
+  color: black;
+  /* font-family: "Times New Roman"; */
+}
+
+
+h1 {
+  background-color: rgba(247, 224, 130, 0.3) /* tranparent */;
+  /* opacity: 0.3; */
+  /* font-family: "Times New Roman"; */
+  font-size: 20px;
+}
+
+/* Título  */
+.title-slide hgroup h1 {
+    font-size: 50px;
+}
+
+/* Subtitulo */
+.title-slide hgroup h2 {
+    font-size: 30px;
+}
+
+/* titulo das seções */
+.auto-fadein h1 {
+  font-size: 20px;
+  /* font-family: "Times New Roman"; */
+}
+
+/* borda lateral do slide  */
+.slide-area {
+   background-color: rgba(247, 224, 130, 0.3);
+}
+
+/* Exemplo div:
+<div class="red2">
+This text is red
+</div>
+*/
+
+/* Corpo do texto */
+p {
+   /* font-family: "Times New Roman"; */
+   color: black;
+}
+
+/* Lista de Ítens */
+li {
+  font-style: italic;
+  color: black;
+  font-size: 20px;
+}
+
+/* Cross-reference  */
+a {
+  color: red;
+}
+
+/* Codigo em texto */
+code {
+  color: #286ec3;
+  font-size: 16px;
+  font-family: 'Source Code Pro', 'Courier New', monospace;
+}
+
+/* Codigo compilado */
+.prettyprint {
+    background-color: #ffe54dab;
+    line-height: 18px;
+}
+
+/* Linhas de comando em caixa */
+.prettyprint .pln {
+    color: #286ec3;
+    font-size: 14px;
+}
+
+/* Comentario do codigo em caixa */
+.prettyprint .com {
+  color: red;
+}
+
+/* Resultado da execucao do codigo */
+pre {
+  color: #47627d;
+  font-size: 10px;
+  line-height: 18px;
+}
+
+/* Configuracoes de tabelas */
+table.rmdtable th {
+    color: white;
+    font-size: 16px;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(40%, #4387fd), color-stop(80%, #2a7cdf)) no-repeat;
+    background: -webkit-linear-gradient(top, #4396fd8c 40%, #2a7cdf 80%) no-repeat;
+    background: -moz-linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
+    background: -o-linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
+    background: linear-gradient(top, #4387fd 40%, #2a7cdf 80%) no-repeat;
+}
+
+table.rmdtable td, table th {
+    font-size: 16px;
+    padding: 0.5em 0.5em;
+}
+
+.nota {
+  padding: 0.1em;
+  background-color: rgba(247, 224, 130, 0.3);
+  color: white;
+  border: 2px solid orange;
+  border-radius: 10px;
+}
+.center {
+  text-align: center;
+}
+
+.cols {display: flex; }

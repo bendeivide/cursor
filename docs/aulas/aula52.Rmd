@@ -1,0 +1,94 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 52 - Programação funcional: Introdução"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Introdução 
+
+- Segundo princípio do `r rlink`: Tudo é uma chamada de função
+- Uma função também é um objeto assim como os vetores
+
+
+## Quantas chamadas de funções temos aqui?
+
+```{r echo=TRUE, include=TRUE}
+x <- mean(1:10); x
+```
+
+1) `<-`
+2) `mean`
+3) `:`
+4) `(`
+5) `print`
+
+## Revisitando o Módulo Básico e módulo presente
+
+- Escopo léxico
+- superatribuição
+- Escopo dinâmico
+- Funções de primeira classe
+- Ambientes em funções
+- máscaras de nomes (Ambiente de execução)
+- novo início (Ambiente de execução)
+- função anônima
+- etc
+
+## Funções *closure* e *primitivas*
+
+- Funções `closure`: `formals()`, `body()`, `environment()`
+- Funções primitivas: desenvolvidas em linguagem `C`
+  - `special`
+  - `builtin`
+  - Todas escritas no pacote `base`
+  
+## Chamada de função
+
+1) `nome_funcao(args)`
+2) Usando `list()`:
+
+```{r echo=TRUE, include=TRUE, fig.width=6, fig.height= 3}
+argumentos <- list(x = 1:10, main = "Gráfico", xlab = "Eixo X", ylab = "Eixo Y")
+do.call(plot, argumentos)
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>

@@ -1,0 +1,57 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 12 - Listas"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introdução
+
+As listas **são como vetores atômicos**, porém **mais complexos**, isto é, os elementos de uma lista são vetores atômicos, como também outras listas, funções, expressões. Esta última é o que chamamos de **objetos recursivos**. A forma de se obter uma lista é pela função `list()`.
+
+## Criando uma lista
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando uma lista 
+(l0 <- list(1:3, letters[5], list(1, 2)))
+```
+
+## Indexação de uma lista
+
+```{r echo=TRUE, prompt=TRUE}
+# Primeiro elemento (objeto)
+l0[[1]]
+# Primeiro valor do primeiro elemento (objeto)
+l0[[1]][1]
+```
+
+## Outra forma de indexação de uma lista
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando uma lista
+l0 <- list(l01 = 1:3, 
+           l02 = letters[5], 
+           l03 = list(1, 2, 3))
+# Imprimindo o primeiro elemento (objeto) da lista 'l0'
+l0$l01
+# Imprimindo o segundo
+l0$l02
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>

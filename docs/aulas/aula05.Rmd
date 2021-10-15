@@ -1,0 +1,149 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 05 - Comandos no R e Ambiente Global"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: false
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Console e Prompt de comando no R
+
+- **Console**: Tela de inserir e visualizar os comandos;
+- **Prompt de comando**: Símbolo "`>`", pronto, pode inserir os comandos!
+
+```{r echo=TRUE, prompt=TRUE, comment=""}
+# Veja o símbolo do prompt de comando usual "`>`"
+10 + 10
+```
+
+```{r echo=TRUE, prompt=TRUE, comment="", collapse=FALSE}
+# Veja a indexação [i] no resultados dos comandos
+1:20
+```
+
+## Console e Prompt de comando no R
+
+```{r echo=TRUE, prompt=TRUE, comment=""}
+# Modificando o símbolo do prompt de comando 
+# usual "`>`" para "`R>`"
+options(prompt = "R> ")
+10 + 10
+```
+
+```{r echo=FALSE}
+# Para retornar ">"
+options(prompt = "> ")
+```
+
+
+## Nomes sintáticos e não sintáticos
+
+A escolha do nome associado a um objeto tem algumas regras:
+
+- Deve consistir em letras, dígitos, `.` e `_`;
+- Os nomes devem ser iniciado por uma letra ou um ponto não seguido de um número, isto é, Ex.: `.123`, `1n`, dentre outros;
+- As letras maiúsculas se distinguem das letras minúsculas;
+- Não pode inicia por `_` ou dígito, é retornado um erro no console caso isso ocorra;
+- Não pode usar qualquer uma das palavras reservadas pela linguagem, isto é, `TRUE`, `FALSE`, `if`, `for`, dentre outras, que pode ser consultado usando o comando `?Reserved()`.
+
+## Exemplos de nomes
+
+```{r echo=TRUE, error=TRUE, prompt=TRUE, comment=""}
+nome <- "Ben"
+
+# Nome não sintático
+.123 <- 50
+
+# Qual a sugestão de nome sintático para '.123'?
+make.names(.123)
+```
+
+## Comandos elementares
+
+- **Expressões**
+- **Atribuições**
+
+### Expressões
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE, comment=""}
+10 + 15
+```
+
+```{r echo=TRUE, eval=TRUE, error=TRUE, prompt=TRUE, comment=""}
+10,5 + 15,5
+```
+
+## Comandos elementares
+
+### Expressões
+
+```{r echo=TRUE, eval=TRUE, error=TRUE, prompt=TRUE, comment=""}
+invisible(10.5 + 15.5)
+```
+
+## Comandos elementares
+
+### Atribuições
+
+```{r echo=TRUE, prompt=TRUE, comment=""}
+# Foi criado um objeto do tipo caractere e o nome "meu_nome" foi 
+# associado a ele O 'R' avalia essa expressão, mas não imprime 
+# no console!
+meu_nome <- "Ben"
+
+# Para imprimir o resultado da expressão, digitamos o nome 
+# "meu_nome" no console e apertamos o botão ENTER # do teclado!
+meu_nome
+```
+
+## Mais de um comando por linha
+
+```{r echo=TRUE, prompt=TRUE, comment=""}
+# Uma linha de comando por vez
+meu_nome <- "Ben" # Criamos e associamos um nome ao objeto
+meu_nome # Imprimos o objeto
+
+# Tudo em uma linha de comando
+meu_nome <- "Ben"; meu_nome
+```
+
+## Um comando em mais de uma linha
+
+```{r echo=TRUE, prompt=TRUE, comment=""}
+# Uma linha de comando em mais de uma linha
+(10 + 10) /
+  2
+```
+
+- Observe que em todos os comandos, algumas linhas iniciamos pelo símbolo de jogo da velha ("`#`"). Esta linha representará um comentário, e o `R` desprezará a avaliação dessa linha de comando.
+
+## Ambiente Global
+
+```{r echo=FALSE}
+rm("meu_nome", "nome")
+```
+
+
+```{r echo=TRUE, prompt=TRUE, comment=""}
+# Nomes criados no ambiente 
+x <- 10 - 6; y <- 10 + 4; w <- "Maria Isabel"
+# Verificando o nomes contidos no ambiente global
+ls()
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>

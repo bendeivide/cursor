@@ -1,0 +1,62 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 21 - *NAMESPACE* de um pacote"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: true
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Anexando pacotes
+library(magrittr)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+```
+
+## Introdução
+
+- *NAMESPACE*: Componente do esqueleto básico de um pacote
+- Todo pacote hoje, deve ter um arquivo *NAMESPACE*
+- O que é?
+  - Exporta funções do pacote
+  - Importa funções para o pacote
+  
+## Exemplo de aplicação do *NAMESPACE*
+
+```{r echo=TRUE, eval=TRUE}
+# Vamos criar uma funcao
+dim <- function(x) c(1, 1)
+# Vamos verificar o corpo da funcao nrow do pacote base
+nrow
+# O que acontecera com...?
+dim(mtcars)
+# e com ...?
+nrow(mtcars)
+```
+
+  
+## Código básico de um arquivo *NAMESPACE*
+<center>
+```
+exportPattern("^[^\\.]")
+```
+<center/>
+
+## Bons estudos!
+
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
+
+

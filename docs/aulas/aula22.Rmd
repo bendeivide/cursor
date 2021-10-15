@@ -1,0 +1,58 @@
+---
+title: "Programação em R (Nível Básico)"
+subtitle: "Aula 22 - Quando devemos utilizar os operadores `::` e `:::`"
+author: "Ben Deivide"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+bibliography: biblio.bib
+link-citations: true
+output: 
+  ioslides_presentation:
+    smaller: true
+    transition: slower
+    logo: logo2.png
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Anexando pacotes
+library(magrittr)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+```
+
+## Introdução
+
+- Relembrando do arquivo *NAMESPACE*
+  - Funções exportadas
+  - Funções internas
+- Relembrando sobre o carregamento e anexação de pacotes
+- Caminho de busca
+
+## Operadores `::` e `:::`
+
+- Finalidade `::`
+- Finalidade `:::`
+
+## Exemplo
+
+```{r, echo=TRUE, prompt=TRUE}
+# Instale o pacote SMR
+# install.packages(SMR) 
+SMR::pSMR(q = 2, size = 10, df = 3)
+# Carregando e chamando funcoes nao exportadas ao pacote
+SMR:::GaussLegendre(size = 4)
+```
+
+
+
+## Bons estudos!
+
+
+<center>
+[![](logo2.png){height=500 width=500}](http://youtube.com/bendeivide){target="_blank"}
+</center>
+
+

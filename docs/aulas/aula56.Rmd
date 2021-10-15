@@ -1,0 +1,142 @@
+---
+title: "Curso R: Programação em R (Nível Intermediário)"
+subtitle: "Aula 56 - Programação funcional: Saídas implícitas, explícitas, invisíveis de funções"
+author: "Ben Dêivide"
+bibliography: biblio.bib
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    transition: slower
+    logo: logo2.png
+    css: style-cursor-ni2.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+<!--
+YAML:
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+=====
+APRESENTACAO:
+
+Inserir nas secoes:
+{data-background=boards.jpg data-background-size=cover}
+-->
+
+
+## Selo DC
+
+<center>
+[![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
+</center>
+
+## Introdução
+
+No [módulo Básico](https://bendeivide.github.io/cursor/nbasico.html), vimos:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+nova_funcao <- function(x) {
+  # Corpo da funcao
+  x
+}
+```
+
+## Saída implícita e visível
+
+```{r echo=TRUE, include=TRUE}
+# Funcao com saida implicita
+nova_funcao <- function(x) {
+  # Corpo da funcao
+  x
+}
+nova_funcao(2)
+# Funcao com saida implicita sem resultado
+nova_funcao2 <- function(x) {
+  # Corpo da funcao
+  x <- x
+}
+nova_funcao2(4)
+```
+
+## Saída explícita e visível
+
+```{r echo=TRUE, include=TRUE, error=TRUE, collapse=TRUE}
+num_par_ou_impar <- function(x) {
+  if (!is.numeric(x)) stop("o argumento x deve ser numerico", call. = FALSE)
+  num <- as.integer(x)
+  if (num %% 2 == 0) {
+    return("Número par!")
+  } else return("Número ímpar!")
+}
+# Numero real eh coagido a inteiro sem arredondamento
+num_par_ou_impar(1.6)
+# Programacao defensiva (x deve ser numerico)
+num_par_ou_impar(TRUE)
+# Verificando se um numero eh par ou impar
+num_par_ou_impar(6)
+```
+
+## Saída invisível
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
+# Funcao com saida invisivel
+estdes <- function(x) {
+  plot(x)
+  resumo <- summary(x)
+  invisible(resumo)
+}
+# Conjunto de dados
+y <- rexp(30)
+# Chamando estdes
+res <- estdes(y)
+```
+
+## Saída invisível
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
+# Imprimindo o resultado invisivel
+res
+# Formas alternativas
+print(estdes(y))
+```
+
+## Saída invisível
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
+# Formas alternativas
+(estdes(y))
+```
+
+## Saída invisível
+
+```{r echo=TRUE, include=TRUE, collapse=TRUE, fig.height=3}
+# Sinalizador de visibilidade
+withVisible(estdes(y))
+```
+
+
+## Exemplo de função com saída invisível
+
+```{r echo=TRUE, include=TRUE}
+# Funcao `<-`() com saida invisivel
+x <- 10
+# Acessando o valor do obj associado com o nome 'x'
+x
+# Outra forma de acesso
+(x <- 10)
+```
+
+## Bons estudos!
+
+<center>
+[![](logo2.png){height=500 width=500}](https://bendeivide.github.io/courses/cursor/){target="_blank"}
+</center>
