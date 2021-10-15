@@ -39,6 +39,68 @@ Inserir nas secoes:
 [![](SeloDC-preto.png){height=300 width=300}](https://bendeivide.github.io/dc/){target="_blank"}
 </center>
 
+## Introdução
+
+
+
+## Introdução
+
+:::::: {.cols data-latex=""}
+
+::: {.col data-latex="{10\textwidth}"}
+- *Git* é um sistema de controle de versões, usado principalmente para o desenvolvimento de *software*;
+- Desenvolvido pelo criador do sistema Linux, Linus Tovalds, juntamente com Junio Hamano;
+- A ideia do sitema *Git* é trazer um histórico das versões do *software* de modo mais detalhado das revisões;
+- Existem diversas plataformas que hospedam o código-fonte usando o *Git*, com os mais populares, *Github* e *Gitlab*;
+- o *Github* recentemente foi vendido para a *microsoft*, em 2018, por nada mais que $US\$ 7,5$ bilhões
+:::
+
+::: {.col data-latex="{0.05\textwidth}"}
+<center>
+![](git.png){width="50%"}
+</br>
+</br>
+</br>
+![](github.png){width="50%"}
+</center>
+:::
+
+::::::
+
+## Por que usar o *Github*?
+
+- Para os usuários e desenvolvedores em `r rlink`, é uma ferramenta que rastreia as alterações do seu código, bem como o compartilhamento dessas mudanças com outros usuários;
+- É o sistema de controle de versão mais popular para desenvolvedores de pacote `r rlink`;
+- Colaborações e detecção de erros rapidamente em seus códigos compartilhado e auxiliados por outros usuários;
+- Projetos de pacotes `r rlink` podem ser instalados em duas linhas de comando:
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+install.packages("devtools")
+devtools::install_github("username/packagename")
+```
+- Com o Github, os usuários podem navegar pelo seu código, ler documentações, relatar *bugs*;
+- É possível criar facilmente *sites* via RStudio, e hospedá-los no Github; desenvolver, páginas pessoais/profissionais, páginas de pacotes, etc;
+- o Github permite que dois colaboradores trabalhem no projeto sem conflitos de arquivos. Já experienciou fazer no Dropbox?
+- Isso não significa que isso é exclusivo apenas ao Github, mas a sua popularidade mostra o quão efetivo é a plataforma.
+
+## Instalação, criação e sincronização de repositório
+
+- PASSO 1: Instalar o Git <https://git-for-windows.github.io/> (Windows)
+   - Detalhes da instalação para todos os SOs (<https://happygitwithr.com/install-git.html>)
+- PASSO 2: Faca uma conta GitHub (<http://github.com/>)
+- PASSO 3: Crie um repositório Git
+- PASSO 4: Sincronize o repositório Git com um repositório local
+
+OBS.: Com o RStudio, os PASSOS 3 e 4 podem ser feitos de diversas formas!
+
+## Instalações de pacotes
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+install.packages("rmarkdown", "knitr")
+```
+
+## Credenciais 
+
 
 ## Bons estudos!
 

@@ -117,3 +117,5 @@ table.rmdtable td, table th {
 .center {
   text-align: center;
 }
+
+.cols {display: flex; }
