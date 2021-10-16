@@ -156,6 +156,15 @@ gitcreds::gitcreds_set()
 ![](rstudio.png)
 </center>
 
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+# Cria um projeto
+usethis::create_project("nome_projeto")
+# Passos seguintes
+usethis::use_git()
+usethis::use_github()
+```
+
+
 ## Passos para enviar alterações localmente para o GitHub
 
 <center>
