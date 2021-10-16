@@ -1,6 +1,6 @@
 ---
 title: "Curso R: Programação em R (Nível Intermediário)"
-subtitle: "Aula 63 - Projetos no Github"
+subtitle: "Aula 63 - Projetos no GitHub"
 author: "Ben Dêivide"
 bibliography: biblio.bib
 date: "`r format(Sys.time(), '%d %B, %Y')`"
@@ -41,10 +41,6 @@ Inserir nas secoes:
 
 ## Introdução
 
-
-
-## Introdução
-
 :::::: {.cols data-latex=""}
 
 ::: {.col data-latex="{10\textwidth}"}
@@ -67,7 +63,7 @@ Inserir nas secoes:
 
 ::::::
 
-## Por que usar o *Github*?
+## Por que usar o *GitHub*?
 
 - Para os usuários e desenvolvedores em `r rlink`, é uma ferramenta que rastreia as alterações do seu código, bem como o compartilhamento dessas mudanças com outros usuários;
 - É o sistema de controle de versão mais popular para desenvolvedores de pacote `r rlink`;
@@ -78,10 +74,10 @@ Inserir nas secoes:
 install.packages("devtools")
 devtools::install_github("username/packagename")
 ```
-- Com o Github, os usuários podem navegar pelo seu código, ler documentações, relatar *bugs*;
+- Com o GitHub, os usuários podem navegar pelo seu código, ler documentações, relatar *bugs*;
 - É possível criar facilmente *sites* via RStudio, e hospedá-los no Github; desenvolver, páginas pessoais/profissionais, páginas de pacotes, etc;
 - o Github permite que dois colaboradores trabalhem no projeto sem conflitos de arquivos. Já experienciou fazer no Dropbox?
-- Isso não significa que isso é exclusivo apenas ao Github, mas a sua popularidade mostra o quão efetivo é a plataforma.
+- Isso não significa que isso é exclusivo apenas ao GitHub, mas a sua popularidade mostra o quão efetivo é a plataforma.
 
 ## Instalação, criação e sincronização de repositório
 
@@ -96,10 +92,88 @@ OBS.: Com o RStudio, os PASSOS 3 e 4 podem ser feitos de diversas formas!
 ## Instalações de pacotes
 
 ```{r echo=TRUE, include=TRUE, eval=FALSE}
-install.packages("rmarkdown", "knitr")
+install.packages("rmarkdown", "knitr", "usethis")
 ```
 
-## Credenciais 
+## Configurações básicas de acesso ao GitHub
+
+- Configurando o Git Bash ao RStudio
+- Configuração do nome e e-mail (*Git bash*)
+
+```bash
+$ git config --global user.name "seu_nome"
+$ git config --global user.email "seu_email (o mesmo github)"
+```
+
+- Configuração do nome e e-mail (RStudio)
+
+```{r echo=TRUE, include=TRUE, eval=TRUE}
+usethis::use_git_config(user.name = "seu_nome", # Seu nome
+                        user.email = "seu_email (o mesmo github)") # Seu email
+```
+
+- Verificando essas configurações (RStudio)
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+usethis::git_sitrep()
+```
+
+## Configurações básicas de acesso ao GitHub
+
+- Configurando o *tokens* (RStudio)
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+usethis::browse_github_token()
+```
+
+- Configurando o arquivo `.Renviron`
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+usethis::edit_r_environ()
+```
+
+- Editando o arquivo `.Renviron`:
+
+```
+GITHUB_PAT=ghp_xxxyyyzzz...
+```
+
+- Configurando as credenciais *tokens*
+
+```{r echo=TRUE, include=TRUE, eval=FALSE}
+gitcreds::gitcreds_set()
+```
+
+
+## Clonando um repositório
+
+<center>
+![](rstudio.png)
+</center>
+
+## Criando um repositório diretamente do RStudio
+
+<center>
+![](rstudio.png)
+</center>
+
+## Passos para enviar alterações localmente para o GitHub
+
+<center>
+![](rstudio.png)
+</center>
+
+- Usando o *Git Bash*
+
+```bash
+$ git init
+$ git add .
+$ git commit -m "Comentário em texto"
+$ git push
+```
+
+
+
+
 
 
 ## Bons estudos!
