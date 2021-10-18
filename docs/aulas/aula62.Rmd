@@ -119,7 +119,7 @@ Após encerrar o projeto:
 - `.RData` /`.Rhistory` são gravados no diretório do projeto, se foram configuradas para tal;
 - a lista de documentos de código aberto é salva;
 - As configurações do RStudio são salvas;
-- Por fim, a sesão `r rlink` é encerrada.
+- Por fim, a sessão `r rlink` é encerrada.
 
   
 ## Bons estudos!
