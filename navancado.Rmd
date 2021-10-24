@@ -1,0 +1,111 @@
+---
+title: "Programação em R (Nível Avançado)"
+description: |
+  Esse módulo ...
+bibliography: biblio.bib
+link-citations: true
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+# Sumário 
+
+- Em construção...
+
+##
+
+# <i class="fas fa-folder-open"></i> Materiais para este módulo {#materiais}
+
+
+## Slides de Aulas {#slidesaulas}
+
+ - Aula 00: [Apresentação do Curso](aulas/aula00.html)
+ - Aula 01: [Revisão de como o R trabalha]()
+
+## Scripts {#scripts}
+ - Script 00: 
+
+
+## Scripts via  [Shiny](https://shiny.rstudio.com/) {#shiny}
+
+[Curso R via Shiny](https://bendeivide.shinyapps.io/Curso-R/)
+
+# <i class="fas fa-book"></i> Apresentação do curso {#apresentacao}
+
+
+# Tokens
+
+<!-- https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Tokens -->
+
+# A vida secreta dos objetos `r rlink`
+
+<!-- Cópia de objetos -->
+<!-- .Internal(inspet(obj)) -->
+<!-- https://www.brodieg.com/2019/02/18/an-unofficial-reference-for-internal-inspect/ -->
+<!-- https://stat.ethz.ch/pipermail/r-help/2003-July/036437.html -->
+
+
+# Otimização de rotinas
+
+<!-- https://adv-r.hadley.nz/perf-measure.html -->
+<!-- https://adv-r.hadley.nz/perf-improve.html -->
+<!-- https://adv-r.hadley.nz/rcpp.html -->
+
+
+# R Interface 
+
+Aprofundar o conteúdo sobre o [R Internals](https://cran.r-project.org/doc/manuals/r-release/R-ints.html), apresentando as interfaces para a linguagem `C` e `FORTRAN`.
+
+## falar dos tipos de linguagens que interagem com o R
+
+- Jupyter
+- Julia
+- java
+- JavaScript
+- python
+- SAS
+- SQL
+- Perl
+- HTML
+- CSS
+- tcl/tk
+- GTK+
+- C/C++
+- Fortran
+
+
+# Falar sobre os pacotes que auxiliam nessa interação entre linguagens e programas
+
+# Importação/Exportação de dados
+
+- Usar <https://cran.r-project.org/doc/manuals/r-release/R-data.html>
+
+- Como modelo de ideias: <http://www.sthda.com/english/wiki/import-and-export-data-using-r>
+
+- Falar sobre API's para importação de dados, etc...
+
+- Big Data, mineração de dados, gerenciamento de banco de dados (DBMS)
+
+# Desenvolvimento de pacotes
+
+Falar sobre a discussão realizada em  https://cran.r-project.org/doc/manuals/r-release/R-exts.html#DOCF1
+
+## Ver todas as atualizacoes do R
+
+https://cran-archive.r-project.org/bin/windows/base/old/
+
+- Verificar quando houve a introdução no NAMESPACE nos pacotes
+
+## Adicionais
+
+- desempenho
+- depuração
+- simulação

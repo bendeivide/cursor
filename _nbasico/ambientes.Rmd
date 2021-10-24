@@ -1,0 +1,276 @@
+# <i class="fas fa-align-justify"></i> Ambientes e Caminho de busca {#search_path}
+
+
+Na seção sobre [funções](#funcoes), discutimos dois pontos interessantes sobre objetos, que é a atribuição e o escopo. E esses dois pontos estão intimamente relacionados ao objeto ambiente, de tipo `"environment"`. O ambiente é um objeto que armazena, em forma de lista, as ligações dos nomes associados aos objetos. Porém, existem diferenças entre o objeto lista do objeto ambiente, com quatro exceções (@hadley2019):
+
+- Cada nome deve ser único;
+- Os nomes em um ambiente não são ordenados;
+- Um ambiente tem um pai ou também chamado de ambiente superior;
+- Ambientes não são copiados quando modificados.
+
+Muitas dessas definições são complexas para esse momento. E uma profundidade sobre o assunto, será abordada no módulo [Programação em R (Nível Intermediário)](nintermediario.html). Contudo, introduziremos algumas características importantes para os objetos do tipo `environment`.
+
+O ambiente de trabalho do `r rlink` é conhecido como ambiente global, pois é onde todo o processo de interação da linguagem ocorre. Existe um nome específico associado a esse objeto, que é `.GlobalEnv`, ou também pode ser acessado pela função `globalenv()`. Para sabermos quais os nomes que existem nesse ambiente, usamos a função `ls()`, isto é,
+
+```{r}
+if (length(ls()) != 0) rm(list = ls())
+```
+
+```{r, echo=TRUE, prompt=TRUE}
+# Nomes no ambiente global
+ls()
+```
+
+
+Quando o resultado da função é `character(0)`, significa que não existem nomes criados no ambiente global. O ambiente corrente de trabalho é informado pela função `environment()`, isto é,
+
+```{r, echo=TRUE, prompt=TRUE, error=TRUE}
+# Comparando os ambientes
+identical(environment(), .GlobalEnv)
+
+# Forma errada de comparar ambientes (Erro...)
+environment() == .GlobalEnv
+```
+A segunda forma é equivocada, porque  o operador *booleano*, `==`, é aplicado apenas a vetores, e o objeto ambiente não é um vetor. Acrescentamos ainda que não podemos utilizar o sistema de indexação, isto é,
+
+```{r echo=TRUE, prompt=TRUE, error=TRUE}
+# Criando objetos no ambiente global
+b <- 2; a <- "Ben"; x <- TRUE
+# Verificando os nomes no ambiente global
+ls()
+
+# Acessando o objeto "a"
+.GlobalEnv$a
+.GlobalEnv[["a"]]
+
+# Acessando o primeiro nome (Erro...)
+.GlobalEnv[[1]]
+
+```
+
+```{r}
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+A última linha de comando retorna um erro, porque os nomes em ambientes não são ordenados, ao invés, devemos chamar os resultados por meio de `$` ou `[[<nome_obj>]]`.
+
+Poderemos criar um ambiente pela função `new.env()`, e inserir ligações dentro dele, como apresentados a seguir.
+
+```{r}
+if (length(ls()) != 0) rm(list = ls())
+```
+
+```{r, echo=TRUE, prompt=TRUE}
+# Criando objetos no ambiente global
+b <- 2; a <- "Ben"; x <- TRUE
+# Verificando os nomes no ambiente global
+ls()
+# Criando um objeto ambiente no ambiente global
+amb1 <- new.env()
+# Inserindo nomes nesse no ambiente "amb1"
+amb1$d <- 3; amb1$e <- "FALSE"
+# Verificando nomes no ambiente global
+ls()
+# Verificando nomes no ambiente "amb1"
+ls(envir = amb1)
+```
+
+```{r}
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+
+Todo ambiente tem um ambiente pai ou ambiente superior. Quando um nome não é encontrado no ambiente corrente, o `r rlink` procurará no ambiente pai. Para saber, use `parent.env()`, isto é,
+
+```{r, echo=TRUE, prompt=TRUE}
+parent.env(amb1)
+```
+
+O único ambiente que não tem pai é o ambiente vazio, objeto `emptyenv()`, que pode ser observado pela linha de comando:
+
+```{r, echo=TRUE, prompt=TRUE, error=TRUE}
+parent.env(emptyenv())
+```
+
+## A superatribuição `<<-` {#superatr}
+
+A atribuição (`<-`) é uma função que associa um nome a um objeto no ambiente corrente. Quando usamos o `r rlink`, quase sempre esse ambiente é o ambiente global. A superatribuição (`<<-`) cria um nome e o associa a um objeto no ambiente pai do ambiente de onde essa associação está sendo criada. Vejamos,
+
+```{r, echo=TRUE, prompt=TRUE, error=TRUE}
+# Criando o objeto x e o imprimindo
+x <- 0; x
+# Criando uma funcao com a superatribuicao
+f1 <-  function() {
+  # Obj2
+  x <- 1
+  # Modificando x do ambiente global
+  x <<- 2
+  # Imprimindo o ambiente de execucao
+  env <- environment()
+  # Imprimindo o Obj2
+  res <- list(x = x, "Ambiente de execução" = env, "Ambiente Pai" = parent.env(env))
+  # Retornando a lista
+  return(res)
+}
+# Imprimindo f1
+f1()
+# Imprimindo x
+x
+# Imprimindo o ambiente envolvente de f1
+environment(f1)
+# Imprimindo os nomes do ambiente global
+ls()
+```
+
+Esse caso é interessante porque vemos dois nomes associados a objetos em ambientes diferentes. Alguns ambientes são criados pela função `function()`, são os chamados ambientes funcionais. Um deles é o ambiente envolvente, já comentado na seção sobre [funções](#esc_lexico). O ambiente envolvente da função `f1` é o ambiente global. Já no corpo da função `f1`, um outro ambiente surge quando a função é chamada, é o ambiente de execução. Toda vez que a função é chamada, cria-se um novo ambiente de execução. Observemos os identificadores, em `Ambiente de execução`, quando executamos a função mais de uma vez,
+
+```{r, echo=TRUE, prompt=TRUE}
+f1()$`Ambiente de execução`
+f1()$`Ambiente de execução`
+f1()$`Ambiente de execução`
+```
+
+O ambiente pai do ambiente de execução, é o ambiente envolvente de `f1`, que nesse caso é o ambiente global. Assim, observe que o ocorre quando executamos o comando de superatribuição. O nome `x` no ambiente global passou a está associado ao valor 2, porque foi alterado por `<<-`, mas o nome `x` continuou associado ao valor 1, porque a função `f1()` retornou o valor 1. Isso mostra que a superatribuição não cria um objeto no ambiente atual, mas em um ambiente pai se não existe ou altera o nome existente. Vejamos o complemento dessa afirmação no próximo exemplo.
+
+```{r}
+if (length(ls()) != 0) rm(list = ls())
+```
+
+```{r, echo=TRUE, prompt=TRUE}
+# Verificando os nomes no ambiente global
+ls()
+
+# Criando uma funcao
+f2 <-  function() {
+  x <<- 2
+}
+# Executando f2
+f2()
+# Verificando novamente os nomes no ambiente global
+ls()
+# Verificando o valor de x
+x
+```
+
+```{r}
+# Links
+rlink <- "[R](http://r-project.org/){target='_blank'}"
+rstudio <- "[RStudio](http://rstudio.org/){target='_blank'}"
+cran <- "[CRAN](http://cran.r-project.org/){target='_blank'}"
+github <- "[GitHub](http://github.com/){target='_blank'}"
+```
+
+Com a superatribuição executada dentro de `f2()` e como no ambiente pai não eistia o nome `x`, este foi criado e associado ao valor `2`. Um próximo exemplo, consideramos um ambiente envolvente que não seja o ambiente global. Vejamos,
+
+```{r, echo=TRUE, prompt=TRUE}
+# Funcao contador
+contador <- function() {
+  i <- 0
+  env1 <- environment()
+  aux <- function() {
+    # do something useful, then ...
+    i <<- i + 1
+    env2 <- environment()
+    res2 <- list(i = i, `AmbExec_aux` = env2, `AmbExec_contador` = env1)
+    return(res2)
+  }
+}
+# Chamada de funcao
+contador1 <- contador()
+contador1()
+contador1()
+contador1()
+
+# Chamada de funcao
+contador2 <- contador()
+contador2()
+```
+
+Quando uma função `function()` é criada dentro de outra função `function()` o ambiente de execução da função superior, `contador()`, é o ambiente envolvente da função interna, `aux()`. Dessa forma, o ambiente de execução de `contador()` não será mais efêmero, isto é, não será apagado após a execução, como pode ser visto em `contador1()`. Observamos que executamos `contador1()` três vezes. O nome `i` foi atualizado, devido a superatribuição, a cada chamada da mesma função. Ao passo que, quando realizamos uma nova chamada de `contador()`, por meio de `contador2()`, o resultado de `i` retora o valor `1`, porque um novo ambiente de execução para `contador()` foi criado, como pode ser observado.
+
+Os demais ambiente funcionais e exemplos, serão descritos no módulo [Programação em R (Nível Intermediário)](nintermediario.html).
+
+## Caminho de busca
+
+Por fim, uma última forma do `r rlink` encontrar os nomes é pelo **caminho de busca**, que além dos ambientes criados e o ambiente global, existem os ambientes de pacotes. Toda vez que um pacote é anexado ao caminho de busca, o ambiente de pacote anexado será sempre o pai do ambiente global. Vejamos,
+
+```{r}
+library(SMR)
+library(midrangeMCP)
+detach("package:SMR", unload = TRUE)
+detach("package:midrangeMCP", unload = TRUE)
+```
+
+```{r, echo=TRUE, prompt=TRUE}
+# Caminho de busca
+search()
+# Anexando o pacote SMR
+library(SMR)
+# Verificando o caminho de busca
+search()
+# Carregando o pacote midrangeMCP
+library(midrangeMCP)
+# Verificando o caminho de busca
+search()
+```
+
+A lista dos ambientes no caminho de busca segue a ordem hierárquica dos ambientes, de modo que o ambiente global será sempre o ambiente de trabalho, isto é, o ambiente corrente. Não foi apresentado nessa lista, o ambiente vazio, `emptyenv()`. Mas, poderemos utilizar o pacote [rlang](https://rlang.r-lib.org/) para isso.
+
+```{r echo=TRUE, prompt=TRUE}
+# Criando um ambiente
+amb2 <- new.env()
+# Verificando seus parentais
+rlang::env_parents(env = amb2, last = emptyenv())
+```
+
+Dessa forma, é caminho de busca que o `r rlink` procurará pelos nomes. Isso significa, que se o ambiente envolvente de uma função, por exemplo, for o ambiente vazio, o `r rlink` procurará pelas funções básicas no pacote *base* e não será encontrado, pois nesse ambiente não há nomes e nem ambientes parentais. Por isso, que o `r rlink` depende do escopo léxico para tudo. Vejamos,
+
+```{r echo=TRUE, prompt=TRUE, error=TRUE}
+# Criando uma funcao
+f3 <- function() x + 1
+
+# Modificando o ambiente envolvente de f3
+environment(f3) <- emptyenv()
+
+# Dependencias externas da funcao f3
+codetools::findGlobals(f3)
+
+# Chamando a funcao f3
+f3()
+```
+
+Isso não ocorre quando definimos o ambiente envolvente de `f3()` como sendo o ambiente global, porque quando a função buscar pelo operador de soma neste ambiente e não encontrar, `f3()` seguirá até o ambiente `package:base`, para encontrar o operador "`+`".
+
+Por isso, que usar a função `attach()` para anexar objetos do tipo quadro de dados (*data frames*), por exemplo, pode se tornar um problema em um código, quando temos nomes iguais para objetos diferentes. Para isso, apresentamos o código a seguir.
+
+```{r echo=TRUE, prompt=TRUE, error=TRUE}
+# objeto quadro de dados
+dados <- data.frame(sd = 1:3, var = (1:3)^2)
+# Caminho de busca
+search()
+# anexando "dados" ao caminho de busca
+attach(dados)
+# Verificando novamente o caminho de busca
+search()
+# Imprimindo sd
+sd
+# Desanexando "dados"
+detach(dados)
+# Imprimindo sd
+sd
+```
+
+Quando criamos o objeto `dados`, uma de suas colunas estava nomeada por `sd`, que também é o nome de uma função do pacote *stats*, que representa a variância. Porém, quando anexamos o objeto `dados` no caminho de busca, um novo ambiente é criado, como pai do ambiente global e com mesmo nome do objeto, e os elementos do objeto dados são copiados para esse ambiente. Assim, o nome `sd` foi procurado e não encontrado, seguindo a busca para o próximo ambiente que foi `dados`, e daí foi encontrado. Percebemos que também existe esse nome no ambiente do pacote *stats*, que é do tipo função. Entretanto, como o primeiro objeto encontrado associado a esse nome estava no ambiente dados, ele é retornado. Nesses casos, se usarmos a superatribuição, a alteração ocorrerá apenas na cópia dos elementos no ambiente anexado, e não nos elementos do objeto original. Caso haja a atribuição, o nome será criado no ambiente global.
+
+Isso pode acabar se tornando um problema se muitos objetos forem anexados. Por isso, é preferível o uso da indexação ou `$` para acessar os elementos de uma lista ou quadro de dados, evitando assim, conflitos na procura de nomes.
+
+Desse mesmo modo, poderíamos pensar que esses mesmo conflitos poderiam surgir dentro de um pacote. Porém, graças ao *NAMESPACE*, isso não ocorre, sendo um dos assuntos abordados nos próximos módulos.

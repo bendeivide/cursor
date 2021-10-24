@@ -8,16 +8,16 @@ _site.yml
 _images
 _pkgdown
 _suporte
-_nbasico
+#_nbasico
 _postcards
 R
 VideoDecodeStats
-nbasico.Rmd
-index.Rmd
-nbasico.R
-navancado.Rmd
-nintermediario.Rmd
+#nbasico.Rmd
+#index.Rmd
+#nbasico.R
+#navancado.Rmd
+#nintermediario.Rmd
 teste.Rmd
-biblio.bib
+#biblio.bib
 DESCRIPTION
 

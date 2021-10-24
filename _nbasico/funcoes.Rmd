@@ -1,0 +1,603 @@
+# <i class="fas fa-code"></i> Funções {#funcoes}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DS9kce3wHpE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Mais uma vez, nos reportamos aos princípios do `r rlink` (@chambers2016), mais especificamente ao segundo princípio,
+
+<blockquote>
+<p>
+- **Princípio da função**: Tudo que acontece no `r rlink` é uma chamada de função.
+</p>
+</blockquote>
+
+Para que possamos compreender esse princípio, precisamos entender que uma função é um objeto, isto é, modo `function`^[Para esse caso, use `mode()` para verificar.], assim como os vetores são, seguindo as mesmas ideias comentadas na seção anterior, e que as funções podem ser dividas em três componentes:
+
+- Argumentos, função `formals()`,
+- Corpo, função `body()` e
+- Ambiente, função `environment()`.
+
+Para o caso das funções primitivas, escritas na linguagem  *C*, essa regra foge a excessão, e será comentado nos módulos seguintes. Dizemos que funções são primitivas de modo `builtin` ou `special`.
+
+A ideia de função aqui não pensando como uma relação matemática, mas como um sistema que tem uma entrada e saída. Podemos ter funções no ambiente `r rlink` que organiza dados, e não operações matemáticas por exemplo. Vejamos a função `sort()` do pacote *base* que ordena de forma crescente ou descrescente um conjunto de valores,
+
+```{r echo=TRUE, prompt=TRUE}
+# Vetor
+y <- c(5, 3, 4); y
+
+# Funcao
+sort(x = y)
+
+# Argumentos da funcao sort
+formals(sort)
+
+# Corpo da funcao
+body(sort)
+
+# Ambiente
+environment(sort)
+```
+
+Nesse caso, os argumentos `x`, `decreascing` e `...`, são nomes que aguardam receber objetos para a execução da função `sort()`. Nem todos os argumentos necessitam receber objetos, a estes chamamos de argumentos padrão, como o caso do argumento `decreascing` com padrão igual a `FALSE`, que significa que o ordenamento dos dados será de forma não-decrescente. Observe que na função `sort()` entramos apenas com o argumento `x = y`, não precisando inserir `decreascing = FALSE`. Agora, para modificar o argumento padrão, basta acrescentar a alteração na função, isto é,
+
+```{r echo=TRUE, prompt=TRUE}
+# Funcao
+sort(x = y, decreasing = TRUE)
+```
+
+O `'...'` é um argumento especial e significa que pode conter qualquer número de argumentos. Geralmente é utilizado em uma função quando não se sabe o número exato de argumentos. Na subseção [Como criar funções](#criar-funcoes), entenderemos melhor.
+
+O próximo item é o corpo da função. É nele que inserirmos as instruções, isto é, as linhas de comandos necessárias a que destina a sua criação. Uma outra forma de acessarmos o corpo das funções é digitar no console apenas o seu nome sem o parêntese, isto é, `sort`.
+
+Por fim, o ambiente que no caso da função `sort()` representa o ambiente do pacote *base*, isto é, o *namespace* do pacote.
+
+Podemos observar que essas funções utilizadas até agora, não foram criadas pelo usuário. Estas funções vieram do que chamamos de pacotes. Alguns pacotes estão disponíveis quando instalamos o `r rlink`, dizemos que estes são os pacotes da Base  do `r rlink`, para a linguagem. O principal pacote deles é o pacote *base*. Os demais pacotes desenvolvidos podem ser obtidos via `r cran`, e falaremos mais adiante.
+
+O ambiente `r rlink` apresenta uma versatilidade de manuais para a linguagem. Por exemplo, para verificar informações sobre um determinado pacote como o *base*, use `help(package = "base")`. A função `help` pode ser utilizada para funções de pacotes anexados. Por exemplo, `help("sort")`. Uma outra função que pode ser usada para procurar por funções com determinado parte de nome é `apropos()`, isto é, para o exemplo anterior, temos `apropost("sort")`. O pacote *base* sempre estará anexado, isto é, disponível no caminho de busca para a utilização. Para os que não estão anexados, a função `help` deve informar o nome da função que necessita de ajuda, bem como o seu pacote. Por exemplo, temos uma função `read.dbf()` do pacote *foreign*, Base do `r rlink`, porém, ele não está anexado^[A anexação de um pacote no caminho de busca pressupõe que este esteja instalado no seu computador] ao inicializar o `r rlink`. Assim, caso não anexe o pacote, usando `library("foreign")`, a ajuda sobre a função pode ser realizada com `help("read.dbf", package = "foreign")`. Outras sintaxes para a função `help()` é usar `?` antes do nome de uma função de um pacote anexado, isto é, `?sort()`.
+
+Para os manuais de ajuda na internet, use `??` antes do nome da função, por exemplo `??sort()`, `read.dbf()`, etc. Essa sintaxe não precisa dos pacotes estarem anexados para ajuda de determinada função, porém o pacote necessita estar instalado. Para mais detalhes sobre pacotes, teremos uma seção sobre [Pacotes](#pacotes).
+
+As chamadas de funções podem ocorrer de três formas: aninhada, intermediária ou de forma *pipe*. As duas primeiras formas da Base do `r rlink`, e o segundo foi uma sintaxe utilizada pelo pacote [magrittr](https://magrittr.tidyverse.org/){target="_blank"}, e na versão do `r rlink` 4.1, já existe o operador *pipe* nativo (`|>`), sendo comentado no módulo [Programação em R (Nível Intermediário)](nintermediario.html).
+
+Suponha que desejamos calcular o desvio padrão de um conjunto de valores. Vamos utilizar as três formas:
+
+- Aninhado:
+
+```{r echo = TRUE, prompt=TRUE}
+# Gerando 100 numeros aleatorios de uma distribuicao normal
+set.seed(10) # Semente
+x <- rnorm(100)
+
+# Calculando o desvio padrao
+sqrt(var(x))
+```
+
+- intermediária:
+
+```{r echo = TRUE, prompt=TRUE}
+# Calculando o desvio padrao
+vari <- var(x)
+desvpad <- sqrt(vari); desvpad
+```
+
+- Pipe:
+
+```{r echo = TRUE, prompt=TRUE}
+# Anexando o pacote
+library(magrittr)
+
+# Calculando o desvio padrao
+x %>%
+  var() %>%
+  sqrt()
+```
+
+A ideia da chamada de função aninhada é inserir função como argumento de funções sem necessidade de associar nomes aos objetos. A ordem de execução começa sempre da direita para a esquerda. No caso da chamada de função intermediária, associamos nomes a cada função, e os passos seguem. Por fim, o operador especial pipe (`%>%`) tem como primeiro operando o primeiro argumento da função no segundo operando.
+
+Quando desenvolvemos pacotes, preferimos os dois primeiros, pois é a forma tradicional de chamadas de função no `r rlink`. A chamada de função pipe é muito utilizada para ciência dos dados.
+
+
+## Estruturas de controle {#controle-fluxos}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FdGEXshaRJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+As funções que utilizaremos, a seguir, são utilizadas quando desejamos realizar processos repetitivos para um determinado fim ou condicionado, as famosas estruturas de controle. Assim, como em outras linguagens, as funções utilizadas são: `if()`, `switch()`, `ifelse()`, `while()`, `repeat`, `for()`. Esses objetos tem modo `special`^[Use a função `typeof()` para verificar.], porque as expressão não são necessariamente avaliadas. Já a função `ifelse()` é de modo `closure`^[Use a função `typeof()` para verificar.]. Esse é um tipo de função implementado por `function()`.
+
+A ideias das estruturas de controle de modo `special` é:
+
+```
+função (condição) {
+  expressão
+}
+```
+
+A sintaxe das funções `repeat` e `swicth()` fogem um pouco desse padrão, e explicaremos em sua aplicação.
+
+Apesar da linguagem `r rlink` ser interpretada, acaba ganhando a fama de que as funções *loops* são mais lentas. Em alguns casos, a construção do algoritmo proporciona isso e não a implementação dessas funções em si. Um exemplo que podemos citar, são as cópias de objetos podem ter um gasto de memória ativa imenso no processo e proporcionar um gasto computacional. E isso foi devido a forma de como o algoritmo copiou os objetos, e não as funções *lopps*. Veremos isso no módulo [Programação em R (Nível Intermediário)](nintermediario.html).
+
+A primeira estrutura é o `if()`, com sintaxe:
+
+```
+if (condição) {
+  expressão sob condição = TRUE
+} else {
+  expressão sob condição = FALSE
+}
+```
+
+ou de forma alternativa:
+
+```
+if (condição) {
+  expressão sob condição = TRUE
+}
+```
+
+Observe o primeiro exemplo,
+
+```{r echo = TRUE, eval=TRUE, prompt=TRUE}
+# Objeto
+i <- 5
+# Estrutura if()
+if (i > 3) {
+  print("Maior que 3!")
+}
+```
+
+Vejamos mais um exemplo,
+
+```{r echo = TRUE, eval=TRUE, prompt=TRUE}
+# Objeto numerico
+x <- 10
+
+# Estrutura 'if'
+if (is.numeric(x)) {
+  print("Isso é um número")
+} else {
+  print("Isso não é um número")
+}
+# eh o mesmo que
+if (is.numeric(x) == TRUE) {
+  print("Isso é um número")
+} else {
+  print("Isso não é um número")
+}
+```
+observe na primeira forma que a condição na função nós não precisamos perguntar se `is.numeric(x) == TRUE`, porque isso já é implícito na função, e acaba levando a primeira expressão `print("Isso é um número")`. No `r rlink`, essa estrutura de controle não é vetorizado, isto é, se a condição houver um vetor lógico maior que 1, apenas os primeiros itens serão usados. Vejamos,
+
+```{r echo = TRUE, eval=TRUE, prompt=TRUE}
+# Objetos
+x <- 5
+w <- 3:8
+
+# Primeira sintaxe (Preferivel)
+if (x < w) {
+  x
+} else {
+  w
+}
+# Segunda forma
+# if (x < w) x else w
+```
+
+Como forma alternativa, pode ser usado a função `ifelse`, cuja sintaxe é:
+
+```
+ifelse(condição, expressão sob TRUE, expressão sob FALSE)
+```
+
+Assim, temos:
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE}
+# Objetos
+x <- 5
+w <- 3:8
+
+# Primeira sintaxe (Preferivel)
+ifelse(x < w, x, w)
+```
+
+Podemos estar interessados em resultados específicos para determinadas condições. Por exemplo,
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE}
+x <- 2 # numero ou palavra
+
+# Estrutura 'if'
+if (is.character(x)) {
+  "palavra"
+} else {
+    if ((x %% 2) == 0) {
+      "numero_par"
+    } else {
+        if ((x %% 2) == 1) {
+          "numero_impar"
+        }
+    }
+}
+```
+
+Outro exemplo seria,
+
+```{r echo=TRUE, eval=TRUE, prompt=TRUE}
+# Objeto
+set.seed(15) # Fixando a semente
+x <- rnorm(1000) # Gerando 1000 numeros aleatorios
+
+# medida descritiva
+opcao <- "media" # opcoes: "media", "mediana", "medapar" (media aparada)
+
+if (opcao == "media") {
+  cat("A média aritmética é:", round(mean(x), 4))
+} else {
+    if (opcao == "mediana") {
+      cat("A mediana é:", round(mean(x), 4))
+    } else {
+        if (opcao == "medapar") {
+          cat("A média aparada é:", round(mean(x, trim = 0.1), 4))
+        }
+    }
+}
+```
+
+Poderíamos utilizar a função `switch()`, para esse mesmo código, isto é,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+switch(opcao,
+   media = cat("A média aritmética é:", round(mean(x), 4)),
+   mediana = cat("A mediana é:", round(mean(x), 4)),
+   medapar = cat("A média aparada é:", round(mean(x, trim = 0.1), 4))
+)
+```
+
+As três estruturas de *loop* no `r rlink` são: `repeat`, `while()` e `for()`. A primeira delas é `repeat`, apresentamos sua sintaxe:
+
+```
+repeat {
+   expressão ...
+}
+```
+
+Juntamente com o `repeat`, usamos as funções `break` e `next`, pois a função `repeat` não tem uma condição explícita. Vejamos, alguns exemplos.
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Contador
+i <- 1
+# Loop repeat
+repeat {
+  if (i > 5) {
+    break
+  } else {
+    print(i)
+    i <- i + 1
+  }
+}
+```
+Observe que quando `i <- 6`, o ciclo entrou na condição `if(i > 5)` e avaliou a função `break`, que resultou na quebra do ciclo. Assim, a função `print(i)` não foi mais acionada, e os resultados foram impressos até o número `5`. No próximo exemplo, acrescentamos a função `next`.
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Contador
+i <- 1
+# Loop repeat
+repeat {
+  if (i > 5) {
+    break
+  }
+  else {
+    if (i == 3) {
+      i <- i + 1
+      next
+    }
+    print(i)
+    i <- i + 1
+    }
+}
+```
+
+Similar a essa função, temos `while()`, que agora, temos uma condição de parada, cuja sintaxe é:
+
+```
+while (condição) {
+   expressão ...
+}
+```
+
+Nessa função, também podemos usar as funções `break` e `next`, como usados na função `repeat`. Vejamos um exemplo,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Contador
+i <- 1
+# Loop while
+while (i <= 5) {
+  print(i)
+  i <- i + 1
+}
+```
+
+Nesse caso, não foi necessário utilizar a função `break`, devido a condição que ela permite impor ao ciclo. Vejamos um outro exemplo,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Contador
+i <- 1
+# Loop while
+while (i <= 5) {
+  if (i == 3) {
+    i <- i + 1
+    next
+  }
+  print(i)
+  i <- i + 1
+}
+```
+
+Observamos a utilização da função `next`, similar ao que foi realizado com a função `repeat`. Por fim, a função `for()`, cuja sintaxe é dada por:
+
+```
+for (contador in lista) {
+   expressão ...
+}
+```
+
+Com essa função, também podemos utilizar `break` e `next`. Porém, o controle do ciclo nessa sitação é maior, e menos necessário essas funções. Vejamos um primeiro exemplo,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Loop for
+for (i in 1:5) {
+  print(i)
+}
+```
+
+Observe que a implementação, dos algoritmos anteriores, é bem mais simples usando a função `for()`. Vejamos um próximo exemplo,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Loop for
+for (i in 1:5) {
+  if (i == 3) {
+    next
+  }
+  print(i)
+}
+```
+
+Mais uma vez, foi utilizado a função `next`, sem necessidade agora, de atualizar o contador `i`, uma vez que já está definido na função `for()`.
+
+Veremos na próxima subseção, que temos funções de alto nível que podem substituir as funções *loops*. São as chamadas funções da família *apply*.
+
+## Como criar funções {#criar-funcoes}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/80J0_r-QZIg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Até esse momento, usamos funções já desenvolvidas no `r rlink`, seja dos pacotes da Base, seja via instalação dos pacotes via `r cran`. Agora, iremos desenvolver as nossas próprias funções.
+
+Como falado anteriormente, no [início dessa seção](#funcoes), a estrutura da função criada se mantém, argumento, corpo e ambiente. Para isso, usaremos a função `function`. O modo desse objeto é `closure`^[Use `typeof()` para verificar o modo.]. Vejamos a sua sintaxe,
+
+```
+# Forma usual
+nome_funcao <- function(arg1, arg2, ...) {
+   corpo: comandos..
+}
+# Forma simplificada
+nome_funcao <- function(arg1, arg2, ...) corpo
+```
+
+Vejamos um primeiro exemplo,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+fun1 <- function(x) {
+  res <- x + 1
+  return(res)
+}
+```
+
+
+Nesse caso, temos uma função chamada `fun1`, cujo argumento de entrada é `x`. Observe que uma função é como um objeto do tipo vetor, associamos um nome ao objeto da mesma forma. O corpo apresenta uma delimitação por chaves `{...}`, em que apresenta um comando de atribuição `res` que se associa a soma `x + 1`, e por fim, o resultado dessa função, imprime `res`, por meio da função `return()`. Para utilizar essa função, fazemos
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+fun1(x = 5)
+```
+
+O que aconteceu foi que ao assumir `x = 5`, essa informação foi repassada para o corpo da função, aonde existia `x`, foi substituído por `5`, para esse caso. A função `+` é chamada, a expressão `x + 1` avaliada, e nome res se associa ao resultado da expressão. Por fim, quando a função `fun1` é chamada, o resultado de `res` é impresso no console, por meio de `return(res)`. Vamos verificar os três componentes da função `fun1`,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Argumentos
+formals(fun1)
+
+# Corpo
+body(fun1)
+
+# Ambiente
+environment(fun1)
+```
+
+O corpo da função é executado de forma sequencial, a partir da primeira linha até a última. Apesar de recomendado, também não é obrigatório o uso da função `return()`, veja
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Funcao
+fun2 <- function(x) x + 1
+# Executando
+fun2(5)
+```
+
+### Função anônima
+
+Podemos também ter o que chamamos de **função anônima**, da qual não associamos nome as funções. Contudo, sendo criada esta não pode ser recuperada como qualquer outro objeto. Essa forma é interessante quando não precisamos dela após o seu uso. Por exemplo, queremos calcular a integral,
+$$
+\int^{1}_{0}x^2dx = \frac{1}{3},
+$$
+
+e criamos uma função $x^2$. Então,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+integrate(f = function(x) x^2,
+          lower = 0,
+          upper = 1)
+```
+
+A função `integrate` é utilizada para o cálculo de integral, do qual, passamos os argumentos, função (`f`), limite inferior (`lower`) e limite superior (`upper`) da integração, respectivamente. Observe que não houve necessidade de nomear a função no argumento, pois não há objetivo de reutilizado.
+
+### Chamadas de função
+
+As chamadas para essas funções ocorrem da mesma forma que as funções apresentadas da Base do `r rlink`. Vejamos o cálculo do desvio padrão novamente,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Funcao auxiliar 1
+aux1 <- function(x) x - mean(x)
+# Funcao auxiliar 2
+aux2 <- function(x) x^2
+# Funcao auxiliar 3
+aux3 <- function(x) {
+  sum(x) / (length(x) - 1)
+}
+
+# Gerando 100 numeros aleatorios de uma distribuicao normal
+set.seed(10)
+x <- rnorm(100)
+
+# Calculo do desvio padrao (aninhado)
+sqrt(aux3(aux2(aux1(x))))
+
+# Calculo do desvio padrao (intemediario)
+dp <- aux1(x)
+dp <- aux2(dp)
+dp <- aux3(dp)
+dp <- sqrt(dp)
+dp
+
+# Calculo do desvio padrao (pipe)
+x %>%
+  aux1() %>%
+  aux2() %>%
+  aux3() %>%
+  sqrt()
+```
+
+### Ordenação de argumentos
+
+Os argumentos nas funções podem ser nomeados ou não. Quando nomeados, a ordem como são inseridos na função não importa. Já os argumentos não nomeados, seus valores precisam estar na ordem como a função foi desenvolvida. Vejamos,
+
+```{r echo=TRUE, error=TRUE, eval=TRUE, prompt=TRUE}
+estdesc <- function(x, opcao) {
+  res <- switch(opcao,
+           media = round(mean(x), 4),
+           mediana = round(mean(x), 4),
+           medapar = round(mean(x, trim = 0.1), 4))
+  return(res)
+}
+
+# Objeto
+set.seed(15)
+x <- rnorm(1000)
+
+# Argumentos nomeados na funcao
+estdesc(x = x, opcao = "media")
+estdesc(opcao = "media", x = x)
+
+# Argumentos não nomeados ordenados
+estdesc(x, "media")
+
+# Argumentos não ordenados (Gera erro)
+estdesc("media", x)
+```
+
+### Objeto reticências (`...`)
+
+O objeto reticências é do tipo *pairlist*, um tipo de objeto usado bastante internamente no `r rlink`, e dificilmente utilizado no código interpretado. De modo que não temos acesso direto ao objeto `...`. Contudo, esse objeto tem um papel fundamental nas funções, quando damos a liberdade de inserir mais argumentos além dos definidos na função. Vejamos,
+
+```{r echo=TRUE, error=TRUE, eval=TRUE, prompt=TRUE}
+# Funcao que plota um grafico
+grafico <- function(x, y, ...) {
+  plot(x = x, y = y, ...)
+}
+# Vetores
+x <- 1:10; y <- rnorm(10)
+# Chamada 1, com os argumentos definidos
+grafico(x = x, y = y)
+
+# Chamada 2, inserindo argumentos nao definidos
+grafico(x = x, y = y, main = "Título")
+```
+
+Isso ocorre, porque temos a função `plot()` no corpo da função `grafico()` que apresenta muitos argumentos. Dessa forma, criamos a função `grafico()`, com os argumentos que representam as coordenadas, mas a reticências (`...`) garantem que os demais argumentos de `plots`, omitidos, possam ser utilizados.
+
+## Escopo léxico {#esc_lexico}
+
+Vamos retornar aos componentes da função `fun1`,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Argumentos
+formals(fun1)
+
+# Corpo
+body(fun1)
+
+# Ambiente
+environment(fun1)
+```
+
+Observe que o último componente é o ambiente onde o nome `fun1` foi associado a função. Este ambiente é chamado de **ambiente envolvente**. Nesse caso é o ambiente global. Contudo, quando a função é executada, momentaneamente é criado o **ambiente de execução**. É nesse ambiente que os nomes que estão no corpo da função são associados aos objetos. Vejamos um primeiro exemplo,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+x <- 10
+fun <- function() {
+  x <- 2
+  x
+}
+# Chamando a funcao fun
+fun()
+```
+
+Por causa do ambiente de execução que o objeto `x` dentro da função é retornado, ao invés do que foi definido fora da função. Isso porque o ambiente de execução mascara os nomes definidos dentro da função dos nomes definidos fora da função. Esse é uma primeira característica do **escopo léxico** nas funções em `r rlink`.
+
+Anteriormente, falamos sobre a **atribuição**, que representa a forma como os nomes se associam aos objetos. Agora, o **escopo** vem a ser a forma como os nomes encontram seus valores associados. O termo **léxico** significa que as funções podem encontrar nomes e seus respectivos valores associados, definidos no ambiente onde a função foi definida, isto é, no ambiente de função. Claro que isso segue regras, e a primeira foi a **máscara de nome** falada anteriormente.
+
+Porém quando não existe um nome vinculado a um objeto, e este foi definido no ambiente de função, o valor é repassado para o corpo da função. Observe,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+x <- 10
+fun <- function() {
+  x
+}
+# Chamando a funcao fun
+fun()
+```
+
+O resultado de `fun()` foi `10`, porque como a função procurou no ambiente de execuções e não encontrou esse nome, a função foi até o ambiente superior, no caso, o ambiente de execuções. Como falado anteriormente, todo ambiente tem um pai (ou ambiente superior). Essa hierarquização é observada no caminho de busca, que pode ser acessado por `search()`, ou seja,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+search()
+```
+
+O ambiente corrente do `r rlink` sempre será o ambiente ambiente global (`.GlobalEnv`). O ambiente de execução não aparece, porque ele é momentâneo. Então após buscar no ambiente de execução e não encontrar, é pelo caminho de busca que a função irá procurar pelos objetos inseridos no corpo da função. Ele só existe quando a função é chamada e não quando ela é definida, isto é,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Funcao
+fun <- function() x + 10
+# Objeto 1
+x <- 10
+# Chamada1
+fun()
+# Objeto 2
+x <- 20
+# Chamada 2
+fun()
+```
+
+Observe que após ser criada a função `fun()`, o nome `x` se associou ao objeto `10`. Posteriormente, `fun()` foi chamada e o resultado foi `20`. Contudo, o nome `x` se associou a outro objeto `20`, e após a segunda chamada da função `fun()`, o resultado foi 30, porque a função procura os valores quando ela é executada, e não quando é criada, é a característica de **pesquisa dinâmica** do escopo léxico.
+
+Uma outra situação é a seguinte,
+
+```{r echo=TRUE, eval = TRUE, prompt=TRUE}
+# Objeto
+n <- 1
+# Funcao
+fun <- function() {
+  n <- n + 1
+  n
+}
+# Chamada 1
+fun()
+# Chamada 2
+fun()
+```
+
+Nessas linhas de comando, poderíamos pensar que após ter executado a primeira chamada, que retornou valor `2`, a segunda chamada retornaria o valor `3`, como ocorre com as variáveis estáticas na linguagem *C*. Aqui nesse caso, resultado independente do número de chamadas será sempre o mesmo, porque uma outra característica do escopo léxico no `r rlink` é o **novo começo**, porque a cada vez que a função é executada um novo ambiente de execução é criado, e portanto, cada execução dos comandos de atribuição e expressão são executados de forma independentes nas chamadas de funções.
+
+Algo que não havíamos falado anteriormente, é que a função `function()` permite que não seja definido argumentos, devido a flexibilidade do escopo léxico das funções em `r rlink`. É essa característica que faz com que os comandos no corpo das funções encontrem os objetos que não estão definidos na própria função. Mais detalhes, será visto no módulo [Programação em R (Nível Intermediário)](#nintermediario.html).

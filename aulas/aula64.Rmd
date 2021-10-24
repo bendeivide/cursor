@@ -112,7 +112,7 @@ divisi <- function (a, b) { # Divisao
 ## Editando o arquivo *DESCRIPTION*
 
 <center>
-![](meupocote03.PNG)
+![](meupacote06.PNG)
 </center>
 
 ## Editando o arquivo *DESCRIPTION*

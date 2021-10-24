@@ -1,0 +1,32 @@
+# <i class="fas fa-calendar-minus"></i> Considerações e preparação para o módulo Programação em R (Nível Intermediário) {#consideracoes}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tpD24tYMNw0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Nesse módulo, tentamos tratar as ideias básicas por trás dos três princípios do `r rlink`, mas principalmente os fundamentos de um objeto e a ideia sobre função. Tentamos repassar algo mais técnico sobre esta linguagem. Contudo, sabemos que algo introdutório deve ter uma flexibilidade quanto a profundidade das discussões e exemplos abordados. Mesmo assim, esse módulo dará suporte para problemas mais complexos que abordaremos para os módulos seguintes.
+
+Faremos constantemente atualizações, quando necessárias, para melhorar esse material, e assim, auxiliar nos estudos de quem desejar entrar no mundo da linguagem `R`. Para isso, pedimos também a sua contribuição como leitor. Caso encontre alguma discordância nesse material ou complementos sobre a discussão, entre em contato pelas nossas redes sociais, como também por email: <ben.deivide@ufsj.edu.br>{target="_blank"}. Será muito bom podermos compartilhar as nossas experiências, uma vez que o *conhecimento é uma liberdade necessária*.
+
+Na Figura \@ref(fig:rworks1), apresentamos um resumo do que vem para o módulo [Programação em R (Nível Intermediário)](#nintermediario.html).
+
+```{r rworks1, fig.cap = "Relembrando como o `R` funciona.", out.width="110%", fig.align='center'}
+knitr::include_graphics("images/rworks2.png")
+```
+
+Dentre os assuntos abordados, teremos:
+
+- Aprofundamento sobre os objetos, associando-os com a tipagem da linguagem *C*;
+- Cópias de objetos;
+- Aprofundamento sobre Ambientes;
+- Programação Orientada a objetos, bem como estudo de Métodos e Classes;
+- Programação Funcional:
+  - Evitando loops;
+  - Eficiência;
+  - Programando em baixo nível;
+  - Programação defensiva;
+- Introdução a Criação de Pacotes;
+- Gráficos;
+- Criação de documentos estáticas e dinâmicas;
+
+Dessa forma, agradecemos imensamente o interesse como leitor, e também lhe provoco para participar juntamente conosco nessa propagação de conhecimento. [Até o próximo módulo!](nintermediario.html){target="_blank"}
+
+
