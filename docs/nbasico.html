@@ -2298,7 +2298,7 @@ Figure 2: Interface do RStudio (Versão 1.4.1103).
 <h1 id="rhistory"><i class="fab fa-r-project"></i> História do R</h1>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-plK308HcgU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 </iframe>
-<p>A linguagem <code>R</code> tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado <a href="https://doi.org/10.2307/1390807"><em>R: A Language for Data Analysis and Graphics</em></a>, cujos os autores são os desenvolvedores da linguagem, <a href="https://www.stat.auckland.ac.nz/~ihaka/">George Ross Ihaka</a> e <a href="https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5">Robert Clifford Gentleman</a>.</p>
+<p>A linguagem <a href="http://r-project.org/" target="_blank">R</a> tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado <a href="https://doi.org/10.2307/1390807"><em>R: A Language for Data Analysis and Graphics</em></a>, cujos os autores são os desenvolvedores da linguagem, <a href="https://www.stat.auckland.ac.nz/~ihaka/">George Ross Ihaka</a> e <a href="https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5">Robert Clifford Gentleman</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure" style="text-align: center"><span id="fig:criadoresr"></span>
 <img src="images/criadores_r.png" alt="Criadores do R.^[Fonte das fotos: Robert Gentleman do site: https://biocasia2020.bioconductor.org/ e Ross Ihaka do site: https://www.stat.auckland.ac.nz/en/about/news-and-events-5/news/news-2017/2017/12/ross-ihaka-retires.html]" width="489" />
@@ -2307,7 +2307,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 </p>
 </div>
 </div>
-<p>Durante a época em que estes professores trabalhavam na Universidade de Auckland, Nova Zelândia, desenvolvendo uma implementação alternativa da lingugagem <code>S</code>, desenvolvida por John Chambers, que comercialmente era o <code>S-PLUS</code>, nasceu em 1991, o projeto da linguagem <code>R</code>, em que em 1993 o projeto é divulgado e em 1995, o primeiro lançamento oficial, como software livre com a licença <a href="http://gnu.org/">GNU</a>. Devido a demanda de correções da linguagem que estava acima da capacidade de atualização em tempo real, foi criado em 1997, um grupo central voluntário, responsável por essas atualizações, o conhecido <em>R Development Core Team</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, que hoje está em 20 membros (atualizado em 24 outubro, 2021): Douglas Bates, John Chambers, Peter Delgaard, Robert Gentleman, Kurt Hornik, Ross Ihaka, Tomas Kalibera, Michael Lawrence, Friedrich Leisch, Uwe Ligges, Thomas Lumley, Martin Maechler, Sebastian Meyer, Paul Murrel, Martyn Plummer, Brian Ripley, Deepayan Sarkarm, Duncan Temple Lang, Luke Tierney e Simon Urbanek.</p>
+<p>Durante a época em que estes professores trabalhavam na Universidade de Auckland, Nova Zelândia, desenvolvendo uma implementação alternativa da lingugagem <code>S</code>, desenvolvida por John Chambers, que comercialmente era o <code>S-PLUS</code>, nasceu em 1991, o projeto da linguagem <code>R</code>, em que em 1993 o projeto é divulgado e em 1995, o primeiro lançamento oficial, como software livre com a licença <a href="http://gnu.org/">GNU</a>. Devido a demanda de correções da linguagem que estava acima da capacidade de atualização em tempo real, foi criado em 1997, um grupo central voluntário, responsável por essas atualizações, o conhecido <em>R Development Core Team</em><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, que hoje está em 20 membros (atualizado em 09 novembro, 2021): Douglas Bates, John Chambers, Peter Delgaard, Robert Gentleman, Kurt Hornik, Ross Ihaka, Tomas Kalibera, Michael Lawrence, Friedrich Leisch, Uwe Ligges, Thomas Lumley, Martin Maechler, Sebastian Meyer, Paul Murrel, Martyn Plummer, Brian Ripley, Deepayan Sarkarm, Duncan Temple Lang, Luke Tierney e Simon Urbanek.</p>
 <p>Por fim, o CRAN (Comprehensive R Archive Network) foi oficialmente anunciado em 23 de abril de 1997<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. O CRAN é um conjunto de sites (espelhos) que transportam material idêntico, com as contribuições do R de uma forma geral.</p>
 <p><code>R</code> é uma linguagem de programação e ambiente de <em>software</em> livre e código aberto (<em>open source</em>). Entendemos<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>:</p>
 <ul>
@@ -2366,7 +2366,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x26abd3d8&quot;</code></pre>
+<pre><code>[1] &quot;0x2ad506d0&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2393,7 +2393,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x26abd3d8&quot;</code></pre>
+<pre><code>[1] &quot;0x2ad506d0&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 3: As variáveis dentro de uma função permanecem nelas, exceto no caso em que a atribuição ao escopo seja explicitamente solicitada.</li>
@@ -2405,7 +2405,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x24ab4308&quot;</code></pre>
+<pre><code>[1] &quot;0x287b2b18&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Criando um nome "funcao" associado a um objeto que eh uma funcao</span>
 <span class='va'>funcao</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>{</span>
@@ -2433,7 +2433,7 @@ Figure 3: Criadores do R.<a href="#fn1" class="footnote-ref" id="fnref1" role="d
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>lobstr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/lobstr/man/obj_addr.html'>obj_addr</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='co'># Identificador do objeto</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;0x24ab4228&quot;</code></pre>
+<pre><code>[1] &quot;0x287b2a38&quot;</code></pre>
 </div>
 <ul>
 <li>Exemplo 4: Por fim, embora a linguagem <code>R</code> tenha um escopo padrão, chamado ambiente global, os escopos de funções podem ser alterados.</li>
@@ -3546,7 +3546,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 </div>
 <pre><code> [1]  4  6  8 10 12 14 16 18 12 14</code></pre>
 </div>
-<p>O segundo vetor recebeu os elementos <code>3, 4, 5</code>, isto é, os três primeiros elementos do vetor, para que o seu comprimento se tornasse igual ao comprimento do primeiro vetor. Após isso, foi realizado a soma elemento a elemento. Esse provedimento ocorre com os demais tipos de operações.</p>
+<p>O segundo vetor repetiu os elementos <code>3, 4, 5</code>, isto é, os três primeiros elementos do vetor, para que o seu comprimento se tornasse igual ao comprimento do primeiro vetor. Após isso, foi realizado a soma elemento a elemento. Esse procedimento ocorre com os demais tipos de operações.</p>
 <p>Demais operações podem ser realizadas de acordo com as funções apresentadas na Tabela abaixo.</p>
 <table>
 <colgroup>
@@ -3590,11 +3590,11 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>sum()</code></td>
-<td style="text-align: center;">Soma de elementos do vetor</td>
+<td style="text-align: center;">Soma de elementos de um vetor</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><code>prod()</code></td>
-<td style="text-align: center;">Produtório dos elementos do vetor</td>
+<td style="text-align: center;">Produtório dos elementos de um vetor</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>sqrt()</code></td>
@@ -3674,7 +3674,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 <tr class="odd">
 <td style="text-align: center;"><code>&gt;=</code></td>
 <td style="text-align: center;"><code>a &gt;= b</code></td>
-<td style="text-align: center;"><code>a</code> é maior ou igual a <code>b</code></td>
+<td style="text-align: center;"><code>a</code> é maior ou igual a <code>b</code>?</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>&lt;=</code></td>
@@ -3763,7 +3763,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 <tr class="odd">
 <td style="text-align: center;"><code>xor()</code></td>
 <td style="text-align: center;"><code>xor(cond1, cond2)</code></td>
-<td style="text-align: center;">Apenas a <code>cond1</code> ou a <code>cond2</code> é verdadeiro?</td>
+<td style="text-align: center;">Apenas a <code>cond1</code> ou a <code>cond2</code> é verdadeira?</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><code>!</code></td>
@@ -3891,7 +3891,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 [2,]    4    5    6</code></pre>
 </div>
 <p>Para acessarmos ou alterarmos os elementos de uma matriz, usamos o sistema de indexação similar ao vetor, porém, devemos indexar as linhas e colunas. Por exemplo, o elemento da primeira linha e primeira coluna pode ser obtido por <code>x[1, 1]</code>, e assim por diante. Todos os elementos da linha 1, <code>x[1,]</code>, ou todos os elementos da coluna 1, <code>x[,1]</code>.</p>
-<h1 id="arrays"><i class="fas fa-dice-three"></i> Matriz multidimencional</h1>
+<h1 id="arrays"><i class="fas fa-dice-three"></i> Matriz multidimensional</h1>
 <p>A ideia do objeto matriz multidimencional (ou <em>array</em>) é similar ao da matriz, a diferença é que agora é um vetor atômico de mais de duas dimensões. Vejamos,</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -4035,7 +4035,7 @@ Figure 11: Objetos <code>v1</code>, <code>v2</code> e <code>v3</code>.
 [[4]]
 function (x, ...) 
 UseMethod(&quot;mean&quot;)
-&lt;bytecode: 0x0000000008633af0&gt;
+&lt;bytecode: 0x0000000008e55c60&gt;
 &lt;environment: namespace:base&gt;
 
 [[5]]
@@ -5863,7 +5863,7 @@ A 100.87     g4</code></pre>
 <pre><code>Table in latex of results of the MGM test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Sun Oct 24 18:29:08 2021
+% Tue Nov 09 13:21:55 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5883,7 +5883,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the MGR test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Sun Oct 24 18:29:08 2021
+% Tue Nov 09 13:21:55 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5903,7 +5903,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the SNKM test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Sun Oct 24 18:29:08 2021
+% Tue Nov 09 13:21:55 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5923,7 +5923,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of the TM test
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Sun Oct 24 18:29:08 2021
+% Tue Nov 09 13:21:55 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrl}
@@ -5943,7 +5943,7 @@ E &amp; 140.30 &amp; g1 \\
 Table in latex of results of descriptive statistics
 
 % latex table generated in R 4.1.0 by xtable 1.8-4 package
-% Sun Oct 24 18:29:08 2021
+% Tue Nov 09 13:21:55 2021
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrrrrr}
@@ -6198,7 +6198,7 @@ $weights
 [1] 1
 
 $`Ambiente de execução`
-&lt;environment: 0x00000000274a82e8&gt;
+&lt;environment: 0x0000000009b9a698&gt;
 
 $`Ambiente Pai`
 &lt;environment: R_GlobalEnv&gt;</code></pre>
@@ -6228,17 +6228,17 @@ $`Ambiente Pai`
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x0000000024645768&gt;</code></pre>
+<pre><code>&lt;environment: 0x0000000028ea9b38&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x00000000091cccb0&gt;</code></pre>
+<pre><code>&lt;environment: 0x000000002b2f74d8&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>f1</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>`Ambiente de execução`</span>
 </code></pre>
 </div>
-<pre><code>&lt;environment: 0x0000000008f950e0&gt;</code></pre>
+<pre><code>&lt;environment: 0x000000002b04bd60&gt;</code></pre>
 </div>
 <p>O ambiente pai do ambiente de execução, é o ambiente envolvente de <code>f1</code>, que nesse caso é o ambiente global. Assim, observe que o ocorre quando executamos o comando de superatribuição. O nome <code>x</code> no ambiente global passou a está associado ao valor 2, porque foi alterado por <code>&lt;&lt;-</code>, mas o nome <code>x</code> continuou associado ao valor 1, porque a função <code>f1()</code> retornou o valor 1. Isso mostra que a superatribuição não cria um objeto no ambiente atual, mas em um ambiente pai se não existe ou altera o nome existente. Vejamos o complemento dessa afirmação no próximo exemplo.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -6297,10 +6297,10 @@ $`Ambiente Pai`
 [1] 1
 
 $AmbExec_aux
-&lt;environment: 0x0000000008615f28&gt;
+&lt;environment: 0x000000002ae7d6e0&gt;
 
 $AmbExec_contador
-&lt;environment: 0x000000000872ebb0&gt;</code></pre>
+&lt;environment: 0x000000002af0ea08&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
@@ -6309,10 +6309,10 @@ $AmbExec_contador
 [1] 2
 
 $AmbExec_aux
-&lt;environment: 0x00000000083ac628&gt;
+&lt;environment: 0x000000002adca7d0&gt;
 
 $AmbExec_contador
-&lt;environment: 0x000000000872ebb0&gt;</code></pre>
+&lt;environment: 0x000000002af0ea08&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>contador1</span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
@@ -6321,10 +6321,10 @@ $AmbExec_contador
 [1] 3
 
 $AmbExec_aux
-&lt;environment: 0x0000000005df45b0&gt;
+&lt;environment: 0x000000002ad1b2d8&gt;
 
 $AmbExec_contador
-&lt;environment: 0x000000000872ebb0&gt;</code></pre>
+&lt;environment: 0x000000002af0ea08&gt;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Chamada de funcao</span>
 <span class='va'>contador2</span> <span class='op'>&lt;-</span> <span class='fu'>contador</span><span class='op'>(</span><span class='op'>)</span>
@@ -6335,10 +6335,10 @@ $AmbExec_contador
 [1] 1
 
 $AmbExec_aux
-&lt;environment: 0x0000000024ca0ca8&gt;
+&lt;environment: 0x000000000647ce58&gt;
 
 $AmbExec_contador
-&lt;environment: 0x0000000005ede1c0&gt;</code></pre>
+&lt;environment: 0x000000002ab3add8&gt;</code></pre>
 </div>
 <p>Quando uma função <code>function()</code> é criada dentro de outra função <code>function()</code> o ambiente de execução da função superior, <code>contador()</code>, é o ambiente envolvente da função interna, <code>aux()</code>. Dessa forma, o ambiente de execução de <code>contador()</code> não será mais efêmero, isto é, não será apagado após a execução, como pode ser visto em <code>contador1()</code>. Observamos que executamos <code>contador1()</code> três vezes. O nome <code>i</code> foi atualizado, devido a superatribuição, a cada chamada da mesma função. Ao passo que, quando realizamos uma nova chamada de <code>contador()</code>, por meio de <code>contador2()</code>, o resultado de <code>i</code> retora o valor <code>1</code>, porque um novo ambiente de execução para <code>contador()</code> foi criado, como pode ser observado.</p>
 <p>Os demais ambiente funcionais e exemplos, serão descritos no módulo <a href="nintermediario.html">Programação em R (Nível Intermediário)</a>.</p>
@@ -6469,7 +6469,7 @@ $AmbExec_contador
 <pre><code>function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x0000000026cc0a38&gt;
+&lt;bytecode: 0x0000000029010c70&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 <p>Quando criamos o objeto <code>dados</code>, uma de suas colunas estava nomeada por <code>sd</code>, que também é o nome de uma função do pacote <em>stats</em>, que representa a variância. Porém, quando anexamos o objeto <code>dados</code> no caminho de busca, um novo ambiente é criado, como pai do ambiente global e com mesmo nome do objeto, e os elementos do objeto dados são copiados para esse ambiente. Assim, o nome <code>sd</code> foi procurado e não encontrado, seguindo a busca para o próximo ambiente que foi <code>dados</code>, e daí foi encontrado. Percebemos que também existe esse nome no ambiente do pacote <em>stats</em>, que é do tipo função. Entretanto, como o primeiro objeto encontrado associado a esse nome estava no ambiente dados, ele é retornado. Nesses casos, se usarmos a superatribuição, a alteração ocorrerá apenas na cópia dos elementos no ambiente anexado, e não nos elementos do objeto original. Caso haja a atribuição, o nome será criado no ambiente global.</p>

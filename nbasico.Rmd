@@ -176,7 +176,7 @@ Muitas coisas na interface do `R` podem se tornar problemas para os usuários, u
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/-plK308HcgU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-A linguagem `R` tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado [*R: A Language for Data Analysis and Graphics*](https://doi.org/10.2307/1390807 ), cujos os autores são os desenvolvedores da linguagem, [George Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/) e [Robert Clifford Gentleman](https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5).
+A linguagem `r rlink` tem a sua primeira aparição científica publicada em 1996, com o artigo intitulado [*R: A Language for Data Analysis and Graphics*](https://doi.org/10.2307/1390807 ), cujos os autores são os desenvolvedores da linguagem, [George Ross Ihaka](https://www.stat.auckland.ac.nz/~ihaka/) e [Robert Clifford Gentleman](https://gist.github.com/colliand/d6d4ff42a9124ca38bed8d90136f70f5).
 
 ```{r criadoresr, fig.cap = "Criadores do R.^[Fonte das fotos: Robert Gentleman do site: https://biocasia2020.bioconductor.org/ e Ross Ihaka do site: https://www.stat.auckland.ac.nz/en/about/news-and-events-5/news/news-2017/2017/12/ross-ihaka-retires.html]", fig.height=4, fig.width=5, fig.align='center'}
 knitr::include_graphics("images/criadores_r.png")
@@ -436,7 +436,6 @@ Quando inserimos um comando no console, executamos uma linha de comando por vez 
 # Uma linha de comando por vez
 meu_nome <- "Ben" # Criamos e associamos um nome ao objeto
 meu_nome # Imprimos o objeto
-
 # Tudo em uma linha de comando
 meu_nome <- "Ben"; meu_nome
 ```
@@ -1086,7 +1085,7 @@ Quando os vetores não têm mesmo comprimento, o `R` completará de forma sequen
 1:10 + 3:10
 ```
 
-O segundo vetor recebeu os elementos `3, 4, 5`, isto é, os três primeiros elementos do vetor, para que o seu comprimento se tornasse igual ao comprimento do primeiro vetor. Após isso, foi realizado a soma elemento a elemento. Esse provedimento ocorre com os demais tipos de operações.
+O segundo vetor repetiu os elementos `3, 4, 5`, isto é, os três primeiros elementos do vetor, para que o seu comprimento se tornasse igual ao comprimento do primeiro vetor. Após isso, foi realizado a soma elemento a elemento. Esse procedimento ocorre com os demais tipos de operações.
 
 Demais operações podem ser realizadas de acordo com as funções apresentadas na Tabela abaixo.
 
@@ -1099,8 +1098,8 @@ Demais operações podem ser realizadas de acordo com as funções apresentadas 
 |  `^` ou `**`         | Expoenciação binária, isto é `2^3` ou `2 ** 3` |
 |   `%/%`              | Divisão inteira  |
 |   `%%`               | Restante da divisão |  
-|    `sum()`           | Soma de elementos do vetor |
-|     `prod()`         | Produtório dos elementos do vetor |
+|    `sum()`           | Soma de elementos de um vetor |
+|     `prod()`         | Produtório dos elementos de um vetor |
 |      `sqrt()`        | Raiz quadrada dos elementos de um vetor |
 |      `log()`         | Função Logaritmo neperiano |
 |      `log10()`       | Função Logaritmo na base 10 |
@@ -1123,7 +1122,7 @@ Os operadores lógicos têm a função de avaliar determinada condição e retor
 |    `>`          |  `a > b` |  `a` é maior que `b`?|
 |    `==`         | `a == b` |  `a` é igual `b`?|
 |    `!=`         | `a != b` |  `a` é diferente `b`? |
-|   `>=`          | `a >= b` | `a` é maior ou igual a `b`     |
+|   `>=`          | `a >= b` | `a` é maior ou igual a `b`?  |
 |   `<=`          | `a <= b` | `a` é menor ou igual a `b`? |
 |      `%in%`     | `"a" %in% c("a", "b", "c")` | O elemento `"a"` está no vetor `c("a", "b", "c")`? |
 
@@ -1168,7 +1167,7 @@ O operadores booleanos avaliam diversas operações lógicas (condições) para 
 |:-----------------:|:---------:|:-------:|
 |    `&` ou `&&`    |  `cond1 & cond2` | As `cond1` e `cond2` são verdadeiras?|
 |     `|` ou `||`   | `cond1 | cond2` | A `cond1` ou `cond2` é verdadeira? |
-| `xor()`           | `xor(cond1, cond2)` | Apenas a `cond1` ou a `cond2` é verdadeiro?|
+| `xor()`           | `xor(cond1, cond2)` | Apenas a `cond1` ou a `cond2` é verdadeira?|
 | `!`               | `!cond1`      | É falso a `cond1` ? |
 | `any()`             | `any(cond1, cond2, ...)`| Alguma das condições são verdadeiras? |
 |   `all()` |    `all(cond1, cond2, ...)` | Todas as condições são verdadeiras?|
@@ -1226,7 +1225,8 @@ attributes(x)
 sloop::s3_class(x)
 ```
 
-O atributo `dim` recebeu uma informação bidimensional, isto é, o número de linhas e colunas, respectivamente. Uma outra forma para construir uma matriz é usando a função `matrix`, que de modo similar, temos:
+
+O atributo `dim` recebeu uma informação bidimensional, isto é, o número de linhas e colunas, respectivamente. Uma outra forma para construir uma matriz é usando a função `matrix`, que de modo similar, temos: 
 
 ```{r echo=TRUE, prompt=TRUE}
 # Criando uma matriz
@@ -1247,7 +1247,7 @@ matrix(1:6, 2, 3, byrow = TRUE)
 
 Para acessarmos ou alterarmos os elementos de uma matriz, usamos o sistema de indexação similar ao vetor, porém, devemos indexar as linhas e colunas. Por exemplo, o elemento da primeira linha e primeira coluna pode ser obtido por `x[1, 1]`, e assim por diante. Todos os elementos da linha 1, `x[1,]`, ou todos os elementos da coluna 1, `x[,1]`.
 
-# <i class="fas fa-dice-three"></i> Matriz multidimencional {#arrays}
+# <i class="fas fa-dice-three"></i> Matriz multidimensional {#arrays}
 
 A ideia do objeto matriz multidimencional (ou *array*) é similar ao da matriz, a diferença é que agora é um vetor atômico de mais de duas dimensões. Vejamos,
 

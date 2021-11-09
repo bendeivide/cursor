@@ -54,6 +54,12 @@ xaringanExtra::use_panelset()
   - [Saídas implícitas, explícitas, invisíveis de funções](#saida_funcoes)
   - [Funções de substituição](#funcoes_substituicao)
   <!-- - Sintaxe da família de Pacotes *Tidyverse* -->
+  <!-- Levar em consideração a crítica de que muitos cursos que introduzem o curso R usam pacotes da familia tidyverse, -->
+  <!-- de modo que representa uma nova sintaxe para o R, -->
+  <!-- perdendo fundamentos de estruturas basicas como -->
+  <!-- os vetores, atribuicoes. Isso pq o estilo é praticamente funcional. Para uma melhor discussao, acessar: -->
+  <!-- - https://github.com/matloff/R-vs.-Python-for-Data-Science -->
+  <!-- - https://github.com/matloff/TidyverseSkeptic -->
   <!-- - Evitando *loops* -->
   <!-- - Funções recursivas -->
 <!-- Capítulo 8 - Conditions (Advanced R) -->
